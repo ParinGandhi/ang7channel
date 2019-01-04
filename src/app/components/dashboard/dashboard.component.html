@@ -1,0 +1,35 @@
+<br>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Channels by site
+        <span class="pull-right">Total: {{dashboardData.siteNames.length}}</span>
+        <!-- <div class="card-header-actions pull-right">
+          Total: {{dashboardData.siteNames.length}}
+        </div> -->
+      </div>
+      <div class="panel-body">
+        <div class="chart-wrapper">
+          <nvd3 [options]="options" [data]="data"></nvd3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Active/Inactive channels
+        <span class="pull-right">Total: {{activeInactiveChartLabels.length}}</span>
+        <!-- <div class="card-header-actions pull-right">
+          Total: {{activeInactiveChartLabels.length}}
+        </div> -->
+      </div>
+      <div class="panel-body">
+        <div class="chart-wrapper">
+          <nvd3 [options]="options" [data]="chartActiveInactiveData"></nvd3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

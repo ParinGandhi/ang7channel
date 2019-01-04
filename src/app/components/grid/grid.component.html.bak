@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-2">
+    <button class="btn btn-success btn-block" (click)="exportToCsv();"><span class="glyphicon glyphicon-download-alt"
+        aria-hidden="true"></span>&nbsp;Export to CSV</button>
+  </div>
+  <div class="col-sm-2">
+    <button class="btn btn-success btn-block" (click)="archiveChannels();"><span class="glyphicon glyphicon-folder-open"
+        aria-hidden="true"></span>&nbsp;&nbsp;Archive channels
+    </button>
+  </div>
+</div>
+<ag-grid-angular style="width: 100%; height: 500px; margin-top: 40px;" class="ag-theme-balham" [rowData]="rowData"
+  [columnDefs]="columnDefs" [enableSorting]="true" [enableFilter]="true" [gridOptions]="gridOptions"
+  [paginationPageSize]=20 [pagination]="true" [rowSelection]="rowSelection">
+</ag-grid-angular>
+<div *ngIf="showPlayer" class="row">
+  <div class="col-sm-12">
+    <app-waveform [metaDataUrl]=audioUrl></app-waveform>
+  </div>
+</div>
+
+
+<!-- History Modal -->
+<ngx-smart-modal #historyModal customClass="nsm-dialog-animation-ttb historyModal" identifier="historyModal">
+  <div class="modal-header">
+    <h4 class="modal-title">History</h4>
+  </div>
+  <div class="modal-body">
+    <ag-grid-angular style="width: 100%; height: 500px; margin-top: 40px;" class="ag-theme-balham" [rowData]="historyRowData"
+      [columnDefs]="historyColumnDefs" [enableSorting]="true" [enableFilter]="true" [paginationPageSize]=20
+      [pagination]="true">
+    </ag-grid-angular>
+   
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default pull-left" (click)="historyModal.close()">Close</button>
+  </div>
+</ngx-smart-modal>
+<!-- End History Modal -->

@@ -1,0 +1,67 @@
+<div class="row searchHeight">
+  <div class="input-field col-sm-10 col-sm-offset-1">
+    <label for="channelName">Channel name</label>
+    <input class="form-control" id="channelName" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.channelName">
+  </div>
+</div>
+<div class="row searchHeight">
+  <div class="input-field col-sm-10 col-sm-offset-1">
+    <label for="siteId">Site ID</label>
+    <select class="form-control" name="siteid" id="siteid" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.stndSite.id">
+      <option value="">Select a site id...</option>
+      <option *ngFor="let siteId of siteIdList.results" [value]="siteId.id">{{siteId.descriptionTx}}</option>
+    </select>
+  </div>
+</div>
+<div class="row searchHeight">
+  <div class="input-field col-sm-10 col-sm-offset-1">
+    <label for="originatedIp">Originated IP</label>
+    <input class="form-control" id="originatedIp" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.mediaOriginatedIp">
+  </div>
+</div>
+<div class="row searchHeight">
+  <div class="input-field col-sm-10 col-sm-offset-1">
+    <label for="originatedPort">Originated port</label>
+    <input class="form-control" id="originatedPort" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.mediaOriginatedPort">
+  </div>
+</div>
+<div class="row searchHeight">
+  <div class="input-field col-sm-10 col-sm-offset-1">
+    <label for="roleId">Role ID</label>
+    <select class="form-control" name="roleId" id="roleId" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.stndRole.id">
+      <option value="">Select a role id...</option>
+      <option *ngFor="let roleId of roleIdList.results" [value]="roleId.id">{{roleId.descriptionTx}}</option>
+    </select>
+  </div>
+</div>
+<div class="row searchHeight">
+  <div class="input-field col-sm-10 col-sm-offset-1">
+    <label for="activeIndSearch">Active indicator</label>
+    <select class="form-control" name="activeIndSearch" id="activeIndSearch" [ngModelOptions]="{standalone: true}"
+      [(ngModel)]="easMediaData.enableIn">
+      <option value="">Select an active indicator...</option>
+      <option value="Y">Active</option>
+      <option value="N">Inactive</option>
+    </select>
+  </div>
+</div>
+<div class="row searchHeight">
+  <div class="input-field col-sm-10 col-sm-offset-1">
+    <label for="startDate">Start date</label>
+    <input class="form-control" id="startDate" type="date">
+  </div>
+</div>
+<div class="row searchHeight">
+  <div class="input-field col-sm-10 col-sm-offset-1">
+    <label for="endDate">End date</label>
+    <input class="form-control" id="endDate" type="date">
+  </div>
+</div>
+<div class="row searchHeight">
+  <div class="col-sm-5 col-sm-offset-1">
+    <button class="btn btn-primary btn-block" (click)="submitSearch();">Submit</button>
+  </div>
+  <div class="col-sm-5">
+    <button class="btn btn-default btn-block" (click)="clearSearch();">Clear</button>
+  </div>
+</div>
