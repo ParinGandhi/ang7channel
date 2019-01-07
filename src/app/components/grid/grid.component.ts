@@ -40,13 +40,18 @@ export class GridComponent implements OnInit {
 
   columnDefs = [
     { headerName: 'Archve', checkboxSelection: true, width: 80 },
+    // {
+    //   headerName: 'Play', cellRendererFramework: PlayAudioComponent, cellRendererParams: {
+    //     onClick: this.sample.bind(this),
+    //     label: 'Click 1'
+    //   }, width: 75
+    // },
     {
-      headerName: 'Play', cellRendererFramework: PlayAudioComponent, cellRendererParams: {
-        onClick: this.sample.bind(this),
-        label: 'Click 1'
-      }, width: 75
+      headerName: 'Channel Name', field: 'channelName', cellRendererFramework: PlayAudioComponent, cellRendererParams: {
+        onClick: this.sample.bind(this)
+      },
+      width: 200
     },
-    { headerName: 'Channel Name', field: 'channelName' },
     { headerName: 'Site ID', field: 'stndSite.nm' },
     { headerName: 'Classification', field: 'standardClassification.nm' },
     { headerName: 'Role ID', field: 'stndRole.nm' },

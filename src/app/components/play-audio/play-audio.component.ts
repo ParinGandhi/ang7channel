@@ -3,7 +3,7 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
   selector: 'app-play-audio',
-  template: `<button class="btn btn-default btn-sm" style="margin-bottom: 6px;" (click)="onClick($event)"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>`
+  template: `<a style="margin-bottom: 6px;" (click)="onClick($event)">{{params.node.data.channelName}}</a>`
   // templateUrl: './play-audio.component.html',
 
 })
