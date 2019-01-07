@@ -21,7 +21,7 @@ export class GridComponent implements OnInit {
   rowSelection: string = "multiple";
   lastRefreshed: any;
   showPlayer: boolean = false;
-  audioUrl: String[] = [];
+  channelName: String[] = [];
   url: string = "assets/sample.wav";
   frameworkComponents: Object;
   recievedObj: any;
@@ -119,9 +119,9 @@ export class GridComponent implements OnInit {
   };
 
 
-  sample() {
-    this.audioUrl.push(this.url);
-    this.audioUrl = this.audioUrl.slice();
+  sample(rowData) {
+    this.channelName.push(rowData.rowData.channelName);
+    this.channelName = this.channelName.slice();
     this.showPlayer = true;
 
   };

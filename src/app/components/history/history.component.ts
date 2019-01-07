@@ -4,9 +4,9 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid-community'
 
 @Component({
   selector: 'app-history',
-  template: `<button class="btn btn-default btn-sm" style="margin-bottom: 6px;" (click)="onClick($event)"> History</button>`,
+  template: `<button class="btn btn-default btn-sm" style="margin-bottom: 6px;" (click)="onClick($event)"> History</button>`
   //template: `<button type="button" (click)="onClick($event)">{{label}}</button>`,
-  styleUrls: ['./history.component.less']
+ 
 })
 export class HistoryComponent implements ICellRendererAngularComp {
 

@@ -3,8 +3,8 @@ import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.less']
+  templateUrl: './dashboard.component.html'
+  
 })
 export class DashboardComponent implements OnInit {
   options: any;

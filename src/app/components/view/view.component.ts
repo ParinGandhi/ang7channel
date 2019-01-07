@@ -3,8 +3,8 @@ import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.less']
+  templateUrl: './view.component.html'
+  
 })
 export class ViewComponent implements OnInit {
   recievedObj: any;

@@ -7,6 +7,7 @@ import { EasMediaData } from '../models/eas-media-data';
 import { StandardSite } from '../models/standard-site';
 import { StandardRole } from '../models/standard-role';
 import { StandardClassification } from '../models/standard-classification';
+import {ChannelData} from '../models/channel-data';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,6 +39,7 @@ export class DataService {
   addClassificationUrl: string = 'http://localhost:8080/standard-classification';
   updateClassificationUrl: string = 'http://localhost:8080/standard-classification';
   dashboardInfoUrl: string = 'http://localhost:8080/dashboard-info';
+  getChannelData:string ='http://localhost:8080/eas-media-data-activity?channelName='
 
   constructor(private http: HttpClient) { }
 
@@ -51,6 +53,9 @@ export class DataService {
 
   getRoleIdList(): Observable<StandardRole[]> {
     return this.http.get<StandardRole[]>(this.getRoleIdListUrl);
+  };
+  getDataByChannelName(channelName:string): Observable<ChannelData[]> {
+    return this.http.get<ChannelData[]>(this.getChannelData+channelName);
   };
 
   getClassificationList(): Observable<StandardClassification[]> {
