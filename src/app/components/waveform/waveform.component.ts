@@ -20,7 +20,8 @@ export class WaveformComponent implements OnInit {
   waveFormGridOptions: GridOptions;
   gridDefined: boolean = false;
   da:any;
-
+startDate:any;
+endDate:any;
   @Input() metaDataChannelName: string[];
   constructor(private cdref: ChangeDetectorRef, private dataService: DataService) { }
 

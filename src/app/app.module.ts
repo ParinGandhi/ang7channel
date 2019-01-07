@@ -17,11 +17,14 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NvD3Module } from "ng2-nvd3";
 import 'd3';
 import 'nvd3';
-
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { DataService } from './services/data.service';
 import { ViewComponent } from './components/view/view.component';
 import { HistoryComponent } from './components/history/history.component';
 import { PlayAudioComponent } from './components/play-audio/play-audio.component';
+import { CalendarModule } from 'primeng/components/calendar/calendar';
+
+
 
 @NgModule({
   declarations: [
@@ -40,6 +43,8 @@ import { PlayAudioComponent } from './components/play-audio/play-audio.component
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    CalendarModule,
+    AngularDateTimePickerModule,
     NvD3Module,
     AgGridModule.withComponents([HistoryComponent, PlayAudioComponent]),
     NgxSmartModalModule.forRoot(),

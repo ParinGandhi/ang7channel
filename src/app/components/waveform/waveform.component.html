@@ -3,7 +3,30 @@
 [enableFilter]="true" [paginationPageSize]=20 [pagination]="true">
 </ag-grid-angular>
 <div>
+  
+  <div class="col-md-12" style="padding-bottom: 50px">
    
+<div class="col-md-4">
+    <label>Start time</label> &nbsp;
+    <p-calendar [(ngModel)]="startDate" [showIcon]="true" [showTime]="true" name="startDate"></p-calendar> <span style="margin-left:35px"></span> 
+
+</div>
+<div class="col-md-4">
+    <label>End time</label> &nbsp;
+    <p-calendar [(ngModel)]="endDate" [showIcon]="true" [showTime]="true" name="endDate"></p-calendar> <span style="margin-left:35px"></span> 
+
+</div>
+<div class="col-md-4">
+    <button type="button" id="button_play" class="btn" (click)="waveSurfer.playPause()">
+        <i class="fa fa-play"></i>/
+        <i class="fa fa-pause"></i>
+      </button>
+
+</div>
+<br>
+<br>
+  </div>
+  
   <div id="waveform"></div>
   <div id="waveform-timeline"></div>
   <br>
