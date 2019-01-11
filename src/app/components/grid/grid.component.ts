@@ -39,7 +39,7 @@ export class GridComponent implements OnInit {
 
 
   columnDefs = [
-    { headerName: 'Archve', checkboxSelection: true, width: 80 },
+    { headerName: 'Archive', checkboxSelection: true, width: 80 },
     // {
     //   headerName: 'Play', cellRendererFramework: PlayAudioComponent, cellRendererParams: {
     //     onClick: this.sample.bind(this),
@@ -55,6 +55,8 @@ export class GridComponent implements OnInit {
     { headerName: 'Site ID', field: 'stndSite.nm' },
     { headerName: 'Classification', field: 'standardClassification.nm' },
     { headerName: 'Role ID', field: 'stndRole.nm' },
+    { headerName: "Originated IP", field: "mediaOriginatedIp", hide: true },
+    { headerName: "Originated Port", field: "mediaOriginatedPort", hide: true },
     {
       headerName: 'History', cellRendererFramework: HistoryComponent, cellRendererParams: {
         onClick: this.getHistory.bind(this),
@@ -97,7 +99,7 @@ export class GridComponent implements OnInit {
 
   exportToCsv() {
     var params = {
-      columnKeys: ["channelName", "stndSite.descriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRole.descriptionTx"],
+      columnKeys: ["channelName", "stndSite.nm", "mediaOriginatedIp", "mediaOriginatedPort", "standardClassification.nm", "stndRole.nm"],
       fileName: 'AudioExport.csv'
     };
     this.gridOptions.api.exportDataAsCsv(params);
