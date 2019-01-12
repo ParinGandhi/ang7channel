@@ -122,12 +122,17 @@ export class WaveformComponent implements OnInit {
   };
   onSelectionChanged() {
     var selectedRows = this.waveFormGridOptions.api.getSelectedRows();
-    this.startDate = selectedRows[0].endDate;
-    this.endDate = selectedRows[0].startDate;
+    if(selectedRows[0].startTime != null){
+    this.startDate = (new Date(selectedRows[0].startTime * 1000)); 
+    }
+    if(selectedRows[0].endTime != null){
+      this.endDate = (new Date(selectedRows[0].endTime * 1000)); 
+    }
+
   }
   loadAudioUrl() {
-    this.audoInputData.endDate = new Date(this.endDate).getTime() / 1000;
-    this.audoInputData.startDate = new Date(this.startDate).getTime() / 1000;
+    this.audoInputData.endDate = new Date(this.endDate).getTime() ;
+    this.audoInputData.startDate = new Date(this.startDate).getTime();
     this.audoInputData.channelName = this.gridChannelName;
     this.dataService.getUrlByChannelName(this.audoInputData)
       .subscribe(

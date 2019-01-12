@@ -14,6 +14,8 @@ import { GridComponent } from '../grid/grid.component';
   providers: [GridComponent]
 })
 export class SearchComponent implements OnInit {
+  startDate: any;
+  endDate: any;
   @Output() searchData: EventEmitter<any> = new EventEmitter<any>();
   stndSite: StandardSite = {
     id: null,

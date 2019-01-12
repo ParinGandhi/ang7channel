@@ -61,13 +61,17 @@
 <div class="row searchHeight">
   <div class="input-field col-sm-10 col-sm-offset-1">
     <label for="startDate">Start date</label>
-    <input class="form-control" id="startDate" type="date">
+    <br>
+    <p-calendar [(ngModel)]="startDate" [showIcon]="true" [showTime]="true" name="startDate" ngDefaultControl></p-calendar>
+    <span style="margin-left:35px"></span>
   </div>
 </div>
 <div class="row searchHeight">
   <div class="input-field col-sm-10 col-sm-offset-1">
     <label for="endDate">End date</label>
-    <input class="form-control" id="endDate" type="date">
+    <br>
+    <p-calendar [(ngModel)]="endDate" [showIcon]="true" [showTime]="true" name="endDate" ngDefaultControl></p-calendar>
+   
   </div>
 </div>
 <div class="row searchHeight">
