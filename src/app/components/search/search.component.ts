@@ -103,10 +103,10 @@ export class SearchComponent implements OnInit {
       }
     }
 
-    searchUrl = 'http://localhost:8080/eas-media-data?' + queryString;
+    //searchUrl = 'http://localhost:8080/eas-media-data?' + queryString;
 
 
-    this.dataService.getSearchData(searchUrl)
+    this.dataService.getSearchData(queryString)
       .subscribe(rowData => {
         console.log('Table response: %o', rowData);
         this.searchData.emit(rowData);

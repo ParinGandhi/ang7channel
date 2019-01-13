@@ -102,7 +102,8 @@ export class DataService {
     return this.http.post<any>(this.addRoleUrl, newRole, httpOptions);
   };
 
-  getSearchData(url: string): Observable<EasMediaData[]> {
+  getSearchData(queryString: string): Observable<EasMediaData[]> {
+    var url = this.baseUrl + '/eas-media-data?' + queryString;
     return this.http.get<EasMediaData[]>(url);
   };
 
@@ -146,7 +147,7 @@ export class DataService {
   }
 
   getUrlBase() {
-    if (this.location.port === "4201") {
+    if (this.location.port === "4200") {
       return "http://localhost:8080"
     } else {
       return this.location.protocol;
