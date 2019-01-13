@@ -1300,8 +1300,8 @@ var SearchComponent = /** @class */ (function () {
                 queryString = queryParams[i];
             }
         }
-        searchUrl = 'http://localhost:8080/eas-media-data?' + queryString;
-        this.dataService.getSearchData(searchUrl)
+        //searchUrl = 'http://localhost:8080/eas-media-data?' + queryString;
+        this.dataService.getSearchData(queryString)
             .subscribe(function (rowData) {
             console.log('Table response: %o', rowData);
             _this.searchData.emit(rowData);
@@ -1718,7 +1718,8 @@ var DataService = /** @class */ (function () {
         return this.http.post(this.addRoleUrl, newRole, httpOptions);
     };
     ;
-    DataService.prototype.getSearchData = function (url) {
+    DataService.prototype.getSearchData = function (queryString) {
+        var url = this.baseUrl + '/eas-media-data?' + queryString;
         return this.http.get(url);
     };
     ;
@@ -1761,7 +1762,7 @@ var DataService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function () { return true; }));
     };
     DataService.prototype.getUrlBase = function () {
-        if (this.location.port === "4201") {
+        if (this.location.port === "4200") {
             return "http://localhost:8080";
         }
         else {
