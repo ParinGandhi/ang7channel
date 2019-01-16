@@ -549,15 +549,26 @@ var GridComponent = /** @class */ (function () {
     };
     ;
     GridComponent.prototype.archiveChannels = function () {
+        var _this = this;
         var selectedRows = this.gridOptions.api.getSelectedRows();
         var channelList = [];
         for (var i = 0; i < selectedRows.length; i++) {
             channelList.push(selectedRows[i].channelName);
         }
         console.log(channelList);
-        this.dataService.archiveChannels(channelList).subscribe(function (channel) {
-            console.log(channel);
-        });
+        if (channelList.length > 0) {
+            this.dataService.archiveChannels(channelList).subscribe(function (channel) {
+                console.log(channel);
+                _this.toastr.success('Successfully archived selected channels', '', {
+                    timeOut: 10000
+                });
+            });
+        }
+        else {
+            this.toastr.error('Please select at least one channel to archive', '', {
+                timeOut: 10000
+            });
+        }
     };
     ;
     GridComponent.prototype.sample = function (rowData) {
