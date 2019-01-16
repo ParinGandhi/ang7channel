@@ -120,9 +120,18 @@ export class GridComponent implements OnInit {
       channelList.push(selectedRows[i].channelName);
     }
     console.log(channelList);
-    this.dataService.archiveChannels(channelList).subscribe(channel => {
-      console.log(channel);
-    });
+    if (channelList.length > 0) {
+      this.dataService.archiveChannels(channelList).subscribe(channel => {
+        console.log(channel);
+        this.toastr.success('Successfully archived selected channels', '', {
+          timeOut: 10000
+        });
+      });
+    } else {
+      this.toastr.error('Please select at least one channel to archive', '', {
+        timeOut: 10000
+      });
+    }
   };
 
 
