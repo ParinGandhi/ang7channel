@@ -16,6 +16,7 @@ export class WaveformComponent implements OnInit {
   waveSurfer: any;
   isPlayAudio = false;
   rowSelection: string = "single";
+  audioFileName:string;
   showPlayer: any = true;
   text: string;
   waveformData: ChannelData[];
@@ -138,23 +139,44 @@ export class WaveformComponent implements OnInit {
       .subscribe(
         response => {
           this.constructWaveSurfer(response);
+          this.audioFileName = this.getAudioFileName(response);
           console.log(response);
         },
         error => {
           if (error.status != 200) {
-
             this.toastr.error('No data found', '', {
               timeOut: this.toastrTimeOut
             });
           }
           if (error.status === 200) {
-
             this.constructWaveSurfer(error.error.text);
+            this.audioFileName = this.getAudioFileName(error.error.text);
           }
           console.log(error);
-
         }
       );
+  }
+  getAudioFileName(audioUrl){
+    var arrVars = audioUrl.split("/");
+    return arrVars.pop();
+  
+  }
+  downloadAudio(){
+    this.dataService.downloadAudio(this.audioFileName)
+    .subscribe(
+      response => {
+        this.toastr.success('Audio download started', '', {
+          timeOut: this.toastrTimeOut
+        });
+      },
+      error => {
+        this.toastr.error('Unable to download audio', '', {
+          timeOut: this.toastrTimeOut
+        });
+        console.log(error);
+       
+      }
+    );
   }
 
 

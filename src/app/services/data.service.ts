@@ -60,6 +60,7 @@ export class DataService {
   updateClassificationUrl: string = this.baseUrl + 'standard-classification';
   dashboardInfoUrl: string = this.baseUrl + '/dashboard-info';
   getChannelData: string = this.baseUrl + '/eas-media-data-activity?channelName=';
+  getDownloadAudio: string = this.baseUrl + '/downloadClip/';
   urlByChannelName: string = this.baseUrl + '/fetch-audio'
 
   constructor(private http: HttpClient) { }
@@ -78,6 +79,10 @@ export class DataService {
   getDataByChannelName(channelName: string): Observable<ChannelData[]> {
     return this.http.get<ChannelData[]>(this.getChannelData + channelName);
   };
+
+  downloadAudio(audioFileName:string):Observable<any>{
+    return this.http.get<any>(this.getDownloadAudio + audioFileName);
+  }
   getUrlByChannelName(AudioInputs): Observable<String> {
     return this.http.post<string>(this.urlByChannelName, AudioInputs, httpOptions);
   };
