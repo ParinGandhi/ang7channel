@@ -478,7 +478,7 @@ var GridComponent = /** @class */ (function () {
         this.channelName = [];
         this.url = "assets/sample.wav";
         this.columnDefs = [
-            { headerName: 'Archive', checkboxSelection: true, width: 80 },
+            { headerCheckboxSelection: true, checkboxSelection: true, width: 30 },
             // {
             //   headerName: 'Play', cellRendererFramework: PlayAudioComponent, cellRendererParams: {
             //     onClick: this.sample.bind(this),
@@ -1175,7 +1175,7 @@ var PlayAudioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"channelName\">Channel name</label>\n    <input class=\"form-control\" id=\"channelName\" type=\"text\" (keydown.enter)=\"submitSearch();\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.channelName\">\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"siteId\">Site ID</label>\n    <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.stndSite.id\">\n      <option value=\"\">Select a site id...</option>\n      <option *ngFor=\"let siteId of siteIdList.results\" [value]=\"siteId.id\">{{siteId.nm}}</option>\n    </select>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"originatedIp\">Originated IP</label>\n    <input class=\"form-control\" id=\"originatedIp\" type=\"text\" (keydown.enter)=\"submitSearch();\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.mediaOriginatedIp\">\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"originatedPort\">Originated port</label>\n    <input class=\"form-control\" id=\"originatedPort\" type=\"text\" (keydown.enter)=\"submitSearch();\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.mediaOriginatedPort\">\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"manageClassification\">Classification</label>\n    <select class=\"form-control\" name=\"manageClassification\" id=\"manageClassification\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.standardClassification.id\">\n      <option value=\"\">Select a classification...</option>\n      <option *ngFor=\"let classificationId of classificationList.results\" [value]=\"classificationId.id\">{{classificationId.nm}}</option>\n    </select>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"roleId\">Role ID</label>\n    <select class=\"form-control\" name=\"roleId\" id=\"roleId\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.stndRole.id\">\n      <option value=\"\">Select a role id...</option>\n      <option *ngFor=\"let roleId of roleIdList.results\" [value]=\"roleId.id\">{{roleId.nm}}</option>\n    </select>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"activeIndSearch\">Active indicator</label>\n    <select class=\"form-control\" name=\"activeIndSearch\" id=\"activeIndSearch\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.enableIn\">\n      <option value=\"\">Select an active indicator...</option>\n      <option value=\"TRUE\">Active</option>\n      <option value=\"FALSE\">Inactive</option>\n    </select>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"startDate\">Start date</label>\n    <br>\n    <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n    <span style=\"margin-left:35px\"></span>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"endDate\">End date</label>\n    <br>\n    <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n   \n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"col-sm-5 col-sm-offset-1\">\n    <button class=\"btn btn-primary btn-block\" (click)=\"submitSearch();\">Submit</button>\n  </div>\n  <div class=\"col-sm-5\">\n    <button class=\"btn btn-default btn-block\" (click)=\"clearSearch();\">Clear</button>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"channelName\">Channel name</label>\n    <input class=\"form-control\" id=\"channelName\" type=\"text\" (keydown.enter)=\"submitSearch();\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.channelName\">\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"siteId\">Site ID</label>\n    <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.stndSite.id\">\n      <option value=\"\">Select a site id...</option>\n      <option *ngFor=\"let siteId of siteIdList.results\" [value]=\"siteId.id\">{{siteId.nm}}</option>\n    </select>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"originatedIp\">Originated IP</label>\n    <input class=\"form-control\" id=\"originatedIp\" type=\"text\" (keydown.enter)=\"submitSearch();\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.mediaOriginatedIp\">\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"originatedPort\">Originated port</label>\n    <input class=\"form-control\" id=\"originatedPort\" type=\"text\" (keydown.enter)=\"submitSearch();\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.mediaOriginatedPort\">\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"manageClassification\">Classification</label>\n    <select class=\"form-control\" name=\"manageClassification\" id=\"manageClassification\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.standardClassification.id\">\n      <option value=\"\">Select a classification...</option>\n      <option *ngFor=\"let classificationId of classificationList.results\" [value]=\"classificationId.id\">{{classificationId.nm}}</option>\n    </select>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"roleId\">Role ID</label>\n    <select class=\"form-control\" name=\"roleId\" id=\"roleId\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.stndRole.id\">\n      <option value=\"\">Select a role id...</option>\n      <option *ngFor=\"let roleId of roleIdList.results\" [value]=\"roleId.id\">{{roleId.nm}}</option>\n    </select>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"activeIndSearch\">Active indicator</label>\n    <select class=\"form-control\" name=\"activeIndSearch\" id=\"activeIndSearch\" [ngModelOptions]=\"{standalone: true}\"\n      [(ngModel)]=\"easMediaData.enableIn\">\n      <option value=\"\">Select an active indicator...</option>\n      <option value=\"TRUE\">Active</option>\n      <option value=\"FALSE\">Inactive</option>\n    </select>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"startDate\">Start date</label>\n    <br>\n    <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n    <span style=\"margin-left:35px\"></span>\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"input-field col-sm-10 col-sm-offset-1\">\n    <label for=\"endDate\">End date</label>\n    <br>\n    <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n\n  </div>\n</div>\n<div class=\"row searchHeight\">\n  <div class=\"col-sm-5 col-sm-offset-1\">\n    <button class=\"btn btn-primary btn-block\" (click)=\"submitSearch();\">Submit</button>\n  </div>\n  <div class=\"col-sm-5\">\n    <button class=\"btn btn-default btn-block\" (click)=\"clearSearch();\">Clear</button>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1271,6 +1271,7 @@ var SearchComponent = /** @class */ (function () {
         var queryParams = [];
         var queryString;
         var searchUrl;
+        var validDate = true;
         if (this.easMediaData.channelName !== 'undefined' && this.easMediaData.channelName !== null && this.easMediaData.channelName !== '') {
             queryParams.push('channelName=' + this.easMediaData.channelName);
         }
@@ -1292,6 +1293,22 @@ var SearchComponent = /** @class */ (function () {
         if (this.easMediaData.enableIn !== 'undefined' && this.easMediaData.enableIn !== null && this.easMediaData.enableIn !== '') {
             queryParams.push('enableIn=' + this.easMediaData.enableIn);
         }
+        if (new Date(this.startDate).getTime() > new Date(this.endDate).getTime()) {
+            validDate = false;
+            this.toastr.error('Start date cannot be greater than end date', '', {
+                timeOut: 10000
+            });
+        }
+        if ((new Date(this.startDate).getTime() && !new Date(this.endDate).getTime()) || (!new Date(this.startDate).getTime() && new Date(this.endDate).getTime())) {
+            validDate = false;
+            this.toastr.error('Both start date and end date have to be populated', '', {
+                timeOut: 10000
+            });
+        }
+        if (new Date(this.startDate).getTime() && new Date(this.endDate).getTime() && validDate) {
+            queryParams.push('startDate=' + new Date(this.startDate).getTime());
+            queryParams.push('endDate=' + new Date(this.endDate).getTime());
+        }
         for (var i = 0; i < queryParams.length; i++) {
             if (i >= 1) {
                 queryString += '&' + queryParams[i];
@@ -1301,14 +1318,16 @@ var SearchComponent = /** @class */ (function () {
             }
         }
         //searchUrl = 'http://localhost:8080/eas-media-data?' + queryString;
-        this.dataService.getSearchData(queryString)
-            .subscribe(function (rowData) {
-            console.log('Table response: %o', rowData);
-            _this.searchData.emit(rowData);
-            _this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
-                timeOut: 10000
+        if (validDate) {
+            this.dataService.getSearchData(queryString)
+                .subscribe(function (rowData) {
+                console.log('Table response: %o', rowData);
+                _this.searchData.emit(rowData);
+                _this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
+                    timeOut: 10000
+                });
             });
-        });
+        }
     };
     ;
     SearchComponent.prototype.clearSearch = function () {
@@ -1319,6 +1338,8 @@ var SearchComponent = /** @class */ (function () {
         this.easMediaData.mediaOriginatedPort = null;
         this.stndRole.id = null;
         this.easMediaData.enableIn = "";
+        this.startDate = '';
+        this.endDate = '';
         this.dataService.getChannelList()
             .subscribe(function (channelList) {
             _this.searchData.emit(channelList);
@@ -1424,7 +1445,7 @@ var ViewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\" (selectionChanged)=\"onSelectionChanged($event)\"\n  [pagination]=\"true\">\n</ag-grid-angular>\n<div>\n\n  <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\n\n    <div class=\"col-md-4\">\n      <label>Start time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <label>End time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\n        Play\n      </button>\n\n    </div>\n    <br>\n    <br>\n  </div>\n\n  <div class=\"col-md-12\">\n    <div id=\"waveform\"></div>\n    <div id=\"waveform-timeline\"></div>\n    <br>\n    <div *ngIf=\"showPlayer\">\n      <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\n        <i class=\"fa fa-play\"></i>/\n        <i class=\"fa fa-pause\"></i>\n      </button>\n    </div>\n  </div>\n  <br>\n  <br>\n  <br>\n</div>"
+module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\" (selectionChanged)=\"onSelectionChanged($event)\"\n  [pagination]=\"true\">\n</ag-grid-angular>\n<div>\n\n  <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\n\n    <div class=\"col-md-4\">\n      <label>Start time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <label>End time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\n        Play\n      </button>\n      &nbsp;\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\n        Download\n      </button>\n    </div>\n    <br>\n    <br>\n  </div>\n\n  <div class=\"col-md-12\">\n    <div id=\"waveform\"></div>\n    <div id=\"waveform-timeline\"></div>\n    <br>\n    <div *ngIf=\"showPlayer\">\n      <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\n        <i class=\"fa fa-play\"></i>/\n        <i class=\"fa fa-pause\"></i>\n      </button>\n    </div>\n  </div>\n  <br>\n  <br>\n  <br>\n</div>"
 
 /***/ }),
 
@@ -1573,16 +1594,36 @@ var WaveformComponent = /** @class */ (function () {
         this.dataService.getUrlByChannelName(this.audoInputData)
             .subscribe(function (response) {
             _this.constructWaveSurfer(response);
+            _this.audioFileName = _this.getAudioFileName(response);
             console.log(response);
         }, function (error) {
             if (error.status != 200) {
-                _this.toastr.error('No data found', '', {
+                _this.toastr.error('No audio found', '', {
                     timeOut: _this.toastrTimeOut
                 });
             }
             if (error.status === 200) {
                 _this.constructWaveSurfer(error.error.text);
+                _this.audioFileName = _this.getAudioFileName(error.error.text);
             }
+            console.log(error);
+        });
+    };
+    WaveformComponent.prototype.getAudioFileName = function (audioUrl) {
+        var arrVars = audioUrl.split("/");
+        return arrVars.pop();
+    };
+    WaveformComponent.prototype.downloadAudio = function () {
+        var _this = this;
+        this.dataService.downloadAudio(this.audioFileName)
+            .subscribe(function (response) {
+            _this.toastr.success('Audio download started', '', {
+                timeOut: _this.toastrTimeOut
+            });
+        }, function (error) {
+            _this.toastr.error('Unable to download audio', '', {
+                timeOut: _this.toastrTimeOut
+            });
             console.log(error);
         });
     };
@@ -1676,6 +1717,7 @@ var DataService = /** @class */ (function () {
         this.updateClassificationUrl = this.baseUrl + 'standard-classification';
         this.dashboardInfoUrl = this.baseUrl + '/dashboard-info';
         this.getChannelData = this.baseUrl + '/eas-media-data-activity?channelName=';
+        this.getDownloadAudio = this.baseUrl + '/downloadClip/';
         this.urlByChannelName = this.baseUrl + '/fetch-audio';
     }
     DataService.prototype.getChannelList = function () {
@@ -1694,6 +1736,9 @@ var DataService = /** @class */ (function () {
         return this.http.get(this.getChannelData + channelName);
     };
     ;
+    DataService.prototype.downloadAudio = function (audioFileName) {
+        return this.http.get(this.getDownloadAudio + audioFileName);
+    };
     DataService.prototype.getUrlByChannelName = function (AudioInputs) {
         return this.http.post(this.urlByChannelName, AudioInputs, httpOptions);
     };
