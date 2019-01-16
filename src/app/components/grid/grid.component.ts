@@ -39,7 +39,7 @@ export class GridComponent implements OnInit {
 
 
   columnDefs = [
-    { headerName: 'Archive', checkboxSelection: true, width: 80 },
+    { headerCheckboxSelection: true, checkboxSelection: true, width: 30 },
     // {
     //   headerName: 'Play', cellRendererFramework: PlayAudioComponent, cellRendererParams: {
     //     onClick: this.sample.bind(this),

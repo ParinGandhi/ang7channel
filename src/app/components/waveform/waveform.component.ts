@@ -16,7 +16,7 @@ export class WaveformComponent implements OnInit {
   waveSurfer: any;
   isPlayAudio = false;
   rowSelection: string = "single";
-  audioFileName:string;
+  audioFileName: string;
   showPlayer: any = true;
   text: string;
   waveformData: ChannelData[];
@@ -123,16 +123,16 @@ export class WaveformComponent implements OnInit {
   };
   onSelectionChanged() {
     var selectedRows = this.waveFormGridOptions.api.getSelectedRows();
-    if(selectedRows[0].startTime != null){
-    this.startDate = (new Date(selectedRows[0].startTime * 1000)); 
+    if (selectedRows[0].startTime != null) {
+      this.startDate = (new Date(selectedRows[0].startTime * 1000));
     }
-    if(selectedRows[0].endTime != null){
-      this.endDate = (new Date(selectedRows[0].endTime * 1000)); 
+    if (selectedRows[0].endTime != null) {
+      this.endDate = (new Date(selectedRows[0].endTime * 1000));
     }
 
   }
   loadAudioUrl() {
-    this.audoInputData.endDate = new Date(this.endDate).getTime() ;
+    this.audoInputData.endDate = new Date(this.endDate).getTime();
     this.audoInputData.startDate = new Date(this.startDate).getTime();
     this.audoInputData.channelName = this.gridChannelName;
     this.dataService.getUrlByChannelName(this.audoInputData)
@@ -144,7 +144,7 @@ export class WaveformComponent implements OnInit {
         },
         error => {
           if (error.status != 200) {
-            this.toastr.error('No data found', '', {
+            this.toastr.error('No audio found', '', {
               timeOut: this.toastrTimeOut
             });
           }
@@ -156,27 +156,27 @@ export class WaveformComponent implements OnInit {
         }
       );
   }
-  getAudioFileName(audioUrl){
+  getAudioFileName(audioUrl) {
     var arrVars = audioUrl.split("/");
     return arrVars.pop();
-  
+
   }
-  downloadAudio(){
+  downloadAudio() {
     this.dataService.downloadAudio(this.audioFileName)
-    .subscribe(
-      response => {
-        this.toastr.success('Audio download started', '', {
-          timeOut: this.toastrTimeOut
-        });
-      },
-      error => {
-        this.toastr.error('Unable to download audio', '', {
-          timeOut: this.toastrTimeOut
-        });
-        console.log(error);
-       
-      }
-    );
+      .subscribe(
+        response => {
+          this.toastr.success('Audio download started', '', {
+            timeOut: this.toastrTimeOut
+          });
+        },
+        error => {
+          this.toastr.error('Unable to download audio', '', {
+            timeOut: this.toastrTimeOut
+          });
+          console.log(error);
+
+        }
+      );
   }
 
 

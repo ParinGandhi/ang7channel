@@ -72,6 +72,7 @@ export class SearchComponent implements OnInit {
     let queryParams: any = [];
     let queryString: string;
     let searchUrl: string;
+    let validDate: boolean = true;
 
     if (this.easMediaData.channelName !== 'undefined' && this.easMediaData.channelName !== null && this.easMediaData.channelName !== '') {
       queryParams.push('channelName=' + this.easMediaData.channelName);
@@ -94,7 +95,22 @@ export class SearchComponent implements OnInit {
     if (this.easMediaData.enableIn !== 'undefined' && this.easMediaData.enableIn !== null && this.easMediaData.enableIn !== '') {
       queryParams.push('enableIn=' + this.easMediaData.enableIn);
     }
-
+    if (new Date(this.startDate).getTime() > new Date(this.endDate).getTime()) {
+      validDate = false;
+      this.toastr.error('Start date cannot be greater than end date', '', {
+        timeOut: 10000
+      });
+    }
+    if ((new Date(this.startDate).getTime() && !new Date(this.endDate).getTime()) || (!new Date(this.startDate).getTime() && new Date(this.endDate).getTime())) {
+      validDate = false;
+      this.toastr.error('Both start date and end date have to be populated', '', {
+        timeOut: 10000
+      });
+    }
+    if (new Date(this.startDate).getTime() && new Date(this.endDate).getTime() && validDate) {
+      queryParams.push('startDate=' + new Date(this.startDate).getTime());
+      queryParams.push('endDate=' + new Date(this.endDate).getTime());
+    }
     for (var i = 0; i < queryParams.length; i++) {
       if (i >= 1) {
         queryString += '&' + queryParams[i];
@@ -106,14 +122,16 @@ export class SearchComponent implements OnInit {
     //searchUrl = 'http://localhost:8080/eas-media-data?' + queryString;
 
 
-    this.dataService.getSearchData(queryString)
-      .subscribe(rowData => {
-        console.log('Table response: %o', rowData);
-        this.searchData.emit(rowData);
-        this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
-          timeOut: 10000
+    if (validDate) {
+      this.dataService.getSearchData(queryString)
+        .subscribe(rowData => {
+          console.log('Table response: %o', rowData);
+          this.searchData.emit(rowData);
+          this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
+            timeOut: 10000
+          });
         });
-      });
+    }
 
   };
 
@@ -124,6 +142,8 @@ export class SearchComponent implements OnInit {
     this.easMediaData.mediaOriginatedPort = null;
     this.stndRole.id = null;
     this.easMediaData.enableIn = "";
+    this.startDate = '';
+    this.endDate = '';
     this.dataService.getChannelList()
       .subscribe(
         channelList => {
