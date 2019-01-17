@@ -1469,7 +1469,7 @@ var ViewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\" (selectionChanged)=\"onSelectionChanged($event)\"\n  [pagination]=\"true\">\n</ag-grid-angular>\n<div>\n\n  <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\n\n    <div class=\"col-md-4\">\n      <label>Start time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <label>End time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\n        Play\n      </button>\n      &nbsp;\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\n        Download\n      </button>\n    </div>\n    <br>\n    <br>\n  </div>\n\n  <div class=\"col-md-12\">\n    <div id=\"waveform\"></div>\n    <div id=\"waveform-timeline\"></div>\n    <br>\n    <div *ngIf=\"showPlayer\">\n      <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\n        <i class=\"fa fa-play\"></i>/\n        <i class=\"fa fa-pause\"></i>\n      </button>\n    </div>\n  </div>\n  <br>\n  <br>\n  <br>\n</div>"
+module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\" (selectionChanged)=\"onSelectionChanged($event)\"\n  [pagination]=\"true\">\n</ag-grid-angular>\n<div>\n\n  <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\n\n    <div class=\"col-md-4\">\n      <label>Start time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <label>End time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\n        Play\n      </button>\n      &nbsp;\n      <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\n        <i class=\"fa fa-download\"></i> Download\n      </button>\n    </div>\n    <br>\n    <br>\n  </div>\n\n  <div class=\"col-md-12\">\n    <div id=\"waveform\"></div>\n    <div id=\"waveform-timeline\"></div>\n    <br>\n    <div *ngIf=\"showPlayer\">\n      <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\n        <i class=\"fa fa-play\"></i>/\n        <i class=\"fa fa-pause\"></i>\n      </button>\n    </div>\n  </div>\n  <br>\n  <br>\n  <br>\n</div>"
 
 /***/ }),
 
@@ -1514,6 +1514,7 @@ var WaveformComponent = /** @class */ (function () {
         this.rowSelection = "single";
         this.showPlayer = true;
         this.gridDefined = false;
+        this.enableDownload = false;
         this.toastrTimeOut = 10000;
         this.audoInputData = {
             channelName: null,
@@ -1619,16 +1620,19 @@ var WaveformComponent = /** @class */ (function () {
             .subscribe(function (response) {
             _this.constructWaveSurfer(response);
             _this.audioFileName = _this.getAudioFileName(response);
+            _this.enableDownload = true;
             console.log(response);
         }, function (error) {
             if (error.status != 200) {
                 _this.toastr.error('No audio found', '', {
                     timeOut: _this.toastrTimeOut
                 });
+                _this.enableDownload = false;
             }
             if (error.status === 200) {
                 _this.constructWaveSurfer(error.error.text);
                 _this.audioFileName = _this.getAudioFileName(error.error.text);
+                _this.enableDownload = true;
             }
             console.log(error);
         });
@@ -1638,18 +1642,7 @@ var WaveformComponent = /** @class */ (function () {
         return arrVars.pop();
     };
     WaveformComponent.prototype.downloadAudio = function () {
-        var _this = this;
-        this.dataService.downloadAudio(this.audioFileName)
-            .subscribe(function (response) {
-            _this.toastr.success('Audio download started', '', {
-                timeOut: _this.toastrTimeOut
-            });
-        }, function (error) {
-            _this.toastr.error('Unable to download audio', '', {
-                timeOut: _this.toastrTimeOut
-            });
-            console.log(error);
-        });
+        this.dataService.downloadAudio(this.audioFileName);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -1761,7 +1754,7 @@ var DataService = /** @class */ (function () {
     };
     ;
     DataService.prototype.downloadAudio = function (audioFileName) {
-        return this.http.get(this.getDownloadAudio + audioFileName);
+        window.open(this.getDownloadAudio + audioFileName, "_blank");
     };
     DataService.prototype.getUrlByChannelName = function (AudioInputs) {
         return this.http.post(this.urlByChannelName, AudioInputs, httpOptions);
