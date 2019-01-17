@@ -22,13 +22,15 @@ export class DashboardComponent implements OnInit {
         type: 'pieChart',
         height: 500,
         x: function (d) {
-          return d.siteNames;
+          return d.siteNames +' '+'['+d.siteCount+']';
         },
         y: function (d) {
           return d.siteCount;
         },
         showLabels: true,
         duration: 500,
+        tooltip:{
+          enabled:false},
         labelThreshold: 0.01,
         labelSunbeamLayout: true,
         legend: {

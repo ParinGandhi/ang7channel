@@ -137,10 +137,17 @@ export class NavbarComponent implements OnInit {
       });
     });
   };
+  onChannelChanged(productName) {
+    console.log(productName);
+    this.populateChannel(this.getSelectedChannelByName(productName));
+}
 
+ getSelectedChannelByName(selectedName: string): EasMediaData {
+    return this.channelList.find(product => product.channelName === selectedName);
+}
   populateChannel(selectedChannel) {
     //alert(index);
-    if (selectedChannel !== "") {
+    if (selectedChannel !== "" && selectedChannel !== undefined) {
       this.easMediaDataToCreate.channelName = selectedChannel.channelName;
       this.easMediaDataToCreate.mediaOriginatedIp = selectedChannel.mediaOriginatedIp;
       this.easMediaDataToCreate.stndSite.id = selectedChannel.stndSite.id;

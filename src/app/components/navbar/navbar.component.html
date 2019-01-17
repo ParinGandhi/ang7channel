@@ -18,11 +18,17 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="availableChannels">Available channels</label>
-        <select class="form-control" name="manageChannel" id="manageChannel" [ngModel]="easMediaDataToCreate.channelName"
-          (ngModelChange)="populateChannel($event)">
-          <option value="">Select a channel...</option>
-          <option *ngFor="let channel of channelList" [ngValue]="channel">{{channel.channelName}}</option>
-        </select>
+        <input class="form-control" type="text" list="manageChannel" [(ngModel)]='searchText' (ngModelChange)="onChannelChanged($event)">
+        <!-- [ngModel]="easMediaDataToCreate.channelName"
+        (ngModelChange)="populateChannel($event)" -->
+<!-- <datalist id="citynames">
+  <option value="Boston">
+  <option value="Cambridge">
+</datalist> -->
+        <datalist id="manageChannel">
+          
+          <option *ngFor="let channel of channelList" [ngValue]="channel" >{{channel.channelName}}</option>
+        </datalist>
       </div>
     </div>
     <div class="row modalInputHeight">

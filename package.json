@@ -27,6 +27,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "ng2-nvd3": "^2.0.0",
+    "ngx-select-dropdown": "^1.0.1",
     "ngx-smart-modal": "^7.1.0",
     "ngx-toastr": "^9.1.1",
     "primeicons": "^1.0.0",
