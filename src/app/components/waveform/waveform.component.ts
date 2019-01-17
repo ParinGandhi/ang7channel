@@ -25,6 +25,7 @@ export class WaveformComponent implements OnInit {
   waveFormGridOptions: GridOptions;
   gridDefined: boolean = false;
   da: any;
+  enableDownload:boolean = false;
   toastrTimeOut: number = 10000;
   startDate: any;
   endDate: any;
@@ -140,6 +141,7 @@ export class WaveformComponent implements OnInit {
         response => {
           this.constructWaveSurfer(response);
           this.audioFileName = this.getAudioFileName(response);
+          this.enableDownload = true;
           console.log(response);
         },
         error => {
@@ -147,10 +149,12 @@ export class WaveformComponent implements OnInit {
             this.toastr.error('No audio found', '', {
               timeOut: this.toastrTimeOut
             });
+            this.enableDownload = false;
           }
           if (error.status === 200) {
             this.constructWaveSurfer(error.error.text);
             this.audioFileName = this.getAudioFileName(error.error.text);
+            this.enableDownload = true;
           }
           console.log(error);
         }
@@ -162,21 +166,7 @@ export class WaveformComponent implements OnInit {
 
   }
   downloadAudio() {
-    this.dataService.downloadAudio(this.audioFileName)
-      .subscribe(
-        response => {
-          this.toastr.success('Audio download started', '', {
-            timeOut: this.toastrTimeOut
-          });
-        },
-        error => {
-          this.toastr.error('Unable to download audio', '', {
-            timeOut: this.toastrTimeOut
-          });
-          console.log(error);
-
-        }
-      );
+    this.dataService.downloadAudio(this.audioFileName);
   }
 
 

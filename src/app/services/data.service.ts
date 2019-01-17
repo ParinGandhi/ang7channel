@@ -80,8 +80,8 @@ export class DataService {
     return this.http.get<ChannelData[]>(this.getChannelData + channelName);
   };
 
-  downloadAudio(audioFileName:string):Observable<any>{
-    return this.http.get<any>(this.getDownloadAudio + audioFileName);
+  downloadAudio(audioFileName:string){
+    window.open(this.getDownloadAudio+audioFileName, "_blank");
   }
   getUrlByChannelName(AudioInputs): Observable<String> {
     return this.http.post<string>(this.urlByChannelName, AudioInputs, httpOptions);
