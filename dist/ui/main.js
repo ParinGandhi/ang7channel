@@ -292,8 +292,8 @@ var DashboardComponent = /** @class */ (function () {
         this.chartActiveInactiveData = [];
         this.chartActivityData = [];
         this.appAttributesChartData = [];
-        this.activeInactiveChartLabels = ['Active', 'Inactive'];
-        this.activityLabels = ['Recorderd', 'Unrecorded'];
+        this.activeInactiveChartLabels = ['Available', 'Unavailable'];
+        this.activityLabels = ['Active', 'Inactive'];
         this.options = {
             chart: {
                 type: 'pieChart',
@@ -406,7 +406,7 @@ var DashboardComponent = /** @class */ (function () {
             };
             var obj3 = {
                 siteNames: _this.activityLabels[0],
-                siteCount: _this.dashboardData.totalNumberofAvaiableChannels
+                siteCount: _this.dashboardData.totalNumberofActiveChannels
             };
             var obj4 = {
                 siteNames: _this.activityLabels[1],
