@@ -255,7 +255,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<div class=\"row\">\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Channels by site\n        <span class=\"pull-right\">Total: {{dashboardData.siteNames.length}}</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n          Total: {{dashboardData.siteNames.length}}\n        </div> -->\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"chart-wrapper\">\n          <nvd3 [options]=\"options\" [data]=\"data\"></nvd3>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Active/Inactive channels\n        <span class=\"pull-right\">Total: {{activeInactiveChartLabels.length}}</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n          Total: {{activeInactiveChartLabels.length}}\n        </div> -->\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"chart-wrapper\">\n          <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<br>\n<div class=\"row\">\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Application details\n        <span class=\"pull-right\">Total: 1</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n              Total: {{activeInactiveChartLabels.length}}\n            </div> -->\n      </div>\n      <div class=\"panel-body\" style=\"\n          height: 634px;\">\n        <div>\n            <span class=\"orangedot\" style=\"\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name &nbsp;:</label>\n                    {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\n          <span class=\"blluedot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version &nbsp;:</label>\n            {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\n          <span class=\"greendot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\n            {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\n          <span class=\"reddot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\n            {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br>\n         \n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Channels by site\n        <span class=\"pull-right\">Total: {{dashboardData.siteNames.length}}</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n                Total: {{dashboardData.siteNames.length}}\n              </div> -->\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"chart-wrapper\">\n          <nvd3 [options]=\"options\" [data]=\"data\"></nvd3>\n        </div>\n      </div>\n    </div>\n  </div>\n\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-6\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">\n            Recorded/UnRecorded channels\n            <span class=\"pull-right\">Total: {{activityLabels.length}}</span>\n            <!-- <div class=\"card-header-actions pull-right\">\n                  Total: {{activeInactiveChartLabels.length}}\n                </div> -->\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"chart-wrapper\">\n              <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\n            </div>\n          </div>\n        </div>\n      </div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Active/Inactive channels\n        <span class=\"pull-right\">Total: {{activeInactiveChartLabels.length}}</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n              Total: {{activeInactiveChartLabels.length}}\n            </div> -->\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"chart-wrapper\">\n          <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  \n\n</div>"
 
 /***/ }),
 
@@ -288,12 +288,16 @@ var DashboardComponent = /** @class */ (function () {
         this.dashboardData = {};
         this.chartData = [];
         this.activeInactiveData = [];
+        this.activityData = [];
         this.chartActiveInactiveData = [];
+        this.chartActivityData = [];
+        this.appAttributesChartData = [];
         this.activeInactiveChartLabels = ['Active', 'Inactive'];
+        this.activityLabels = ['Recorderd', 'Unrecorded'];
         this.options = {
             chart: {
                 type: 'pieChart',
-                height: 500,
+                height: 600,
                 x: function (d) {
                     return d.siteNames + ' ' + '[' + d.siteCount + ']';
                 },
@@ -309,7 +313,7 @@ var DashboardComponent = /** @class */ (function () {
                 labelSunbeamLayout: true,
                 legend: {
                     margin: {
-                        top: 5,
+                        top: 10,
                         right: 35,
                         bottom: 5,
                         left: 0
@@ -385,6 +389,12 @@ var DashboardComponent = /** @class */ (function () {
                 };
                 _this.chartData.push(obj);
             }
+            var appAttributes = {
+                siteNames: _this.dashboardData.applicationAttributes.ApplicationName,
+                siteCount: 1
+            };
+            _this.appAttributesChartData.push(appAttributes);
+            _this.chartAppAttributesChartData = _this.appAttributesChartData;
             _this.data = _this.chartData;
             var obj1 = {
                 siteNames: _this.activeInactiveChartLabels[0],
@@ -394,8 +404,19 @@ var DashboardComponent = /** @class */ (function () {
                 siteNames: _this.activeInactiveChartLabels[1],
                 siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofAvaiableChannels
             };
+            var obj3 = {
+                siteNames: _this.activityLabels[0],
+                siteCount: _this.dashboardData.totalNumberofAvaiableChannels
+            };
+            var obj4 = {
+                siteNames: _this.activityLabels[1],
+                siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofActiveChannels
+            };
             _this.activeInactiveData.push(obj1);
             _this.activeInactiveData.push(obj2);
+            _this.activityData.push(obj3);
+            _this.activityData.push(obj4);
+            _this.chartActivityData = _this.activityData;
             _this.chartActiveInactiveData = _this.activeInactiveData;
         });
     };
@@ -1469,7 +1490,7 @@ var ViewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\" (selectionChanged)=\"onSelectionChanged($event)\"\n  [pagination]=\"true\">\n</ag-grid-angular>\n<div>\n\n  <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\n\n    <div class=\"col-md-4\">\n      <label>Start time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <label>End time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\n        Play\n      </button>\n      &nbsp;\n      <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\n        <i class=\"fa fa-download\"></i> Download\n      </button>\n    </div>\n    <br>\n    <br>\n  </div>\n\n  <div class=\"col-md-12\">\n    <div id=\"waveform\"></div>\n    <div id=\"waveform-timeline\"></div>\n    <br>\n    <div *ngIf=\"showPlayer\">\n      <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\n        <i class=\"fa fa-play\"></i>/\n        <i class=\"fa fa-pause\"></i>\n      </button>\n    </div>\n  </div>\n  <br>\n  <br>\n  <br>\n</div>"
+module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\" (selectionChanged)=\"onSelectionChanged($event)\"\n  [pagination]=\"true\">\n</ag-grid-angular>\n<div>\n<div [hidden]=\"!enableOnGridClick\">\n  <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\n\n    <div class=\"col-md-4\">\n      <label>Start time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <label>End time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\n        Play\n      </button>\n      &nbsp;\n      <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\n        <i class=\"fa fa-download\"></i> Download\n      </button>\n    </div>\n    <br>\n    <br>\n  </div>\n\n  <div [hidden]=\"!enableWaveForm\"class=\"col-md-12\">\n    <div id=\"waveform\"></div>\n    <div id=\"waveform-timeline\"></div>\n    <br>\n    <div *ngIf=\"showPlayer\">\n      <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\n        <i class=\"fa fa-play\"></i>/\n        <i class=\"fa fa-pause\"></i>\n      </button>\n    </div>\n  </div>\n  </div>\n  <br>\n  <br>\n  <br>\n</div>"
 
 /***/ }),
 
@@ -1514,6 +1535,8 @@ var WaveformComponent = /** @class */ (function () {
         this.rowSelection = "single";
         this.showPlayer = true;
         this.gridDefined = false;
+        this.enableOnGridClick = false;
+        this.enableWaveForm = false;
         this.enableDownload = false;
         this.toastrTimeOut = 10000;
         this.audoInputData = {
@@ -1590,6 +1613,22 @@ var WaveformComponent = /** @class */ (function () {
     };
     WaveformComponent.prototype.getChannelData = function (channelName) {
         var _this = this;
+        if (this.isWavformExist) {
+            this.waveSurfer.pause();
+            this.waveSurfer.empty();
+            this.startDate = null;
+            this.endDate = null;
+            this.enableWaveForm = false;
+        }
+        this.enableDownload = false;
+        // if(this.isWavformExist){
+        //   this.waveSurfer.pause();
+        //   this.waveSurfer.empty();
+        //   this.startDate=null;
+        //   this.endDate=null;
+        // }
+        this.showPlayer = false;
+        this.enableOnGridClick = false;
         this.gridChannelName = channelName;
         this.dataService.getDataByChannelName(channelName)
             .subscribe(function (response) {
@@ -1603,6 +1642,7 @@ var WaveformComponent = /** @class */ (function () {
     };
     ;
     WaveformComponent.prototype.onSelectionChanged = function () {
+        this.enableOnGridClick = true;
         var selectedRows = this.waveFormGridOptions.api.getSelectedRows();
         if (selectedRows[0].startTime != null) {
             this.startDate = (new Date(selectedRows[0].startTime * 1000));
@@ -1618,9 +1658,10 @@ var WaveformComponent = /** @class */ (function () {
         this.audoInputData.channelName = this.gridChannelName;
         this.dataService.getUrlByChannelName(this.audoInputData)
             .subscribe(function (response) {
+            _this.enableWaveForm = true;
             _this.constructWaveSurfer(response);
-            _this.audioFileName = _this.getAudioFileName(response);
             _this.enableDownload = true;
+            _this.audioFileName = _this.getAudioFileName(response);
             console.log(response);
         }, function (error) {
             if (error.status != 200) {
@@ -1630,6 +1671,7 @@ var WaveformComponent = /** @class */ (function () {
                 _this.enableDownload = false;
             }
             if (error.status === 200) {
+                _this.enableWaveForm = true;
                 _this.constructWaveSurfer(error.error.text);
                 _this.audioFileName = _this.getAudioFileName(error.error.text);
                 _this.enableDownload = true;
