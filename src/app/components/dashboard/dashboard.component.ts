@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,14 +14,19 @@ export class DashboardComponent implements OnInit {
   public dashboardData: any = {};
   chartData: any = [];
   activeInactiveData: any = [];
+  activityData: any = [];
   chartActiveInactiveData: any = [];
+  chartActivityData: any = [];
+  appAttributesChartData:any =[];
+  chartAppAttributesChartData: any ;
   public activeInactiveChartLabels: string[] = ['Active', 'Inactive'];
+  public activityLabels: string[] = ['Recorderd', 'Unrecorded'];
 
   constructor(private dataService: DataService) {
     this.options = {
       chart: {
         type: 'pieChart',
-        height: 500,
+        height: 600,
         x: function (d) {
           return d.siteNames +' '+'['+d.siteCount+']';
         },
@@ -35,7 +41,7 @@ export class DashboardComponent implements OnInit {
         labelSunbeamLayout: true,
         legend: {
           margin: {
-            top: 5,
+            top: 10,
             right: 35,
             bottom: 5,
             left: 0
@@ -43,6 +49,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
+  
     // this.data = [
     //   {
     //     key: "P60-1",
@@ -114,6 +121,12 @@ export class DashboardComponent implements OnInit {
           }
           this.chartData.push(obj);
         }
+        let appAttributes ={
+          siteNames:this.dashboardData.applicationAttributes.ApplicationName,
+          siteCount:1
+        }
+        this.appAttributesChartData.push(appAttributes);
+        this.chartAppAttributesChartData=this.appAttributesChartData;
         this.data = this.chartData;
         let obj1 = {
           siteNames: this.activeInactiveChartLabels[0],
@@ -123,9 +136,19 @@ export class DashboardComponent implements OnInit {
           siteNames: this.activeInactiveChartLabels[1],
           siteCount: this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofAvaiableChannels
         }
+        let obj3 = {
+          siteNames: this.activityLabels[0],
+          siteCount: this.dashboardData.totalNumberofAvaiableChannels
+        }
+        let obj4 = {
+          siteNames: this.activityLabels[1],
+          siteCount: this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofActiveChannels
+        }
         this.activeInactiveData.push(obj1);
         this.activeInactiveData.push(obj2);
-
+        this.activityData.push(obj3);
+        this.activityData.push(obj4);
+        this.chartActivityData =   this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
 
       }

@@ -25,6 +25,8 @@ export class WaveformComponent implements OnInit {
   waveFormGridOptions: GridOptions;
   gridDefined: boolean = false;
   da: any;
+  enableOnGridClick:boolean=false;
+  enableWaveForm:boolean=false;
   enableDownload:boolean = false;
   toastrTimeOut: number = 10000;
   startDate: any;
@@ -108,6 +110,22 @@ export class WaveformComponent implements OnInit {
 
   ];
   getChannelData(channelName) {
+    if(this.isWavformExist){
+      this.waveSurfer.pause();
+     this.waveSurfer.empty();
+     this.startDate=null;
+    this.endDate=null;
+    this.enableWaveForm=false;
+   }
+     this.enableDownload =false;
+    // if(this.isWavformExist){
+    //   this.waveSurfer.pause();
+    //   this.waveSurfer.empty();
+    //   this.startDate=null;
+    //   this.endDate=null;
+    // }
+     this.showPlayer =false;
+    this.enableOnGridClick=false;
     this.gridChannelName = channelName;
     this.dataService.getDataByChannelName(channelName)
       .subscribe(
@@ -123,6 +141,7 @@ export class WaveformComponent implements OnInit {
       );
   };
   onSelectionChanged() {
+    this.enableOnGridClick=true;
     var selectedRows = this.waveFormGridOptions.api.getSelectedRows();
     if (selectedRows[0].startTime != null) {
       this.startDate = (new Date(selectedRows[0].startTime * 1000));
@@ -139,9 +158,11 @@ export class WaveformComponent implements OnInit {
     this.dataService.getUrlByChannelName(this.audoInputData)
       .subscribe(
         response => {
+          this.enableWaveForm=true;
           this.constructWaveSurfer(response);
-          this.audioFileName = this.getAudioFileName(response);
           this.enableDownload = true;
+          this.audioFileName = this.getAudioFileName(response);
+         
           console.log(response);
         },
         error => {
@@ -152,6 +173,7 @@ export class WaveformComponent implements OnInit {
             this.enableDownload = false;
           }
           if (error.status === 200) {
+            this.enableWaveForm=true;
             this.constructWaveSurfer(error.error.text);
             this.audioFileName = this.getAudioFileName(error.error.text);
             this.enableDownload = true;
