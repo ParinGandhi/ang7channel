@@ -19,8 +19,8 @@ export class DashboardComponent implements OnInit {
   chartActivityData: any = [];
   appAttributesChartData:any =[];
   chartAppAttributesChartData: any ;
-  public activeInactiveChartLabels: string[] = ['Active', 'Inactive'];
-  public activityLabels: string[] = ['Recorderd', 'Unrecorded'];
+  public activeInactiveChartLabels: string[] = ['Available', 'Unavailable'];
+  public activityLabels: string[] = ['Active', 'Inactive'];
 
   constructor(private dataService: DataService) {
     this.options = {
@@ -138,11 +138,11 @@ export class DashboardComponent implements OnInit {
         }
         let obj3 = {
           siteNames: this.activityLabels[0],
-          siteCount: this.dashboardData.totalNumberofAvaiableChannels
+          siteCount: this.dashboardData.totalNumberofActiveChannels
         }
         let obj4 = {
           siteNames: this.activityLabels[1],
-          siteCount: this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofActiveChannels
+          siteCount:  this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofActiveChannels
         }
         this.activeInactiveData.push(obj1);
         this.activeInactiveData.push(obj2);
