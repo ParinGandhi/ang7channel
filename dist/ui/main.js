@@ -1490,7 +1490,7 @@ var ViewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\" (selectionChanged)=\"onSelectionChanged($event)\"\n  [pagination]=\"true\">\n</ag-grid-angular>\n<div>\n<div [hidden]=\"!enableOnGridClick\">\n  <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\n\n    <div class=\"col-md-4\">\n      <label>Start time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <label>End time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <button type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\n        Play\n      </button>\n      &nbsp;\n      <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\n        <i class=\"fa fa-download\"></i> Download\n      </button>\n    </div>\n    <br>\n    <br>\n  </div>\n\n  <div [hidden]=\"!enableWaveForm\"class=\"col-md-12\">\n    <div id=\"waveform\"></div>\n    <div id=\"waveform-timeline\"></div>\n    <br>\n    <div *ngIf=\"showPlayer\">\n      <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\n        <i class=\"fa fa-play\"></i>/\n        <i class=\"fa fa-pause\"></i>\n      </button>\n    </div>\n  </div>\n  </div>\n  <br>\n  <br>\n  <br>\n</div>"
+module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\" (selectionChanged)=\"onSelectionChanged($event)\"\n  [pagination]=\"true\">\n</ag-grid-angular>\n<div>\n<div [hidden]=\"!enableOnGridClick\">\n  <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\n\n    <div class=\"col-md-4\">\n      <label>Start time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <label>End time</label> &nbsp;\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl></p-calendar>\n      <span style=\"margin-left:35px\"></span>\n\n    </div>\n    <div class=\"col-md-4\">\n      <button [disabled]='disablePlay' type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\n        Play\n      </button>\n      &nbsp;\n      <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\n        <i class=\"fa fa-download\"></i> Download\n      </button>\n    </div>\n    <br>\n    <br>\n  </div>\n\n  <div [hidden]=\"!enableWaveForm\"class=\"col-md-12\">\n    <div id=\"waveform\"></div>\n    <div id=\"waveform-timeline\"></div>\n    <br>\n    <div *ngIf=\"showPlayer\">\n      <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\n        <i class=\"fa fa-play\"></i>/\n        <i class=\"fa fa-pause\"></i>\n      </button>\n    </div>\n  </div>\n  </div>\n  <br>\n  <br>\n  <br>\n</div>"
 
 /***/ }),
 
@@ -1539,6 +1539,7 @@ var WaveformComponent = /** @class */ (function () {
         this.enableWaveForm = false;
         this.enableDownload = false;
         this.toastrTimeOut = 10000;
+        this.disablePlay = false;
         this.audoInputData = {
             channelName: null,
             startDate: null,
@@ -1650,6 +1651,7 @@ var WaveformComponent = /** @class */ (function () {
         if (selectedRows[0].endTime != null) {
             this.endDate = (new Date(selectedRows[0].endTime * 1000));
         }
+        this.disablePlay = false;
     };
     WaveformComponent.prototype.loadAudioUrl = function () {
         var _this = this;
@@ -1662,6 +1664,7 @@ var WaveformComponent = /** @class */ (function () {
             _this.constructWaveSurfer(response);
             _this.enableDownload = true;
             _this.audioFileName = _this.getAudioFileName(response);
+            _this.disablePlay = true;
             console.log(response);
         }, function (error) {
             if (error.status != 200) {
@@ -1675,6 +1678,7 @@ var WaveformComponent = /** @class */ (function () {
                 _this.constructWaveSurfer(error.error.text);
                 _this.audioFileName = _this.getAudioFileName(error.error.text);
                 _this.enableDownload = true;
+                _this.disablePlay = true;
             }
             console.log(error);
         });
