@@ -31,6 +31,7 @@ export class WaveformComponent implements OnInit {
   toastrTimeOut: number = 10000;
   startDate: any;
   endDate: any;
+  disablePlay:boolean = false;
   audoInputData: AudioInputs = {
     channelName: null,
     startDate: null,
@@ -149,6 +150,7 @@ export class WaveformComponent implements OnInit {
     if (selectedRows[0].endTime != null) {
       this.endDate = (new Date(selectedRows[0].endTime * 1000));
     }
+    this.disablePlay=false;
 
   }
   loadAudioUrl() {
@@ -162,7 +164,7 @@ export class WaveformComponent implements OnInit {
           this.constructWaveSurfer(response);
           this.enableDownload = true;
           this.audioFileName = this.getAudioFileName(response);
-         
+          this.disablePlay = true;
           console.log(response);
         },
         error => {
@@ -177,6 +179,7 @@ export class WaveformComponent implements OnInit {
             this.constructWaveSurfer(error.error.text);
             this.audioFileName = this.getAudioFileName(error.error.text);
             this.enableDownload = true;
+            this.disablePlay = true;
           }
           console.log(error);
         }
