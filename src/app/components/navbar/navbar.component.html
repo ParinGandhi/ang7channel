@@ -1,13 +1,13 @@
 <div class="navbar-brand">Audio</div>
-<button class="btn btn-link navbarLinks" *ngIf="!loggedIn" (click)="ngxSmartModalService.getModal('loginModal').open()">Sign
-  in</button>
-<button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="loggedIn = false">Sign out</button>
+<button class="btn btn-link navbarLinks" *ngIf="!loggedIn" id="login" (click)="ngxSmartModalService.getModal('loginModal').open()">Sign
+  In</button>
+<button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="checkLogOut(false);">Sign Out</button>
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="ngxSmartModalService.getModal('manageChannelModal').open()">Manage
-  channels</button>
+  Channels</button>
 <button class="btn btn-link navbarLinks" routerLink="/view">View</button>
 <button class="btn btn-link navbarLinks" routerLink="/dashboard">Dashboard</button>
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="ngxSmartModalService.getModal('uploadFileModal').open()">Upload
-  file</button>
+  File</button>
 
 <!-- Manage channel modal -->
 <ngx-smart-modal #manageChannelModal customClass="nsm-dialog-animation-ttb" identifier="manageChannelModal">
@@ -21,13 +21,13 @@
         <input class="form-control" type="text" list="manageChannel" [(ngModel)]='searchText' (ngModelChange)="onChannelChanged($event)">
         <!-- [ngModel]="easMediaDataToCreate.channelName"
         (ngModelChange)="populateChannel($event)" -->
-<!-- <datalist id="citynames">
+        <!-- <datalist id="citynames">
   <option value="Boston">
   <option value="Cambridge">
 </datalist> -->
         <datalist id="manageChannel">
-          
-          <option *ngFor="let channel of channelList" [ngValue]="channel" >{{channel.channelName}}</option>
+
+          <option *ngFor="let channel of channelList" [ngValue]="channel">{{channel.channelName}}</option>
         </datalist>
       </div>
     </div>
@@ -202,7 +202,7 @@
 <!-- Manage Classification Modal -->
 <ngx-smart-modal #manageClassificationModal customClass="nsm-dialog-animation-ttb" identifier="manageClassificationModal">
   <div class="modal-header">
-    <h4 class="modal-title">Manage classification</h4>
+    <h4 class="modal-title">Manage Classification</h4>
   </div>
   <div class="modal-body">
     <div class="row modalInputHeight">
@@ -261,7 +261,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default pull-left" (click)="loginModal.close()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="loggedIn = true; loginModal.close()">Login</button>
+    <button type="button" class="btn btn-primary" (click)="checkLogin(loginModal);">Login</button>
   </div>
 </ngx-smart-modal>
 <!-- End Login Modal -->
@@ -276,12 +276,15 @@
       <div class="form-group">
         <label for="file">Choose File&nbsp;</label>
         <input class="form-control-file" type="file" id="file" (change)="setFile($event.target.files)">
+        <ngx-spinner type="square-jelly-box" fullScreen="true">
+          <p style="color: white"> Loading... </p>
+        </ngx-spinner>
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default pull-left" (click)="uploadFileModal.close()">Close</button>
-    <button class="btn btn-primary" (click)="handleFileInput()">Upload</button>
+    <button class="btn btn-primary" (click)="handleFileInput(uploadFileModal)">Upload</button>
   </div>
 </ngx-smart-modal>
 <!-- End Upload File Modal -->

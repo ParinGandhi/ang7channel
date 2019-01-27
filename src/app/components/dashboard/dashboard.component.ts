@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { SharedService } from '../../shared.service';
+import {DashBoardData} from '../../models/dashboardData';
+import {applicationAttributes} from '../../models/applicationAttributes';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,19 +14,36 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class DashboardComponent implements OnInit {
   options: any;
   data: any;
-
-  public dashboardData: any = {};
+  public appAttributes : applicationAttributes = {
+    ApplicationVersion:null,
+    OSVersion: null,
+    ApplicationState:null,
+    ApplicationName:null
+  }
+  // public dashboardData: DashBoardData = {
+  //   totalNumberofChannels: null,
+  //   applicationAttributes: this.appAttributes,
+  //   totalNumberofAvaiableChannels:null,
+  //   totalNumberofActiveChannels:null,
+  //   configuredDataByCategory:null,
+  //   avaiableDataByCategory:null,
+  //   siteNames:null,
+  //   siteCount:null,
+  // };
+  public dashboardData:any;
   chartData: any = [];
   activeInactiveData: any = [];
   activityData: any = [];
+  lastRefreshed: any;
   chartActiveInactiveData: any = [];
   chartActivityData: any = [];
   appAttributesChartData:any =[];
+  isLoggedIn:boolean=false;
   chartAppAttributesChartData: any ;
   public activeInactiveChartLabels: string[] = ['Available', 'Unavailable'];
   public activityLabels: string[] = ['Active', 'Inactive'];
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,private sharedService: SharedService) {
     this.options = {
       chart: {
         type: 'pieChart',
@@ -111,9 +132,22 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
+    this.sharedService.sharedLoginResource.subscribe(data => this.isLoggedIn = data)
+   if(this.isLoggedIn){
+    this.getDashBoardData();
+   }else{
+    this.getDashBoardData();
+    setTimeout(()=>{
+      document.getElementById('login').click();
+    },500) 
+   }
+   
+  }
+  getDashBoardData = function(){
     this.dataService.getDashboardData().subscribe(
       response => {
-        this.dashboardData = response;
+        this.lastRefreshed = new Date();
+        this.dashboardData = response; 
         for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
           let obj = {
             siteNames: this.dashboardData.siteNames[i],
@@ -153,7 +187,6 @@ export class DashboardComponent implements OnInit {
 
       }
     )
-
 
   }
 

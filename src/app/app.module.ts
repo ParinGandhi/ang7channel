@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,6 +48,7 @@ import { SelectDropDownModule } from 'ngx-select-dropdown'
     SelectDropDownModule,
     AngularDateTimePickerModule,
     NvD3Module,
+    NgxSpinnerModule,
     AgGridModule.withComponents([HistoryComponent, PlayAudioComponent]),
     NgxSmartModalModule.forRoot(),
     BrowserAnimationsModule,

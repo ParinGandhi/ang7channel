@@ -6,6 +6,8 @@ import { StandardRole } from 'src/app/models/standard-role';
 import { EasMediaData } from 'src/app/models/eas-media-data';
 import { StandardClassification } from 'src/app/models/standard-classification';
 import { ToastrService, Toast } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 import { SharedService } from '../../shared.service';
 @Component({
@@ -74,7 +76,7 @@ export class NavbarComponent implements OnInit {
 
 
   /** Constructor */
-  constructor(public ngxSmartModalService: NgxSmartModalService, private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService) { }
+  constructor(public ngxSmartModalService: NgxSmartModalService, private spinner: NgxSpinnerService, private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService) { }
   getGridData() {
     this.dataService.getChannelList().subscribe(rowData => {
       this.newGridData = rowData;
@@ -109,7 +111,18 @@ export class NavbarComponent implements OnInit {
       });
     });
   };
-
+checkLogin(loginModel){
+  this.loggedIn=true;
+  loginModel.close();
+  this.sharedService.changeLoginSource(this.loggedIn);
+}
+checkLogOut(){
+  this.loggedIn = false
+  this.sharedService.changeLoginSource(false);
+  setTimeout(()=>{
+    document.getElementById('login').click();
+  },500) 
+}
   addRole() {
     this.stndRole.lastModifiedTs = new Date();
     this.stndRole.lastModifiedUserId = 'testUser';
@@ -353,16 +366,21 @@ export class NavbarComponent implements OnInit {
     this.file = files.item(0);
   };
 
-  handleFileInput() {
+  handleFileInput(modelInstance) {
     // this.file = files.item(0);
+    this.spinner.show();
     var fd = new FormData();
     fd.append('file', this.file);
     this.dataService.postFile(fd).subscribe(data => {
       // do something, if upload success
+      this.spinner.show();
+      modelInstance.close();
       this.toastr.success('Successfully imported file', '', {
         timeOut: this.toastrTimeOut
       });
+
     }, error => {
+      this.spinner.hide();
       console.log(error);
       this.toastr.error('Failed to import file. Please try again later', '', {
         timeOut: this.toastrTimeOut
@@ -372,6 +390,7 @@ export class NavbarComponent implements OnInit {
 
   /** On init */
   ngOnInit() {
+   
     this.sharedService.sharedDataSource.subscribe(data => this.newGridData = data)
     this.dataService.getSiteIdList().subscribe(siteIdList => {
       this.siteIdList = siteIdList;

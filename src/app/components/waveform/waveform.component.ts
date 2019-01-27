@@ -188,7 +188,6 @@ export class WaveformComponent implements OnInit {
   getAudioFileName(audioUrl) {
     var arrVars = audioUrl.split("/");
     return arrVars.pop();
-
   }
   downloadAudio() {
     this.dataService.downloadAudio(this.audioFileName);

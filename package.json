@@ -29,6 +29,7 @@
     "ng2-nvd3": "^2.0.0",
     "ngx-select-dropdown": "^1.0.1",
     "ngx-smart-modal": "^7.1.0",
+    "ngx-spinner": "^7.0.0",
     "ngx-toastr": "^9.1.1",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.3",
