@@ -154,34 +154,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ag_grid_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ag-grid-angular */ "./node_modules/ag-grid-angular/main.js");
 /* harmony import */ var ag_grid_angular__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(ag_grid_angular__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var ngx_smart_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-smart-modal */ "./node_modules/ngx-smart-modal/esm5/ngx-smart-modal.js");
-/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
-/* harmony import */ var _components_search_search_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/search/search.component */ "./src/app/components/search/search.component.ts");
-/* harmony import */ var _components_grid_grid_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/grid/grid.component */ "./src/app/components/grid/grid.component.ts");
-/* harmony import */ var _components_waveform_waveform_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/waveform/waveform.component */ "./src/app/components/waveform/waveform.component.ts");
-/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
-/* harmony import */ var ng2_nvd3__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ng2-nvd3 */ "./node_modules/ng2-nvd3/build/index.js");
-/* harmony import */ var ng2_nvd3__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(ng2_nvd3__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! d3 */ "./node_modules/d3/d3.js");
-/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(d3__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var nvd3__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! nvd3 */ "./node_modules/nvd3/build/nv.d3.js");
-/* harmony import */ var nvd3__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(nvd3__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var angular2_datetimepicker__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! angular2-datetimepicker */ "./node_modules/angular2-datetimepicker/index.js");
-/* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./services/data.service */ "./src/app/services/data.service.ts");
-/* harmony import */ var _components_view_view_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/view/view.component */ "./src/app/components/view/view.component.ts");
-/* harmony import */ var _components_history_history_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/history/history.component */ "./src/app/components/history/history.component.ts");
-/* harmony import */ var _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/play-audio/play-audio.component */ "./src/app/components/play-audio/play-audio.component.ts");
-/* harmony import */ var primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! primeng/components/calendar/calendar */ "./node_modules/primeng/components/calendar/calendar.js");
-/* harmony import */ var primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_23__);
-/* harmony import */ var ngx_select_dropdown__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ngx-select-dropdown */ "./node_modules/ngx-select-dropdown/dist/index.js");
+/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
+/* harmony import */ var _components_search_search_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/search/search.component */ "./src/app/components/search/search.component.ts");
+/* harmony import */ var _components_grid_grid_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/grid/grid.component */ "./src/app/components/grid/grid.component.ts");
+/* harmony import */ var _components_waveform_waveform_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/waveform/waveform.component */ "./src/app/components/waveform/waveform.component.ts");
+/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
+/* harmony import */ var ng2_nvd3__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ng2-nvd3 */ "./node_modules/ng2-nvd3/build/index.js");
+/* harmony import */ var ng2_nvd3__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(ng2_nvd3__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! d3 */ "./node_modules/d3/d3.js");
+/* harmony import */ var d3__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(d3__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var nvd3__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! nvd3 */ "./node_modules/nvd3/build/nv.d3.js");
+/* harmony import */ var nvd3__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(nvd3__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var angular2_datetimepicker__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! angular2-datetimepicker */ "./node_modules/angular2-datetimepicker/index.js");
+/* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./services/data.service */ "./src/app/services/data.service.ts");
+/* harmony import */ var _components_view_view_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/view/view.component */ "./src/app/components/view/view.component.ts");
+/* harmony import */ var _components_history_history_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/history/history.component */ "./src/app/components/history/history.component.ts");
+/* harmony import */ var _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/play-audio/play-audio.component */ "./src/app/components/play-audio/play-audio.component.ts");
+/* harmony import */ var primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! primeng/components/calendar/calendar */ "./node_modules/primeng/components/calendar/calendar.js");
+/* harmony import */ var primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_24__);
+/* harmony import */ var ngx_select_dropdown__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ngx-select-dropdown */ "./node_modules/ngx-select-dropdown/dist/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -213,32 +215,33 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
-                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__["NavbarComponent"],
-                _components_search_search_component__WEBPACK_IMPORTED_MODULE_11__["SearchComponent"],
-                _components_grid_grid_component__WEBPACK_IMPORTED_MODULE_12__["GridComponent"],
-                _components_waveform_waveform_component__WEBPACK_IMPORTED_MODULE_13__["WaveformComponent"],
-                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_14__["DashboardComponent"],
-                _components_view_view_component__WEBPACK_IMPORTED_MODULE_20__["ViewComponent"],
-                _components_history_history_component__WEBPACK_IMPORTED_MODULE_21__["HistoryComponent"],
-                _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_22__["PlayAudioComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
+                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_11__["NavbarComponent"],
+                _components_search_search_component__WEBPACK_IMPORTED_MODULE_12__["SearchComponent"],
+                _components_grid_grid_component__WEBPACK_IMPORTED_MODULE_13__["GridComponent"],
+                _components_waveform_waveform_component__WEBPACK_IMPORTED_MODULE_14__["WaveformComponent"],
+                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_15__["DashboardComponent"],
+                _components_view_view_component__WEBPACK_IMPORTED_MODULE_21__["ViewComponent"],
+                _components_history_history_component__WEBPACK_IMPORTED_MODULE_22__["HistoryComponent"],
+                _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_23__["PlayAudioComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_9__["AppRoutingModule"],
                 _angular_Forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
-                primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_23__["CalendarModule"],
-                ngx_select_dropdown__WEBPACK_IMPORTED_MODULE_24__["SelectDropDownModule"],
-                angular2_datetimepicker__WEBPACK_IMPORTED_MODULE_18__["AngularDateTimePickerModule"],
-                ng2_nvd3__WEBPACK_IMPORTED_MODULE_15__["NvD3Module"],
-                ag_grid_angular__WEBPACK_IMPORTED_MODULE_5__["AgGridModule"].withComponents([_components_history_history_component__WEBPACK_IMPORTED_MODULE_21__["HistoryComponent"], _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_22__["PlayAudioComponent"]]),
+                primeng_components_calendar_calendar__WEBPACK_IMPORTED_MODULE_24__["CalendarModule"],
+                ngx_select_dropdown__WEBPACK_IMPORTED_MODULE_25__["SelectDropDownModule"],
+                angular2_datetimepicker__WEBPACK_IMPORTED_MODULE_19__["AngularDateTimePickerModule"],
+                ng2_nvd3__WEBPACK_IMPORTED_MODULE_16__["NvD3Module"],
+                ngx_spinner__WEBPACK_IMPORTED_MODULE_7__["NgxSpinnerModule"],
+                ag_grid_angular__WEBPACK_IMPORTED_MODULE_5__["AgGridModule"].withComponents([_components_history_history_component__WEBPACK_IMPORTED_MODULE_22__["HistoryComponent"], _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_23__["PlayAudioComponent"]]),
                 ngx_smart_modal__WEBPACK_IMPORTED_MODULE_6__["NgxSmartModalModule"].forRoot(),
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
-                ngx_toastr__WEBPACK_IMPORTED_MODULE_7__["ToastrModule"].forRoot()
+                ngx_toastr__WEBPACK_IMPORTED_MODULE_8__["ToastrModule"].forRoot()
             ],
-            providers: [_services_data_service__WEBPACK_IMPORTED_MODULE_19__["DataService"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
+            providers: [_services_data_service__WEBPACK_IMPORTED_MODULE_20__["DataService"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -255,7 +258,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<div class=\"row\">\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Application details\n        <span class=\"pull-right\">Total: 1</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n              Total: {{activeInactiveChartLabels.length}}\n            </div> -->\n      </div>\n      <div class=\"panel-body\" style=\"\n          height: 634px;\">\n        <div>\n            <span class=\"orangedot\" style=\"\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name &nbsp;:</label>\n                    {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\n          <span class=\"blluedot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version &nbsp;:</label>\n            {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\n          <span class=\"greendot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\n            {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\n          <span class=\"reddot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\n            {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br>\n         \n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Channels by site\n        <span class=\"pull-right\">Total: {{dashboardData.siteNames.length}}</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n                Total: {{dashboardData.siteNames.length}}\n              </div> -->\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"chart-wrapper\">\n          <nvd3 [options]=\"options\" [data]=\"data\"></nvd3>\n        </div>\n      </div>\n    </div>\n  </div>\n\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-6\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">\n            Recorded/UnRecorded channels\n            <span class=\"pull-right\">Total: {{activityLabels.length}}</span>\n            <!-- <div class=\"card-header-actions pull-right\">\n                  Total: {{activeInactiveChartLabels.length}}\n                </div> -->\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"chart-wrapper\">\n              <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\n            </div>\n          </div>\n        </div>\n      </div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Active/Inactive channels\n        <span class=\"pull-right\">Total: {{activeInactiveChartLabels.length}}</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n              Total: {{activeInactiveChartLabels.length}}\n            </div> -->\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"chart-wrapper\">\n          <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  \n\n</div>"
+module.exports = "<div *ngIf='isLoggedIn'>\n<div class=\"row\">\n  <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\n    <div class=\"col-md-4\"></div>\n    <div class=\"col-md-4\"></div>\n      <div class=\"col-md-4\">\n        <div class=\" pull-right\">\n            Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\n            <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\n                aria-hidden=\"true\"></span></button>\n        </div>\n        </div>\n  </div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Application details\n        <span class=\"pull-right\">Total: 1</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n              Total: {{activeInactiveChartLabels.length}}\n            </div> -->\n      </div>\n      <div class=\"panel-body\" style=\"\n          height: 634px;\">\n        <div>\n            <span class=\"orangedot\" style=\"\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name &nbsp;:</label>\n                    {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\n          <span class=\"blluedot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version &nbsp;:</label>\n            {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\n          <span class=\"greendot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\n            {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\n          <span class=\"reddot\" style=\"\n    margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\n            {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br>\n         \n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Channels by site\n        <span class=\"pull-right\">Total: {{dashboardData.siteNames.length}}</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n                Total: {{dashboardData.siteNames.length}}\n              </div> -->\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"chart-wrapper\">\n          <nvd3 [options]=\"options\" [data]=\"data\"></nvd3>\n        </div>\n      </div>\n    </div>\n  </div>\n\n</div>\n<div class=\"row\">\n    <div class=\"col-sm-6\">\n        <div class=\"panel panel-default\">\n          <div class=\"panel-heading\">\n            Recorded/UnRecorded channels\n            <span class=\"pull-right\">Total: {{activityLabels.length}}</span>\n            <!-- <div class=\"card-header-actions pull-right\">\n                  Total: {{activeInactiveChartLabels.length}}\n                </div> -->\n          </div>\n          <div class=\"panel-body\">\n            <div class=\"chart-wrapper\">\n              <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\n            </div>\n          </div>\n        </div>\n      </div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default\">\n      <div class=\"panel-heading\">\n        Active/Inactive channels\n        <span class=\"pull-right\">Total: {{activeInactiveChartLabels.length}}</span>\n        <!-- <div class=\"card-header-actions pull-right\">\n              Total: {{activeInactiveChartLabels.length}}\n            </div> -->\n      </div>\n      <div class=\"panel-body\">\n        <div class=\"chart-wrapper\">\n          <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  \n\n</div>\n</div>"
 
 /***/ }),
 
@@ -271,6 +274,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/data.service */ "./src/app/services/data.service.ts");
+/* harmony import */ var _shared_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared.service */ "./src/app/shared.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -282,18 +286,69 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(dataService) {
+    function DashboardComponent(dataService, sharedService) {
         this.dataService = dataService;
-        this.dashboardData = {};
+        this.sharedService = sharedService;
+        this.appAttributes = {
+            ApplicationVersion: null,
+            OSVersion: null,
+            ApplicationState: null,
+            ApplicationName: null
+        };
         this.chartData = [];
         this.activeInactiveData = [];
         this.activityData = [];
         this.chartActiveInactiveData = [];
         this.chartActivityData = [];
         this.appAttributesChartData = [];
+        this.isLoggedIn = false;
         this.activeInactiveChartLabels = ['Available', 'Unavailable'];
         this.activityLabels = ['Active', 'Inactive'];
+        this.getDashBoardData = function () {
+            var _this = this;
+            this.dataService.getDashboardData().subscribe(function (response) {
+                _this.lastRefreshed = new Date();
+                _this.dashboardData = response;
+                for (var i = 0; i < _this.dashboardData.siteNames.length; i++) {
+                    var obj = {
+                        siteNames: _this.dashboardData.siteNames[i],
+                        siteCount: _this.dashboardData.siteCount[i]
+                    };
+                    _this.chartData.push(obj);
+                }
+                var appAttributes = {
+                    siteNames: _this.dashboardData.applicationAttributes.ApplicationName,
+                    siteCount: 1
+                };
+                _this.appAttributesChartData.push(appAttributes);
+                _this.chartAppAttributesChartData = _this.appAttributesChartData;
+                _this.data = _this.chartData;
+                var obj1 = {
+                    siteNames: _this.activeInactiveChartLabels[0],
+                    siteCount: _this.dashboardData.totalNumberofAvaiableChannels
+                };
+                var obj2 = {
+                    siteNames: _this.activeInactiveChartLabels[1],
+                    siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofAvaiableChannels
+                };
+                var obj3 = {
+                    siteNames: _this.activityLabels[0],
+                    siteCount: _this.dashboardData.totalNumberofActiveChannels
+                };
+                var obj4 = {
+                    siteNames: _this.activityLabels[1],
+                    siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofActiveChannels
+                };
+                _this.activeInactiveData.push(obj1);
+                _this.activeInactiveData.push(obj2);
+                _this.activityData.push(obj3);
+                _this.activityData.push(obj4);
+                _this.chartActivityData = _this.activityData;
+                _this.chartActiveInactiveData = _this.activeInactiveData;
+            });
+        };
         this.options = {
             chart: {
                 type: 'pieChart',
@@ -380,52 +435,23 @@ var DashboardComponent = /** @class */ (function () {
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.dataService.getDashboardData().subscribe(function (response) {
-            _this.dashboardData = response;
-            for (var i = 0; i < _this.dashboardData.siteNames.length; i++) {
-                var obj = {
-                    siteNames: _this.dashboardData.siteNames[i],
-                    siteCount: _this.dashboardData.siteCount[i]
-                };
-                _this.chartData.push(obj);
-            }
-            var appAttributes = {
-                siteNames: _this.dashboardData.applicationAttributes.ApplicationName,
-                siteCount: 1
-            };
-            _this.appAttributesChartData.push(appAttributes);
-            _this.chartAppAttributesChartData = _this.appAttributesChartData;
-            _this.data = _this.chartData;
-            var obj1 = {
-                siteNames: _this.activeInactiveChartLabels[0],
-                siteCount: _this.dashboardData.totalNumberofAvaiableChannels
-            };
-            var obj2 = {
-                siteNames: _this.activeInactiveChartLabels[1],
-                siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofAvaiableChannels
-            };
-            var obj3 = {
-                siteNames: _this.activityLabels[0],
-                siteCount: _this.dashboardData.totalNumberofActiveChannels
-            };
-            var obj4 = {
-                siteNames: _this.activityLabels[1],
-                siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofActiveChannels
-            };
-            _this.activeInactiveData.push(obj1);
-            _this.activeInactiveData.push(obj2);
-            _this.activityData.push(obj3);
-            _this.activityData.push(obj4);
-            _this.chartActivityData = _this.activityData;
-            _this.chartActiveInactiveData = _this.activeInactiveData;
-        });
+        this.sharedService.sharedLoginResource.subscribe(function (data) { return _this.isLoggedIn = data; });
+        if (this.isLoggedIn) {
+            this.getDashBoardData();
+        }
+        else {
+            this.getDashBoardData();
+            setTimeout(function () {
+                document.getElementById('login').click();
+            }, 500);
+        }
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-dashboard',
             template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/components/dashboard/dashboard.component.html")
         }),
-        __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]])
+        __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _shared_service__WEBPACK_IMPORTED_MODULE_2__["SharedService"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -720,7 +746,7 @@ var HistoryComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"navbar-brand\">Audio</div>\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"!loggedIn\" (click)=\"ngxSmartModalService.getModal('loginModal').open()\">Sign\n  in</button>\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn\" (click)=\"loggedIn = false\">Sign out</button>\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn\" (click)=\"ngxSmartModalService.getModal('manageChannelModal').open()\">Manage\n  channels</button>\n<button class=\"btn btn-link navbarLinks\" routerLink=\"/view\">View</button>\n<button class=\"btn btn-link navbarLinks\" routerLink=\"/dashboard\">Dashboard</button>\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn\" (click)=\"ngxSmartModalService.getModal('uploadFileModal').open()\">Upload\n  file</button>\n\n<!-- Manage channel modal -->\n<ngx-smart-modal #manageChannelModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"manageChannelModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Manage channels</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"availableChannels\">Available channels</label>\n        <input class=\"form-control\" type=\"text\" list=\"manageChannel\" [(ngModel)]='searchText' (ngModelChange)=\"onChannelChanged($event)\">\n        <!-- [ngModel]=\"easMediaDataToCreate.channelName\"\n        (ngModelChange)=\"populateChannel($event)\" -->\n<!-- <datalist id=\"citynames\">\n  <option value=\"Boston\">\n  <option value=\"Cambridge\">\n</datalist> -->\n        <datalist id=\"manageChannel\">\n          \n          <option *ngFor=\"let channel of channelList\" [ngValue]=\"channel\" >{{channel.channelName}}</option>\n        </datalist>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"channelName\">Channel name *</label>\n        <input class=\"form-control\" required id=\"channelName\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\n          [(ngModel)]=\"easMediaDataToCreate.channelName\" #manageChannel=\"ngModel\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\n        <label for=\"siteId\">Site ID *</label>\n        <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.stndSite.id\">\n          <option value=\"\">Select a site id...</option>\n          <option *ngFor=\"let siteId of siteIdList.results\" [value]=\"siteId.id\">{{siteId.nm}}</option>\n        </select>\n      </div>\n      <div class=\"input-field col-sm-2\">\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\" (click)=\"ngxSmartModalService.getModal('manageSiteModal').open()\"><span\n            class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span></button>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"originatedIp\">Originated IP *</label>\n        <input class=\"form-control\" id=\"originatedIp\" type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.mediaOriginatedIp\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"originatedPort\">Originated port *</label>\n        <input class=\"form-control\" id=\"originatedPort\" type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.mediaOriginatedPort\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\n        <label for=\"manageClassification\">Classification *</label>\n        <select class=\"form-control\" name=\"manageClassification\" id=\"manageClassification\" [ngModelOptions]=\"{standalone: true}\"\n          [(ngModel)]=\"easMediaDataToCreate.standardClassification.id\">\n          <option value=\"\">Select a classification...</option>\n          <option *ngFor=\"let classificationId of classificationList.results\" [value]=\"classificationId.id\">{{classificationId.nm}}</option>\n        </select>\n      </div>\n      <div class=\"input-field col-sm-2\">\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\" (click)=\"ngxSmartModalService.getModal('manageClassificationModal').open()\"><span\n            class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span></button>\n      </div>\n    </div>\n    <!-- <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\n        <label for=\"manageClassification\">Classification *</label>\n        <input class=\"form-control\" id=\"manageClassification\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\n          [(ngModel)]=\"easMediaDataToCreate.classification\">\n      </div>\n    </div> -->\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\n        <label for=\"roleId\">Role ID *</label>\n        <select class=\"form-control\" name=\"roleId\" id=\"roleId\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.stndRole.id\">\n          <option value=\"\">Select a role id...</option>\n          <option *ngFor=\"let roleId of roleIdList.results\" [value]=\"roleId.id\">{{roleId.nm}}</option>\n        </select>\n      </div>\n      <div class=\"input-field col-sm-2\">\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\" (click)=\"ngxSmartModalService.getModal('manageRoleModal').open()\"><span\n            class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span></button>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"active\">Active *</label>\n        <select class=\"form-control\" name=\"activeIndSearch\" id=\"activeIndSearch\" [ngModelOptions]=\"{standalone: true}\"\n          [(ngModel)]=\"easMediaDataToCreate.enableIn\">\n          <option value=\"\">Select an active indicator...</option>\n          <option value=\"TRUE\">Active</option>\n          <option value=\"FALSE\">Inactive</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"encodingFormat\">Encoding format</label>\n        <input class=\"form-control\" id=\"encodingFormat\" type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.encodingFormat\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"clearChannelInfo(); manageChannelModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateChannelButton\" (click)=\"addChannel();\">Add channel</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateChannelButton\" (click)=\"updateChannel();\">Update\n      channel</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Manage Channel Modal -->\n\n<!-- Manage Site Modal -->\n<ngx-smart-modal #manageSiteModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"manageSiteModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Manage site</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"siteId\">Available sites</label>\n        <select class=\"form-control\" name=\"siteid\" id=\"manageSiteid\" [ngModel]=\"stndSite\" (ngModelChange)=\"populateSite($event)\">\n          <option value=\"\">Select a site...</option>\n          <option *ngFor=\"let site of siteIdList.results\" [ngValue]=\"site\">{{site.nm}}</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"siteName\">Site name</label>\n        <input required class=\"form-control\" id=\"siteName\" type=\"text\" [(ngModel)]=\"stndSite.nm\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"siteDescription\">Site description</label>\n        <input required class=\"form-control\" id=\"siteDesription\" type=\"text\" [(ngModel)]=\"stndSite.descriptionTx\"\n          [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"clearSite(); manageSiteModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showSiteUpdateButton\" (click)=\"addSite();\">Add site</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showSiteUpdateButton\" (click)=\"updateSite();\">Update site</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Add Site Modal -->\n\n<!-- Manage Role Modal -->\n<ngx-smart-modal #manageRoleModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"manageRoleModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Manage role</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"roleId\">Available roles</label>\n        <select class=\"form-control\" name=\"roleId\" id=\"manageRoleId\" [ngModel]=\"stndRole\" (ngModelChange)=\"populateRole($event)\">\n          <option value=\"\">Select a role...</option>\n          <option *ngFor=\"let role of roleIdList.results\" [ngValue]=\"role\">{{role.nm}}</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"roleName\">Role name</label>\n        <input required class=\"form-control\" id=\"roleName\" type=\"text\" [(ngModel)]=\"stndRole.nm\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"roleDescription\">Role description</label>\n        <input required class=\"form-control\" id=\"roleDescription\" type=\"text\" [(ngModel)]=\"stndRole.descriptionTx\"\n          [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"clearRole(); manageRoleModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateRoleButton\" (click)=\"addRole();\">Add\n      role</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateRoleButton\" (click)=\"updateRole();\">Update role</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Add Role Modal -->\n\n<!-- Manage Classification Modal -->\n<ngx-smart-modal #manageClassificationModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"manageClassificationModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Manage classification</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"classification\">Available classifications</label>\n        <select class=\"form-control\" name=\"classification\" id=\"classification\" [ngModel]=\"standardClassification\"\n          (ngModelChange)=\"populateClassification($event)\">\n          <option value=\"\">Select a classification...</option>\n          <option *ngFor=\"let classification of classificationList.results\" [ngValue]=\"classification\">{{classification.nm}}</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"classificationName\">Classification name</label>\n        <input required class=\"form-control\" id=\"classificationName\" type=\"text\" [(ngModel)]=\"standardClassification.nm\"\n          [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"classificationDescription\">Classification description</label>\n        <input required class=\"form-control\" id=\"classificationDescription\" type=\"text\" [(ngModel)]=\"standardClassification.descriptionTx\"\n          [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"clearClassification(); manageClassificationModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateClassificationButton\" (click)=\"addClassification();\">Add\n      classification</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateClassificationButton\" (click)=\"updateClassification();\">Update\n      classification</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Add Classification Modal -->\n\n<!-- Login Modal -->\n<ngx-smart-modal #loginModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"loginModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Login</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"loginId\">Login ID</label>\n        <input class=\"form-control\" id=\"loginId\" type=\"text\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"password\">Password</label>\n        <input class=\"form-control\" id=\"password\" type=\"password\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"loginModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"loggedIn = true; loginModal.close()\">Login</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Login Modal -->\n\n<!-- Upload File Modal -->\n<ngx-smart-modal #uploadFileModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"uploadFileModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Import file</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"form-group\">\n        <label for=\"file\">Choose File&nbsp;</label>\n        <input class=\"form-control-file\" type=\"file\" id=\"file\" (change)=\"setFile($event.target.files)\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"uploadFileModal.close()\">Close</button>\n    <button class=\"btn btn-primary\" (click)=\"handleFileInput()\">Upload</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Upload File Modal -->\n"
+module.exports = "<div class=\"navbar-brand\">Audio</div>\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"!loggedIn\" id=\"login\" (click)=\"ngxSmartModalService.getModal('loginModal').open()\">Sign\n  In</button>\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn\" (click)=\"checkLogOut(false);\">Sign Out</button>\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn\" (click)=\"ngxSmartModalService.getModal('manageChannelModal').open()\">Manage\n  Channels</button>\n<button class=\"btn btn-link navbarLinks\" routerLink=\"/view\">View</button>\n<button class=\"btn btn-link navbarLinks\" routerLink=\"/dashboard\">Dashboard</button>\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn\" (click)=\"ngxSmartModalService.getModal('uploadFileModal').open()\">Upload\n  File</button>\n\n<!-- Manage channel modal -->\n<ngx-smart-modal #manageChannelModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"manageChannelModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Manage channels</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"availableChannels\">Available channels</label>\n        <input class=\"form-control\" type=\"text\" list=\"manageChannel\" [(ngModel)]='searchText' (ngModelChange)=\"onChannelChanged($event)\">\n        <!-- [ngModel]=\"easMediaDataToCreate.channelName\"\n        (ngModelChange)=\"populateChannel($event)\" -->\n        <!-- <datalist id=\"citynames\">\n  <option value=\"Boston\">\n  <option value=\"Cambridge\">\n</datalist> -->\n        <datalist id=\"manageChannel\">\n\n          <option *ngFor=\"let channel of channelList\" [ngValue]=\"channel\">{{channel.channelName}}</option>\n        </datalist>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"channelName\">Channel name *</label>\n        <input class=\"form-control\" required id=\"channelName\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\n          [(ngModel)]=\"easMediaDataToCreate.channelName\" #manageChannel=\"ngModel\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\n        <label for=\"siteId\">Site ID *</label>\n        <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.stndSite.id\">\n          <option value=\"\">Select a site id...</option>\n          <option *ngFor=\"let siteId of siteIdList.results\" [value]=\"siteId.id\">{{siteId.nm}}</option>\n        </select>\n      </div>\n      <div class=\"input-field col-sm-2\">\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\" (click)=\"ngxSmartModalService.getModal('manageSiteModal').open()\"><span\n            class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span></button>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"originatedIp\">Originated IP *</label>\n        <input class=\"form-control\" id=\"originatedIp\" type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.mediaOriginatedIp\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"originatedPort\">Originated port *</label>\n        <input class=\"form-control\" id=\"originatedPort\" type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.mediaOriginatedPort\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\n        <label for=\"manageClassification\">Classification *</label>\n        <select class=\"form-control\" name=\"manageClassification\" id=\"manageClassification\" [ngModelOptions]=\"{standalone: true}\"\n          [(ngModel)]=\"easMediaDataToCreate.standardClassification.id\">\n          <option value=\"\">Select a classification...</option>\n          <option *ngFor=\"let classificationId of classificationList.results\" [value]=\"classificationId.id\">{{classificationId.nm}}</option>\n        </select>\n      </div>\n      <div class=\"input-field col-sm-2\">\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\" (click)=\"ngxSmartModalService.getModal('manageClassificationModal').open()\"><span\n            class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span></button>\n      </div>\n    </div>\n    <!-- <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\n        <label for=\"manageClassification\">Classification *</label>\n        <input class=\"form-control\" id=\"manageClassification\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\n          [(ngModel)]=\"easMediaDataToCreate.classification\">\n      </div>\n    </div> -->\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\n        <label for=\"roleId\">Role ID *</label>\n        <select class=\"form-control\" name=\"roleId\" id=\"roleId\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.stndRole.id\">\n          <option value=\"\">Select a role id...</option>\n          <option *ngFor=\"let roleId of roleIdList.results\" [value]=\"roleId.id\">{{roleId.nm}}</option>\n        </select>\n      </div>\n      <div class=\"input-field col-sm-2\">\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\" (click)=\"ngxSmartModalService.getModal('manageRoleModal').open()\"><span\n            class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span></button>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"active\">Active *</label>\n        <select class=\"form-control\" name=\"activeIndSearch\" id=\"activeIndSearch\" [ngModelOptions]=\"{standalone: true}\"\n          [(ngModel)]=\"easMediaDataToCreate.enableIn\">\n          <option value=\"\">Select an active indicator...</option>\n          <option value=\"TRUE\">Active</option>\n          <option value=\"FALSE\">Inactive</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"encodingFormat\">Encoding format</label>\n        <input class=\"form-control\" id=\"encodingFormat\" type=\"text\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.encodingFormat\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"clearChannelInfo(); manageChannelModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateChannelButton\" (click)=\"addChannel();\">Add channel</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateChannelButton\" (click)=\"updateChannel();\">Update\n      channel</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Manage Channel Modal -->\n\n<!-- Manage Site Modal -->\n<ngx-smart-modal #manageSiteModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"manageSiteModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Manage site</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"siteId\">Available sites</label>\n        <select class=\"form-control\" name=\"siteid\" id=\"manageSiteid\" [ngModel]=\"stndSite\" (ngModelChange)=\"populateSite($event)\">\n          <option value=\"\">Select a site...</option>\n          <option *ngFor=\"let site of siteIdList.results\" [ngValue]=\"site\">{{site.nm}}</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"siteName\">Site name</label>\n        <input required class=\"form-control\" id=\"siteName\" type=\"text\" [(ngModel)]=\"stndSite.nm\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"siteDescription\">Site description</label>\n        <input required class=\"form-control\" id=\"siteDesription\" type=\"text\" [(ngModel)]=\"stndSite.descriptionTx\"\n          [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"clearSite(); manageSiteModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showSiteUpdateButton\" (click)=\"addSite();\">Add site</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showSiteUpdateButton\" (click)=\"updateSite();\">Update site</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Add Site Modal -->\n\n<!-- Manage Role Modal -->\n<ngx-smart-modal #manageRoleModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"manageRoleModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Manage role</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"roleId\">Available roles</label>\n        <select class=\"form-control\" name=\"roleId\" id=\"manageRoleId\" [ngModel]=\"stndRole\" (ngModelChange)=\"populateRole($event)\">\n          <option value=\"\">Select a role...</option>\n          <option *ngFor=\"let role of roleIdList.results\" [ngValue]=\"role\">{{role.nm}}</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"roleName\">Role name</label>\n        <input required class=\"form-control\" id=\"roleName\" type=\"text\" [(ngModel)]=\"stndRole.nm\" [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"roleDescription\">Role description</label>\n        <input required class=\"form-control\" id=\"roleDescription\" type=\"text\" [(ngModel)]=\"stndRole.descriptionTx\"\n          [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"clearRole(); manageRoleModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateRoleButton\" (click)=\"addRole();\">Add\n      role</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateRoleButton\" (click)=\"updateRole();\">Update role</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Add Role Modal -->\n\n<!-- Manage Classification Modal -->\n<ngx-smart-modal #manageClassificationModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"manageClassificationModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Manage Classification</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"classification\">Available classifications</label>\n        <select class=\"form-control\" name=\"classification\" id=\"classification\" [ngModel]=\"standardClassification\"\n          (ngModelChange)=\"populateClassification($event)\">\n          <option value=\"\">Select a classification...</option>\n          <option *ngFor=\"let classification of classificationList.results\" [ngValue]=\"classification\">{{classification.nm}}</option>\n        </select>\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"classificationName\">Classification name</label>\n        <input required class=\"form-control\" id=\"classificationName\" type=\"text\" [(ngModel)]=\"standardClassification.nm\"\n          [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"classificationDescription\">Classification description</label>\n        <input required class=\"form-control\" id=\"classificationDescription\" type=\"text\" [(ngModel)]=\"standardClassification.descriptionTx\"\n          [ngModelOptions]=\"{standalone: true}\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"clearClassification(); manageClassificationModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateClassificationButton\" (click)=\"addClassification();\">Add\n      classification</button>\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateClassificationButton\" (click)=\"updateClassification();\">Update\n      classification</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Add Classification Modal -->\n\n<!-- Login Modal -->\n<ngx-smart-modal #loginModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"loginModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Login</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"loginId\">Login ID</label>\n        <input class=\"form-control\" id=\"loginId\" type=\"text\">\n      </div>\n    </div>\n    <div class=\"row modalInputHeight\">\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\n        <label for=\"password\">Password</label>\n        <input class=\"form-control\" id=\"password\" type=\"password\">\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"loginModal.close()\">Close</button>\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"checkLogin(loginModal);\">Login</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Login Modal -->\n\n<!-- Upload File Modal -->\n<ngx-smart-modal #uploadFileModal customClass=\"nsm-dialog-animation-ttb\" identifier=\"uploadFileModal\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Import file</h4>\n  </div>\n  <div class=\"modal-body\">\n    <div class=\"row modalInputHeight\">\n      <div class=\"form-group\">\n        <label for=\"file\">Choose File&nbsp;</label>\n        <input class=\"form-control-file\" type=\"file\" id=\"file\" (change)=\"setFile($event.target.files)\">\n        <ngx-spinner type=\"square-jelly-box\" fullScreen=\"true\">\n          <p style=\"color: white\"> Loading... </p>\n        </ngx-spinner>\n      </div>\n    </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"uploadFileModal.close()\">Close</button>\n    <button class=\"btn btn-primary\" (click)=\"handleFileInput(uploadFileModal)\">Upload</button>\n  </div>\n</ngx-smart-modal>\n<!-- End Upload File Modal -->"
 
 /***/ }),
 
@@ -749,7 +775,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_smart_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-smart-modal */ "./node_modules/ngx-smart-modal/esm5/ngx-smart-modal.js");
 /* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data.service */ "./src/app/services/data.service.ts");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
-/* harmony import */ var _shared_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared.service */ "./src/app/shared.service.ts");
+/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+/* harmony import */ var _shared_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../shared.service */ "./src/app/shared.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -764,10 +791,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var NavbarComponent = /** @class */ (function () {
     /** Constructor */
-    function NavbarComponent(ngxSmartModalService, dataService, sharedService, toastr) {
+    function NavbarComponent(ngxSmartModalService, spinner, dataService, sharedService, toastr) {
         this.ngxSmartModalService = ngxSmartModalService;
+        this.spinner = spinner;
         this.dataService = dataService;
         this.sharedService = sharedService;
         this.toastr = toastr;
@@ -859,6 +888,18 @@ var NavbarComponent = /** @class */ (function () {
         });
     };
     ;
+    NavbarComponent.prototype.checkLogin = function (loginModel) {
+        this.loggedIn = true;
+        loginModel.close();
+        this.sharedService.changeLoginSource(this.loggedIn);
+    };
+    NavbarComponent.prototype.checkLogOut = function () {
+        this.loggedIn = false;
+        this.sharedService.changeLoginSource(false);
+        setTimeout(function () {
+            document.getElementById('login').click();
+        }, 500);
+    };
     NavbarComponent.prototype.addRole = function () {
         var _this = this;
         this.stndRole.lastModifiedTs = new Date();
@@ -1109,17 +1150,21 @@ var NavbarComponent = /** @class */ (function () {
         this.file = files.item(0);
     };
     ;
-    NavbarComponent.prototype.handleFileInput = function () {
+    NavbarComponent.prototype.handleFileInput = function (modelInstance) {
         var _this = this;
         // this.file = files.item(0);
+        this.spinner.show();
         var fd = new FormData();
         fd.append('file', this.file);
         this.dataService.postFile(fd).subscribe(function (data) {
             // do something, if upload success
+            _this.spinner.show();
+            modelInstance.close();
             _this.toastr.success('Successfully imported file', '', {
                 timeOut: _this.toastrTimeOut
             });
         }, function (error) {
+            _this.spinner.hide();
             console.log(error);
             _this.toastr.error('Failed to import file. Please try again later', '', {
                 timeOut: _this.toastrTimeOut
@@ -1151,7 +1196,7 @@ var NavbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./navbar.component.html */ "./src/app/components/navbar/navbar.component.html"),
             styles: [__webpack_require__(/*! ./navbar.component.less */ "./src/app/components/navbar/navbar.component.less")],
         }),
-        __metadata("design:paramtypes", [ngx_smart_modal__WEBPACK_IMPORTED_MODULE_1__["NgxSmartModalService"], src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _shared_service__WEBPACK_IMPORTED_MODULE_4__["SharedService"], ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
+        __metadata("design:paramtypes", [ngx_smart_modal__WEBPACK_IMPORTED_MODULE_1__["NgxSmartModalService"], ngx_spinner__WEBPACK_IMPORTED_MODULE_4__["NgxSpinnerService"], src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _shared_service__WEBPACK_IMPORTED_MODULE_5__["SharedService"], ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -1430,7 +1475,7 @@ var SearchComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-3\">\n    <app-search (searchData)=\"setSearchData($event)\"> </app-search>\n  </div>\n  <div class=\"col-sm-9\">\n    <div class=\"row\">\n      <div class=\"col-sm-12\">\n        <app-grid [receivedOb]=\"recievedObj\"> </app-grid>\n\n      </div>\n    </div>\n\n  </div>\n</div>\n"
+module.exports = "<div *ngIf='isLoggedIn' class=\"row\">\n  <div class=\"col-sm-3\">\n    <app-search (searchData)=\"setSearchData($event)\"> </app-search>\n  </div>\n  <div class=\"col-sm-9\">\n    <div class=\"row\">\n      <div class=\"col-sm-12\">\n        <app-grid [receivedOb]=\"recievedObj\"> </app-grid>\n\n      </div>\n    </div>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1446,6 +1491,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewComponent", function() { return ViewComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../search/search.component */ "./src/app/components/search/search.component.ts");
+/* harmony import */ var _shared_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared.service */ "./src/app/shared.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1457,10 +1503,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var ViewComponent = /** @class */ (function () {
-    function ViewComponent() {
+    function ViewComponent(sharedService) {
+        this.sharedService = sharedService;
+        this.isLoggedIn = false;
     }
     ViewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sharedService.sharedLoginResource.subscribe(function (data) { return _this.isLoggedIn = data; });
+        if (this.isLoggedIn) {
+        }
+        else {
+            setTimeout(function () {
+                document.getElementById('login').click();
+            }, 500);
+        }
     };
     ViewComponent.prototype.setSearchData = function (rObj) {
         this.recievedObj = rObj;
@@ -1474,7 +1532,7 @@ var ViewComponent = /** @class */ (function () {
             selector: 'app-view',
             template: __webpack_require__(/*! ./view.component.html */ "./src/app/components/view/view.component.html")
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_shared_service__WEBPACK_IMPORTED_MODULE_2__["SharedService"]])
     ], ViewComponent);
     return ViewComponent;
 }());
@@ -1916,10 +1974,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var SharedService = /** @class */ (function () {
     function SharedService() {
         this.sharedDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
+        this.sharedLoginResource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
         this.currentMessage = this.sharedDataSource.asObservable();
+        this.currentLogin = this.sharedLoginResource.asObservable();
     }
     SharedService.prototype.changeDataSource = function (data) {
         this.sharedDataSource.next(data);
+    };
+    SharedService.prototype.changeLoginSource = function (data) {
+        this.sharedLoginResource.next(data);
     };
     SharedService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
