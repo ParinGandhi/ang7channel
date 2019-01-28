@@ -1,18 +1,20 @@
 <div class="row" style="margin-top: 25px;">
-  <div class="col-sm-2">
+ <div class="col-md-12">
+  <div class="col-md-2 ">
     <button class="btn btn-success btn-block" (click)="exportToCsv();"><span class="glyphicon glyphicon-download-alt"
         aria-hidden="true"></span>&nbsp;Export to CSV</button>
   </div>
-  <div class="col-sm-2">
+  <div class="col-md-2">
     <button class="btn btn-success btn-block" (click)="archiveChannels();"><span class="glyphicon glyphicon-folder-open"
         aria-hidden="true"></span>&nbsp;&nbsp;Archive channels
     </button>
   </div>
-  <div class="col-sm-4 pull-right">
+  <div class="col-md-4 pull-right">
     Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;
     <button class="btn btn-sm btn-default" (click)="getGridData();"><span class="glyphicon glyphicon-refresh"
         aria-hidden="true"></span></button>
   </div>
+</div>
 </div>
 <ag-grid-angular style="width: 100%; height: 500px; margin-top: 10px;" class="ag-theme-balham" [rowData]="rowData"
   [columnDefs]="columnDefs" [enableColResize]="true" [enableSorting]="true" [enableFilter]="true" [gridOptions]="gridOptions"

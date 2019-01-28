@@ -6,6 +6,7 @@ import { EasMediaData } from 'src/app/models/eas-media-data';
 import { StandardClassification } from 'src/app/models/standard-classification';
 import { ToastrService } from 'ngx-toastr';
 import { GridComponent } from '../grid/grid.component';
+import { SharedService } from '../../shared.service';
 
 @Component({
   selector: 'app-search',
@@ -63,7 +64,7 @@ export class SearchComponent implements OnInit {
   roleIdList: StandardRole[];
   classificationList: StandardClassification[];
 
-  constructor(private dataService: DataService, private toastr: ToastrService, private gridComponent: GridComponent) {
+  constructor(private dataService: DataService,private sharedService: SharedService, private toastr: ToastrService, private gridComponent: GridComponent) {
 
   }
 
@@ -153,7 +154,10 @@ export class SearchComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.sharedService.sharedSiteIdDataSource.subscribe(data => this.siteIdList = data);
+    this.sharedService.sharedRoleIdDataSource.subscribe(data => this.roleIdList = data);
+    this.sharedService.sharedClassDataSource.subscribe(data => this.classificationList = data);
+   
     this.dataService.getSiteIdList().subscribe(siteIdList => {
       this.siteIdList = siteIdList;
     });

@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
     notificationThreshold: null,
     startTs: null
   };
+  searchText:any;
   stndRole: StandardRole = {
     id: null,
     descriptionTx: null,
@@ -91,7 +92,8 @@ export class NavbarComponent implements OnInit {
         console.log(createdChannel);
         this.clearChannelInfo();
         this.getGridData();
-
+        this.invokeDropdowns();
+        //this.sharedService.changeDashboardData(true);
         this.toastr.success('Successfully added channel', '', {
           timeOut: this.toastrTimeOut
         });
@@ -215,6 +217,7 @@ checkLogOut(){
   };
 
   clearChannelInfo() {
+    this.searchText=null;
     this.easMediaDataToCreate.channelName = "";
     this.easMediaDataToCreate.mediaOriginatedIp = null;
     this.easMediaDataToCreate.stndSite.id = null;
@@ -314,6 +317,7 @@ checkLogOut(){
                 this.channelList = channelList;
                 this.clearChannelInfo();
                 this.getGridData();
+                this.invokeDropdowns();
                 this.toastr.success('Successfully updated channel', '', {
                   timeOut: this.toastrTimeOut
                 });
@@ -373,8 +377,11 @@ checkLogOut(){
     fd.append('file', this.file);
     this.dataService.postFile(fd).subscribe(data => {
       // do something, if upload success
-      this.spinner.show();
+      this.spinner.hide();
       modelInstance.close();
+      this.getGridData();
+      this.invokeDropdowns();
+      this.sharedService.changeDashboardData(true);
       this.toastr.success('Successfully imported file', '', {
         timeOut: this.toastrTimeOut
       });
@@ -391,24 +398,30 @@ checkLogOut(){
   /** On init */
   ngOnInit() {
    
+   this.invokeDropdowns();
+
+  }
+  invokeDropdowns(){
     this.sharedService.sharedDataSource.subscribe(data => this.newGridData = data)
     this.dataService.getSiteIdList().subscribe(siteIdList => {
       this.siteIdList = siteIdList;
+      this.sharedService.changeSiteIdData(siteIdList);
     });
 
     this.dataService.getRoleIdList().subscribe(roleIdList => {
       this.roleIdList = roleIdList;
+      this.sharedService.changeRoleIdData(roleIdList);
     });
 
     this.dataService.getClassificationList().subscribe(classificationList => {
       this.classificationList = classificationList;
+      this.sharedService.changeClassData(classificationList);
     });
 
     this.dataService.getChannelList().subscribe(channelList => {
       console.log("Channel list: %o", channelList);
       this.channelList = channelList;
     });
-
   }
 
 }

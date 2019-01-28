@@ -1,19 +1,38 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
-   sharedDataSource = new BehaviorSubject([]);
-   sharedLoginResource = new BehaviorSubject(false);
+  sharedDataSource = new BehaviorSubject([]);
+  sharedSiteIdDataSource = new BehaviorSubject([]);
+  sharedRoleIdDataSource = new BehaviorSubject([]);
+  sharedClassDataSource = new BehaviorSubject([]);
+  changeDashboardDataSource = new BehaviorSubject(false);
+  sharedLoginResource = new BehaviorSubject(false);
   currentMessage = this.sharedDataSource.asObservable();
   currentLogin = this.sharedLoginResource.asObservable();
+  currentSitId = this.sharedSiteIdDataSource.asObservable();
+  currentRoleId = this.sharedRoleIdDataSource.asObservable();
+  currentClassData = this.sharedClassDataSource.asObservable();
   constructor() { }
-  changeDataSource(data:any){
+  changeDataSource(data: any) {
     this.sharedDataSource.next(data);
   }
-  changeLoginSource(data:boolean){
+  changeLoginSource(data: boolean) {
     this.sharedLoginResource.next(data);
+  }
+  changeSiteIdData(data: any) {
+    this.sharedSiteIdDataSource.next(data);
+  }
+  changeDashboardData(data: boolean) {
+    this.changeDashboardDataSource.next(data);
+  }
+  changeRoleIdData(data:any){
+    this.sharedRoleIdDataSource.next(data);
+  }
+  changeClassData(data:any){
+    this.sharedClassDataSource.next(data);
   }
 }

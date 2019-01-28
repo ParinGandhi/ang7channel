@@ -10,9 +10,21 @@
   File</button>
 
 <!-- Manage channel modal -->
-<ngx-smart-modal #manageChannelModal customClass="nsm-dialog-animation-ttb" identifier="manageChannelModal">
+<ngx-smart-modal #manageChannelModal customClass="nsm-dialog-animation-ttb" identifier="manageChannelModal" [closable]='false' >
   <div class="modal-header">
-    <h4 class="modal-title">Manage channels</h4>
+   
+    <div class="col-md-12  modal-title">
+      <div class="col-md-6 pull-left">
+          <h4>Manage channels</h4>
+      </div>
+      <div class="col-md-6">
+        <div class=" pull-right">
+            <button style="font-size: 19px;
+            border: none;
+            background: none; " (click)="clearChannelInfo(); manageChannelModal.close()"> <i class="fa fa-times-thin fa-2x"></i></button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="modal-body">
     <div class="row modalInputHeight">

@@ -157,6 +157,7 @@ export class WaveformComponent implements OnInit {
     this.audoInputData.endDate = new Date(this.endDate).getTime();
     this.audoInputData.startDate = new Date(this.startDate).getTime();
     this.audoInputData.channelName = this.gridChannelName;
+    this.disablePlay = true;
     this.dataService.getUrlByChannelName(this.audoInputData)
       .subscribe(
         response => {
@@ -164,7 +165,7 @@ export class WaveformComponent implements OnInit {
           this.constructWaveSurfer(response);
           this.enableDownload = true;
           this.audioFileName = this.getAudioFileName(response);
-          this.disablePlay = true;
+          this.disablePlay = false;
           console.log(response);
         },
         error => {
@@ -179,7 +180,7 @@ export class WaveformComponent implements OnInit {
             this.constructWaveSurfer(error.error.text);
             this.audioFileName = this.getAudioFileName(error.error.text);
             this.enableDownload = true;
-            this.disablePlay = true;
+            this.disablePlay = false;
           }
           console.log(error);
         }

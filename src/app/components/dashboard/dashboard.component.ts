@@ -133,6 +133,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.sharedService.sharedLoginResource.subscribe(data => this.isLoggedIn = data)
+   // this.sharedService.changeDashboardDataSource.subscribe(data => {if(data){this.getDashBoardData();}});
    if(this.isLoggedIn){
     this.getDashBoardData();
    }else{
@@ -147,7 +148,7 @@ export class DashboardComponent implements OnInit {
     this.dataService.getDashboardData().subscribe(
       response => {
         this.lastRefreshed = new Date();
-        this.dashboardData = response; 
+        this.dashboardData = response;
         for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
           let obj = {
             siteNames: this.dashboardData.siteNames[i],
