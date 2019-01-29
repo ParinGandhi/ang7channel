@@ -154,6 +154,10 @@ export class WaveformComponent implements OnInit {
 
   }
   loadAudioUrl() {
+    if(this.isWavformExist){
+      this.waveSurfer.pause();
+     this.waveSurfer.empty();
+   }
     this.audoInputData.endDate = new Date(this.endDate).getTime();
     this.audoInputData.startDate = new Date(this.startDate).getTime();
     this.audoInputData.channelName = this.gridChannelName;
@@ -163,9 +167,9 @@ export class WaveformComponent implements OnInit {
         response => {
           this.enableWaveForm=true;
           this.constructWaveSurfer(response);
+          this.disablePlay = false;
           this.enableDownload = true;
           this.audioFileName = this.getAudioFileName(response);
-          this.disablePlay = false;
           console.log(response);
         },
         error => {
@@ -178,9 +182,10 @@ export class WaveformComponent implements OnInit {
           if (error.status === 200) {
             this.enableWaveForm=true;
             this.constructWaveSurfer(error.error.text);
+            this.disablePlay = false;
             this.audioFileName = this.getAudioFileName(error.error.text);
             this.enableDownload = true;
-            this.disablePlay = false;
+           
           }
           console.log(error);
         }
