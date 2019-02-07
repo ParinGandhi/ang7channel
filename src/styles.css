@@ -15,3 +15,51 @@
   background-color: #337ab7;
   color: white;
 }
+.nsm-content {
+  width: inherit;
+}
+.historyModal {
+  width: 213%;
+  margin-left: 20%;
+}
+.widthUnset {
+  width: unset !important;
+}
+.bluedot {
+  height: 25px;
+  width: 25px;
+  background-color: #1f77b4;
+  border-radius: 50%;
+  display: inline-block;
+}
+.greendot {
+  height: 25px;
+  width: 25px;
+  background-color: #98df8a;
+  border-radius: 50%;
+  display: inline-block;
+}
+.reddot {
+  height: 25px;
+  width: 25px;
+  background-color: #d62728;
+  border-radius: 50%;
+  display: inline-block;
+}
+.orangedot {
+  height: 25px;
+  width: 25px;
+  background-color: #ff7f0e;
+  border-radius: 50%;
+  display: inline-block;
+}
+.blackdot {
+  height: 25px;
+  width: 25px;
+  background-color: black;
+  border-radius: 50%;
+  display: inline-block;
+}
+.fa-times-thin:before {
+  content: '\00d7';
+}
