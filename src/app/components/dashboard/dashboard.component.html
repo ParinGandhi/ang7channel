@@ -23,7 +23,13 @@
         <div class="panel-body" style="
           height: 634px;">
           <div>
-            <span class="blackdot" style="
+            <span *ngFor="let item of dashboardData.applicationAttributes | keyvalue">
+              <span class="blackdot" style="
+                  margin-bottom: -1%"></span> &nbsp;<span><label>{{item.key}}
+                  &nbsp;:</label>
+                {{item.value}}</span><br><br>
+            </span>
+            <!-- <span class="blackdot" style="
             margin-bottom: -1%"></span> &nbsp;<span><label>Application Name
                 &nbsp;:</label>
               {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>
@@ -36,7 +42,7 @@
               {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>
             <span class="blackdot" style="
     margin-bottom: -1%"></span> &nbsp;<span><label>Application State&nbsp;:</label>
-              {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br>
+              {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->
 
           </div>
         </div>

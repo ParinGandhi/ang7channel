@@ -2,23 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { SharedService } from '../../shared.service';
-import {DashBoardData} from '../../models/dashboardData';
-import {applicationAttributes} from '../../models/applicationAttributes';
+import { DashBoardData } from '../../models/dashboardData';
+import { applicationAttributes } from '../../models/applicationAttributes';
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
-  
+
 })
 export class DashboardComponent implements OnInit {
   options: any;
   data: any;
-  public appAttributes : applicationAttributes = {
-    ApplicationVersion:null,
+  public appAttributes: applicationAttributes = {
+    ApplicationVersion: null,
     OSVersion: null,
-    ApplicationState:null,
-    ApplicationName:null
+    ApplicationState: null,
+    ApplicationName: null
   }
   // public dashboardData: DashBoardData = {
   //   totalNumberofChannels: null,
@@ -30,47 +30,25 @@ export class DashboardComponent implements OnInit {
   //   siteNames:null,
   //   siteCount:null,
   // };
-  public dashboardData:any;
+  public dashboardData: any;
   chartData: any = [];
+
   activeInactiveData: any = [];
   activityData: any = [];
   lastRefreshed: any;
   chartActiveInactiveData: any = [];
   chartActivityData: any = [];
-  appAttributesChartData:any =[];
-  isLoggedIn:boolean=false;
-  chartAppAttributesChartData: any ;
+  appAttributesChartData: any = [];
+  isLoggedIn: boolean = false;
+  activeChannelsBySite: any = [];
+
+  chartAppAttributesChartData: any;
   public activeInactiveChartLabels: string[] = ['Available', 'Unavailable'];
   public activityLabels: string[] = ['Active', 'Inactive'];
+  constructor(private dataService: DataService, private sharedService: SharedService) {
 
-  constructor(private dataService: DataService,private sharedService: SharedService) {
-    this.options = {
-      chart: {
-        type: 'pieChart',
-        height: 600,
-        x: function (d) {
-          return d.siteNames +' '+'['+d.siteCount+']';
-        },
-        y: function (d) {
-          return d.siteCount;
-        },
-        showLabels: true,
-        duration: 500,
-        tooltip:{
-          enabled:false},
-        labelThreshold: 0.01,
-        labelSunbeamLayout: true,
-        legend: {
-          margin: {
-            top: 10,
-            right: 35,
-            bottom: 5,
-            left: 0
-          }
-        }
-      }
-    };
-  
+
+
     // this.data = [
     //   {
     //     key: "P60-1",
@@ -133,22 +111,24 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.sharedService.sharedLoginResource.subscribe(data => this.isLoggedIn = data)
-   // this.sharedService.changeDashboardDataSource.subscribe(data => {if(data){this.getDashBoardData();}});
-   if(this.isLoggedIn){
-    this.getDashBoardData();
-   }else{
-    this.getDashBoardData();
-    setTimeout(()=>{
-      document.getElementById('login').click();
-    },500) 
-   }
-   
+    // this.sharedService.changeDashboardDataSource.subscribe(data => {if(data){this.getDashBoardData();}});
+    if (this.isLoggedIn) {
+      this.getDashBoardData();
+    } else {
+      this.getDashBoardData();
+      setTimeout(() => {
+        document.getElementById('login').click();
+      }, 500)
+    }
+
   }
-  getDashBoardData = function(){
+  getDashBoardData = function () {
+    let activeCount;
     this.dataService.getDashboardData().subscribe(
       response => {
         this.lastRefreshed = new Date();
         this.dashboardData = response;
+        activeCount = this.dashboardData.activeChannelsBySite;
         for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
           let obj = {
             siteNames: this.dashboardData.siteNames[i],
@@ -156,12 +136,12 @@ export class DashboardComponent implements OnInit {
           }
           this.chartData.push(obj);
         }
-        let appAttributes ={
-          siteNames:this.dashboardData.applicationAttributes.ApplicationName,
-          siteCount:1
+        let appAttributes = {
+          siteNames: this.dashboardData.applicationAttributes.ApplicationName,
+          siteCount: 1
         }
         this.appAttributesChartData.push(appAttributes);
-        this.chartAppAttributesChartData=this.appAttributesChartData;
+        this.chartAppAttributesChartData = this.appAttributesChartData;
         this.data = this.chartData;
         let obj1 = {
           siteNames: this.activeInactiveChartLabels[0],
@@ -177,18 +157,60 @@ export class DashboardComponent implements OnInit {
         }
         let obj4 = {
           siteNames: this.activityLabels[1],
-          siteCount:  this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofActiveChannels
+          siteCount: this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofActiveChannels
         }
         this.activeInactiveData.push(obj1);
         this.activeInactiveData.push(obj2);
         this.activityData.push(obj3);
         this.activityData.push(obj4);
-        this.chartActivityData =   this.activityData;
+        this.chartActivityData = this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
+
 
       }
     )
+    var tooltip = function (hoveredData) {
+      var toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0 </button>'
+      for (let appViewState of activeCount) {
+        if (appViewState.siteName == hoveredData.data.siteNames) {
+          toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : ' + appViewState.count + ' </button>';
+        }
 
+      }
+      return toolTipView;
+    }
+    this.options = {
+      chart: {
+        type: 'pieChart',
+        height: 600,
+        x: function (d) {
+          return d.siteNames + ' ' + '[' + d.siteCount + ']';
+        },
+        y: function (d) {
+          return d.siteCount;
+        },
+        showLabels: true,
+        duration: 500,
+        tooltip: {
+          x: function (d) {
+            return d.siteNames + ' ' + '[' + d.siteCount + ']';
+          },
+          contentGenerator: function (key) {
+            return tooltip(key);
+          }
+        },
+        labelThreshold: 0.01,
+        labelSunbeamLayout: true,
+        legend: {
+          margin: {
+            top: 10,
+            right: 35,
+            bottom: 5,
+            left: 0
+          }
+        }
+      }
+    };
   }
 
 }

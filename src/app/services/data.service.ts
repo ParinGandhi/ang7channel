@@ -62,7 +62,7 @@ export class DataService {
   getChannelData: string = this.baseUrl + '/eas-media-data-activity?channelName=';
   getDownloadAudio: string = this.baseUrl + '/downloadClip/';
   urlByChannelName: string = this.baseUrl + '/fetch-audio'
-
+dashboardArray=[];
   constructor(private http: HttpClient) { }
 
   getChannelList(): Observable<EasMediaData[]> {
@@ -138,6 +138,7 @@ export class DataService {
 
   getDashboardData(): Observable<any> {
     return this.http.get<any>(this.dashboardInfoUrl);
+    
   };
 
   postFile(fileToUpload: any): Observable<boolean> {
