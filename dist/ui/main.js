@@ -96,7 +96,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".navbar {\n  background-color: #337ab7;\n  color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDIuMDYuMjAxOS9zcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksMEJBQUE7RUFDQSxhQUFBO0NDQ0giLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmF2YmFyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzM3YWI3O1xuICAgIGNvbG9yOiB3aGl0ZTtcbn0iLCIubmF2YmFyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzMzN2FiNztcbiAgY29sb3I6IHdoaXRlO1xufVxuIl19 */"
+module.exports = ".navbar {\n  background-color: #337ab7;\n  color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9FQVNHaXQvdHJ1bmsvc3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDBCQUFBO0VBQ0EsYUFBQTtDQ0NIIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm5hdmJhciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzMzN2FiNztcbiAgICBjb2xvcjogd2hpdGU7XG59IiwiLm5hdmJhciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMzMzdhYjc7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -289,93 +289,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(dataService, sharedService) {
-        this.dataService = dataService;
-        this.sharedService = sharedService;
-        this.appAttributes = {
-            ApplicationVersion: null,
-            OSVersion: null,
-            ApplicationState: null,
-            ApplicationName: null
-        };
-        this.chartData = [];
-        this.activeInactiveData = [];
-        this.activityData = [];
-        this.chartActiveInactiveData = [];
-        this.chartActivityData = [];
-        this.appAttributesChartData = [];
-        this.isLoggedIn = false;
-        this.activeInactiveChartLabels = ['Available', 'Unavailable'];
-        this.activityLabels = ['Active', 'Inactive'];
-        this.getDashBoardData = function () {
-            var _this = this;
-            this.dataService.getDashboardData().subscribe(function (response) {
-                _this.lastRefreshed = new Date();
-                _this.dashboardData = response;
-                for (var i = 0; i < _this.dashboardData.siteNames.length; i++) {
-                    var obj = {
-                        siteNames: _this.dashboardData.siteNames[i],
-                        siteCount: _this.dashboardData.siteCount[i]
-                    };
-                    _this.chartData.push(obj);
-                }
-                var appAttributes = {
-                    siteNames: _this.dashboardData.applicationAttributes.ApplicationName,
-                    siteCount: 1
-                };
-                _this.appAttributesChartData.push(appAttributes);
-                _this.chartAppAttributesChartData = _this.appAttributesChartData;
-                _this.data = _this.chartData;
-                var obj1 = {
-                    siteNames: _this.activeInactiveChartLabels[0],
-                    siteCount: _this.dashboardData.totalNumberofAvaiableChannels
-                };
-                var obj2 = {
-                    siteNames: _this.activeInactiveChartLabels[1],
-                    siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofAvaiableChannels
-                };
-                var obj3 = {
-                    siteNames: _this.activityLabels[0],
-                    siteCount: _this.dashboardData.totalNumberofActiveChannels
-                };
-                var obj4 = {
-                    siteNames: _this.activityLabels[1],
-                    siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofActiveChannels
-                };
-                _this.activeInactiveData.push(obj1);
-                _this.activeInactiveData.push(obj2);
-                _this.activityData.push(obj3);
-                _this.activityData.push(obj4);
-                _this.chartActivityData = _this.activityData;
-                _this.chartActiveInactiveData = _this.activeInactiveData;
-            });
-        };
-        this.options = {
-            chart: {
-                type: 'pieChart',
-                height: 600,
-                x: function (d) {
-                    return d.siteNames + ' ' + '[' + d.siteCount + ']';
-                },
-                y: function (d) {
-                    return d.siteCount;
-                },
-                showLabels: true,
-                duration: 500,
-                tooltip: {
-                    enabled: false
-                },
-                labelThreshold: 0.01,
-                labelSunbeamLayout: true,
-                legend: {
-                    margin: {
-                        top: 10,
-                        right: 35,
-                        bottom: 5,
-                        left: 0
-                    }
-                }
-            }
-        };
         // this.data = [
         //   {
         //     key: "P60-1",
@@ -423,6 +336,111 @@ var DashboardComponent = /** @class */ (function () {
         //   "18",
         //   "18",
         //   "18"
+        this.dataService = dataService;
+        this.sharedService = sharedService;
+        this.appAttributes = {
+            ApplicationVersion: null,
+            OSVersion: null,
+            ApplicationState: null,
+            ApplicationName: null
+        };
+        this.chartData = [];
+        this.activeInactiveData = [];
+        this.activityData = [];
+        this.chartActiveInactiveData = [];
+        this.chartActivityData = [];
+        this.appAttributesChartData = [];
+        this.isLoggedIn = false;
+        this.activeChannelsBySite = [];
+        this.activeInactiveChartLabels = ['Available', 'Unavailable'];
+        this.activityLabels = ['Active', 'Inactive'];
+        this.getDashBoardData = function () {
+            var _this = this;
+            var activeCount;
+            this.dataService.getDashboardData().subscribe(function (response) {
+                _this.lastRefreshed = new Date();
+                _this.dashboardData = response;
+                activeCount = _this.dashboardData.activeChannelsBySite;
+                for (var i = 0; i < _this.dashboardData.siteNames.length; i++) {
+                    var obj = {
+                        siteNames: _this.dashboardData.siteNames[i],
+                        siteCount: _this.dashboardData.siteCount[i]
+                    };
+                    _this.chartData.push(obj);
+                }
+                var appAttributes = {
+                    siteNames: _this.dashboardData.applicationAttributes.ApplicationName,
+                    siteCount: 1
+                };
+                _this.appAttributesChartData.push(appAttributes);
+                _this.chartAppAttributesChartData = _this.appAttributesChartData;
+                _this.data = _this.chartData;
+                var obj1 = {
+                    siteNames: _this.activeInactiveChartLabels[0],
+                    siteCount: _this.dashboardData.totalNumberofAvaiableChannels
+                };
+                var obj2 = {
+                    siteNames: _this.activeInactiveChartLabels[1],
+                    siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofAvaiableChannels
+                };
+                var obj3 = {
+                    siteNames: _this.activityLabels[0],
+                    siteCount: _this.dashboardData.totalNumberofActiveChannels
+                };
+                var obj4 = {
+                    siteNames: _this.activityLabels[1],
+                    siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofActiveChannels
+                };
+                _this.activeInactiveData.push(obj1);
+                _this.activeInactiveData.push(obj2);
+                _this.activityData.push(obj3);
+                _this.activityData.push(obj4);
+                _this.chartActivityData = _this.activityData;
+                _this.chartActiveInactiveData = _this.activeInactiveData;
+            });
+            var tooltip = function (hoveredData) {
+                var toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0 </button>';
+                for (var _i = 0, activeCount_1 = activeCount; _i < activeCount_1.length; _i++) {
+                    var appViewState = activeCount_1[_i];
+                    if (appViewState.siteName == hoveredData.data.siteNames) {
+                        toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : ' + appViewState.count + ' </button>';
+                    }
+                }
+                return toolTipView;
+            };
+            this.options = {
+                chart: {
+                    type: 'pieChart',
+                    height: 600,
+                    x: function (d) {
+                        return d.siteNames + ' ' + '[' + d.siteCount + ']';
+                    },
+                    y: function (d) {
+                        return d.siteCount;
+                    },
+                    showLabels: true,
+                    duration: 500,
+                    tooltip: {
+                        x: function (d) {
+                            return d.siteNames + ' ' + '[' + d.siteCount + ']';
+                        },
+                        contentGenerator: function (key) {
+                            return tooltip(key);
+                        }
+                    },
+                    labelThreshold: 0.01,
+                    labelSunbeamLayout: true,
+                    legend: {
+                        margin: {
+                            top: 10,
+                            right: 35,
+                            bottom: 5,
+                            left: 0
+                        }
+                    }
+                }
+            };
+        };
         // ];
         // for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
         //   let obj = {
@@ -479,7 +497,7 @@ module.exports = "<div class=\"row\" style=\"margin-top: 25px;\">\r\n <div class
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nsm-content {\n  width: inherit;\n}\n.historyModal {\n  width: 213%;\n  margin-left: 20%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL0M6L2RldmVsb3BtZW50L1JheXRoZW9uL2F1ZGlvL3VpLzAyLjA2LjIwMTkvc3JjL2FwcC9jb21wb25lbnRzL2dyaWQvZ3JpZC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxlQUFBO0NDQ0g7QURDQztFQUNBLFlBQUE7RUFDQSxpQkFBQTtDQ0NEIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubnNtLWNvbnRlbnR7XG4gICAgd2lkdGg6IGluaGVyaXQ7XG4gIH1cbiAgLmhpc3RvcnlNb2RhbHtcbiAgd2lkdGg6IDIxMyU7XG4gIG1hcmdpbi1sZWZ0OiAyMCU7XG4gIH0iLCIubnNtLWNvbnRlbnQge1xuICB3aWR0aDogaW5oZXJpdDtcbn1cbi5oaXN0b3J5TW9kYWwge1xuICB3aWR0aDogMjEzJTtcbiAgbWFyZ2luLWxlZnQ6IDIwJTtcbn1cbiJdfQ== */"
+module.exports = ".nsm-content {\n  width: inherit;\n}\n.historyModal {\n  width: 213%;\n  margin-left: 20%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL0M6L1VzZXJzL1NhaSBLdW1hci9Eb3dubG9hZHMvRUFTR2l0L3RydW5rL3NyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZUFBQTtDQ0NIO0FEQ0M7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7Q0NDRCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm5zbS1jb250ZW50e1xuICAgIHdpZHRoOiBpbmhlcml0O1xuICB9XG4gIC5oaXN0b3J5TW9kYWx7XG4gIHdpZHRoOiAyMTMlO1xuICBtYXJnaW4tbGVmdDogMjAlO1xuICB9IiwiLm5zbS1jb250ZW50IHtcbiAgd2lkdGg6IGluaGVyaXQ7XG59XG4uaGlzdG9yeU1vZGFsIHtcbiAgd2lkdGg6IDIxMyU7XG4gIG1hcmdpbi1sZWZ0OiAyMCU7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -758,7 +776,7 @@ module.exports = "<div class=\"navbar-brand\">vEAS</div>\r\n<button class=\"btn 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".modalInputHeight {\n  margin-top: 10px;\n}\n.navbarLinks {\n  color: white;\n  text-decoration: none;\n  margin-top: 10px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDIuMDYuMjAxOS9zcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksaUJBQUE7Q0NDSDtBREVEO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsaUJBQUE7Q0NBSCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tb2RhbElucHV0SGVpZ2h0IHtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuXG4ubmF2YmFyTGlua3Mge1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbn0iLCIubW9kYWxJbnB1dEhlaWdodCB7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG4ubmF2YmFyTGlua3Mge1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgbWFyZ2luLXRvcDogMTBweDtcbn1cbiJdfQ== */"
+module.exports = ".modalInputHeight {\n  margin-top: 10px;\n}\n.navbarLinks {\n  color: white;\n  text-decoration: none;\n  margin-top: 10px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9FQVNHaXQvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFBO0NDQ0g7QURFRDtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLGlCQUFBO0NDQUgiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubW9kYWxJbnB1dEhlaWdodCB7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbn1cblxuLm5hdmJhckxpbmtzIHtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG59IiwiLm1vZGFsSW5wdXRIZWlnaHQge1xuICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuLm5hdmJhckxpbmtzIHtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -1290,7 +1308,7 @@ module.exports = "\r\n<div class=\"row searchHeight\">\r\n  <div class=\"input-f
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".searchHeight {\n  margin-top: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDIuMDYuMjAxOS9zcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksaUJBQUE7Q0NDSCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zZWFyY2hIZWlnaHQge1xuICAgIG1hcmdpbi10b3A6IDIwcHg7XG59IiwiLnNlYXJjaEhlaWdodCB7XG4gIG1hcmdpbi10b3A6IDIwcHg7XG59XG4iXX0= */"
+module.exports = ".searchHeight {\n  margin-top: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9FQVNHaXQvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFBO0NDQ0giLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2VhcmNoSGVpZ2h0IHtcbiAgICBtYXJnaW4tdG9wOiAyMHB4O1xufSIsIi5zZWFyY2hIZWlnaHQge1xuICBtYXJnaW4tdG9wOiAyMHB4O1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1865,6 +1883,7 @@ var DataService = /** @class */ (function () {
         this.getChannelData = this.baseUrl + '/eas-media-data-activity?channelName=';
         this.getDownloadAudio = this.baseUrl + '/downloadClip/';
         this.urlByChannelName = this.baseUrl + '/fetch-audio';
+        this.dashboardArray = [];
     }
     DataService.prototype.getChannelList = function () {
         return this.http.get(this.getChannelListUrl);
@@ -2102,7 +2121,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\development\Raytheon\audio\ui\02.06.2019\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Sai Kumar\Downloads\EASGit\trunk\src\main.ts */"./src/main.ts");
 
 
 /***/ })
