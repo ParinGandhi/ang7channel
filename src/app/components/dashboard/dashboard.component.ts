@@ -163,6 +163,33 @@ export class DashboardComponent implements OnInit {
         showLabels: true,
         duration: 500,
         tooltip: {
+          enabled:false
+        },
+        labelThreshold: 0.01,
+        labelSunbeamLayout: true,
+        legend: {
+          margin: {
+            top: 10,
+            right: 35,
+            bottom: 5,
+            left: 0
+          }
+        }
+      }
+    };
+    this.optionsForTool = {
+      chart: {
+        type: 'pieChart',
+        height: 600,
+        x: function (d) {
+          return d.siteNames + ' ' + '[' + d.siteCount + ']';
+        },
+        y: function (d) {
+          return d.siteCount;
+        },
+        showLabels: true,
+        duration: 500,
+        tooltip: {
           x: function (d) {
             return d.siteNames + ' ' + '[' + d.siteCount + ']';
           },
