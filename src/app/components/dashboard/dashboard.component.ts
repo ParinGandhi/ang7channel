@@ -72,32 +72,6 @@ export class DashboardComponent implements OnInit {
     //   }
     // ];
     // this.dashboardData.siteNames = [
-    //   "DGS-5",
-    //   "DGS-4",
-    //   "DGS-2",
-    //   "DGS-1",
-    //   "DGS-IN",
-    //   "DGS-KS",
-    //   "DGS-MA",
-    //   "DMS-MD",
-    //   "DMS-UT",
-    //   "DGS-AR",
-    //   "DGS-NV"
-    // ];
-    // this.dashboardData.siteCount = [
-    //   "19",
-    //   "19",
-    //   "18",
-    //   "18",
-    //   "18",
-    //   "18",
-    //   "18",
-    //   "18",
-    //   "18",
-    //   "18",
-    //   "18"
-
-    // ];
     // for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
     //   let obj = {
     //     siteNames: this.dashboardData.siteNames[i],
@@ -111,7 +85,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.sharedService.sharedLoginResource.subscribe(data => this.isLoggedIn = data)
-    // this.sharedService.changeDashboardDataSource.subscribe(data => {if(data){this.getDashBoardData();}});
     if (this.isLoggedIn) {
       this.getDashBoardData();
     } else {
@@ -165,8 +138,6 @@ export class DashboardComponent implements OnInit {
         this.activityData.push(obj4);
         this.chartActivityData = this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
-
-
       }
     )
     var tooltip = function (hoveredData) {
