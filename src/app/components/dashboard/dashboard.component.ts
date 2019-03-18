@@ -97,6 +97,11 @@ export class DashboardComponent implements OnInit {
   }
   getDashBoardData = function () {
     let activeCount;
+    this.dashboardData = {};
+    this.chartData = [];
+    this.appAttributesChartData = [];
+    this.activeInactiveData = [];
+    this.activityData = [];
     this.dataService.getDashboardData().subscribe(
       response => {
         this.lastRefreshed = new Date();
@@ -163,7 +168,7 @@ export class DashboardComponent implements OnInit {
         showLabels: true,
         duration: 500,
         tooltip: {
-          enabled:false
+          enabled: false
         },
         labelThreshold: 0.01,
         labelSunbeamLayout: true,
