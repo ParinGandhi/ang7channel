@@ -289,53 +289,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(dataService, sharedService) {
-        // this.data = [
-        //   {
-        //     key: "P60-1",
-        //     y: 256
-        //   },
-        //   {
-        //     key: "P60-2",
-        //     y: 445
-        //   },
-        //   {
-        //     key: "P40",
-        //     y: 225
-        //   },
-        //   {
-        //     key: "P73",
-        //     y: 127
-        //   },
-        //   {
-        //     key: "P71",
-        //     y: 128
-        //   }
-        // ];
-        // this.dashboardData.siteNames = [
-        //   "DGS-5",
-        //   "DGS-4",
-        //   "DGS-2",
-        //   "DGS-1",
-        //   "DGS-IN",
-        //   "DGS-KS",
-        //   "DGS-MA",
-        //   "DMS-MD",
-        //   "DMS-UT",
-        //   "DGS-AR",
-        //   "DGS-NV"
-        // ];
-        // this.dashboardData.siteCount = [
-        //   "19",
-        //   "19",
-        //   "18",
-        //   "18",
-        //   "18",
-        //   "18",
-        //   "18",
-        //   "18",
-        //   "18",
-        //   "18",
-        //   "18"
         this.dataService = dataService;
         this.sharedService = sharedService;
         this.appAttributes = {
@@ -441,7 +394,29 @@ var DashboardComponent = /** @class */ (function () {
                 }
             };
         };
+        // this.data = [
+        //   {
+        //     key: "P60-1",
+        //     y: 256
+        //   },
+        //   {
+        //     key: "P60-2",
+        //     y: 445
+        //   },
+        //   {
+        //     key: "P40",
+        //     y: 225
+        //   },
+        //   {
+        //     key: "P73",
+        //     y: 127
+        //   },
+        //   {
+        //     key: "P71",
+        //     y: 128
+        //   }
         // ];
+        // this.dashboardData.siteNames = [
         // for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
         //   let obj = {
         //     siteNames: this.dashboardData.siteNames[i],
@@ -454,7 +429,6 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sharedService.sharedLoginResource.subscribe(function (data) { return _this.isLoggedIn = data; });
-        // this.sharedService.changeDashboardDataSource.subscribe(data => {if(data){this.getDashBoardData();}});
         if (this.isLoggedIn) {
             this.getDashBoardData();
         }
