@@ -70,7 +70,7 @@
     <div class="col-sm-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          Recorded/UnRecorded channels
+          Active/Inactive channels
           <span class="pull-right">Total: {{activityLabels.length}}</span>
           <!-- <div class="card-header-actions pull-right">
                   Total: {{activeInactiveChartLabels.length}}
@@ -78,7 +78,7 @@
         </div>
         <div class="panel-body">
           <div class="chart-wrapper">
-            <nvd3 [options]="options"   [data]="chartActivityData"></nvd3>
+            <nvd3 [options]="options" [data]="chartActivityData"></nvd3>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@
     <div class="col-sm-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          Active/Inactive channels
+          Recorded/UnRecorded channels
           <span class="pull-right">Total: {{activeInactiveChartLabels.length}}</span>
           <!-- <div class="card-header-actions pull-right">
               Total: {{activeInactiveChartLabels.length}}
