@@ -122,19 +122,19 @@ export class DashboardComponent implements OnInit {
         this.chartAppAttributesChartData = this.appAttributesChartData;
         this.data = this.chartData;
         let obj1 = {
-          siteNames: this.activeInactiveChartLabels[0],
+          siteNames: this.activeInactiveChartLabels[0], //available
           siteCount: this.dashboardData.totalNumberofAvaiableChannels
         }
         let obj2 = {
-          siteNames: this.activeInactiveChartLabels[1],
+          siteNames: this.activeInactiveChartLabels[1],//unavailable
           siteCount: this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofAvaiableChannels
         }
         let obj3 = {
-          siteNames: this.activityLabels[0],
+          siteNames: this.activityLabels[0], //active
           siteCount: this.dashboardData.totalNumberofActiveChannels
         }
         let obj4 = {
-          siteNames: this.activityLabels[1],
+          siteNames: this.activityLabels[1],// inactive
           siteCount: this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofActiveChannels
         }
         this.activeInactiveData.push(obj1);
