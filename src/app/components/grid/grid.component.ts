@@ -100,7 +100,8 @@ export class GridComponent implements OnInit {
   exportToCsv() {
     var params = {
       columnKeys: ["channelName", "stndSite.nm", "mediaOriginatedIp", "mediaOriginatedPort", "standardClassification.nm", "stndRole.nm"],
-      fileName: 'AudioExport.csv'
+      fileName: 'AudioExport.csv',
+      suppressQuotes: true
     };
     this.gridOptions.api.exportDataAsCsv(params);
   };
@@ -108,7 +109,8 @@ export class GridComponent implements OnInit {
   exportHistoryToCsv() {
     var params = {
       columnKeys: ["channelName", "stndSite.descriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRole.descriptionTx"],
-      fileName: 'AudioHitoryExport.csv'
+      fileName: 'AudioHitoryExport.csv',
+      suppressQuotes: true
     };
     this.historyGridOptions.api.exportDataAsCsv(params);
   };

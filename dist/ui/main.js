@@ -333,26 +333,26 @@ var DashboardComponent = /** @class */ (function () {
                 _this.appAttributesChartData.push(appAttributes);
                 _this.chartAppAttributesChartData = _this.appAttributesChartData;
                 _this.data = _this.chartData;
-                var chartAvailable = {
+                var obj1 = {
                     siteNames: _this.activeInactiveChartLabels[0],
                     siteCount: _this.dashboardData.totalNumberofAvaiableChannels
                 };
-                var chartUnavailable = {
+                var obj2 = {
                     siteNames: _this.activeInactiveChartLabels[1],
                     siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofAvaiableChannels
                 };
-                var chartActive = {
+                var obj3 = {
                     siteNames: _this.activityLabels[0],
                     siteCount: _this.dashboardData.totalNumberofActiveChannels
                 };
-                var chartInative = {
+                var obj4 = {
                     siteNames: _this.activityLabels[1],
                     siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofActiveChannels
                 };
-                _this.activeInactiveData.push(chartAvailable);
-                _this.activeInactiveData.push(chartUnavailable);
-                _this.activityData.push(chartActive);
-                _this.activityData.push(chartInative);
+                _this.activeInactiveData.push(obj1);
+                _this.activeInactiveData.push(obj2);
+                _this.activityData.push(obj3);
+                _this.activityData.push(obj4);
                 _this.chartActivityData = _this.activityData;
                 _this.chartActiveInactiveData = _this.activeInactiveData;
             });
@@ -613,7 +613,8 @@ var GridComponent = /** @class */ (function () {
     GridComponent.prototype.exportToCsv = function () {
         var params = {
             columnKeys: ["channelName", "stndSite.nm", "mediaOriginatedIp", "mediaOriginatedPort", "standardClassification.nm", "stndRole.nm"],
-            fileName: 'AudioExport.csv'
+            fileName: 'AudioExport.csv',
+            suppressQuotes: true
         };
         this.gridOptions.api.exportDataAsCsv(params);
     };
@@ -621,7 +622,8 @@ var GridComponent = /** @class */ (function () {
     GridComponent.prototype.exportHistoryToCsv = function () {
         var params = {
             columnKeys: ["channelName", "stndSite.descriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRole.descriptionTx"],
-            fileName: 'AudioHitoryExport.csv'
+            fileName: 'AudioHitoryExport.csv',
+            suppressQuotes: true
         };
         this.historyGridOptions.api.exportDataAsCsv(params);
     };
