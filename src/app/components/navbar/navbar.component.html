@@ -1,27 +1,32 @@
 <div class="navbar-brand">vEAS</div>
-<button class="btn btn-link navbarLinks" *ngIf="!loggedIn" id="login" (click)="ngxSmartModalService.getModal('loginModal').open()">Sign
+<button class="btn btn-link navbarLinks" *ngIf="!loggedIn" id="login"
+  (click)="ngxSmartModalService.getModal('loginModal').open()">Sign
   In</button>
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="checkLogOut(false);">Sign Out</button>
-<button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="ngxSmartModalService.getModal('manageChannelModal').open()">Manage
+<button class="btn btn-link navbarLinks" *ngIf="loggedIn && !guestUser"
+  (click)="ngxSmartModalService.getModal('manageChannelModal').open()">Manage
   Channels</button>
 <button class="btn btn-link navbarLinks" routerLink="/view">View</button>
 <button class="btn btn-link navbarLinks" routerLink="/dashboard">Dashboard</button>
-<button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="ngxSmartModalService.getModal('uploadFileModal').open()">Upload
+<button class="btn btn-link navbarLinks" *ngIf="loggedIn"
+  (click)="ngxSmartModalService.getModal('uploadFileModal').open()">Upload
   File</button>
 
 <!-- Manage channel modal -->
-<ngx-smart-modal #manageChannelModal customClass="nsm-dialog-animation-ttb" identifier="manageChannelModal" [closable]='false' >
+<ngx-smart-modal #manageChannelModal customClass="nsm-dialog-animation-ttb" identifier="manageChannelModal"
+  [closable]='false'>
   <div class="modal-header">
-   
+
     <div class="col-md-12  modal-title">
       <div class="col-md-6 pull-left">
-          <h4>Manage channels</h4>
+        <h4>Manage channels</h4>
       </div>
       <div class="col-md-6">
         <div class=" pull-right">
-            <button style="font-size: 19px;
+          <button style="font-size: 19px;
             border: none;
-            background: none; " (click)="clearChannelInfo(); manageChannelModal.close()"> <i class="fa fa-times-thin fa-2x"></i></button>
+            background: none; " (click)="clearChannelInfo(); manageChannelModal.close()"> <i
+              class="fa fa-times-thin fa-2x"></i></button>
         </div>
       </div>
     </div>
@@ -30,7 +35,8 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="availableChannels">Available channels</label>
-        <input class="form-control" type="text" list="manageChannel" [(ngModel)]='searchText' (ngModelChange)="onChannelChanged($event)">
+        <input class="form-control" type="text" list="manageChannel" [(ngModel)]='searchText'
+          (ngModelChange)="onChannelChanged($event)">
         <!-- [ngModel]="easMediaDataToCreate.channelName"
         (ngModelChange)="populateChannel($event)" -->
         <!-- <datalist id="citynames">
@@ -53,39 +59,45 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-8 col-sm-offset-1">
         <label for="siteId">Site ID *</label>
-        <select class="form-control" name="siteid" id="siteid" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.stndSite.id">
+        <select class="form-control" name="siteid" id="siteid" [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="easMediaDataToCreate.stndSite.id">
           <option value="">Select a site id...</option>
           <option *ngFor="let siteId of siteIdList.results" [value]="siteId.id">{{siteId.nm}}</option>
         </select>
       </div>
       <div class="input-field col-sm-2">
-        <button class="btn btn-primary btn-block" style="margin-top: 25px;" (click)="ngxSmartModalService.getModal('manageSiteModal').open()"><span
-            class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        <button class="btn btn-primary btn-block" style="margin-top: 25px;"
+          (click)="ngxSmartModalService.getModal('manageSiteModal').open()"><span class="glyphicon glyphicon-plus"
+            aria-hidden="true"></span></button>
       </div>
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="originatedIp">Originated IP *</label>
-        <input class="form-control" id="originatedIp" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.mediaOriginatedIp">
+        <input class="form-control" id="originatedIp" type="text" [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="easMediaDataToCreate.mediaOriginatedIp">
       </div>
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="originatedPort">Originated port *</label>
-        <input class="form-control" id="originatedPort" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.mediaOriginatedPort">
+        <input class="form-control" id="originatedPort" type="text" [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="easMediaDataToCreate.mediaOriginatedPort">
       </div>
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-8 col-sm-offset-1">
         <label for="manageClassification">Classification *</label>
-        <select class="form-control" name="manageClassification" id="manageClassification" [ngModelOptions]="{standalone: true}"
-          [(ngModel)]="easMediaDataToCreate.standardClassification.id">
+        <select class="form-control" name="manageClassification" id="manageClassification"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.standardClassification.id">
           <option value="">Select a classification...</option>
-          <option *ngFor="let classificationId of classificationList.results" [value]="classificationId.id">{{classificationId.nm}}</option>
+          <option *ngFor="let classificationId of classificationList.results" [value]="classificationId.id">
+            {{classificationId.nm}}</option>
         </select>
       </div>
       <div class="input-field col-sm-2">
-        <button class="btn btn-primary btn-block" style="margin-top: 25px;" (click)="ngxSmartModalService.getModal('manageClassificationModal').open()"><span
+        <button class="btn btn-primary btn-block" style="margin-top: 25px;"
+          (click)="ngxSmartModalService.getModal('manageClassificationModal').open()"><span
             class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
       </div>
     </div>
@@ -99,14 +111,16 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-8 col-sm-offset-1">
         <label for="roleId">Role ID *</label>
-        <select class="form-control" name="roleId" id="roleId" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.stndRole.id">
+        <select class="form-control" name="roleId" id="roleId" [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="easMediaDataToCreate.stndRole.id">
           <option value="">Select a role id...</option>
           <option *ngFor="let roleId of roleIdList.results" [value]="roleId.id">{{roleId.nm}}</option>
         </select>
       </div>
       <div class="input-field col-sm-2">
-        <button class="btn btn-primary btn-block" style="margin-top: 25px;" (click)="ngxSmartModalService.getModal('manageRoleModal').open()"><span
-            class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        <button class="btn btn-primary btn-block" style="margin-top: 25px;"
+          (click)="ngxSmartModalService.getModal('manageRoleModal').open()"><span class="glyphicon glyphicon-plus"
+            aria-hidden="true"></span></button>
       </div>
     </div>
     <div class="row modalInputHeight">
@@ -123,13 +137,16 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="encodingFormat">Encoding format</label>
-        <input class="form-control" id="encodingFormat" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.encodingFormat">
+        <input class="form-control" id="encodingFormat" type="text" [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="easMediaDataToCreate.encodingFormat">
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" (click)="clearChannelInfo(); manageChannelModal.close()">Close</button>
-    <button type="button" class="btn btn-primary" *ngIf="!showUpdateChannelButton" (click)="addChannel();">Add channel</button>
+    <button type="button" class="btn btn-default pull-left"
+      (click)="clearChannelInfo(); manageChannelModal.close()">Close</button>
+    <button type="button" class="btn btn-primary" *ngIf="!showUpdateChannelButton" (click)="addChannel();">Add
+      channel</button>
     <button type="button" class="btn btn-primary" *ngIf="showUpdateChannelButton" (click)="updateChannel();">Update
       channel</button>
   </div>
@@ -145,7 +162,8 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="siteId">Available sites</label>
-        <select class="form-control" name="siteid" id="manageSiteid" [ngModel]="stndSite" (ngModelChange)="populateSite($event)">
+        <select class="form-control" name="siteid" id="manageSiteid" [ngModel]="stndSite"
+          (ngModelChange)="populateSite($event)">
           <option value="">Select a site...</option>
           <option *ngFor="let site of siteIdList.results" [ngValue]="site">{{site.nm}}</option>
         </select>
@@ -154,7 +172,8 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="siteName">Site name</label>
-        <input required class="form-control" id="siteName" type="text" [(ngModel)]="stndSite.nm" [ngModelOptions]="{standalone: true}">
+        <input required class="form-control" id="siteName" type="text" [(ngModel)]="stndSite.nm"
+          [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="row modalInputHeight">
@@ -166,9 +185,11 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" (click)="clearSite(); manageSiteModal.close()">Close</button>
+    <button type="button" class="btn btn-default pull-left"
+      (click)="clearSite(); manageSiteModal.close()">Close</button>
     <button type="button" class="btn btn-primary" *ngIf="!showSiteUpdateButton" (click)="addSite();">Add site</button>
-    <button type="button" class="btn btn-primary" *ngIf="showSiteUpdateButton" (click)="updateSite();">Update site</button>
+    <button type="button" class="btn btn-primary" *ngIf="showSiteUpdateButton" (click)="updateSite();">Update
+      site</button>
   </div>
 </ngx-smart-modal>
 <!-- End Add Site Modal -->
@@ -182,7 +203,8 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="roleId">Available roles</label>
-        <select class="form-control" name="roleId" id="manageRoleId" [ngModel]="stndRole" (ngModelChange)="populateRole($event)">
+        <select class="form-control" name="roleId" id="manageRoleId" [ngModel]="stndRole"
+          (ngModelChange)="populateRole($event)">
           <option value="">Select a role...</option>
           <option *ngFor="let role of roleIdList.results" [ngValue]="role">{{role.nm}}</option>
         </select>
@@ -191,7 +213,8 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="roleName">Role name</label>
-        <input required class="form-control" id="roleName" type="text" [(ngModel)]="stndRole.nm" [ngModelOptions]="{standalone: true}">
+        <input required class="form-control" id="roleName" type="text" [(ngModel)]="stndRole.nm"
+          [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="row modalInputHeight">
@@ -203,16 +226,19 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" (click)="clearRole(); manageRoleModal.close()">Close</button>
+    <button type="button" class="btn btn-default pull-left"
+      (click)="clearRole(); manageRoleModal.close()">Close</button>
     <button type="button" class="btn btn-primary" *ngIf="!showUpdateRoleButton" (click)="addRole();">Add
       role</button>
-    <button type="button" class="btn btn-primary" *ngIf="showUpdateRoleButton" (click)="updateRole();">Update role</button>
+    <button type="button" class="btn btn-primary" *ngIf="showUpdateRoleButton" (click)="updateRole();">Update
+      role</button>
   </div>
 </ngx-smart-modal>
 <!-- End Add Role Modal -->
 
 <!-- Manage Classification Modal -->
-<ngx-smart-modal #manageClassificationModal customClass="nsm-dialog-animation-ttb" identifier="manageClassificationModal">
+<ngx-smart-modal #manageClassificationModal customClass="nsm-dialog-animation-ttb"
+  identifier="manageClassificationModal">
   <div class="modal-header">
     <h4 class="modal-title">Manage Classification</h4>
   </div>
@@ -223,7 +249,8 @@
         <select class="form-control" name="classification" id="classification" [ngModel]="standardClassification"
           (ngModelChange)="populateClassification($event)">
           <option value="">Select a classification...</option>
-          <option *ngFor="let classification of classificationList.results" [ngValue]="classification">{{classification.nm}}</option>
+          <option *ngFor="let classification of classificationList.results" [ngValue]="classification">
+            {{classification.nm}}</option>
         </select>
       </div>
     </div>
@@ -237,16 +264,19 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="classificationDescription">Classification description</label>
-        <input required class="form-control" id="classificationDescription" type="text" [(ngModel)]="standardClassification.descriptionTx"
-          [ngModelOptions]="{standalone: true}">
+        <input required class="form-control" id="classificationDescription" type="text"
+          [(ngModel)]="standardClassification.descriptionTx" [ngModelOptions]="{standalone: true}">
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default pull-left" (click)="clearClassification(); manageClassificationModal.close()">Close</button>
-    <button type="button" class="btn btn-primary" *ngIf="!showUpdateClassificationButton" (click)="addClassification();">Add
+    <button type="button" class="btn btn-default pull-left"
+      (click)="clearClassification(); manageClassificationModal.close()">Close</button>
+    <button type="button" class="btn btn-primary" *ngIf="!showUpdateClassificationButton"
+      (click)="addClassification();">Add
       classification</button>
-    <button type="button" class="btn btn-primary" *ngIf="showUpdateClassificationButton" (click)="updateClassification();">Update
+    <button type="button" class="btn btn-primary" *ngIf="showUpdateClassificationButton"
+      (click)="updateClassification();">Update
       classification</button>
   </div>
 </ngx-smart-modal>
@@ -261,19 +291,21 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="loginId">Login ID</label>
-        <input class="form-control" id="loginId" type="text">
+        <input class="form-control" id="loginId" type="text" [(ngModel)]="credentials.username"
+          [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="password">Password</label>
-        <input class="form-control" id="password" type="password">
+        <input class="form-control" id="password" type="password" [(ngModel)]="credentials.password"
+          [ngModelOptions]="{standalone: true}">
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default pull-left" (click)="loginModal.close()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="checkLogin(loginModal);">Login</button>
+    <button type="button" class="btn btn-primary" (click)="login(loginModal)">Login</button>
   </div>
 </ngx-smart-modal>
 <!-- End Login Modal -->

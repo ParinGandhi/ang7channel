@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
     notificationThreshold: null,
     startTs: null
   };
-  searchText:any;
+  searchText: any;
   stndRole: StandardRole = {
     id: null,
     descriptionTx: null,
@@ -74,6 +74,11 @@ export class NavbarComponent implements OnInit {
   toastrTimeOut: number = 10000;
   file: File = null;
   newGridData: any;
+  credentials = {
+    username: null,
+    password: null
+  };
+  guestUser: boolean = false;
 
 
   /** Constructor */
@@ -113,18 +118,18 @@ export class NavbarComponent implements OnInit {
       });
     });
   };
-checkLogin(loginModel){
-  this.loggedIn=true;
-  loginModel.close();
-  this.sharedService.changeLoginSource(this.loggedIn);
-}
-checkLogOut(){
-  this.loggedIn = false
-  this.sharedService.changeLoginSource(false);
-  setTimeout(()=>{
-    document.getElementById('login').click();
-  },500) 
-}
+  checkLogin(loginModel) {
+    this.loggedIn = true;
+    loginModel.close();
+    this.sharedService.changeLoginSource(this.loggedIn);
+  }
+  checkLogOut() {
+    this.loggedIn = false
+    this.sharedService.changeLoginSource(false);
+    setTimeout(() => {
+      document.getElementById('login').click();
+    }, 500)
+  }
   addRole() {
     this.stndRole.lastModifiedTs = new Date();
     this.stndRole.lastModifiedUserId = 'testUser';
@@ -152,14 +157,33 @@ checkLogOut(){
       });
     });
   };
+
+
+  login(loginModal: any) {
+    this.dataService.login(this.credentials).subscribe(response => {
+      if (response.status === 200 || response.status === 201) {
+        this.checkLogin(loginModal);
+        this.guestUser = response.guestUser;
+      }
+    },
+      error => {
+        if (error.status === 401) {
+          this.toastr.error('You are not authorized to access this site.', '', {
+            timeOut: this.toastrTimeOut
+          });
+        }
+      });
+  };
+
+
   onChannelChanged(productName) {
     console.log(productName);
     this.populateChannel(this.getSelectedChannelByName(productName));
-}
+  }
 
- getSelectedChannelByName(selectedName: string): EasMediaData {
+  getSelectedChannelByName(selectedName: string): EasMediaData {
     return this.channelList.find(product => product.channelName === selectedName);
-}
+  }
   populateChannel(selectedChannel) {
     //alert(index);
     if (selectedChannel !== "" && selectedChannel !== undefined) {
@@ -217,7 +241,7 @@ checkLogOut(){
   };
 
   clearChannelInfo() {
-    this.searchText=null;
+    this.searchText = null;
     this.easMediaDataToCreate.channelName = "";
     this.easMediaDataToCreate.mediaOriginatedIp = null;
     this.easMediaDataToCreate.stndSite.id = null;
@@ -395,13 +419,15 @@ checkLogOut(){
     });
   };
 
+
+
   /** On init */
   ngOnInit() {
-   
-   this.invokeDropdowns();
+
+    this.invokeDropdowns();
 
   }
-  invokeDropdowns(){
+  invokeDropdowns() {
     this.sharedService.sharedDataSource.subscribe(data => this.newGridData = data)
     this.dataService.getSiteIdList().subscribe(siteIdList => {
       this.siteIdList = siteIdList;

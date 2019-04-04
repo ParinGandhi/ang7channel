@@ -61,8 +61,10 @@ export class DataService {
   dashboardInfoUrl: string = this.baseUrl + '/dashboard-info';
   getChannelData: string = this.baseUrl + '/eas-media-data-activity?channelName=';
   getDownloadAudio: string = this.baseUrl + '/downloadClip/';
-  urlByChannelName: string = this.baseUrl + '/fetch-audio'
-dashboardArray=[];
+  urlByChannelName: string = this.baseUrl + '/fetch-audio';
+  authenticateUserUrl: string = this.baseUrl + '/authenticate';
+
+  dashboardArray = [];
   constructor(private http: HttpClient) { }
 
   getChannelList(): Observable<EasMediaData[]> {
@@ -80,8 +82,8 @@ dashboardArray=[];
     return this.http.get<ChannelData[]>(this.getChannelData + channelName);
   };
 
-  downloadAudio(audioFileName:string){
-    window.open(this.getDownloadAudio+audioFileName, "_blank");
+  downloadAudio(audioFileName: string) {
+    window.open(this.getDownloadAudio + audioFileName, "_blank");
   }
   getUrlByChannelName(AudioInputs): Observable<String> {
     return this.http.post<string>(this.urlByChannelName, AudioInputs, httpOptions);
@@ -138,8 +140,11 @@ dashboardArray=[];
 
   getDashboardData(): Observable<any> {
     return this.http.get<any>(this.dashboardInfoUrl);
-    
   };
+
+  login(credentials: any): Observable<any> {
+    return this.http.post<any>(this.authenticateUserUrl, credentials, httpOptions);
+  }
 
   postFile(fileToUpload: any): Observable<boolean> {
     //const endpoint = 'http://localhost:8080/mass-upload';
