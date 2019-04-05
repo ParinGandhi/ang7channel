@@ -161,10 +161,8 @@ export class NavbarComponent implements OnInit {
 
   login(loginModal: any) {
     this.dataService.login(this.credentials).subscribe(response => {
-      if (response.status === 200 || response.status === 201) {
         this.checkLogin(loginModal);
         this.guestUser = response.guestUser;
-      }
     },
       error => {
         if (error.status === 401) {
