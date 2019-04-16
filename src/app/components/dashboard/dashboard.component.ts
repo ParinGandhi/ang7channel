@@ -42,6 +42,27 @@ export class DashboardComponent implements OnInit {
   isLoggedIn: boolean = false;
   activeChannelsBySite: any = [];
 
+  selectedInterval: any;
+  refreshInterval: number;
+  intervalList: any = [
+    {
+      label: '1 minute',
+      value: 1000
+    }, {
+      label: '2 minutes',
+      value: 2000
+    }, {
+      label: '3 minutes',
+      value: 3000
+    }, {
+      label: '4 minutes',
+      value: 4000
+    }, {
+      label: '5 minutes',
+      value: 5000
+    }
+  ];
+
   chartAppAttributesChartData: any;
   public activeInactiveChartLabels: string[] = ['Available', 'Unavailable'];
   public activityLabels: string[] = ['Active', 'Inactive'];
@@ -95,6 +116,8 @@ export class DashboardComponent implements OnInit {
     }
 
   }
+
+
   getDashBoardData = function () {
     let activeCount;
     this.dashboardData = {};
@@ -158,7 +181,7 @@ export class DashboardComponent implements OnInit {
     this.options = {
       chart: {
         type: 'pieChart',
-        height: 600,
+        height: 300,
         x: function (d) {
           return d.siteNames + ' ' + '[' + d.siteCount + ']';
         },
@@ -185,7 +208,7 @@ export class DashboardComponent implements OnInit {
     this.optionsForTool = {
       chart: {
         type: 'pieChart',
-        height: 600,
+        height: 700,
         x: function (d) {
           return d.siteNames + ' ' + '[' + d.siteCount + ']';
         },
@@ -214,6 +237,45 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
+
+
+
+    // this.optionsForTool = {
+    //   chart: {
+    //     type: 'discreteBarChart',
+    //     height: 450,
+    //     margin: {
+    //       top: 20,
+    //       right: 20,
+    //       bottom: 50,
+    //       left: 55
+    //     },
+    //     x: function (d) { return d.siteNames + ' ' + '[' + d.siteCount + ']'; },
+    //     y: function (d) { return d.siteCount; },
+    //     showValues: true,
+    //     // valueFormat: function (d) {
+    //     //   return d3.format(',.4f')(d);
+    //     // },
+    //     duration: 500,
+    //     xAxis: {
+    //       axisLabel: 'X Axis'
+    //     },
+    //     yAxis: {
+    //       axisLabel: 'Y Axis',
+    //       axisLabelDistance: -10
+    //     }
+    //   }
+    // }
+
   }
+
+
+  setRefreshInterval(intervalData) {
+    // alert(JSON.stringify(intervalData));
+    setInterval(function () {
+      this.getDashboardData()
+    }, intervalData.value)
+  }
+
 
 }

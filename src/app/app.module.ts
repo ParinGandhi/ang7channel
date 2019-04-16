@@ -24,7 +24,7 @@ import { ViewComponent } from './components/view/view.component';
 import { HistoryComponent } from './components/history/history.component';
 import { PlayAudioComponent } from './components/play-audio/play-audio.component';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
-import { SelectDropDownModule } from 'ngx-select-dropdown'
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 
 @NgModule({

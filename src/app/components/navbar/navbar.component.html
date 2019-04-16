@@ -1,16 +1,16 @@
 <div class="navbar-brand">vEAS</div>
-<button class="btn btn-link navbarLinks" *ngIf="!loggedIn" id="login"
-  (click)="ngxSmartModalService.getModal('loginModal').open()">Sign
-  In</button>
-<button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="checkLogOut(false);">Sign Out</button>
+<button class="btn btn-link navbarLinks" routerLink="/dashboard">Dashboard</button>
+<button class="btn btn-link navbarLinks" routerLink="/view">Recordings</button>
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn && !guestUser"
   (click)="ngxSmartModalService.getModal('manageChannelModal').open()">Manage
   Channels</button>
-<button class="btn btn-link navbarLinks" routerLink="/view">View</button>
-<button class="btn btn-link navbarLinks" routerLink="/dashboard">Dashboard</button>
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn"
   (click)="ngxSmartModalService.getModal('uploadFileModal').open()">Upload
   File</button>
+<button class="btn btn-link navbarLinks pull-right" *ngIf="!loggedIn" id="login"
+  (click)="ngxSmartModalService.getModal('loginModal').open()">Sign
+  In</button>
+<button class="btn btn-link navbarLinks pull-right" *ngIf="loggedIn" (click)="checkLogOut(false);">Sign Out</button>
 
 <!-- Manage channel modal -->
 <ngx-smart-modal #manageChannelModal customClass="nsm-dialog-animation-ttb" identifier="manageChannelModal"
@@ -34,7 +34,7 @@
   <div class="modal-body">
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
-        <label for="availableChannels">Available channels</label>
+        <label for="availableChannels">Search channels</label>
         <input class="form-control" type="text" list="manageChannel" [(ngModel)]='searchText'
           (ngModelChange)="onChannelChanged($event)">
         <!-- [ngModel]="easMediaDataToCreate.channelName"

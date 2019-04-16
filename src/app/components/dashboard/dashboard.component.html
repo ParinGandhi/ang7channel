@@ -2,60 +2,35 @@
   <div class="row">
     <div class="col-md-12" style="padding-bottom: 20px;">
       <div class="col-md-4"></div>
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
+      <div class="col-md-3"></div>
+      <div class="col-md-5">
         <div class=" pull-right">
           Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;
           <button class="btn btn-sm btn-default" (click)="getDashBoardData();"><span class="glyphicon glyphicon-refresh"
               aria-hidden="true"></span></button>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Application details
-          <span class="pull-right">Total: 1</span>
-          <!-- <div class="card-header-actions pull-right">
-              Total: {{activeInactiveChartLabels.length}}
-            </div> -->
-        </div>
-        <div class="panel-body" style="
-          height: 634px;">
-          <div>
-            <span *ngFor="let item of dashboardData.applicationAttributes | keyvalue">
-              <span class="blackdot" style="
-                  margin-bottom: -1%"></span> &nbsp;<span><label>{{item.key}}
-                  &nbsp;:</label>
-                {{item.value}}</span><br><br>
-            </span>
-            <!-- <span class="blackdot" style="
-            margin-bottom: -1%"></span> &nbsp;<span><label>Application Name
-                &nbsp;:</label>
-              {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>
-            <span class="blackdot" style="
-    margin-bottom: -1%"></span> &nbsp;<span><label>Application Version
-                &nbsp;:</label>
-              {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>
-            <span class="blackdot" style="
-    margin-bottom: -1%"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>
-              {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>
-            <span class="blackdot" style="
-    margin-bottom: -1%"></span> &nbsp;<span><label>Application State&nbsp;:</label>
-              {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->
+          <!-- <select name="" id="" [(ngModel)]="refreshInterval">
+            <option value="1000">1 minute</option>
+            <option value="2000">5 minutes</option>
+            <option value="3000">10 minutes</option>
+            <option value="4000">15 minutes</option>
+          </select> -->
 
-          </div>
+          <!-- <select name="" id="" [(ngModel)]="selectedInterval" (change)="setRefreshInterval(selectedInterval)">
+            <option *ngFor="let interval of intervalList" [ngValue]="interval">{{interval.label}}</option>
+          </select> -->
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+  </div>
+  <div class="row">
+    <div class="col-sm-9">
       <div class="panel panel-default">
         <div class="panel-heading">
-          Channels by site
+          Channels By Site
           <span class="pull-right">Total: {{dashboardData.siteNames.length}}</span>
           <!-- <div class="card-header-actions pull-right">
-                Total: {{dashboardData.siteNames.length}}
-              </div> -->
+                    Total: {{dashboardData.siteNames.length}}
+                  </div> -->
         </div>
         <div class="panel-body">
           <div class="chart-wrapper">
@@ -64,41 +39,82 @@
         </div>
       </div>
     </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Application Details
+              <span class="pull-right">Total: 1</span>
+              <!-- <div class="card-header-actions pull-right">
+                      Total: {{activeInactiveChartLabels.length}}
+                    </div> -->
+            </div>
+            <div class="panel-body" style="
+                  height: 334px;">
+              <div>
+                <span *ngFor="let item of dashboardData.applicationAttributes | keyvalue">
+                  <span class="blackdot" style="
+                          margin-bottom: 0%"></span> &nbsp;<span><label>{{item.key}}
+                      &nbsp;:</label>
+                    {{item.value}}</span><br><br>
+                </span>
+                <!-- <span class="blackdot" style="
+                    margin-bottom: -1%"></span> &nbsp;<span><label>Application Name
+                        &nbsp;:</label>
+                      {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>
+                    <span class="blackdot" style="
+            margin-bottom: -1%"></span> &nbsp;<span><label>Application Version
+                        &nbsp;:</label>
+                      {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>
+                    <span class="blackdot" style="
+            margin-bottom: -1%"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>
+                      {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>
+                    <span class="blackdot" style="
+            margin-bottom: -1%"></span> &nbsp;<span><label>Application State&nbsp;:</label>
+                      {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->
 
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Active/Inactive Channels
+              <span class="pull-right">Total: {{activityLabels.length}}</span>
+              <!-- <div class="card-header-actions pull-right">
+                        Total: {{activeInactiveChartLabels.length}}
+                      </div> -->
+            </div>
+            <div class="panel-body">
+              <div class="chart-wrapper">
+                <nvd3 [options]="options" [data]="chartActivityData"></nvd3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Enabled/Disabled Channels
+              <span class="pull-right">Total: {{activeInactiveChartLabels.length}}</span>
+              <!-- <div class="card-header-actions pull-right">
+                    Total: {{activeInactiveChartLabels.length}}
+                  </div> -->
+            </div>
+            <div class="panel-body">
+              <div class="chart-wrapper">
+                <nvd3 [options]="options" [data]="chartActiveInactiveData"></nvd3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Active/Inactive channels
-          <span class="pull-right">Total: {{activityLabels.length}}</span>
-          <!-- <div class="card-header-actions pull-right">
-                  Total: {{activeInactiveChartLabels.length}}
-                </div> -->
-        </div>
-        <div class="panel-body">
-          <div class="chart-wrapper">
-            <nvd3 [options]="options" [data]="chartActivityData"></nvd3>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Available/UnAvailable channels
-          <span class="pull-right">Total: {{activeInactiveChartLabels.length}}</span>
-          <!-- <div class="card-header-actions pull-right">
-              Total: {{activeInactiveChartLabels.length}}
-            </div> -->
-        </div>
-        <div class="panel-body">
-          <div class="chart-wrapper">
-            <nvd3 [options]="options" [data]="chartActiveInactiveData"></nvd3>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
 
 
