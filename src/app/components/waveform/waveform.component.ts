@@ -170,7 +170,7 @@ export class WaveformComponent implements OnInit {
           this.disablePlay = false;
           this.enableDownload = true;
           this.audioFileName = this.getAudioFileName(response);
-          console.log(response);
+          this.autoScroll();
         },
         error => {
           if (error.status != 200) {
@@ -185,6 +185,8 @@ export class WaveformComponent implements OnInit {
             this.disablePlay = false;
             this.audioFileName = this.getAudioFileName(error.error.text);
             this.enableDownload = true;
+            this.autoScroll();
+           
            
           }
           console.log(error);
@@ -197,6 +199,18 @@ export class WaveformComponent implements OnInit {
   }
   downloadAudio() {
     this.dataService.downloadAudio(this.audioFileName);
+  }
+  autoScroll(){
+    var elementt =null;
+    var interval = setInterval(function(){
+     
+      if(elementt != null){
+          clearInterval(interval);
+      }
+       elementt = document.getElementById("scroller");
+      elementt.scrollIntoView({block: "end"});
+  }, 200);
+   
   }
 
 
