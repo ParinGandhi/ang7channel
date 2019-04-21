@@ -29,10 +29,10 @@ export class SharedService {
   changeDashboardData(data: boolean) {
     this.changeDashboardDataSource.next(data);
   }
-  changeRoleIdData(data:any){
+  changeRoleIdData(data: any) {
     this.sharedRoleIdDataSource.next(data);
   }
-  changeClassData(data:any){
+  changeClassData(data: any) {
     this.sharedClassDataSource.next(data);
   }
 }

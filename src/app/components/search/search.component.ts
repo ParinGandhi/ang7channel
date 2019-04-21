@@ -64,7 +64,7 @@ export class SearchComponent implements OnInit {
   roleIdList: StandardRole[];
   classificationList: StandardClassification[];
 
-  constructor(private dataService: DataService,private sharedService: SharedService, private toastr: ToastrService, private gridComponent: GridComponent) {
+  constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService, private gridComponent: GridComponent) {
 
   }
 
@@ -128,6 +128,7 @@ export class SearchComponent implements OnInit {
         .subscribe(rowData => {
           console.log('Table response: %o', rowData);
           this.searchData.emit(rowData);
+          this.sharedService.changeDataSource(rowData);
           this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
             timeOut: 10000
           });
@@ -157,7 +158,7 @@ export class SearchComponent implements OnInit {
     this.sharedService.sharedSiteIdDataSource.subscribe(data => this.siteIdList = data);
     this.sharedService.sharedRoleIdDataSource.subscribe(data => this.roleIdList = data);
     this.sharedService.sharedClassDataSource.subscribe(data => this.classificationList = data);
-   
+
     this.dataService.getSiteIdList().subscribe(siteIdList => {
       this.siteIdList = siteIdList;
     });

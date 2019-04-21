@@ -13,8 +13,8 @@
 <button class="btn btn-link navbarLinks pull-right" *ngIf="loggedIn" (click)="checkLogOut(false);">Sign Out</button>
 
 <!-- Manage channel modal -->
-<ngx-smart-modal #manageChannelModal customClass="nsm-dialog-animation-ttb" identifier="manageChannelModal"
-  [closable]='false'>
+<ngx-smart-modal #manageChannelModal [dismissable]="false" customClass="nsm-dialog-animation-ttb"
+  identifier="manageChannelModal" [closable]='false'>
   <div class="modal-header">
 
     <div class="col-md-12  modal-title">
@@ -32,28 +32,33 @@
     </div>
   </div>
   <div class="modal-body">
-    <div class="row modalInputHeight">
+    <!-- <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="availableChannels">Search channels</label>
         <input class="form-control" type="text" list="manageChannel" [(ngModel)]='searchText'
           (ngModelChange)="onChannelChanged($event)">
-        <!-- [ngModel]="easMediaDataToCreate.channelName"
-        (ngModelChange)="populateChannel($event)" -->
-        <!-- <datalist id="citynames">
-  <option value="Boston">
-  <option value="Cambridge">
-</datalist> -->
+        
         <datalist id="manageChannel">
 
           <option *ngFor="let channel of channelList" [ngValue]="channel">{{channel.channelName}}</option>
         </datalist>
+      </div>
+    </div> -->
+    <div class="row modalInputHeight">
+      <div class="input-field col-sm-10 col-sm-offset-1">
+        <label for="availableChannels">Search channels</label>
+        <select class="form-control" name="availableChannels" id="availableChannels"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="searchText" (ngModelChange)="onChannelChanged($event)">
+          <option value="">Search for a channel...</option>
+          <option *ngFor="let channel of channelList" [ngValue]="channel">{{channel.channelName}}</option>
+        </select>
       </div>
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="channelName">Channel name *</label>
         <input class="form-control" required id="channelName" type="text" [ngModelOptions]="{standalone: true}"
-          [(ngModel)]="easMediaDataToCreate.channelName" #manageChannel="ngModel">
+          [(ngModel)]="easMediaDataToCreate.channelName" #manageChannel="ngModel" maxlength="48">
       </div>
     </div>
     <div class="row modalInputHeight">
@@ -74,8 +79,8 @@
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="originatedIp">Originated IP *</label>
-        <input class="form-control" id="originatedIp" type="text" [ngModelOptions]="{standalone: true}"
-          [(ngModel)]="easMediaDataToCreate.mediaOriginatedIp">
+        <input class="form-control" id="originatedIp" type="text" [cleave]="{delimiter: '.', blocks: [3,3,3,3]}"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.mediaOriginatedIp">
       </div>
     </div>
     <div class="row modalInputHeight">
@@ -101,13 +106,6 @@
             class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
       </div>
     </div>
-    <!-- <div class="row modalInputHeight">
-      <div class="input-field col-sm-8 col-sm-offset-1">
-        <label for="manageClassification">Classification *</label>
-        <input class="form-control" id="manageClassification" type="text" [ngModelOptions]="{standalone: true}"
-          [(ngModel)]="easMediaDataToCreate.classification">
-      </div>
-    </div> -->
     <div class="row modalInputHeight">
       <div class="input-field col-sm-8 col-sm-offset-1">
         <label for="roleId">Role ID *</label>
@@ -154,7 +152,8 @@
 <!-- End Manage Channel Modal -->
 
 <!-- Manage Site Modal -->
-<ngx-smart-modal #manageSiteModal customClass="nsm-dialog-animation-ttb" identifier="manageSiteModal">
+<ngx-smart-modal #manageSiteModal [dismissable]="false" customClass="nsm-dialog-animation-ttb"
+  identifier="manageSiteModal">
   <div class="modal-header">
     <h4 class="modal-title">Manage site</h4>
   </div>
@@ -173,7 +172,7 @@
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="siteName">Site name</label>
         <input required class="form-control" id="siteName" type="text" [(ngModel)]="stndSite.nm"
-          [ngModelOptions]="{standalone: true}">
+          [ngModelOptions]="{standalone: true}" maxlength="16" [cleave]="{blocks: [16]}">
       </div>
     </div>
     <div class="row modalInputHeight">
@@ -195,7 +194,8 @@
 <!-- End Add Site Modal -->
 
 <!-- Manage Role Modal -->
-<ngx-smart-modal #manageRoleModal customClass="nsm-dialog-animation-ttb" identifier="manageRoleModal">
+<ngx-smart-modal #manageRoleModal [dismissable]="false" customClass="nsm-dialog-animation-ttb"
+  identifier="manageRoleModal">
   <div class="modal-header">
     <h4 class="modal-title">Manage role</h4>
   </div>
@@ -214,7 +214,7 @@
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="roleName">Role name</label>
         <input required class="form-control" id="roleName" type="text" [(ngModel)]="stndRole.nm"
-          [ngModelOptions]="{standalone: true}">
+          [ngModelOptions]="{standalone: true}" maxlength="16" [cleave]="{blocks: [16]}">
       </div>
     </div>
     <div class="row modalInputHeight">
@@ -237,7 +237,7 @@
 <!-- End Add Role Modal -->
 
 <!-- Manage Classification Modal -->
-<ngx-smart-modal #manageClassificationModal customClass="nsm-dialog-animation-ttb"
+<ngx-smart-modal #manageClassificationModal [dismissable]="false" customClass="nsm-dialog-animation-ttb"
   identifier="manageClassificationModal">
   <div class="modal-header">
     <h4 class="modal-title">Manage Classification</h4>
@@ -258,7 +258,7 @@
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="classificationName">Classification name</label>
         <input required class="form-control" id="classificationName" type="text" [(ngModel)]="standardClassification.nm"
-          [ngModelOptions]="{standalone: true}">
+          [ngModelOptions]="{standalone: true}" maxlength="32">
       </div>
     </div>
     <div class="row modalInputHeight">
@@ -283,7 +283,7 @@
 <!-- End Add Classification Modal -->
 
 <!-- Login Modal -->
-<ngx-smart-modal #loginModal customClass="nsm-dialog-animation-ttb" identifier="loginModal">
+<ngx-smart-modal #loginModal [dismissable]="false" customClass="nsm-dialog-animation-ttb" identifier="loginModal">
   <div class="modal-header">
     <h4 class="modal-title">Login</h4>
   </div>
@@ -311,7 +311,8 @@
 <!-- End Login Modal -->
 
 <!-- Upload File Modal -->
-<ngx-smart-modal #uploadFileModal customClass="nsm-dialog-animation-ttb" identifier="uploadFileModal">
+<ngx-smart-modal #uploadFileModal [dismissable]="false" customClass="nsm-dialog-animation-ttb"
+  identifier="uploadFileModal">
   <div class="modal-header">
     <h4 class="modal-title">Import file</h4>
   </div>

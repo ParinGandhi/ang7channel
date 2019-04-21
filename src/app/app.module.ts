@@ -24,7 +24,10 @@ import { ViewComponent } from './components/view/view.component';
 import { HistoryComponent } from './components/history/history.component';
 import { PlayAudioComponent } from './components/play-audio/play-audio.component';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
+import { SidebarModule } from 'primeng/sidebar';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
+
 
 
 @NgModule({
@@ -45,10 +48,12 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     FormsModule,
     HttpClientModule,
     CalendarModule,
+    SidebarModule,
     SelectDropDownModule,
     AngularDateTimePickerModule,
     NvD3Module,
     NgxSpinnerModule,
+    NgxCleaveDirectiveModule,
     AgGridModule.withComponents([HistoryComponent, PlayAudioComponent]),
     NgxSmartModalModule.forRoot(),
     BrowserAnimationsModule,

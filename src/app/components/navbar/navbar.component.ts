@@ -161,8 +161,8 @@ export class NavbarComponent implements OnInit {
 
   login(loginModal: any) {
     this.dataService.login(this.credentials).subscribe(response => {
-        this.checkLogin(loginModal);
-        this.guestUser = response.guestUser;
+      this.checkLogin(loginModal);
+      this.guestUser = response.guestUser;
     },
       error => {
         if (error.status === 401) {
@@ -176,7 +176,8 @@ export class NavbarComponent implements OnInit {
 
   onChannelChanged(productName) {
     console.log(productName);
-    this.populateChannel(this.getSelectedChannelByName(productName));
+    // this.populateChannel(this.getSelectedChannelByName(productName));
+    this.populateChannel(productName);
   }
 
   getSelectedChannelByName(selectedName: string): EasMediaData {

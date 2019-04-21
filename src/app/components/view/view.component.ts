@@ -22,9 +22,9 @@ export class ViewComponent implements OnInit {
       }, 500)
     }
   }
-  @ViewChild(SearchComponent) child;
-  public setSearchData(rObj: any) {
-    this.recievedObj = rObj;
-  }
+  // @ViewChild(SearchComponent) child;
+  // public setSearchData(rObj: any) {
+  //   this.recievedObj = rObj;
+  // }
 
 }

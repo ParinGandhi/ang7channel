@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone, Input, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { EasMediaData } from 'src/app/models/eas-media-data';
 import { HistoryComponent } from '../history/history.component';
@@ -7,6 +7,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { GridOptions, GridCellDef } from 'ag-grid-community';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../shared.service';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-grid',
@@ -27,6 +28,39 @@ export class GridComponent implements OnInit {
   recievedObj: any;
   newGridData: any;
   @Input('receivedOb') recObj: any;
+  display: boolean = false;
+  gridRefreshInterval: number = 1;
+  gridInterval: any;
+  refreshIntervals: {}[] = [
+    {
+      description: "1 minute",
+      value: 30000
+    },
+    {
+      description: "5 minutes",
+      value: 300000
+    },
+    {
+      description: "10 minutes",
+      value: 600000
+    },
+    {
+      description: "15 minutes",
+      value: 900000
+    },
+    {
+      description: "30 minutes",
+      value: 1800000
+    },
+    {
+      description: "1 hour",
+      value: 3600000
+    },
+    {
+      description: "Cancel auto refresh",
+      value: 9999999
+    }
+  ];
 
   constructor(private dataService: DataService, private sharedService: SharedService, private cdref: ChangeDetectorRef, public ngxSmartModalService: NgxSmartModalService, private zone: NgZone, private toastr: ToastrService) {
     // this.frameworkComponents = {
@@ -178,5 +212,28 @@ export class GridComponent implements OnInit {
     };
 
   }
+
+
+  setRefreshInterval(gridRefreshInterval) {
+    this.gridInterval = setInterval(() => {
+      this.getGridData();
+    }, gridRefreshInterval.value);
+    if (gridRefreshInterval.value !== 9999999) {
+      this.toastr.success('Successfully set auto refresh to ' + gridRefreshInterval.description, '', {
+        timeOut: 10000
+      });
+    } else {
+      this.toastr.success('Successfully cancelled auto refresh.', '', {
+        timeOut: 10000
+      });
+      clearInterval(this.gridInterval);
+    }
+
+  }
+
+  // @ViewChild(SearchComponent) child;
+  // public setSearchData(rObj: any) {
+  //   this.recievedObj = rObj;
+  // }
 
 }
