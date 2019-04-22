@@ -1,4 +1,4 @@
-<div *ngIf='isLoggedIn'>
+<div *ngIf='isLoggedIn' >
   <div class="row">
     <div class="col-md-12" style="padding-bottom: 20px;">
       <div class="col-md-4"></div>
@@ -27,7 +27,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           Channels By Site
-          <span class="pull-right">Total: {{dashboardData.siteNames.length}}</span>
+          <span class="pull-right">Total: {{dashboardData?.siteNames?.length}} </span>
           <!-- <div class="card-header-actions pull-right">
                     Total: {{dashboardData.siteNames.length}}
                   </div> -->
@@ -51,13 +51,13 @@
                     </div> -->
             </div>
             <div class="panel-body" style="
-                  height: 334px;">
+                  height: 80%">
               <div>
-                <span *ngFor="let item of dashboardData.applicationAttributes | keyvalue">
+                <span *ngFor="let item of dashboardData?.applicationAttributes | keyvalue">
                   <span class="blackdot" style="
-                          margin-bottom: 0%"></span> &nbsp;<span><label>{{item.key}}
+                          margin-bottom: 0%"></span> &nbsp;<span><label>{{item?.key}}
                       &nbsp;:</label>
-                    {{item.value}}</span><br><br>
+                    {{item?.value}}</span><br><br>
                 </span>
                 <!-- <span class="blackdot" style="
                     margin-bottom: -1%"></span> &nbsp;<span><label>Application Name
@@ -82,7 +82,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               Active/Inactive Channels
-              <span class="pull-right">Total: {{activityLabels.length}}</span>
+              <span class="pull-right">Total: {{activityLabels?.length}}</span>
               <!-- <div class="card-header-actions pull-right">
                         Total: {{activeInactiveChartLabels.length}}
                       </div> -->
@@ -98,7 +98,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               Enabled/Disabled Channels
-              <span class="pull-right">Total: {{activeInactiveChartLabels.length}}</span>
+              <span class="pull-right">Total: {{activeInactiveChartLabels?.length}}</span>
               <!-- <div class="card-header-actions pull-right">
                     Total: {{activeInactiveChartLabels.length}}
                   </div> -->

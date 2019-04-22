@@ -31,6 +31,8 @@ export class WaveformComponent implements OnInit {
   toastrTimeOut: number = 10000;
   startDate: any;
   endDate: any;
+  play:boolean;
+  mute:boolean =false;
   disablePlay:boolean = false;
   audoInputData: AudioInputs = {
     channelName: null,
@@ -85,6 +87,7 @@ export class WaveformComponent implements OnInit {
 
       this.waveSurfer.on('ready', () => {
         this.waveSurfer.play();
+        this.play=false;
       });
     }
 
@@ -151,6 +154,26 @@ export class WaveformComponent implements OnInit {
       this.endDate = (new Date(selectedRows[0].endTime * 1000));
     }
     this.disablePlay=false;
+
+  }
+  checkPlayPause(){
+    this.waveSurfer.playPause();
+    this.tooglePlay();
+  }
+  tooglePlay(){
+    if(this.waveSurfer.isPlaying()){
+      this.play=false;
+    }else{
+      this.play = true;
+    }
+  }
+  wavesurferStop(){
+    this.waveSurfer.stop();
+    this.tooglePlay();
+  }
+  toogleMute(){
+    this.waveSurfer.toggleMute();
+    this.mute = !this.mute;
 
   }
   loadAudioUrl() {

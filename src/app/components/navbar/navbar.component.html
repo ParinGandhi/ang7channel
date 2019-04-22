@@ -67,7 +67,7 @@
         <select class="form-control" name="siteid" id="siteid" [ngModelOptions]="{standalone: true}"
           [(ngModel)]="easMediaDataToCreate.stndSite.id">
           <option value="">Select a site id...</option>
-          <option *ngFor="let siteId of siteIdList.results" [value]="siteId.id">{{siteId.nm}}</option>
+          <option *ngFor="let siteId of siteIdList?.results" [value]="siteId.id">{{siteId.nm}}</option>
         </select>
       </div>
       <div class="input-field col-sm-2">
@@ -96,7 +96,7 @@
         <select class="form-control" name="manageClassification" id="manageClassification"
           [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.standardClassification.id">
           <option value="">Select a classification...</option>
-          <option *ngFor="let classificationId of classificationList.results" [value]="classificationId.id">
+          <option *ngFor="let classificationId of classificationList?.results" [value]="classificationId.id">
             {{classificationId.nm}}</option>
         </select>
       </div>
@@ -112,7 +112,7 @@
         <select class="form-control" name="roleId" id="roleId" [ngModelOptions]="{standalone: true}"
           [(ngModel)]="easMediaDataToCreate.stndRole.id">
           <option value="">Select a role id...</option>
-          <option *ngFor="let roleId of roleIdList.results" [value]="roleId.id">{{roleId.nm}}</option>
+          <option *ngFor="let roleId of roleIdList?.results" [value]="roleId.id">{{roleId.nm}}</option>
         </select>
       </div>
       <div class="input-field col-sm-2">
@@ -164,7 +164,7 @@
         <select class="form-control" name="siteid" id="manageSiteid" [ngModel]="stndSite"
           (ngModelChange)="populateSite($event)">
           <option value="">Select a site...</option>
-          <option *ngFor="let site of siteIdList.results" [ngValue]="site">{{site.nm}}</option>
+          <option *ngFor="let site of siteIdList?.results" [ngValue]="site">{{site.nm}}</option>
         </select>
       </div>
     </div>
@@ -206,7 +206,7 @@
         <select class="form-control" name="roleId" id="manageRoleId" [ngModel]="stndRole"
           (ngModelChange)="populateRole($event)">
           <option value="">Select a role...</option>
-          <option *ngFor="let role of roleIdList.results" [ngValue]="role">{{role.nm}}</option>
+          <option *ngFor="let role of roleIdList?.results" [ngValue]="role">{{role.nm}}</option>
         </select>
       </div>
     </div>
@@ -249,7 +249,7 @@
         <select class="form-control" name="classification" id="classification" [ngModel]="standardClassification"
           (ngModelChange)="populateClassification($event)">
           <option value="">Select a classification...</option>
-          <option *ngFor="let classification of classificationList.results" [ngValue]="classification">
+          <option *ngFor="let classification of classificationList?.results" [ngValue]="classification">
             {{classification.nm}}</option>
         </select>
       </div>

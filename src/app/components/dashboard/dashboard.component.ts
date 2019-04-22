@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     ApplicationVersion: null,
     OSVersion: null,
     ApplicationState: null,
-    ApplicationName: null
+    ApplicationName: null,
   }
   // public dashboardData: DashBoardData = {
   //   totalNumberofChannels: null,
@@ -67,49 +67,17 @@ export class DashboardComponent implements OnInit {
   public activeInactiveChartLabels: string[] = ['Available', 'Unavailable'];
   public activityLabels: string[] = ['Active', 'Inactive'];
   constructor(private dataService: DataService, private sharedService: SharedService) {
-
-
-
-    // this.data = [
-    //   {
-    //     key: "P60-1",
-    //     y: 256
-    //   },
-    //   {
-    //     key: "P60-2",
-    //     y: 445
-    //   },
-    //   {
-    //     key: "P40",
-    //     y: 225
-    //   },
-    //   {
-    //     key: "P73",
-    //     y: 127
-    //   },
-    //   {
-    //     key: "P71",
-    //     y: 128
-    //   }
-    // ];
-    // this.dashboardData.siteNames = [
-    // for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
-    //   let obj = {
-    //     siteNames: this.dashboardData.siteNames[i],
-    //     siteCount: this.dashboardData.siteCount[i]
-    //   }
-    //   this.chartData.push(obj);
-    // }
-    // this.data = this.chartData;
   }
 
 
   ngOnInit() {
-    this.sharedService.sharedLoginResource.subscribe(data => this.isLoggedIn = data)
-    if (this.isLoggedIn) {
-      this.getDashBoardData();
-    } else {
-      this.getDashBoardData();
+    this.sharedService.sharedLoginResource.subscribe(data => {
+      this.isLoggedIn = data
+      if (this.isLoggedIn) {
+        this.getDashBoardData();
+      }
+    })
+    if (!this.isLoggedIn) {
       setTimeout(() => {
         document.getElementById('login').click();
       }, 500)
@@ -119,21 +87,49 @@ export class DashboardComponent implements OnInit {
 
 
   getDashBoardData = function () {
+    this.optionsForTool  = {
+      chart: {
+          type: 'discreteBarChart',
+          height: 750,
+          margin : {
+              top: 20,
+              right: 20,
+              bottom: 50,
+              left: 55
+          },
+          x: function(d){return d.label;},
+          y: function(d){return d.value;},
+          showValues: true,
+          valueFormat: function(d){
+              return d3.format(',.4f')(d);
+          },
+          duration: 500,
+          xAxis: {
+              axisLabel: 'X Axis'
+          },
+          yAxis: {
+              axisLabel: 'Y Axis',
+              axisLabelDistance: -15
+          }
+      }
+  };
     let activeCount;
+    let maxCount;
     this.dashboardData = {};
     this.chartData = [];
     this.appAttributesChartData = [];
     this.activeInactiveData = [];
     this.activityData = [];
     this.dataService.getDashboardData().subscribe(
-      response => {
+      response => { 
         this.lastRefreshed = new Date();
         this.dashboardData = response;
         activeCount = this.dashboardData.activeChannelsBySite;
+       maxCount= Math.max(...this.dashboardData.siteCount);
         for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
           let obj = {
-            siteNames: this.dashboardData.siteNames[i],
-            siteCount: this.dashboardData.siteCount[i]
+            label: this.dashboardData.siteNames[i],
+            value: this.dashboardData.siteCount[i]
           }
           this.chartData.push(obj);
         }
@@ -143,29 +139,35 @@ export class DashboardComponent implements OnInit {
         }
         this.appAttributesChartData.push(appAttributes);
         this.chartAppAttributesChartData = this.appAttributesChartData;
-        this.data = this.chartData;
-        let obj1 = {
+        this.data = [
+          {
+              key: "Cumulative Return",
+              values: this.chartData  
+          }
+      ];
+        let availableData = {
           siteNames: this.activeInactiveChartLabels[0], //available
           siteCount: this.dashboardData.totalNumberofAvaiableChannels
         }
-        let obj2 = {
+        let unAvailableData = {
           siteNames: this.activeInactiveChartLabels[1],//unavailable
           siteCount: this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofAvaiableChannels
         }
-        let obj3 = {
+        let activeData = {
           siteNames: this.activityLabels[0], //active
           siteCount: this.dashboardData.totalNumberofActiveChannels
         }
-        let obj4 = {
+        let inActiveData = {
           siteNames: this.activityLabels[1],// inactive
           siteCount: this.dashboardData.totalNumberofChannels - this.dashboardData.totalNumberofActiveChannels
         }
-        this.activeInactiveData.push(obj1);
-        this.activeInactiveData.push(obj2);
-        this.activityData.push(obj3);
-        this.activityData.push(obj4);
+        this.activeInactiveData.push(availableData);
+        this.activeInactiveData.push(unAvailableData);
+        this.activityData.push(activeData);
+        this.activityData.push(inActiveData);
         this.chartActivityData = this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
+        this.optionsForTool.chart["yDomain"]=([0,maxCount]);
       }
     )
     var tooltip = function (hoveredData) {
@@ -205,73 +207,44 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
-    this.optionsForTool = {
-      chart: {
-        type: 'pieChart',
-        height: 700,
-        x: function (d) {
-          return d.siteNames + ' ' + '[' + d.siteCount + ']';
-        },
-        y: function (d) {
-          return d.siteCount;
-        },
-        showLabels: true,
-        duration: 500,
-        tooltip: {
-          x: function (d) {
-            return d.siteNames + ' ' + '[' + d.siteCount + ']';
-          },
-          contentGenerator: function (key) {
-            return tooltip(key);
-          }
-        },
-        labelThreshold: 0.01,
-        labelSunbeamLayout: true,
-        legend: {
-          margin: {
-            top: 10,
-            right: 35,
-            bottom: 5,
-            left: 0
-          }
-        }
-      }
-    };
-
-
-
     // this.optionsForTool = {
     //   chart: {
-    //     type: 'discreteBarChart',
-    //     height: 450,
-    //     margin: {
-    //       top: 20,
-    //       right: 20,
-    //       bottom: 50,
-    //       left: 55
+    //     type: 'pieChart',
+    //     height: 700,
+    //     x: function (d) {
+    //       return d.siteNames + ' ' + '[' + d.siteCount + ']';
     //     },
-    //     x: function (d) { return d.siteNames + ' ' + '[' + d.siteCount + ']'; },
-    //     y: function (d) { return d.siteCount; },
-    //     showValues: true,
-    //     // valueFormat: function (d) {
-    //     //   return d3.format(',.4f')(d);
-    //     // },
+    //     y: function (d) {
+    //       return d.siteCount;
+    //     },
+    //     showLabels: true,
     //     duration: 500,
-    //     xAxis: {
-    //       axisLabel: 'X Axis'
+    //     tooltip: {
+    //       x: function (d) {
+    //         return d.siteNames + ' ' + '[' + d.siteCount + ']';
+    //       },
+    //       contentGenerator: function (key) {
+    //         return tooltip(key);
+    //       }
     //     },
-    //     yAxis: {
-    //       axisLabel: 'Y Axis',
-    //       axisLabelDistance: -10
+    //     labelThreshold: 0.01,
+    //     labelSunbeamLayout: true,
+    //     legend: {
+    //       margin: {
+    //         top: 10,
+    //         right: 35,
+    //         bottom: 5,
+    //         left: 0
+    //       }
     //     }
     //   }
-    // }
-
+    // };
+    
+  //this.optionsForTool.chart.yDomain=([0,maxCount]);
   }
 
 
   setRefreshInterval(intervalData) {
-    // alert(JSON.stringify(intervalData));
     setInterval(function () {
       this.getDashboardData()
     }, intervalData.value)

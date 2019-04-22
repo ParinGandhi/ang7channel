@@ -39,14 +39,39 @@
       <div id="waveform-timeline"></div>
       <br>
       <div *ngIf="showPlayer">
-        <button type="button" id="button_play" class="btn" (click)="waveSurfer.playPause()">
-          <i class="fa fa-play"></i>/
-          <i class="fa fa-pause"></i>
-        </button>
+        <div class="container">
+        
+          <div class="player text-center">
+           
+            <button type="button" id="button_bw" class="btn " (click)='toogleMute()'>
+               
+              <span [hidden]="!mute"><i class="fa fa-volume-up"></i></span>
+              <span [hidden]="mute"><i class=" fa fa-volume-off"></i></span>
+            </button> &nbsp;
+
+            <button type="button" id="button_bw" class="btn " (click)='waveSurfer.skipBackward()'>
+              <i class="fa fa-backward"></i>
+            </button> &nbsp;
+            
+            <button type="button" id="button_play" class="btn " (click)="checkPlayPause()">
+              <span [hidden] ="!play" ><i  class="fa fa-play"></i></span> 
+              <span [hidden] ="play" ><i [hidden] ="!play"class="fa fa-pause"></i></span> 
+             </button> &nbsp;
+            
+            <button type="button" id="button_stop" class="btn " (click)='wavesurferStop()'>
+              <i class="fa fa-stop"></i>
+            </button>&nbsp;
+            
+            <button type="button" id="button_fw" class="btn " (click)='waveSurfer.skipForward()'>
+              <i class="fa fa-forward"></i>
+            </button>    
+          </div>
+        </div>
         <br>
         <br>
         <h1 id="scroller"></h1>
       </div>
+      
     </div>
   </div>
   </div>
