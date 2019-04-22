@@ -96,7 +96,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".navbar {\n  background-color: #337ab7;\n  color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDMuMTguMjAxOS90cnVuay9zcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksMEJBQUE7RUFDQSxhQUFBO0NDQ0giLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmF2YmFyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzM3YWI3O1xuICAgIGNvbG9yOiB3aGl0ZTtcbn0iLCIubmF2YmFyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzMzN2FiNztcbiAgY29sb3I6IHdoaXRlO1xufVxuIl19 */"
+module.exports = ".navbar {\n  background-color: #337ab7;\n  color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDBCQUFBO0VBQ0EsYUFBQTtDQ0NIIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm5hdmJhciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzMzN2FiNztcbiAgICBjb2xvcjogd2hpdGU7XG59IiwiLm5hdmJhciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMzMzdhYjc7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -265,7 +265,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf='isLoggedIn'>\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-3\"></div>\r\n      <div class=\"col-md-5\">\r\n        <div class=\" pull-right\">\r\n          Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n          <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n              aria-hidden=\"true\"></span></button>\r\n          <!-- <select name=\"\" id=\"\" [(ngModel)]=\"refreshInterval\">\r\n            <option value=\"1000\">1 minute</option>\r\n            <option value=\"2000\">5 minutes</option>\r\n            <option value=\"3000\">10 minutes</option>\r\n            <option value=\"4000\">15 minutes</option>\r\n          </select> -->\r\n\r\n          <!-- <select name=\"\" id=\"\" [(ngModel)]=\"selectedInterval\" (change)=\"setRefreshInterval(selectedInterval)\">\r\n            <option *ngFor=\"let interval of intervalList\" [ngValue]=\"interval\">{{interval.label}}</option>\r\n          </select> -->\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-9\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Channels By Site\r\n          <span class=\"pull-right\">Total: {{dashboardData.siteNames.length}}</span>\r\n          <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{dashboardData.siteNames.length}}\r\n                  </div> -->\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <nvd3 [options]=\"optionsForTool\" [data]=\"data\"></nvd3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Application Details\r\n              <span class=\"pull-right\">Total: 1</span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                      Total: {{activeInactiveChartLabels.length}}\r\n                    </div> -->\r\n            </div>\r\n            <div class=\"panel-body\" style=\"\r\n                  height: 334px;\">\r\n              <div>\r\n                <span *ngFor=\"let item of dashboardData.applicationAttributes | keyvalue\">\r\n                  <span class=\"blackdot\" style=\"\r\n                          margin-bottom: 0%\"></span> &nbsp;<span><label>{{item.key}}\r\n                      &nbsp;:</label>\r\n                    {{item.value}}</span><br><br>\r\n                </span>\r\n                <!-- <span class=\"blackdot\" style=\"\r\n                    margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Active/Inactive Channels\r\n              <span class=\"pull-right\">Total: {{activityLabels.length}}</span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                        Total: {{activeInactiveChartLabels.length}}\r\n                      </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Enabled/Disabled Channels\r\n              <span class=\"pull-right\">Total: {{activeInactiveChartLabels.length}}</span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{activeInactiveChartLabels.length}}\r\n                  </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n\r\n\r\n\r\n\r\n\r\n  </div>\r\n</div>"
+module.exports = "<div *ngIf='isLoggedIn' >\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-3\"></div>\r\n      <div class=\"col-md-5\">\r\n        <div class=\" pull-right\">\r\n          Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n          <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n              aria-hidden=\"true\"></span></button>\r\n          <!-- <select name=\"\" id=\"\" [(ngModel)]=\"refreshInterval\">\r\n            <option value=\"1000\">1 minute</option>\r\n            <option value=\"2000\">5 minutes</option>\r\n            <option value=\"3000\">10 minutes</option>\r\n            <option value=\"4000\">15 minutes</option>\r\n          </select> -->\r\n\r\n          <!-- <select name=\"\" id=\"\" [(ngModel)]=\"selectedInterval\" (change)=\"setRefreshInterval(selectedInterval)\">\r\n            <option *ngFor=\"let interval of intervalList\" [ngValue]=\"interval\">{{interval.label}}</option>\r\n          </select> -->\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-9\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Channels By Site\r\n          <span class=\"pull-right\">Total: {{dashboardData?.siteNames?.length}} </span>\r\n          <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{dashboardData.siteNames.length}}\r\n                  </div> -->\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <nvd3 [options]=\"optionsForTool\" [data]=\"data\"></nvd3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Application Details\r\n              <span class=\"pull-right\">Total: 1</span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                      Total: {{activeInactiveChartLabels.length}}\r\n                    </div> -->\r\n            </div>\r\n            <div class=\"panel-body\" style=\"\r\n                  height: 80%\">\r\n              <div>\r\n                <span *ngFor=\"let item of dashboardData?.applicationAttributes | keyvalue\">\r\n                  <span class=\"blackdot\" style=\"\r\n                          margin-bottom: 0%\"></span> &nbsp;<span><label>{{item?.key}}\r\n                      &nbsp;:</label>\r\n                    {{item?.value}}</span><br><br>\r\n                </span>\r\n                <!-- <span class=\"blackdot\" style=\"\r\n                    margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Active/Inactive Channels\r\n              <span class=\"pull-right\">Total: {{activityLabels?.length}}</span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                        Total: {{activeInactiveChartLabels.length}}\r\n                      </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Enabled/Disabled Channels\r\n              <span class=\"pull-right\">Total: {{activeInactiveChartLabels?.length}}</span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{activeInactiveChartLabels.length}}\r\n                  </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n\r\n\r\n\r\n\r\n\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -302,7 +302,7 @@ var DashboardComponent = /** @class */ (function () {
             ApplicationVersion: null,
             OSVersion: null,
             ApplicationState: null,
-            ApplicationName: null
+            ApplicationName: null,
         };
         this.chartData = [];
         this.activeInactiveData = [];
@@ -334,7 +334,34 @@ var DashboardComponent = /** @class */ (function () {
         this.activityLabels = ['Active', 'Inactive'];
         this.getDashBoardData = function () {
             var _this = this;
+            this.optionsForTool = {
+                chart: {
+                    type: 'discreteBarChart',
+                    height: 750,
+                    margin: {
+                        top: 20,
+                        right: 20,
+                        bottom: 50,
+                        left: 55
+                    },
+                    x: function (d) { return d.label; },
+                    y: function (d) { return d.value; },
+                    showValues: true,
+                    valueFormat: function (d) {
+                        return d3.format(',.4f')(d);
+                    },
+                    duration: 500,
+                    xAxis: {
+                        axisLabel: 'X Axis'
+                    },
+                    yAxis: {
+                        axisLabel: 'Y Axis',
+                        axisLabelDistance: -15
+                    }
+                }
+            };
             var activeCount;
+            var maxCount;
             this.dashboardData = {};
             this.chartData = [];
             this.appAttributesChartData = [];
@@ -344,10 +371,11 @@ var DashboardComponent = /** @class */ (function () {
                 _this.lastRefreshed = new Date();
                 _this.dashboardData = response;
                 activeCount = _this.dashboardData.activeChannelsBySite;
+                maxCount = Math.max.apply(Math, _this.dashboardData.siteCount);
                 for (var i = 0; i < _this.dashboardData.siteNames.length; i++) {
                     var obj = {
-                        siteNames: _this.dashboardData.siteNames[i],
-                        siteCount: _this.dashboardData.siteCount[i]
+                        label: _this.dashboardData.siteNames[i],
+                        value: _this.dashboardData.siteCount[i]
                     };
                     _this.chartData.push(obj);
                 }
@@ -357,29 +385,35 @@ var DashboardComponent = /** @class */ (function () {
                 };
                 _this.appAttributesChartData.push(appAttributes);
                 _this.chartAppAttributesChartData = _this.appAttributesChartData;
-                _this.data = _this.chartData;
-                var obj1 = {
+                _this.data = [
+                    {
+                        key: "Cumulative Return",
+                        values: _this.chartData
+                    }
+                ];
+                var availableData = {
                     siteNames: _this.activeInactiveChartLabels[0],
                     siteCount: _this.dashboardData.totalNumberofAvaiableChannels
                 };
-                var obj2 = {
+                var unAvailableData = {
                     siteNames: _this.activeInactiveChartLabels[1],
                     siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofAvaiableChannels
                 };
-                var obj3 = {
+                var activeData = {
                     siteNames: _this.activityLabels[0],
                     siteCount: _this.dashboardData.totalNumberofActiveChannels
                 };
-                var obj4 = {
+                var inActiveData = {
                     siteNames: _this.activityLabels[1],
                     siteCount: _this.dashboardData.totalNumberofChannels - _this.dashboardData.totalNumberofActiveChannels
                 };
-                _this.activeInactiveData.push(obj1);
-                _this.activeInactiveData.push(obj2);
-                _this.activityData.push(obj3);
-                _this.activityData.push(obj4);
+                _this.activeInactiveData.push(availableData);
+                _this.activeInactiveData.push(unAvailableData);
+                _this.activityData.push(activeData);
+                _this.activityData.push(inActiveData);
                 _this.chartActivityData = _this.activityData;
                 _this.chartActiveInactiveData = _this.activeInactiveData;
+                _this.optionsForTool.chart["yDomain"] = ([0, maxCount]);
             });
             var tooltip = function (hoveredData) {
                 var toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0 </button>';
@@ -418,112 +452,56 @@ var DashboardComponent = /** @class */ (function () {
                     }
                 }
             };
-            this.optionsForTool = {
-                chart: {
-                    type: 'pieChart',
-                    height: 700,
-                    x: function (d) {
-                        return d.siteNames + ' ' + '[' + d.siteCount + ']';
-                    },
-                    y: function (d) {
-                        return d.siteCount;
-                    },
-                    showLabels: true,
-                    duration: 500,
-                    tooltip: {
-                        x: function (d) {
-                            return d.siteNames + ' ' + '[' + d.siteCount + ']';
-                        },
-                        contentGenerator: function (key) {
-                            return tooltip(key);
-                        }
-                    },
-                    labelThreshold: 0.01,
-                    labelSunbeamLayout: true,
-                    legend: {
-                        margin: {
-                            top: 10,
-                            right: 35,
-                            bottom: 5,
-                            left: 0
-                        }
-                    }
-                }
-            };
             // this.optionsForTool = {
             //   chart: {
-            //     type: 'discreteBarChart',
-            //     height: 450,
-            //     margin: {
-            //       top: 20,
-            //       right: 20,
-            //       bottom: 50,
-            //       left: 55
+            //     type: 'pieChart',
+            //     height: 700,
+            //     x: function (d) {
+            //       return d.siteNames + ' ' + '[' + d.siteCount + ']';
             //     },
-            //     x: function (d) { return d.siteNames + ' ' + '[' + d.siteCount + ']'; },
-            //     y: function (d) { return d.siteCount; },
-            //     showValues: true,
-            //     // valueFormat: function (d) {
-            //     //   return d3.format(',.4f')(d);
-            //     // },
+            //     y: function (d) {
+            //       return d.siteCount;
+            //     },
+            //     showLabels: true,
             //     duration: 500,
-            //     xAxis: {
-            //       axisLabel: 'X Axis'
+            //     tooltip: {
+            //       x: function (d) {
+            //         return d.siteNames + ' ' + '[' + d.siteCount + ']';
+            //       },
+            //       contentGenerator: function (key) {
+            //         return tooltip(key);
+            //       }
             //     },
-            //     yAxis: {
-            //       axisLabel: 'Y Axis',
-            //       axisLabelDistance: -10
+            //     labelThreshold: 0.01,
+            //     labelSunbeamLayout: true,
+            //     legend: {
+            //       margin: {
+            //         top: 10,
+            //         right: 35,
+            //         bottom: 5,
+            //         left: 0
+            //       }
             //     }
             //   }
-            // }
+            // };
+            //this.optionsForTool.chart.yDomain=([0,maxCount]);
         };
-        // this.data = [
-        //   {
-        //     key: "P60-1",
-        //     y: 256
-        //   },
-        //   {
-        //     key: "P60-2",
-        //     y: 445
-        //   },
-        //   {
-        //     key: "P40",
-        //     y: 225
-        //   },
-        //   {
-        //     key: "P73",
-        //     y: 127
-        //   },
-        //   {
-        //     key: "P71",
-        //     y: 128
-        //   }
-        // ];
-        // this.dashboardData.siteNames = [
-        // for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
-        //   let obj = {
-        //     siteNames: this.dashboardData.siteNames[i],
-        //     siteCount: this.dashboardData.siteCount[i]
-        //   }
-        //   this.chartData.push(obj);
-        // }
-        // this.data = this.chartData;
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.sharedService.sharedLoginResource.subscribe(function (data) { return _this.isLoggedIn = data; });
-        if (this.isLoggedIn) {
-            this.getDashBoardData();
-        }
-        else {
-            this.getDashBoardData();
+        this.sharedService.sharedLoginResource.subscribe(function (data) {
+            _this.isLoggedIn = data;
+            if (_this.isLoggedIn) {
+                _this.getDashBoardData();
+            }
+        });
+        if (!this.isLoggedIn) {
             setTimeout(function () {
                 document.getElementById('login').click();
             }, 500);
         }
     };
     DashboardComponent.prototype.setRefreshInterval = function (intervalData) {
-        // alert(JSON.stringify(intervalData));
         setInterval(function () {
             this.getDashboardData();
         }, intervalData.value);
@@ -560,7 +538,7 @@ module.exports = "<p-sidebar [(visible)]=\"display\" [style]=\"{width:'300px'}\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nsm-content {\n  width: inherit;\n}\n.historyModal {\n  width: 213%;\n  margin-left: 20%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL0M6L2RldmVsb3BtZW50L1JheXRoZW9uL2F1ZGlvL3VpLzAzLjE4LjIwMTkvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL2dyaWQvZ3JpZC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxlQUFBO0NDQ0g7QURDQztFQUNBLFlBQUE7RUFDQSxpQkFBQTtDQ0NEIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubnNtLWNvbnRlbnR7XG4gICAgd2lkdGg6IGluaGVyaXQ7XG4gIH1cbiAgLmhpc3RvcnlNb2RhbHtcbiAgd2lkdGg6IDIxMyU7XG4gIG1hcmdpbi1sZWZ0OiAyMCU7XG4gIH0iLCIubnNtLWNvbnRlbnQge1xuICB3aWR0aDogaW5oZXJpdDtcbn1cbi5oaXN0b3J5TW9kYWwge1xuICB3aWR0aDogMjEzJTtcbiAgbWFyZ2luLWxlZnQ6IDIwJTtcbn1cbiJdfQ== */"
+module.exports = ".nsm-content {\n  width: inherit;\n}\n.historyModal {\n  width: 213%;\n  margin-left: 20%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL0M6L1VzZXJzL1NhaSBLdW1hci9Eb3dubG9hZHMvZm9yYnVpbGRzL3RydW5rL3NyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZUFBQTtDQ0NIO0FEQ0M7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7Q0NDRCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm5zbS1jb250ZW50e1xuICAgIHdpZHRoOiBpbmhlcml0O1xuICB9XG4gIC5oaXN0b3J5TW9kYWx7XG4gIHdpZHRoOiAyMTMlO1xuICBtYXJnaW4tbGVmdDogMjAlO1xuICB9IiwiLm5zbS1jb250ZW50IHtcbiAgd2lkdGg6IGluaGVyaXQ7XG59XG4uaGlzdG9yeU1vZGFsIHtcbiAgd2lkdGg6IDIxMyU7XG4gIG1hcmdpbi1sZWZ0OiAyMCU7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -879,7 +857,7 @@ var HistoryComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"navbar-brand\">vEAS</div>\r\n<button class=\"btn btn-link navbarLinks\" routerLink=\"/dashboard\">Dashboard</button>\r\n<button class=\"btn btn-link navbarLinks\" routerLink=\"/view\">Recordings</button>\r\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn && !guestUser\"\r\n  (click)=\"ngxSmartModalService.getModal('manageChannelModal').open()\">Manage\r\n  Channels</button>\r\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn\"\r\n  (click)=\"ngxSmartModalService.getModal('uploadFileModal').open()\">Upload\r\n  File</button>\r\n<button class=\"btn btn-link navbarLinks pull-right\" *ngIf=\"!loggedIn\" id=\"login\"\r\n  (click)=\"ngxSmartModalService.getModal('loginModal').open()\">Sign\r\n  In</button>\r\n<button class=\"btn btn-link navbarLinks pull-right\" *ngIf=\"loggedIn\" (click)=\"checkLogOut(false);\">Sign Out</button>\r\n\r\n<!-- Manage channel modal -->\r\n<ngx-smart-modal #manageChannelModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"manageChannelModal\" [closable]='false'>\r\n  <div class=\"modal-header\">\r\n\r\n    <div class=\"col-md-12  modal-title\">\r\n      <div class=\"col-md-6 pull-left\">\r\n        <h4>Manage channels</h4>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\" pull-right\">\r\n          <button style=\"font-size: 19px;\r\n            border: none;\r\n            background: none; \" (click)=\"clearChannelInfo(); manageChannelModal.close()\"> <i\r\n              class=\"fa fa-times-thin fa-2x\"></i></button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <!-- <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"availableChannels\">Search channels</label>\r\n        <input class=\"form-control\" type=\"text\" list=\"manageChannel\" [(ngModel)]='searchText'\r\n          (ngModelChange)=\"onChannelChanged($event)\">\r\n        \r\n        <datalist id=\"manageChannel\">\r\n\r\n          <option *ngFor=\"let channel of channelList\" [ngValue]=\"channel\">{{channel.channelName}}</option>\r\n        </datalist>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"availableChannels\">Search channels</label>\r\n        <select class=\"form-control\" name=\"availableChannels\" id=\"availableChannels\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"searchText\" (ngModelChange)=\"onChannelChanged($event)\">\r\n          <option value=\"\">Search for a channel...</option>\r\n          <option *ngFor=\"let channel of channelList\" [ngValue]=\"channel\">{{channel.channelName}}</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"channelName\">Channel name *</label>\r\n        <input class=\"form-control\" required id=\"channelName\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.channelName\" #manageChannel=\"ngModel\" maxlength=\"48\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\r\n        <label for=\"siteId\">Site ID *</label>\r\n        <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.stndSite.id\">\r\n          <option value=\"\">Select a site id...</option>\r\n          <option *ngFor=\"let siteId of siteIdList.results\" [value]=\"siteId.id\">{{siteId.nm}}</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"input-field col-sm-2\">\r\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\"\r\n          (click)=\"ngxSmartModalService.getModal('manageSiteModal').open()\"><span class=\"glyphicon glyphicon-plus\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"originatedIp\">Originated IP *</label>\r\n        <input class=\"form-control\" id=\"originatedIp\" type=\"text\" [cleave]=\"{delimiter: '.', blocks: [3,3,3,3]}\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.mediaOriginatedIp\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"originatedPort\">Originated port *</label>\r\n        <input class=\"form-control\" id=\"originatedPort\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.mediaOriginatedPort\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\r\n        <label for=\"manageClassification\">Classification *</label>\r\n        <select class=\"form-control\" name=\"manageClassification\" id=\"manageClassification\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.standardClassification.id\">\r\n          <option value=\"\">Select a classification...</option>\r\n          <option *ngFor=\"let classificationId of classificationList.results\" [value]=\"classificationId.id\">\r\n            {{classificationId.nm}}</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"input-field col-sm-2\">\r\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\"\r\n          (click)=\"ngxSmartModalService.getModal('manageClassificationModal').open()\"><span\r\n            class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\r\n        <label for=\"roleId\">Role ID *</label>\r\n        <select class=\"form-control\" name=\"roleId\" id=\"roleId\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.stndRole.id\">\r\n          <option value=\"\">Select a role id...</option>\r\n          <option *ngFor=\"let roleId of roleIdList.results\" [value]=\"roleId.id\">{{roleId.nm}}</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"input-field col-sm-2\">\r\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\"\r\n          (click)=\"ngxSmartModalService.getModal('manageRoleModal').open()\"><span class=\"glyphicon glyphicon-plus\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"active\">Active *</label>\r\n        <select class=\"form-control\" name=\"activeIndSearch\" id=\"activeIndSearch\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.enableIn\">\r\n          <option value=\"\">Select an active indicator...</option>\r\n          <option value=\"TRUE\">Active</option>\r\n          <option value=\"FALSE\">Inactive</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"encodingFormat\">Encoding format</label>\r\n        <input class=\"form-control\" id=\"encodingFormat\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.encodingFormat\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\"\r\n      (click)=\"clearChannelInfo(); manageChannelModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateChannelButton\" (click)=\"addChannel();\">Add\r\n      channel</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateChannelButton\" (click)=\"updateChannel();\">Update\r\n      channel</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Manage Channel Modal -->\r\n\r\n<!-- Manage Site Modal -->\r\n<ngx-smart-modal #manageSiteModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"manageSiteModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Manage site</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"siteId\">Available sites</label>\r\n        <select class=\"form-control\" name=\"siteid\" id=\"manageSiteid\" [ngModel]=\"stndSite\"\r\n          (ngModelChange)=\"populateSite($event)\">\r\n          <option value=\"\">Select a site...</option>\r\n          <option *ngFor=\"let site of siteIdList.results\" [ngValue]=\"site\">{{site.nm}}</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"siteName\">Site name</label>\r\n        <input required class=\"form-control\" id=\"siteName\" type=\"text\" [(ngModel)]=\"stndSite.nm\"\r\n          [ngModelOptions]=\"{standalone: true}\" maxlength=\"16\" [cleave]=\"{blocks: [16]}\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"siteDescription\">Site description</label>\r\n        <input required class=\"form-control\" id=\"siteDesription\" type=\"text\" [(ngModel)]=\"stndSite.descriptionTx\"\r\n          [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\"\r\n      (click)=\"clearSite(); manageSiteModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showSiteUpdateButton\" (click)=\"addSite();\">Add site</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showSiteUpdateButton\" (click)=\"updateSite();\">Update\r\n      site</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Add Site Modal -->\r\n\r\n<!-- Manage Role Modal -->\r\n<ngx-smart-modal #manageRoleModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"manageRoleModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Manage role</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"roleId\">Available roles</label>\r\n        <select class=\"form-control\" name=\"roleId\" id=\"manageRoleId\" [ngModel]=\"stndRole\"\r\n          (ngModelChange)=\"populateRole($event)\">\r\n          <option value=\"\">Select a role...</option>\r\n          <option *ngFor=\"let role of roleIdList.results\" [ngValue]=\"role\">{{role.nm}}</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"roleName\">Role name</label>\r\n        <input required class=\"form-control\" id=\"roleName\" type=\"text\" [(ngModel)]=\"stndRole.nm\"\r\n          [ngModelOptions]=\"{standalone: true}\" maxlength=\"16\" [cleave]=\"{blocks: [16]}\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"roleDescription\">Role description</label>\r\n        <input required class=\"form-control\" id=\"roleDescription\" type=\"text\" [(ngModel)]=\"stndRole.descriptionTx\"\r\n          [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\"\r\n      (click)=\"clearRole(); manageRoleModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateRoleButton\" (click)=\"addRole();\">Add\r\n      role</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateRoleButton\" (click)=\"updateRole();\">Update\r\n      role</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Add Role Modal -->\r\n\r\n<!-- Manage Classification Modal -->\r\n<ngx-smart-modal #manageClassificationModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"manageClassificationModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Manage Classification</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"classification\">Available classifications</label>\r\n        <select class=\"form-control\" name=\"classification\" id=\"classification\" [ngModel]=\"standardClassification\"\r\n          (ngModelChange)=\"populateClassification($event)\">\r\n          <option value=\"\">Select a classification...</option>\r\n          <option *ngFor=\"let classification of classificationList.results\" [ngValue]=\"classification\">\r\n            {{classification.nm}}</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"classificationName\">Classification name</label>\r\n        <input required class=\"form-control\" id=\"classificationName\" type=\"text\" [(ngModel)]=\"standardClassification.nm\"\r\n          [ngModelOptions]=\"{standalone: true}\" maxlength=\"32\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"classificationDescription\">Classification description</label>\r\n        <input required class=\"form-control\" id=\"classificationDescription\" type=\"text\"\r\n          [(ngModel)]=\"standardClassification.descriptionTx\" [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\"\r\n      (click)=\"clearClassification(); manageClassificationModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateClassificationButton\"\r\n      (click)=\"addClassification();\">Add\r\n      classification</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateClassificationButton\"\r\n      (click)=\"updateClassification();\">Update\r\n      classification</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Add Classification Modal -->\r\n\r\n<!-- Login Modal -->\r\n<ngx-smart-modal #loginModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\" identifier=\"loginModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Login</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"loginId\">Login ID</label>\r\n        <input class=\"form-control\" id=\"loginId\" type=\"text\" [(ngModel)]=\"credentials.username\"\r\n          [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"password\">Password</label>\r\n        <input class=\"form-control\" id=\"password\" type=\"password\" [(ngModel)]=\"credentials.password\"\r\n          [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"loginModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"login(loginModal)\">Login</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Login Modal -->\r\n\r\n<!-- Upload File Modal -->\r\n<ngx-smart-modal #uploadFileModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"uploadFileModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Import file</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"form-group\">\r\n        <label for=\"file\">Choose File&nbsp;</label>\r\n        <input class=\"form-control-file\" type=\"file\" id=\"file\" (change)=\"setFile($event.target.files)\">\r\n        <ngx-spinner type=\"square-jelly-box\" fullScreen=\"true\">\r\n          <p style=\"color: white\"> Loading... </p>\r\n        </ngx-spinner>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"uploadFileModal.close()\">Close</button>\r\n    <button class=\"btn btn-primary\" (click)=\"handleFileInput(uploadFileModal)\">Upload</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Upload File Modal -->"
+module.exports = "<div class=\"navbar-brand\">vEAS</div>\r\n<button class=\"btn btn-link navbarLinks\" routerLink=\"/dashboard\">Dashboard</button>\r\n<button class=\"btn btn-link navbarLinks\" routerLink=\"/view\">Recordings</button>\r\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn && !guestUser\"\r\n  (click)=\"ngxSmartModalService.getModal('manageChannelModal').open()\">Manage\r\n  Channels</button>\r\n<button class=\"btn btn-link navbarLinks\" *ngIf=\"loggedIn\"\r\n  (click)=\"ngxSmartModalService.getModal('uploadFileModal').open()\">Upload\r\n  File</button>\r\n<button class=\"btn btn-link navbarLinks pull-right\" *ngIf=\"!loggedIn\" id=\"login\"\r\n  (click)=\"ngxSmartModalService.getModal('loginModal').open()\">Sign\r\n  In</button>\r\n<button class=\"btn btn-link navbarLinks pull-right\" *ngIf=\"loggedIn\" (click)=\"checkLogOut(false);\">Sign Out</button>\r\n\r\n<!-- Manage channel modal -->\r\n<ngx-smart-modal #manageChannelModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"manageChannelModal\" [closable]='false'>\r\n  <div class=\"modal-header\">\r\n\r\n    <div class=\"col-md-12  modal-title\">\r\n      <div class=\"col-md-6 pull-left\">\r\n        <h4>Manage channels</h4>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\" pull-right\">\r\n          <button style=\"font-size: 19px;\r\n            border: none;\r\n            background: none; \" (click)=\"clearChannelInfo(); manageChannelModal.close()\"> <i\r\n              class=\"fa fa-times-thin fa-2x\"></i></button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <!-- <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"availableChannels\">Search channels</label>\r\n        <input class=\"form-control\" type=\"text\" list=\"manageChannel\" [(ngModel)]='searchText'\r\n          (ngModelChange)=\"onChannelChanged($event)\">\r\n        \r\n        <datalist id=\"manageChannel\">\r\n\r\n          <option *ngFor=\"let channel of channelList\" [ngValue]=\"channel\">{{channel.channelName}}</option>\r\n        </datalist>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"availableChannels\">Search channels</label>\r\n        <select class=\"form-control\" name=\"availableChannels\" id=\"availableChannels\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"searchText\" (ngModelChange)=\"onChannelChanged($event)\">\r\n          <option value=\"\">Search for a channel...</option>\r\n          <option *ngFor=\"let channel of channelList\" [ngValue]=\"channel\">{{channel.channelName}}</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"channelName\">Channel name *</label>\r\n        <input class=\"form-control\" required id=\"channelName\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.channelName\" #manageChannel=\"ngModel\" maxlength=\"48\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\r\n        <label for=\"siteId\">Site ID *</label>\r\n        <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.stndSite.id\">\r\n          <option value=\"\">Select a site id...</option>\r\n          <option *ngFor=\"let siteId of siteIdList?.results\" [value]=\"siteId.id\">{{siteId.nm}}</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"input-field col-sm-2\">\r\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\"\r\n          (click)=\"ngxSmartModalService.getModal('manageSiteModal').open()\"><span class=\"glyphicon glyphicon-plus\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"originatedIp\">Originated IP *</label>\r\n        <input class=\"form-control\" id=\"originatedIp\" type=\"text\" [cleave]=\"{delimiter: '.', blocks: [3,3,3,3]}\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.mediaOriginatedIp\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"originatedPort\">Originated port *</label>\r\n        <input class=\"form-control\" id=\"originatedPort\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.mediaOriginatedPort\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\r\n        <label for=\"manageClassification\">Classification *</label>\r\n        <select class=\"form-control\" name=\"manageClassification\" id=\"manageClassification\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaDataToCreate.standardClassification.id\">\r\n          <option value=\"\">Select a classification...</option>\r\n          <option *ngFor=\"let classificationId of classificationList?.results\" [value]=\"classificationId.id\">\r\n            {{classificationId.nm}}</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"input-field col-sm-2\">\r\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\"\r\n          (click)=\"ngxSmartModalService.getModal('manageClassificationModal').open()\"><span\r\n            class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-8 col-sm-offset-1\">\r\n        <label for=\"roleId\">Role ID *</label>\r\n        <select class=\"form-control\" name=\"roleId\" id=\"roleId\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.stndRole.id\">\r\n          <option value=\"\">Select a role id...</option>\r\n          <option *ngFor=\"let roleId of roleIdList?.results\" [value]=\"roleId.id\">{{roleId.nm}}</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"input-field col-sm-2\">\r\n        <button class=\"btn btn-primary btn-block\" style=\"margin-top: 25px;\"\r\n          (click)=\"ngxSmartModalService.getModal('manageRoleModal').open()\"><span class=\"glyphicon glyphicon-plus\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"active\">Active *</label>\r\n        <select class=\"form-control\" name=\"activeIndSearch\" id=\"activeIndSearch\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.enableIn\">\r\n          <option value=\"\">Select an active indicator...</option>\r\n          <option value=\"TRUE\">Active</option>\r\n          <option value=\"FALSE\">Inactive</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"encodingFormat\">Encoding format</label>\r\n        <input class=\"form-control\" id=\"encodingFormat\" type=\"text\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"easMediaDataToCreate.encodingFormat\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\"\r\n      (click)=\"clearChannelInfo(); manageChannelModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateChannelButton\" (click)=\"addChannel();\">Add\r\n      channel</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateChannelButton\" (click)=\"updateChannel();\">Update\r\n      channel</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Manage Channel Modal -->\r\n\r\n<!-- Manage Site Modal -->\r\n<ngx-smart-modal #manageSiteModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"manageSiteModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Manage site</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"siteId\">Available sites</label>\r\n        <select class=\"form-control\" name=\"siteid\" id=\"manageSiteid\" [ngModel]=\"stndSite\"\r\n          (ngModelChange)=\"populateSite($event)\">\r\n          <option value=\"\">Select a site...</option>\r\n          <option *ngFor=\"let site of siteIdList?.results\" [ngValue]=\"site\">{{site.nm}}</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"siteName\">Site name</label>\r\n        <input required class=\"form-control\" id=\"siteName\" type=\"text\" [(ngModel)]=\"stndSite.nm\"\r\n          [ngModelOptions]=\"{standalone: true}\" maxlength=\"16\" [cleave]=\"{blocks: [16]}\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"siteDescription\">Site description</label>\r\n        <input required class=\"form-control\" id=\"siteDesription\" type=\"text\" [(ngModel)]=\"stndSite.descriptionTx\"\r\n          [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\"\r\n      (click)=\"clearSite(); manageSiteModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showSiteUpdateButton\" (click)=\"addSite();\">Add site</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showSiteUpdateButton\" (click)=\"updateSite();\">Update\r\n      site</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Add Site Modal -->\r\n\r\n<!-- Manage Role Modal -->\r\n<ngx-smart-modal #manageRoleModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"manageRoleModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Manage role</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"roleId\">Available roles</label>\r\n        <select class=\"form-control\" name=\"roleId\" id=\"manageRoleId\" [ngModel]=\"stndRole\"\r\n          (ngModelChange)=\"populateRole($event)\">\r\n          <option value=\"\">Select a role...</option>\r\n          <option *ngFor=\"let role of roleIdList?.results\" [ngValue]=\"role\">{{role.nm}}</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"roleName\">Role name</label>\r\n        <input required class=\"form-control\" id=\"roleName\" type=\"text\" [(ngModel)]=\"stndRole.nm\"\r\n          [ngModelOptions]=\"{standalone: true}\" maxlength=\"16\" [cleave]=\"{blocks: [16]}\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"roleDescription\">Role description</label>\r\n        <input required class=\"form-control\" id=\"roleDescription\" type=\"text\" [(ngModel)]=\"stndRole.descriptionTx\"\r\n          [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\"\r\n      (click)=\"clearRole(); manageRoleModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateRoleButton\" (click)=\"addRole();\">Add\r\n      role</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateRoleButton\" (click)=\"updateRole();\">Update\r\n      role</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Add Role Modal -->\r\n\r\n<!-- Manage Classification Modal -->\r\n<ngx-smart-modal #manageClassificationModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"manageClassificationModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Manage Classification</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"classification\">Available classifications</label>\r\n        <select class=\"form-control\" name=\"classification\" id=\"classification\" [ngModel]=\"standardClassification\"\r\n          (ngModelChange)=\"populateClassification($event)\">\r\n          <option value=\"\">Select a classification...</option>\r\n          <option *ngFor=\"let classification of classificationList?.results\" [ngValue]=\"classification\">\r\n            {{classification.nm}}</option>\r\n        </select>\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"classificationName\">Classification name</label>\r\n        <input required class=\"form-control\" id=\"classificationName\" type=\"text\" [(ngModel)]=\"standardClassification.nm\"\r\n          [ngModelOptions]=\"{standalone: true}\" maxlength=\"32\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"classificationDescription\">Classification description</label>\r\n        <input required class=\"form-control\" id=\"classificationDescription\" type=\"text\"\r\n          [(ngModel)]=\"standardClassification.descriptionTx\" [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\"\r\n      (click)=\"clearClassification(); manageClassificationModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"!showUpdateClassificationButton\"\r\n      (click)=\"addClassification();\">Add\r\n      classification</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" *ngIf=\"showUpdateClassificationButton\"\r\n      (click)=\"updateClassification();\">Update\r\n      classification</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Add Classification Modal -->\r\n\r\n<!-- Login Modal -->\r\n<ngx-smart-modal #loginModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\" identifier=\"loginModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Login</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"loginId\">Login ID</label>\r\n        <input class=\"form-control\" id=\"loginId\" type=\"text\" [(ngModel)]=\"credentials.username\"\r\n          [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n        <label for=\"password\">Password</label>\r\n        <input class=\"form-control\" id=\"password\" type=\"password\" [(ngModel)]=\"credentials.password\"\r\n          [ngModelOptions]=\"{standalone: true}\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"loginModal.close()\">Close</button>\r\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"login(loginModal)\">Login</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Login Modal -->\r\n\r\n<!-- Upload File Modal -->\r\n<ngx-smart-modal #uploadFileModal [dismissable]=\"false\" customClass=\"nsm-dialog-animation-ttb\"\r\n  identifier=\"uploadFileModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">Import file</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row modalInputHeight\">\r\n      <div class=\"form-group\">\r\n        <label for=\"file\">Choose File&nbsp;</label>\r\n        <input class=\"form-control-file\" type=\"file\" id=\"file\" (change)=\"setFile($event.target.files)\">\r\n        <ngx-spinner type=\"square-jelly-box\" fullScreen=\"true\">\r\n          <p style=\"color: white\"> Loading... </p>\r\n        </ngx-spinner>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"uploadFileModal.close()\">Close</button>\r\n    <button class=\"btn btn-primary\" (click)=\"handleFileInput(uploadFileModal)\">Upload</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End Upload File Modal -->"
 
 /***/ }),
 
@@ -890,7 +868,7 @@ module.exports = "<div class=\"navbar-brand\">vEAS</div>\r\n<button class=\"btn 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".modalInputHeight {\n  margin-top: 10px;\n}\n.navbarLinks {\n  color: white;\n  text-decoration: none;\n  margin-top: 10px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDMuMTguMjAxOS90cnVuay9zcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksaUJBQUE7Q0NDSDtBREVEO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsaUJBQUE7Q0NBSCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tb2RhbElucHV0SGVpZ2h0IHtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuXG4ubmF2YmFyTGlua3Mge1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbn0iLCIubW9kYWxJbnB1dEhlaWdodCB7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG4ubmF2YmFyTGlua3Mge1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgbWFyZ2luLXRvcDogMTBweDtcbn1cbiJdfQ== */"
+module.exports = ".modalInputHeight {\n  margin-top: 10px;\n}\n.navbarLinks {\n  color: white;\n  text-decoration: none;\n  margin-top: 10px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFBO0NDQ0g7QURFRDtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLGlCQUFBO0NDQUgiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubW9kYWxJbnB1dEhlaWdodCB7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbn1cblxuLm5hdmJhckxpbmtzIHtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG59IiwiLm1vZGFsSW5wdXRIZWlnaHQge1xuICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuLm5hdmJhckxpbmtzIHtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -1442,7 +1420,7 @@ module.exports = "<div class=\"row searchHeight\">\r\n  <div class=\"input-field
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".searchHeight {\n  margin-top: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDMuMTguMjAxOS90cnVuay9zcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksaUJBQUE7Q0NDSCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zZWFyY2hIZWlnaHQge1xuICAgIG1hcmdpbi10b3A6IDIwcHg7XG59XG5cbi8vIC5zZWFyY2hMYWJlbCB7XG4vLyAgICAgZm9udC1zaXplOiAxcmVtO1xuLy8gfSIsIi5zZWFyY2hIZWlnaHQge1xuICBtYXJnaW4tdG9wOiAyMHB4O1xufVxuIl19 */"
+module.exports = ".searchHeight {\n  margin-top: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFBO0NDQ0giLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2VhcmNoSGVpZ2h0IHtcbiAgICBtYXJnaW4tdG9wOiAyMHB4O1xufVxuXG4vLyAuc2VhcmNoTGFiZWwge1xuLy8gICAgIGZvbnQtc2l6ZTogMXJlbTtcbi8vIH0iLCIuc2VhcmNoSGVpZ2h0IHtcbiAgbWFyZ2luLXRvcDogMjBweDtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -1712,7 +1690,7 @@ var ViewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\r\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\"\r\n  (selectionChanged)=\"onSelectionChanged($event)\" [pagination]=\"true\">\r\n</ag-grid-angular>\r\n<div>\r\n  <div [hidden]=\"!enableOnGridClick\">\r\n    <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\r\n\r\n      <div class=\"col-md-4\">\r\n        <label>Start time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <label>End time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <button [disabled]='disablePlay' type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\r\n          Play\r\n        </button>\r\n        &nbsp;\r\n        <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\r\n          <i class=\"fa fa-download\"></i> Download\r\n        </button>\r\n      </div>\r\n      <br>\r\n      <br>\r\n    </div>\r\n<div>\r\n    <div  [hidden]=\"!enableWaveForm\" class=\"col-md-12\">\r\n      <div id=\"waveform\"></div>\r\n      <div id=\"waveform-timeline\"></div>\r\n      <br>\r\n      <div *ngIf=\"showPlayer\">\r\n        <button type=\"button\" id=\"button_play\" class=\"btn\" (click)=\"waveSurfer.playPause()\">\r\n          <i class=\"fa fa-play\"></i>/\r\n          <i class=\"fa fa-pause\"></i>\r\n        </button>\r\n        <br>\r\n        <br>\r\n        <h1 id=\"scroller\"></h1>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  </div>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  \r\n</div>"
+module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\r\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\"\r\n  (selectionChanged)=\"onSelectionChanged($event)\" [pagination]=\"true\">\r\n</ag-grid-angular>\r\n<div>\r\n  <div [hidden]=\"!enableOnGridClick\">\r\n    <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\r\n\r\n      <div class=\"col-md-4\">\r\n        <label>Start time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <label>End time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <button [disabled]='disablePlay' type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\r\n          Play\r\n        </button>\r\n        &nbsp;\r\n        <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\r\n          <i class=\"fa fa-download\"></i> Download\r\n        </button>\r\n      </div>\r\n      <br>\r\n      <br>\r\n    </div>\r\n<div>\r\n    <div  [hidden]=\"!enableWaveForm\" class=\"col-md-12\">\r\n      <div id=\"waveform\"></div>\r\n      <div id=\"waveform-timeline\"></div>\r\n      <br>\r\n      <div *ngIf=\"showPlayer\">\r\n        <div class=\"container\">\r\n        \r\n          <div class=\"player text-center\">\r\n           \r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='toogleMute()'>\r\n               \r\n              <span [hidden]=\"!mute\"><i class=\"fa fa-volume-up\"></i></span>\r\n              <span [hidden]=\"mute\"><i class=\" fa fa-volume-off\"></i></span>\r\n            </button> &nbsp;\r\n\r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='waveSurfer.skipBackward()'>\r\n              <i class=\"fa fa-backward\"></i>\r\n            </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_play\" class=\"btn \" (click)=\"checkPlayPause()\">\r\n              <span [hidden] =\"!play\" ><i  class=\"fa fa-play\"></i></span> \r\n              <span [hidden] =\"play\" ><i [hidden] =\"!play\"class=\"fa fa-pause\"></i></span> \r\n             </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_stop\" class=\"btn \" (click)='wavesurferStop()'>\r\n              <i class=\"fa fa-stop\"></i>\r\n            </button>&nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_fw\" class=\"btn \" (click)='waveSurfer.skipForward()'>\r\n              <i class=\"fa fa-forward\"></i>\r\n            </button>    \r\n          </div>\r\n        </div>\r\n        <br>\r\n        <br>\r\n        <h1 id=\"scroller\"></h1>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n  </div>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  \r\n</div>"
 
 /***/ }),
 
@@ -1761,6 +1739,7 @@ var WaveformComponent = /** @class */ (function () {
         this.enableWaveForm = false;
         this.enableDownload = false;
         this.toastrTimeOut = 10000;
+        this.mute = false;
         this.disablePlay = false;
         this.audoInputData = {
             channelName: null,
@@ -1831,6 +1810,7 @@ var WaveformComponent = /** @class */ (function () {
             this.waveSurfer.load(url);
             this.waveSurfer.on('ready', function () {
                 _this.waveSurfer.play();
+                _this.play = false;
             });
         }
     };
@@ -1874,6 +1854,26 @@ var WaveformComponent = /** @class */ (function () {
             this.endDate = (new Date(selectedRows[0].endTime * 1000));
         }
         this.disablePlay = false;
+    };
+    WaveformComponent.prototype.checkPlayPause = function () {
+        this.waveSurfer.playPause();
+        this.tooglePlay();
+    };
+    WaveformComponent.prototype.tooglePlay = function () {
+        if (this.waveSurfer.isPlaying()) {
+            this.play = false;
+        }
+        else {
+            this.play = true;
+        }
+    };
+    WaveformComponent.prototype.wavesurferStop = function () {
+        this.waveSurfer.stop();
+        this.tooglePlay();
+    };
+    WaveformComponent.prototype.toogleMute = function () {
+        this.waveSurfer.toggleMute();
+        this.mute = !this.mute;
     };
     WaveformComponent.prototype.loadAudioUrl = function () {
         var _this = this;
@@ -2262,7 +2262,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\development\Raytheon\audio\ui\03.18.2019\trunk\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Sai Kumar\Downloads\forbuilds\trunk\src\main.ts */"./src/main.ts");
 
 
 /***/ })
