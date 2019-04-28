@@ -9,27 +9,27 @@
         aria-hidden="true"></span>&nbsp;Search</button>
   </div>
   <div class="col-md-1">
-    <button class="btn btn-success" (click)="exportToCsv();"><span class="glyphicon glyphicon-download-alt"
-        aria-hidden="true"></span>&nbsp;Export to CSV</button>
+    <button *ngIf="loggedIn" class="btn btn-success" (click)="exportToCsv();"><span
+        class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;Export to CSV</button>
   </div>
   <div class="col-md-1">
     <button class="btn btn-success" (click)="archiveChannels();"><span class="glyphicon glyphicon-folder-open"
         aria-hidden="true"></span>&nbsp;&nbsp;Archive channels
     </button>
   </div>
-  <div class="col-md-3 col-md-offset-6">
+  <div class="col-md-3 col-md-offset-4">
     Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;
     <button class="btn btn-sm btn-default" (click)="getGridData();"><span class="glyphicon glyphicon-refresh"
         aria-hidden="true"></span></button>
   </div>
-  <!-- <div class="col-md-2">
+  <div class="col-md-2">
     <select class="form-control" name="siteid" id="siteid" [ngModelOptions]="{standalone: true}"
-      [(ngModel)]="gridRefreshInterval" (ngModelChange)="setRefreshInterval($event)">
+      [(ngModel)]="gridRefreshInterval" (change)="setRefreshInterval(gridRefreshInterval)">
       <option value="1">Select an auto refresh interval...</option>
       <option *ngFor="let refreshInterval of refreshIntervals" [ngValue]="refreshInterval">
         {{refreshInterval.description}}</option>
     </select>
-  </div> -->
+  </div>
   <!-- </div> -->
 </div>
 <ag-grid-angular style="width: 100%; height: 500px; margin-top: 10px;" class="ag-theme-balham" [rowData]="rowData"

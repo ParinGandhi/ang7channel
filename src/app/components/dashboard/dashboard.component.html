@@ -1,4 +1,4 @@
-<div *ngIf='isLoggedIn' >
+<div *ngIf='isLoggedIn'>
   <div class="row">
     <div class="col-md-12" style="padding-bottom: 20px;">
       <div class="col-md-4"></div>
@@ -44,6 +44,38 @@
         <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
+              Active/Inactive Channels
+              <span class="pull-right">Total: {{activityLabels?.length}}</span>
+              <!-- <div class="card-header-actions pull-right">
+                        Total: {{activeInactiveChartLabels.length}}
+                      </div> -->
+            </div>
+            <div class="panel-body">
+              <div class="chart-wrapper">
+                <nvd3 [options]="options" [data]="chartActivityData"></nvd3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Enabled/Disabled Channels
+              <span class="pull-right">Total: {{activeInactiveChartLabels?.length}}</span>
+              <!-- <div class="card-header-actions pull-right">
+                    Total: {{activeInactiveChartLabels.length}}
+                  </div> -->
+            </div>
+            <div class="panel-body">
+              <div class="chart-wrapper">
+                <nvd3 [options]="options" [data]="chartActiveInactiveData"></nvd3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
               Application Details
               <span class="pull-right">Total: 1</span>
               <!-- <div class="card-header-actions pull-right">
@@ -74,38 +106,6 @@
             margin-bottom: -1%"></span> &nbsp;<span><label>Application State&nbsp;:</label>
                       {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->
 
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              Active/Inactive Channels
-              <span class="pull-right">Total: {{activityLabels?.length}}</span>
-              <!-- <div class="card-header-actions pull-right">
-                        Total: {{activeInactiveChartLabels.length}}
-                      </div> -->
-            </div>
-            <div class="panel-body">
-              <div class="chart-wrapper">
-                <nvd3 [options]="options" [data]="chartActivityData"></nvd3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              Enabled/Disabled Channels
-              <span class="pull-right">Total: {{activeInactiveChartLabels?.length}}</span>
-              <!-- <div class="card-header-actions pull-right">
-                    Total: {{activeInactiveChartLabels.length}}
-                  </div> -->
-            </div>
-            <div class="panel-body">
-              <div class="chart-wrapper">
-                <nvd3 [options]="options" [data]="chartActiveInactiveData"></nvd3>
               </div>
             </div>
           </div>

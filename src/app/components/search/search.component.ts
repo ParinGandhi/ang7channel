@@ -139,11 +139,12 @@ export class SearchComponent implements OnInit {
 
   clearSearch() {
     this.easMediaData.channelName = null;
-    this.easMediaData.stndSite.id = null;
+    this.easMediaData.stndSite.id = -1;
     this.easMediaData.mediaOriginatedIp = null;
     this.easMediaData.mediaOriginatedPort = null;
-    this.stndRole.id = null;
-    this.easMediaData.enableIn = "";
+    this.stndRole.id = -1;
+    this.easMediaData.standardClassification.id = -1;
+    this.easMediaData.enableIn = "default";
     this.startDate = '';
     this.endDate = '';
     this.dataService.getChannelList()

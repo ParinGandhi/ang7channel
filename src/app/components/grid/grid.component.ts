@@ -18,6 +18,7 @@ export class GridComponent implements OnInit {
   gridOptions: GridOptions;
   historyGridOptions: GridOptions;
   rowData: EasMediaData[];
+  loggedIn: boolean = false;
   historyRowData: EasMediaData[];
   rowSelection: string = "multiple";
   lastRefreshed: any;
@@ -34,19 +35,11 @@ export class GridComponent implements OnInit {
   refreshIntervals: {}[] = [
     {
       description: "1 minute",
-      value: 30000
+      value: 60000
     },
     {
       description: "5 minutes",
       value: 300000
-    },
-    {
-      description: "10 minutes",
-      value: 600000
-    },
-    {
-      description: "15 minutes",
-      value: 900000
     },
     {
       description: "30 minutes",
@@ -193,7 +186,11 @@ export class GridComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.sharedService.sharedDataSource.subscribe(data => this.rowData = data)
+    this.sharedService.sharedDataSource.subscribe(data => this.rowData = data);
+    this.sharedService.sharedLoginResource.subscribe(data => {
+      this.loggedIn = data;
+      console.log(data);
+    })
     this.getGridData();
 
 
