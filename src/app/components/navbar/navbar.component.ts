@@ -259,24 +259,22 @@ export class NavbarComponent implements OnInit {
     // this.showSiteSuccessMsg = false;
     // this.showSiteAddSuccessMsg = false;
     this.showSiteUpdateButton = false;
-    this.stndSite.id = null;
-  };
+this.stndSite.id = null;  };
 
   clearRole() {
     this.stndRole.nm = "";
     this.stndRole.descriptionTx = "";
     this.showUpdateRoleButton = false;
-    this.stndRole.id=null;
-
-    // this.showRoleSuccessMsg = false;
+ this.stndRole.id=null;   
+ // this.showRoleSuccessMsg = false;
     // this.showRoleAddSuccessMsg = false;
   };
 
   clearClassification() {
     this.standardClassification.nm = "";
     this.standardClassification.descriptionTx = "";
-    this.standardClassification.id=null;
-    // this.showSiteSuccessMsg = false;
+this.standardClassification.id=null;   
+ // this.showSiteSuccessMsg = false;
     // this.showSiteAddSuccessMsg = false;
     this.showUpdateClassificationButton = false;
   };

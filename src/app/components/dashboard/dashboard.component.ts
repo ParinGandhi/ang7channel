@@ -20,16 +20,7 @@ export class DashboardComponent implements OnInit {
     ApplicationState: null,
     ApplicationName: null,
   }
-  // public dashboardData: DashBoardData = {
-  //   totalNumberofChannels: null,
-  //   applicationAttributes: this.appAttributes,
-  //   totalNumberofAvaiableChannels:null,
-  //   totalNumberofActiveChannels:null,
-  //   configuredDataByCategory:null,
-  //   avaiableDataByCategory:null,
-  //   siteNames:null,
-  //   siteCount:null,
-  // };
+
   public dashboardData: any;
   chartData: any = [];
 
@@ -99,20 +90,32 @@ export class DashboardComponent implements OnInit {
           },
           x: function(d){return d.label;},
           y: function(d){return d.value;},
+          tooltip:{
+            x: function (d) {
+              return d.siteNames + ' ' + '[' + d.siteCount + ']';
+            },
+            contentGenerator: function (key) {
+              return tooltip(key);
+            }
+          },
           showValues: true,
           valueFormat: function(d){
-              return d3.format(',.4f')(d);
+            return d3.format('0f')(d);   
           },
           duration: 500,
           xAxis: {
-              axisLabel: 'X Axis'
+              axisLabel: 'CHANNELS'
           },
           yAxis: {
-              axisLabel: 'Y Axis',
-              axisLabelDistance: -15
+              axisLabel: 'SITES',
+              axisLabelDistance: -15,
+              tickFormat:function(d){
+                return d3.format('0f')(d);
+            }
           }
       }
   };
+  
     let activeCount;
     let maxCount;
     this.dashboardData = {};
@@ -171,15 +174,18 @@ export class DashboardComponent implements OnInit {
       }
     )
     var tooltip = function (hoveredData) {
-      var toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0 </button>'
+      var toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0  </button>'
       for (let appViewState of activeCount) {
-        if (appViewState.siteName == hoveredData.data.siteNames) {
+        if (appViewState.siteName == hoveredData.data.label) {
           toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : ' + appViewState.count + ' </button>';
         }
 
       }
       return toolTipView;
     }
+    //  var getMax = function(){
+    //   return ([0,maxCount]) ;
+    //  }
     this.options = {
       chart: {
         type: 'pieChart',
