@@ -10,7 +10,7 @@
     <label for="siteId" class="searchLabel">Site ID</label>
     <select class="form-control input-sm" name="siteid" id="siteid" [ngModelOptions]="{standalone: true}"
       [(ngModel)]="easMediaData.stndSite.id">
-      <option value="-1">Select a site id...</option>
+      <option value="-1" disabled>Select a site id...</option>
       <option *ngFor="let siteId of siteIdList.results" [value]="siteId.id">{{siteId.nm}}</option>
     </select>
   </div>
@@ -34,7 +34,7 @@
     <label for="manageClassification" class="searchLabel">Classification</label>
     <select class="form-control input-sm" name="manageClassification" id="manageClassification"
       [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.standardClassification.id">
-      <option value="-1">Select a classification...</option>
+      <option value="-1" disabled>Select a classification...</option>
       <option *ngFor="let classificationId of classificationList.results" [value]="classificationId.id">
         {{classificationId.nm}}</option>
     </select>
@@ -45,7 +45,7 @@
     <label for="roleId" class="searchLabel">Role ID</label>
     <select class="form-control input-sm" name="roleId" id="roleId" [ngModelOptions]="{standalone: true}"
       [(ngModel)]="easMediaData.stndRole.id">
-      <option value="-1">Select a role id...</option>
+      <option value="-1" disabled>Select a role id...</option>
       <option *ngFor="let roleId of roleIdList.results" [value]="roleId.id">{{roleId.nm}}</option>
     </select>
   </div>
@@ -55,7 +55,7 @@
     <label for="activeIndSearch" class="searchLabel">Active indicator</label>
     <select class="form-control input-sm" name="activeIndSearch" id="activeIndSearch"
       [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.enableIn">
-      <option value="default">Select an active indicator...</option>
+      <option value="default" disabled>Select an active indicator...</option>
       <option value="TRUE">Active</option>
       <option value="FALSE">Inactive</option>
     </select>

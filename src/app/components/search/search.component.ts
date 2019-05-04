@@ -78,7 +78,7 @@ export class SearchComponent implements OnInit {
     if (this.easMediaData.channelName !== 'undefined' && this.easMediaData.channelName !== null && this.easMediaData.channelName !== '') {
       queryParams.push('channelName=' + this.easMediaData.channelName);
     }
-    if (this.easMediaData.stndSite.id) {
+    if (this.easMediaData.stndSite.id && this.easMediaData.stndSite.id !== -1) {
       queryParams.push('standardSiteId=' + this.easMediaData.stndSite.id);
     }
     if (this.easMediaData.mediaOriginatedIp !== 'undefined' && this.easMediaData.mediaOriginatedIp !== null && this.easMediaData.mediaOriginatedIp !== '') {
@@ -87,13 +87,13 @@ export class SearchComponent implements OnInit {
     if (this.easMediaData.mediaOriginatedPort) {
       queryParams.push('mediaOriginatedPort=' + this.easMediaData.mediaOriginatedPort);
     }
-    if (this.easMediaData.standardClassification.id) {
+    if (this.easMediaData.standardClassification.id && this.easMediaData.standardClassification.id !== -1) {
       queryParams.push('standardClsfId=' + this.easMediaData.standardClassification.id);
     }
-    if (this.easMediaData.stndRole.id) {
+    if (this.easMediaData.stndRole.id && this.easMediaData.stndRole.id !== -1) {
       queryParams.push('standardRoleId=' + this.easMediaData.stndRole.id);
     }
-    if (this.easMediaData.enableIn !== 'undefined' && this.easMediaData.enableIn !== null && this.easMediaData.enableIn !== '') {
+    if (this.easMediaData.enableIn !== 'undefined' && this.easMediaData.enableIn !== null && this.easMediaData.enableIn !== '' && this.easMediaData.enableIn !== 'default') {
       queryParams.push('enableIn=' + this.easMediaData.enableIn);
     }
     if (new Date(this.startDate).getTime() > new Date(this.endDate).getTime()) {
@@ -171,6 +171,8 @@ export class SearchComponent implements OnInit {
     this.dataService.getClassificationList().subscribe(classificationList => {
       this.classificationList = classificationList;
     });
+
+    this.clearSearch();
 
   }
 
