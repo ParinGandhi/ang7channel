@@ -4,6 +4,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { SharedService } from '../../shared.service';
 import { DashBoardData } from '../../models/dashboardData';
 import { applicationAttributes } from '../../models/applicationAttributes';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -35,29 +36,31 @@ export class DashboardComponent implements OnInit {
 
   selectedInterval: any;
   refreshInterval: number;
-  intervalList: any = [
+  dashboardRefreshInverval: number = 1;
+  dashboardInterval: any;
+  refreshIntervals: {}[] = [
     {
-      label: '1 minute',
-      value: 1000
-    }, {
-      label: '2 minutes',
-      value: 2000
-    }, {
-      label: '3 minutes',
-      value: 3000
-    }, {
-      label: '4 minutes',
-      value: 4000
-    }, {
-      label: '5 minutes',
-      value: 5000
+      description: "1 minute",
+      value: 60000
+    },
+    {
+      description: "5 minutes",
+      value: 300000
+    },
+    {
+      description: "30 minutes",
+      value: 1800000
+    },
+    {
+      description: "1 hour",
+      value: 3600000
     }
   ];
 
   chartAppAttributesChartData: any;
   public activeInactiveChartLabels: string[] = ['Available', 'Unavailable'];
   public activityLabels: string[] = ['Active', 'Inactive'];
-  constructor(private dataService: DataService, private sharedService: SharedService) {
+  constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService) {
   }
 
 
@@ -74,48 +77,50 @@ export class DashboardComponent implements OnInit {
       }, 500)
     }
 
+
+
   }
 
 
   getDashBoardData = function () {
-    this.optionsForTool  = {
+    this.optionsForTool = {
       chart: {
-          type: 'discreteBarChart',
-          height: 750,
-          margin : {
-              top: 20,
-              right: 20,
-              bottom: 50,
-              left: 55
+        type: 'discreteBarChart',
+        height: 750,
+        margin: {
+          top: 20,
+          right: 20,
+          bottom: 50,
+          left: 55
+        },
+        x: function (d) { return d.label; },
+        y: function (d) { return d.value; },
+        tooltip: {
+          x: function (d) {
+            return d.siteNames + ' ' + '[' + d.siteCount + ']';
           },
-          x: function(d){return d.label;},
-          y: function(d){return d.value;},
-          tooltip:{
-            x: function (d) {
-              return d.siteNames + ' ' + '[' + d.siteCount + ']';
-            },
-            contentGenerator: function (key) {
-              return tooltip(key);
-            }
-          },
-          showValues: true,
-          valueFormat: function(d){
-            return d3.format('0f')(d);   
-          },
-          duration: 500,
-          xAxis: {
-              axisLabel: 'CHANNELS'
-          },
-          yAxis: {
-              axisLabel: 'SITES',
-              axisLabelDistance: -15,
-              tickFormat:function(d){
-                return d3.format('0f')(d);
-            }
+          contentGenerator: function (key) {
+            return tooltip(key);
           }
+        },
+        showValues: true,
+        valueFormat: function (d) {
+          return d3.format('0f')(d);
+        },
+        duration: 500,
+        xAxis: {
+          axisLabel: 'CHANNELS'
+        },
+        yAxis: {
+          axisLabel: 'SITES',
+          axisLabelDistance: -15,
+          tickFormat: function (d) {
+            return d3.format('0f')(d);
+          }
+        }
       }
-  };
-  
+    };
+
     let activeCount;
     let maxCount;
     this.dashboardData = {};
@@ -124,11 +129,11 @@ export class DashboardComponent implements OnInit {
     this.activeInactiveData = [];
     this.activityData = [];
     this.dataService.getDashboardData().subscribe(
-      response => { 
+      response => {
         this.lastRefreshed = new Date();
         this.dashboardData = response;
         activeCount = this.dashboardData.activeChannelsBySite;
-       maxCount= Math.max(...this.dashboardData.siteCount);
+        maxCount = Math.max(...this.dashboardData.siteCount);
         for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
           let obj = {
             label: this.dashboardData.siteNames[i],
@@ -144,10 +149,10 @@ export class DashboardComponent implements OnInit {
         this.chartAppAttributesChartData = this.appAttributesChartData;
         this.data = [
           {
-              key: "Cumulative Return",
-              values: this.chartData  
+            key: "Cumulative Return",
+            values: this.chartData
           }
-      ];
+        ];
         let availableData = {
           siteNames: this.activeInactiveChartLabels[0], //available
           siteCount: this.dashboardData.totalNumberofAvaiableChannels
@@ -170,7 +175,7 @@ export class DashboardComponent implements OnInit {
         this.activityData.push(inActiveData);
         this.chartActivityData = this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
-        this.optionsForTool.chart["yDomain"]=([0,maxCount]);
+        this.optionsForTool.chart["yDomain"] = ([0, maxCount]);
       }
     )
     var tooltip = function (hoveredData) {
@@ -245,16 +250,34 @@ export class DashboardComponent implements OnInit {
     //     }
     //   }
     // };
-    
-  //this.optionsForTool.chart.yDomain=([0,maxCount]);
+
+    //this.optionsForTool.chart.yDomain=([0,maxCount]);
   }
 
 
-  setRefreshInterval(intervalData) {
-    setInterval(function () {
-      this.getDashboardData()
-    }, intervalData.value)
+  setRefreshInterval(refreshInterval) {
+    this.dashboardInterval = setInterval(() => {
+      this.getDashBoardData();
+    }, refreshInterval.value);
+    if (refreshInterval.value !== 9999999) {
+      this.toastr.success('Successfully set auto refresh to ' + refreshInterval.description, '', {
+        timeOut: 10000
+      });
+    } else {
+      this.toastr.success('Successfully cancelled auto refresh.', '', {
+        timeOut: 10000
+      });
+      // clearInterval(this.dashboardInterval);
+    }
   }
+
+
+
+  // setRefreshInterval(intervalData) {
+  //   setInterval(function () {
+  //     this.getDashboardData()
+  //   }, intervalData.value)
+  // }
 
 
 }

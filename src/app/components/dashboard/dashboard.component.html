@@ -1,6 +1,6 @@
 <div *ngIf='isLoggedIn'>
   <div class="row">
-    <div class="col-md-12" style="padding-bottom: 20px;">
+    <!-- <div class="col-md-12" style="padding-bottom: 20px;">
       <div class="col-md-4"></div>
       <div class="col-md-3"></div>
       <div class="col-md-5">
@@ -8,18 +8,23 @@
           Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;
           <button class="btn btn-sm btn-default" (click)="getDashBoardData();"><span class="glyphicon glyphicon-refresh"
               aria-hidden="true"></span></button>
-          <!-- <select name="" id="" [(ngModel)]="refreshInterval">
-            <option value="1000">1 minute</option>
-            <option value="2000">5 minutes</option>
-            <option value="3000">10 minutes</option>
-            <option value="4000">15 minutes</option>
-          </select> -->
-
-          <!-- <select name="" id="" [(ngModel)]="selectedInterval" (change)="setRefreshInterval(selectedInterval)">
-            <option *ngFor="let interval of intervalList" [ngValue]="interval">{{interval.label}}</option>
-          </select> -->
         </div>
       </div>
+    </div> -->
+    <div class="col-md-3 col-md-offset-7" style="padding-bottom: 20px;">
+      <div class="pull-right">
+        Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-sm btn-default" (click)="getDashBoardData();"><span class="glyphicon glyphicon-refresh"
+            aria-hidden="true"></span></button>
+      </div>
+    </div>
+    <div class="col-md-2" style="padding-bottom: 20px;">
+      <select class="form-control" name="siteid" id="siteid" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="dashboardRefreshInverval" (change)="setRefreshInterval(dashboardRefreshInverval)">
+        <option value="1">Select an auto refresh interval...</option>
+        <option *ngFor="let refreshInterval of refreshIntervals" [ngValue]="refreshInterval">
+          {{refreshInterval.description}}</option>
+      </select>
     </div>
   </div>
   <div class="row">

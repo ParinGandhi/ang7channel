@@ -211,22 +211,22 @@ export class GridComponent implements OnInit {
   }
 
 
-  setRefreshInterval(gridRefreshInterval) {
-    this.gridInterval = setInterval(() => {
-      this.getGridData();
-    }, gridRefreshInterval.value);
-    if (gridRefreshInterval.value !== 9999999) {
-      this.toastr.success('Successfully set auto refresh to ' + gridRefreshInterval.description, '', {
-        timeOut: 10000
-      });
-    } else {
-      this.toastr.success('Successfully cancelled auto refresh.', '', {
-        timeOut: 10000
-      });
-      clearInterval(this.gridInterval);
-    }
+  // setRefreshInterval(gridRefreshInterval) {
+  //   this.gridInterval = setInterval(() => {
+  //     this.getGridData();
+  //   }, gridRefreshInterval.value);
+  //   if (gridRefreshInterval.value !== 9999999) {
+  //     this.toastr.success('Successfully set auto refresh to ' + gridRefreshInterval.description, '', {
+  //       timeOut: 10000
+  //     });
+  //   } else {
+  //     this.toastr.success('Successfully cancelled auto refresh.', '', {
+  //       timeOut: 10000
+  //     });
+  //     clearInterval(this.gridInterval);
+  //   }
 
-  }
+  // }
 
   // @ViewChild(SearchComponent) child;
   // public setSearchData(rObj: any) {
