@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
   ];
 
   chartAppAttributesChartData: any;
-  public activeInactiveChartLabels: string[] = ['Available', 'Unavailable'];
+  public activeInactiveChartLabels: string[] = ['Enabled', 'Disabled'];
   public activityLabels: string[] = ['Active', 'Inactive'];
   constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService) {
   }
