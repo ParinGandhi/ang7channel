@@ -7,6 +7,7 @@
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn"
   (click)="ngxSmartModalService.getModal('uploadFileModal').open()">Upload
   File</button>
+<button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="openHelp()">Help</button>
 <button class="btn btn-link navbarLinks pull-right" *ngIf="!loggedIn" id="login"
   (click)="ngxSmartModalService.getModal('loginModal').open()">Sign
   In</button>
@@ -305,8 +306,8 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default pull-left" (click)="loginModal.close()">Close</button>
-    <!-- <button type="button" class="btn btn-primary" (click)="checkLogin(loginModal)">Login</button> -->
-    <button type="button" class="btn btn-primary" (click)="login(loginModal)">Login</button>
+    <button type="button" class="btn btn-primary" (click)="checkLogin(loginModal)">Login</button>
+    <!-- <button type="button" class="btn btn-primary" (click)="login(loginModal)">Login</button> -->
   </div>
 </ngx-smart-modal>
 <!-- End Login Modal -->
