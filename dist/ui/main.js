@@ -96,7 +96,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".navbar {\n  background-color: #337ab7;\n  color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDUuMDUuMjAxOS90cnVuay9zcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksMEJBQUE7RUFDQSxhQUFBO0NDQ0giLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmF2YmFyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzM3YWI3O1xuICAgIGNvbG9yOiB3aGl0ZTtcbn0iLCIubmF2YmFyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzMzN2FiNztcbiAgY29sb3I6IHdoaXRlO1xufVxuIl19 */"
+module.exports = ".navbar {\n  background-color: #337ab7;\n  color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDBCQUFBO0VBQ0EsYUFBQTtDQ0NIIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm5hdmJhciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzMzN2FiNztcbiAgICBjb2xvcjogd2hpdGU7XG59IiwiLm5hdmJhciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMzMzdhYjc7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -180,12 +180,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_sidebar__WEBPACK_IMPORTED_MODULE_25___default = /*#__PURE__*/__webpack_require__.n(primeng_sidebar__WEBPACK_IMPORTED_MODULE_25__);
 /* harmony import */ var ngx_select_dropdown__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ngx-select-dropdown */ "./node_modules/ngx-select-dropdown/dist/index.js");
 /* harmony import */ var ngx_cleave_directive__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ngx-cleave-directive */ "./node_modules/ngx-cleave-directive/fesm5/ngx-cleave-directive.js");
+/* harmony import */ var _components_play_play_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/play/play.component */ "./src/app/components/play/play.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -228,7 +230,8 @@ var AppModule = /** @class */ (function () {
                 _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_15__["DashboardComponent"],
                 _components_view_view_component__WEBPACK_IMPORTED_MODULE_21__["ViewComponent"],
                 _components_history_history_component__WEBPACK_IMPORTED_MODULE_22__["HistoryComponent"],
-                _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_23__["PlayAudioComponent"]
+                _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_23__["PlayAudioComponent"],
+                _components_play_play_component__WEBPACK_IMPORTED_MODULE_28__["PlayComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -242,7 +245,7 @@ var AppModule = /** @class */ (function () {
                 ng2_nvd3__WEBPACK_IMPORTED_MODULE_16__["NvD3Module"],
                 ngx_spinner__WEBPACK_IMPORTED_MODULE_7__["NgxSpinnerModule"],
                 ngx_cleave_directive__WEBPACK_IMPORTED_MODULE_27__["NgxCleaveDirectiveModule"],
-                ag_grid_angular__WEBPACK_IMPORTED_MODULE_5__["AgGridModule"].withComponents([_components_history_history_component__WEBPACK_IMPORTED_MODULE_22__["HistoryComponent"], _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_23__["PlayAudioComponent"]]),
+                ag_grid_angular__WEBPACK_IMPORTED_MODULE_5__["AgGridModule"].withComponents([_components_history_history_component__WEBPACK_IMPORTED_MODULE_22__["HistoryComponent"], _components_play_audio_play_audio_component__WEBPACK_IMPORTED_MODULE_23__["PlayAudioComponent"], _components_play_play_component__WEBPACK_IMPORTED_MODULE_28__["PlayComponent"]]),
                 ngx_smart_modal__WEBPACK_IMPORTED_MODULE_6__["NgxSmartModalModule"].forRoot(),
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
                 ngx_toastr__WEBPACK_IMPORTED_MODULE_8__["ToastrModule"].forRoot()
@@ -568,7 +571,7 @@ module.exports = "<p-sidebar [(visible)]=\"display\" [style]=\"{width:'325px'}\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nsm-content {\n  width: inherit;\n}\n.historyModal {\n  width: 213%;\n  margin-left: 20%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL0M6L2RldmVsb3BtZW50L1JheXRoZW9uL2F1ZGlvL3VpLzA1LjA1LjIwMTkvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL2dyaWQvZ3JpZC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxlQUFBO0NDQ0g7QURDQztFQUNBLFlBQUE7RUFDQSxpQkFBQTtDQ0NEIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubnNtLWNvbnRlbnR7XG4gICAgd2lkdGg6IGluaGVyaXQ7XG4gIH1cbiAgLmhpc3RvcnlNb2RhbHtcbiAgd2lkdGg6IDIxMyU7XG4gIG1hcmdpbi1sZWZ0OiAyMCU7XG4gIH0iLCIubnNtLWNvbnRlbnQge1xuICB3aWR0aDogaW5oZXJpdDtcbn1cbi5oaXN0b3J5TW9kYWwge1xuICB3aWR0aDogMjEzJTtcbiAgbWFyZ2luLWxlZnQ6IDIwJTtcbn1cbiJdfQ== */"
+module.exports = ".nsm-content {\n  width: inherit;\n}\n.historyModal {\n  width: 213%;\n  margin-left: 20%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL0M6L1VzZXJzL1NhaSBLdW1hci9Eb3dubG9hZHMvZm9yYnVpbGRzL3RydW5rL3NyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZUFBQTtDQ0NIO0FEQ0M7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7Q0NDRCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm5zbS1jb250ZW50e1xuICAgIHdpZHRoOiBpbmhlcml0O1xuICB9XG4gIC5oaXN0b3J5TW9kYWx7XG4gIHdpZHRoOiAyMTMlO1xuICBtYXJnaW4tbGVmdDogMjAlO1xuICB9IiwiLm5zbS1jb250ZW50IHtcbiAgd2lkdGg6IGluaGVyaXQ7XG59XG4uaGlzdG9yeU1vZGFsIHtcbiAgd2lkdGg6IDIxMyU7XG4gIG1hcmdpbi1sZWZ0OiAyMCU7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -878,7 +881,7 @@ module.exports = "<div class=\"navbar-brand\">vEAS</div>\r\n<button class=\"btn 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".modalInputHeight {\n  margin-top: 10px;\n}\n.navbarLinks {\n  color: white;\n  text-decoration: none;\n  margin-top: 10px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDUuMDUuMjAxOS90cnVuay9zcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksaUJBQUE7Q0NDSDtBREVEO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsaUJBQUE7Q0NBSCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tb2RhbElucHV0SGVpZ2h0IHtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuXG4ubmF2YmFyTGlua3Mge1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbn0iLCIubW9kYWxJbnB1dEhlaWdodCB7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG4ubmF2YmFyTGlua3Mge1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgbWFyZ2luLXRvcDogMTBweDtcbn1cbiJdfQ== */"
+module.exports = ".modalInputHeight {\n  margin-top: 10px;\n}\n.navbarLinks {\n  color: white;\n  text-decoration: none;\n  margin-top: 10px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFBO0NDQ0g7QURFRDtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLGlCQUFBO0NDQUgiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubW9kYWxJbnB1dEhlaWdodCB7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbn1cblxuLm5hdmJhckxpbmtzIHtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG59IiwiLm1vZGFsSW5wdXRIZWlnaHQge1xuICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuLm5hdmJhckxpbmtzIHtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -1429,6 +1432,63 @@ var PlayAudioComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/play/play.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/components/play/play.component.ts ***!
+  \***************************************************/
+/*! exports provided: PlayComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayComponent", function() { return PlayComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var PlayComponent = /** @class */ (function () {
+    function PlayComponent() {
+    }
+    PlayComponent.prototype.agInit = function (params) {
+        this.params = params;
+        this.label = this.params.label || null;
+    };
+    PlayComponent.prototype.onClick = function ($event, isPlay) {
+        if (this.params.onClick instanceof Function) {
+            // put anything into params u want pass into parents component
+            var params = {
+                event: $event,
+                rowData: this.params.node.data,
+                isPlay: isPlay
+                // ...something
+            };
+            this.params.onClick(params);
+        }
+    };
+    PlayComponent.prototype.refresh = function (params) {
+        return true;
+    };
+    PlayComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-play',
+            template: "<button class=\"btn btn-primary\" style=\"margin-bottom: 0.1%;\" (click)=\"onClick($event,true)\"> Play</button> &nbsp; <button class=\"btn btn-primary\" style=\"margin-bottom: 0.1%;\" (click)=\"onClick($event,false)\"> <i class=\"fa fa-download\"></i> Download</button>",
+        }),
+        __metadata("design:paramtypes", [])
+    ], PlayComponent);
+    return PlayComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/search/search.component.html":
 /*!*********************************************************!*\
   !*** ./src/app/components/search/search.component.html ***!
@@ -1447,7 +1507,7 @@ module.exports = "<div class=\"row searchHeight\">\r\n  <div class=\"input-field
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".searchHeight {\n  margin-top: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDUuMDUuMjAxOS90cnVuay9zcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksaUJBQUE7Q0NDSCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zZWFyY2hIZWlnaHQge1xuICAgIG1hcmdpbi10b3A6IDIwcHg7XG59XG5cbi8vIC5zZWFyY2hMYWJlbCB7XG4vLyAgICAgZm9udC1zaXplOiAxcmVtO1xuLy8gfSIsIi5zZWFyY2hIZWlnaHQge1xuICBtYXJnaW4tdG9wOiAyMHB4O1xufVxuIl19 */"
+module.exports = ".searchHeight {\n  margin-top: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFBO0NDQ0giLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2VhcmNoSGVpZ2h0IHtcbiAgICBtYXJnaW4tdG9wOiAyMHB4O1xufVxuXG4vLyAuc2VhcmNoTGFiZWwge1xuLy8gICAgIGZvbnQtc2l6ZTogMXJlbTtcbi8vIH0iLCIuc2VhcmNoSGVpZ2h0IHtcbiAgbWFyZ2luLXRvcDogMjBweDtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -1719,7 +1779,7 @@ var ViewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\r\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\"\r\n  (selectionChanged)=\"onSelectionChanged($event)\" [pagination]=\"true\">\r\n</ag-grid-angular>\r\n<div>\r\n  <div [hidden]=\"!enableOnGridClick\">\r\n    <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\">\r\n\r\n      <div class=\"col-md-4\">\r\n        <label>Start time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <label>End time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <button [disabled]='disablePlay' type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\r\n          Play\r\n        </button>\r\n        &nbsp;\r\n        <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\r\n          <i class=\"fa fa-download\"></i> Download\r\n        </button>\r\n      </div>\r\n      <br>\r\n      <br>\r\n    </div>\r\n<div>\r\n    <div  [hidden]=\"!enableWaveForm\" class=\"col-md-12\">\r\n      <div id=\"waveform\"></div>\r\n      <div id=\"waveform-timeline\"></div>\r\n      <br>\r\n      <div *ngIf=\"showPlayer\">\r\n        <div class=\"container\">\r\n        \r\n          <div class=\"player text-center\">\r\n           \r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='toogleMute()'>\r\n               \r\n              <span [hidden]=\"!mute\"><i class=\"fa fa-volume-up\"></i></span>\r\n              <span [hidden]=\"mute\"><i class=\" fa fa-volume-off\"></i></span>\r\n            </button> &nbsp;\r\n\r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='waveSurfer.skipBackward()'>\r\n              <i class=\"fa fa-backward\"></i>\r\n            </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_play\" class=\"btn \" (click)=\"checkPlayPause()\">\r\n              <span [hidden] =\"!play\" ><i  class=\"fa fa-play\"></i></span> \r\n              <span [hidden] =\"play\" ><i [hidden] =\"!play\"class=\"fa fa-pause\"></i></span> \r\n             </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_stop\" class=\"btn \" (click)='wavesurferStop()'>\r\n              <i class=\"fa fa-stop\"></i>\r\n            </button>&nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_fw\" class=\"btn \" (click)='waveSurfer.skipForward()'>\r\n              <i class=\"fa fa-forward\"></i>\r\n            </button>    \r\n          </div>\r\n        </div>\r\n        <br>\r\n        <br>\r\n        <h1 id=\"scroller\"></h1>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n  </div>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  \r\n</div>"
+module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\r\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\"\r\n  [pagination]=\"true\">\r\n</ag-grid-angular>\r\n<div>\r\n  <div [hidden]=\"!enableOnGridClick\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\"> -->\r\n\r\n      <!-- <div class=\"col-md-4\">\r\n        <label>Start time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <label>End time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div> -->\r\n      <!-- <div class=\"col-md-4\">\r\n        <button [disabled]='disablePlay' type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\r\n          Play\r\n        </button>\r\n        &nbsp;\r\n        <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\r\n          <i class=\"fa fa-download\"></i> Download\r\n        </button>\r\n      </div> -->\r\n      \r\n    <!-- </div> -->\r\n<div>\r\n    <div  [hidden]=\"!enableWaveForm\" class=\"col-md-12\">\r\n      <div class=\"col-md-10\"><div id=\"waveform\"></div>\r\n      <div id=\"waveform-timeline\"></div></div>\r\n      \r\n      <br>\r\n      <div *ngIf=\"showPlayer\" class=\"col-md-2\">\r\n          <div class=\"row\">\r\n            <div class=\"col-md-3 padleftzero\" > <label style=\"\r\n              margin-top: 6%;\r\n          \">Start time</label></div>\r\n             <div class=\"col-md-9 padleftzero\"><p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n              </p-calendar></div>\r\n      \r\n            </div>\r\n            <br>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-3 padleftzero\"><label style=\"\r\n                  margin-top: 6%;\r\n              \">End time</label> </div>\r\n                <div class=\"col-md-9 padleftzero\"><p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n              </p-calendar></div>\r\n            </div>\r\n            <br>\r\n        <div class=\"row\">\r\n        \r\n          <div class=\" text-center\">\r\n           \r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='toogleMute()'>\r\n               \r\n              <span [hidden]=\"!mute\"><i class=\"fa fa-volume-up\"></i></span>\r\n              <span [hidden]=\"mute\"><i class=\" fa fa-volume-off\"></i></span>\r\n            </button> &nbsp;\r\n\r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='waveSurfer.skipBackward()'>\r\n              <i class=\"fa fa-backward\"></i>\r\n            </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_play\" class=\"btn \" (click)=\"checkPlayPause()\">\r\n              <span [hidden] =\"!play\" ><i  class=\"fa fa-play\"></i></span> \r\n              <span [hidden] =\"play\" ><i [hidden] =\"!play\"class=\"fa fa-pause\"></i></span> \r\n             </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_stop\" class=\"btn \" (click)='wavesurferStop()'>\r\n              <i class=\"fa fa-stop\"></i>\r\n            </button>&nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_fw\" class=\"btn \" (click)='waveSurfer.skipForward()'>\r\n              <i class=\"fa fa-forward\"></i>\r\n            </button>    \r\n          </div>\r\n        </div>\r\n        <br>\r\n        <br>\r\n        <h1 id=\"scroller\"></h1>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n  </div>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  \r\n</div>"
 
 /***/ }),
 
@@ -1740,6 +1800,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_wavesurfer_js_dist_plugin_wavesurfer_timeline_min_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_wavesurfer_js_dist_plugin_wavesurfer_timeline_min_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/data.service */ "./src/app/services/data.service.ts");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _play_play_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../play/play.component */ "./src/app/components/play/play.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1749,6 +1810,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1792,17 +1854,25 @@ var WaveformComponent = /** @class */ (function () {
                 headerName: "End time", field: "endTime", width: 200, cellRenderer: function (data) {
                     return data.value ? (new Date(data.value * 1000)).toLocaleDateString() + " " + new Date(data.value * 1000).toLocaleTimeString() : '';
                 }
+            },
+            {
+                headerName: '', cellRendererFramework: _play_play_component__WEBPACK_IMPORTED_MODULE_5__["PlayComponent"], cellRendererParams: {
+                    onClick: this.loadAudioUrl.bind(this),
+                    label: 'Click 1',
+                    width: 75
+                },
             }
         ];
     }
     WaveformComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.showPlayer = false;
-        // this.waveFormGridOptions = <GridOptions>{
-        //   onGridReady: () => {
-        //     this.waveFormGridOptions.api.sizeColumnsToFit();
-        //   },
-        //   rowHeight: 35
-        // };
+        this.waveFormGridOptions = {
+            onGridReady: function () {
+                _this.waveFormGridOptions.api.sizeColumnsToFit();
+            },
+            rowHeight: 40
+        };
         //this.getChannelData(this.metaDataChannelName[this.metaDataChannelName.length-1])
     };
     WaveformComponent.prototype.ngOnChanges = function () {
@@ -1873,14 +1943,14 @@ var WaveformComponent = /** @class */ (function () {
         });
     };
     ;
-    WaveformComponent.prototype.onSelectionChanged = function () {
+    WaveformComponent.prototype.getStartEndTimes = function (selRow) {
         this.enableOnGridClick = true;
-        var selectedRows = this.waveFormGridOptions.api.getSelectedRows();
-        if (selectedRows[0].startTime != null) {
-            this.startDate = (new Date(selectedRows[0].startTime * 1000));
+        var selectedRows = selRow.rowData;
+        if (selectedRows.startTime != null) {
+            this.startDate = (new Date(selectedRows.startTime * 1000));
         }
-        if (selectedRows[0].endTime != null) {
-            this.endDate = (new Date(selectedRows[0].endTime * 1000));
+        if (selectedRows.endTime != null) {
+            this.endDate = (new Date(selectedRows.endTime * 1000));
         }
         this.disablePlay = false;
     };
@@ -1904,12 +1974,13 @@ var WaveformComponent = /** @class */ (function () {
         this.waveSurfer.toggleMute();
         this.mute = !this.mute;
     };
-    WaveformComponent.prototype.loadAudioUrl = function () {
+    WaveformComponent.prototype.loadAudioUrl = function (selectRow) {
         var _this = this;
-        if (this.isWavformExist) {
+        if (selectRow.isPlay && this.isWavformExist) {
             this.waveSurfer.pause();
             this.waveSurfer.empty();
         }
+        this.getStartEndTimes(selectRow);
         this.audoInputData.endDate = new Date(this.endDate).getTime();
         this.audoInputData.startDate = new Date(this.startDate).getTime();
         this.audoInputData.channelName = this.gridChannelName;
@@ -1917,10 +1988,12 @@ var WaveformComponent = /** @class */ (function () {
         this.dataService.getUrlByChannelName(this.audoInputData)
             .subscribe(function (response) {
             _this.enableWaveForm = true;
-            _this.constructWaveSurfer(response);
+            if (selectRow.isPlay) {
+                _this.constructWaveSurfer(response);
+            }
             _this.disablePlay = false;
             _this.enableDownload = true;
-            _this.audioFileName = _this.getAudioFileName(response);
+            _this.audioFileName = _this.getAudioFileName(response, selectRow.isPlay);
             _this.autoScroll();
         }, function (error) {
             if (error.status != 200) {
@@ -1931,20 +2004,26 @@ var WaveformComponent = /** @class */ (function () {
             }
             if (error.status === 200) {
                 _this.enableWaveForm = true;
-                _this.constructWaveSurfer(error.error.text);
+                if (selectRow.isPlay) {
+                    _this.constructWaveSurfer(error.error.text);
+                }
                 _this.disablePlay = false;
-                _this.audioFileName = _this.getAudioFileName(error.error.text);
+                _this.audioFileName = _this.getAudioFileName(error.error.text, selectRow.isPlay);
                 _this.enableDownload = true;
                 _this.autoScroll();
             }
             console.log(error);
         });
     };
-    WaveformComponent.prototype.getAudioFileName = function (audioUrl) {
+    WaveformComponent.prototype.getAudioFileName = function (audioUrl, isPlay) {
         var arrVars = audioUrl.split("/");
+        if (!isPlay) {
+            this.dataService.downloadAudio(arrVars.pop());
+        }
         return arrVars.pop();
     };
-    WaveformComponent.prototype.downloadAudio = function () {
+    WaveformComponent.prototype.downloadAudio = function (e) {
+        this.loadAudioUrl(e);
         this.dataService.downloadAudio(this.audioFileName);
     };
     WaveformComponent.prototype.autoScroll = function () {
@@ -2291,7 +2370,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\development\Raytheon\audio\ui\05.05.2019\trunk\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Sai Kumar\Downloads\forbuilds\trunk\src\main.ts */"./src/main.ts");
 
 
 /***/ })
