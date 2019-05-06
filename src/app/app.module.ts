@@ -27,6 +27,7 @@ import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { SidebarModule } from 'primeng/sidebar';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
+import { PlayComponent } from './components/play/play.component';
 
 
 
@@ -40,7 +41,8 @@ import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
     DashboardComponent,
     ViewComponent,
     HistoryComponent,
-    PlayAudioComponent
+    PlayAudioComponent,
+    PlayComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
     NvD3Module,
     NgxSpinnerModule,
     NgxCleaveDirectiveModule,
-    AgGridModule.withComponents([HistoryComponent, PlayAudioComponent]),
+    AgGridModule.withComponents([HistoryComponent, PlayAudioComponent,PlayComponent]),
     NgxSmartModalModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot()
