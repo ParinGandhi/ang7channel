@@ -79,6 +79,10 @@ export class NavbarComponent implements OnInit {
     password: null
   };
   guestUser: boolean = false;
+  ipOctetOne: any;
+  ipOctetTwo: any;
+  ipOctetThree: any;
+  ipOctetFour: any
 
 
   /** Constructor */
@@ -90,19 +94,21 @@ export class NavbarComponent implements OnInit {
     });
   }
   addChannel() {
-    this.easMediaDataToCreate.lastModifiedTs = new Date();
-    this.easMediaDataToCreate.lastModifiedUserId = 'testUser';
-    this.dataService.addChannel(this.easMediaDataToCreate)
-      .subscribe(createdChannel => {
-        console.log(createdChannel);
-        this.clearChannelInfo();
-        this.getGridData();
-        this.invokeDropdowns();
-        //this.sharedService.changeDashboardData(true);
-        this.toastr.success('Successfully added channel', '', {
-          timeOut: this.toastrTimeOut
+    if (this.validateAllInputs()) {
+      this.easMediaDataToCreate.lastModifiedTs = new Date();
+      this.easMediaDataToCreate.lastModifiedUserId = 'testUser';
+      this.dataService.addChannel(this.easMediaDataToCreate)
+        .subscribe(createdChannel => {
+          console.log(createdChannel);
+          this.clearChannelInfo();
+          this.getGridData();
+          this.invokeDropdowns();
+          //this.sharedService.changeDashboardData(true);
+          this.toastr.success('Successfully added channel', '', {
+            timeOut: this.toastrTimeOut
+          });
         });
-      });
+    }
   };
 
   addSite() {
@@ -424,6 +430,15 @@ export class NavbarComponent implements OnInit {
   openHelp() {
     console.log("Help option clicked");
   };
+
+  validateAllInputs() {
+    let inputsAreValid = true;
+    if (this.easMediaDataToCreate.mediaOriginatedPort > 65535) {
+      this.toastr.error("Port cannot be larger than 65535");
+      inputsAreValid = false;
+    }
+    return inputsAreValid;
+  }
 
 
   /** On init */
