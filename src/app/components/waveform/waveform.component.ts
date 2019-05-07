@@ -47,6 +47,7 @@ export class WaveformComponent implements OnInit {
     this.waveFormGridOptions = <GridOptions>{
       onGridReady: () => {
         this.waveFormGridOptions.api.sizeColumnsToFit();
+        this.waveFormGridOptions.api.forEachNode(node => node.rowIndex?0:node.setSelected(true));
       },
       rowHeight: 40
     };
@@ -164,6 +165,7 @@ export class WaveformComponent implements OnInit {
       this.endDate = (new Date(selectedRows[0].endTime * 1000));
     }
     this.disablePlay=false;
+    this.autoScroll();
 
   }
   checkPlayPause(){
@@ -211,7 +213,7 @@ export class WaveformComponent implements OnInit {
             this.toastr.error('No audio found', '', {
               timeOut: this.toastrTimeOut
             });
-           this.enableDownload = false;
+            this.enableDownload = false;
           }
           if (error.status === 200) {
             this.enableWaveForm=true;

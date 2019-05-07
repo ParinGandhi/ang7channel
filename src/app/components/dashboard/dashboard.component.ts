@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DashboardComponent implements OnInit {
   options: any;
+  dummySites: any;
   data: any;
   public appAttributes: applicationAttributes = {
     ApplicationVersion: null,
@@ -77,8 +78,12 @@ export class DashboardComponent implements OnInit {
       }, 500)
     }
 
-
-
+    this.dummySites = ["   ",
+      "",
+      " ",
+      "   ",
+      "    ",
+      "      "]
   }
 
 
@@ -105,14 +110,12 @@ export class DashboardComponent implements OnInit {
         },
         noData: 'No data available',
         showValues: true,
-        valueFormat: function (d) {
-          return d3.format('0f')(d);
-        },
+
         duration: 500,
         xAxis: {
           axisLabel: 'CHANNELS'
         },
-        groupSpacing:0.3,
+        groupSpacing: 0.3,
         yAxis: {
           axisLabel: 'SITES',
           axisLabelDistance: -5,
@@ -136,6 +139,17 @@ export class DashboardComponent implements OnInit {
         this.dashboardData = response;
         activeCount = this.dashboardData.activeChannelsBySite;
         maxCount = Math.max(...this.dashboardData.siteCount);
+        this.optionsForTool.chart['valueFormat'] = function (d) {
+          return d3.format('0f')(d);
+        }
+        if (this.dashboardData.siteNames.length <= 5) {
+          this.optionsForTool.chart['valueFormat'] = function (d) {
+            if (d != 0) {
+              return d3.format('0f')(d);
+            }
+          }
+          this.setDummyData();
+        }
         for (let i = 0; i < this.dashboardData.siteNames.length; i++) {
           let obj = {
             label: this.dashboardData.siteNames[i],
@@ -178,8 +192,8 @@ export class DashboardComponent implements OnInit {
         this.chartActivityData = this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
         this.optionsForTool.chart["yDomain"] = ([0, maxCount]);
-        
-       
+
+
       }
     )
     var tooltip = function (hoveredData) {
@@ -192,9 +206,6 @@ export class DashboardComponent implements OnInit {
       }
       return toolTipView;
     }
-    //  var getMax = function(){
-    //   return ([0,maxCount]) ;
-    //  }
     this.options = {
       chart: {
         type: 'pieChart',
@@ -213,47 +224,19 @@ export class DashboardComponent implements OnInit {
         },
         labelThreshold: 0.01,
         labelSunbeamLayout: false
-        
-      }
-      
-    };
-    // this.optionsForTool = {
-    //   chart: {
-    //     type: 'pieChart',
-    //     height: 700,
-    //     x: function (d) {
-    //       return d.siteNames + ' ' + '[' + d.siteCount + ']';
-    //     },
-    //     y: function (d) {
-    //       return d.siteCount;
-    //     },
-    //     showLabels: true,
-    //     duration: 500,
-    //     tooltip: {
-    //       x: function (d) {
-    //         return d.siteNames + ' ' + '[' + d.siteCount + ']';
-    //       },
-    //       contentGenerator: function (key) {
-    //         return tooltip(key);
-    //       }
-    //     },
-    //     labelThreshold: 0.01,
-    //     labelSunbeamLayout: true,
-    //     legend: {
-    //       margin: {
-    //         top: 10,
-    //         right: 35,
-    //         bottom: 5,
-    //         left: 0
-    //       }
-    //     }
-    //   }
-    // };
 
-    //this.optionsForTool.chart.yDomain=([0,maxCount]);
+      }
+
+    };
   }
 
+  setDummyData() {
+    for (var k = 0; k <= this.dummySites.length; k++) {
+      this.dashboardData.siteNames.push(this.dummySites[k]);
+      this.dashboardData.siteCount.push("0");
 
+    }
+  }
   setRefreshInterval(refreshInterval) {
     this.dashboardInterval = setInterval(() => {
       this.getDashBoardData();
@@ -266,17 +249,7 @@ export class DashboardComponent implements OnInit {
       this.toastr.success('Successfully cancelled auto refresh.', '', {
         timeOut: 10000
       });
-      // clearInterval(this.dashboardInterval);
     }
   }
-
-
-
-  // setRefreshInterval(intervalData) {
-  //   setInterval(function () {
-  //     this.getDashboardData()
-  //   }, intervalData.value)
-  // }
-
 
 }

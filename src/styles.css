@@ -35,7 +35,9 @@
   border-radius: 50%;
   display: inline-block;
 }
-
+/* .nv-bar rect {
+  width: 20px !important;
+} */
 .greendot {
   height: 25px;
   width: 25px;
