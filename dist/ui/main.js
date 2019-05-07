@@ -268,7 +268,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf='isLoggedIn'>\r\n  <div class=\"row\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-3\"></div>\r\n      <div class=\"col-md-5\">\r\n        <div class=\" pull-right\">\r\n          Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n          <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n              aria-hidden=\"true\"></span></button>\r\n        </div>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"col-md-3 col-md-offset-7\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"pull-right\">\r\n        Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n        <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-2\" style=\"padding-bottom: 20px;\">\r\n      <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"dashboardRefreshInverval\" (change)=\"setRefreshInterval(dashboardRefreshInverval)\">\r\n        <option value=\"1\">Select an auto refresh interval...</option>\r\n        <option *ngFor=\"let refreshInterval of refreshIntervals\" [ngValue]=\"refreshInterval\">\r\n          {{refreshInterval.description}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-9\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Channels By Site\r\n          <span class=\"pull-right\">Total: {{dashboardData?.siteNames?.length}} </span>\r\n          <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{dashboardData.siteNames.length}}\r\n                  </div> -->\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <nvd3 [options]=\"optionsForTool\" [data]=\"data\"></nvd3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Active/Inactive Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                        Total: {{activeInactiveChartLabels.length}}\r\n                      </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Enabled/Disabled Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{activeInactiveChartLabels.length}}\r\n                  </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Application Details\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                      Total: {{activeInactiveChartLabels.length}}\r\n                    </div> -->\r\n            </div>\r\n            <div class=\"panel-body\" style=\"\r\n                  height: 80%\">\r\n              <div>\r\n                <span *ngFor=\"let item of dashboardData?.applicationAttributes | keyvalue\">\r\n                  <span class=\"blackdot\" style=\"\r\n                          margin-bottom: 0%\"></span> &nbsp;<span><label>{{item?.key}}\r\n                      &nbsp;:</label>\r\n                    {{item?.value}}</span><br><br>\r\n                </span>\r\n                <!-- <span class=\"blackdot\" style=\"\r\n                    margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n\r\n\r\n\r\n\r\n\r\n  </div>\r\n</div>"
+module.exports = "<div *ngIf='isLoggedIn'>\r\n  <div class=\"row\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-3\"></div>\r\n      <div class=\"col-md-5\">\r\n        <div class=\" pull-right\">\r\n          Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n          <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n              aria-hidden=\"true\"></span></button>\r\n        </div>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"col-md-3 col-md-offset-7\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"pull-right\">\r\n        Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n        <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-2\" style=\"padding-bottom: 20px;\">\r\n      <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"dashboardRefreshInverval\" (change)=\"setRefreshInterval(dashboardRefreshInverval)\">\r\n        <option value=\"1\">Select an auto refresh interval...</option>\r\n        <option *ngFor=\"let refreshInterval of refreshIntervals\" [ngValue]=\"refreshInterval\">\r\n          {{refreshInterval.description}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Channels By Site\r\n          <span class=\"pull-right\">Total: {{dashboardData?.siteNames?.length}} </span>\r\n          <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{dashboardData.siteNames.length}}\r\n                  </div> -->\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <nvd3 [options]=\"optionsForTool\" [data]=\"data\"></nvd3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Active/Inactive Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                        Total: {{activeInactiveChartLabels.length}}\r\n                      </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Enabled/Disabled Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{activeInactiveChartLabels.length}}\r\n                  </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Application Details\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                      Total: {{activeInactiveChartLabels.length}}\r\n                    </div> -->\r\n            </div>\r\n            <div class=\"panel-body\" style=\"\r\n                  height: 80%\">\r\n              <div>\r\n                <span *ngFor=\"let item of dashboardData?.applicationAttributes | keyvalue\">\r\n                  <span class=\"blackdot\" style=\"\r\n                          margin-bottom: 0%\"></span> &nbsp;<span><label>{{item?.key}}\r\n                      &nbsp;:</label>\r\n                    {{item?.value}}</span><br><br>\r\n                </span>\r\n                <!-- <span class=\"blackdot\" style=\"\r\n                    margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n\r\n\r\n\r\n\r\n\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -361,6 +361,7 @@ var DashboardComponent = /** @class */ (function () {
                             return tooltip(key);
                         }
                     },
+                    noData: 'No data available',
                     showValues: true,
                     valueFormat: function (d) {
                         return d3.format('0f')(d);
@@ -369,9 +370,10 @@ var DashboardComponent = /** @class */ (function () {
                     xAxis: {
                         axisLabel: 'CHANNELS'
                     },
+                    groupSpacing: 0.3,
                     yAxis: {
                         axisLabel: 'SITES',
-                        axisLabelDistance: -15,
+                        axisLabelDistance: -5,
                         tickFormat: function (d) {
                             return d3.format('0f')(d);
                         }
@@ -457,20 +459,13 @@ var DashboardComponent = /** @class */ (function () {
                         return d.siteCount;
                     },
                     showLabels: true,
+                    noData: 'No data available',
                     duration: 500,
                     tooltip: {
                         enabled: false
                     },
                     labelThreshold: 0.01,
-                    labelSunbeamLayout: true,
-                    legend: {
-                        margin: {
-                            top: 10,
-                            right: 35,
-                            bottom: 5,
-                            left: 0
-                        }
-                    }
+                    labelSunbeamLayout: false
                 }
             };
             // this.optionsForTool = {
@@ -1779,7 +1774,7 @@ var ViewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\r\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\"\r\n  [pagination]=\"true\">\r\n</ag-grid-angular>\r\n<div>\r\n  <div [hidden]=\"!enableOnGridClick\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\"> -->\r\n\r\n      <!-- <div class=\"col-md-4\">\r\n        <label>Start time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <label>End time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div> -->\r\n      <!-- <div class=\"col-md-4\">\r\n        <button [disabled]='disablePlay' type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\r\n          Play\r\n        </button>\r\n        &nbsp;\r\n        <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\r\n          <i class=\"fa fa-download\"></i> Download\r\n        </button>\r\n      </div> -->\r\n      \r\n    <!-- </div> -->\r\n<div>\r\n    <div  [hidden]=\"!enableWaveForm\" class=\"col-md-12\">\r\n      <div class=\"col-md-10\"><div id=\"waveform\"></div>\r\n      <div id=\"waveform-timeline\"></div></div>\r\n      \r\n      <br>\r\n      <div *ngIf=\"showPlayer\" class=\"col-md-2\">\r\n          <div class=\"row\">\r\n            <div class=\"col-md-3 padleftzero\" > <label style=\"\r\n              margin-top: 6%;\r\n          \">Start time</label></div>\r\n             <div class=\"col-md-9 padleftzero\"><p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n              </p-calendar></div>\r\n      \r\n            </div>\r\n            <br>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-3 padleftzero\"><label style=\"\r\n                  margin-top: 6%;\r\n              \">End time</label> </div>\r\n                <div class=\"col-md-9 padleftzero\"><p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n              </p-calendar></div>\r\n            </div>\r\n            <br>\r\n        <div class=\"row\">\r\n        \r\n          <div class=\" text-center\">\r\n           \r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='toogleMute()'>\r\n               \r\n              <span [hidden]=\"!mute\"><i class=\"fa fa-volume-up\"></i></span>\r\n              <span [hidden]=\"mute\"><i class=\" fa fa-volume-off\"></i></span>\r\n            </button> &nbsp;\r\n\r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='waveSurfer.skipBackward()'>\r\n              <i class=\"fa fa-backward\"></i>\r\n            </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_play\" class=\"btn \" (click)=\"checkPlayPause()\">\r\n              <span [hidden] =\"!play\" ><i  class=\"fa fa-play\"></i></span> \r\n              <span [hidden] =\"play\" ><i [hidden] =\"!play\"class=\"fa fa-pause\"></i></span> \r\n             </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_stop\" class=\"btn \" (click)='wavesurferStop()'>\r\n              <i class=\"fa fa-stop\"></i>\r\n            </button>&nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_fw\" class=\"btn \" (click)='waveSurfer.skipForward()'>\r\n              <i class=\"fa fa-forward\"></i>\r\n            </button>    \r\n          </div>\r\n        </div>\r\n        <br>\r\n        <br>\r\n        <h1 id=\"scroller\"></h1>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n  </div>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  \r\n</div>"
+module.exports = "<ag-grid-angular style=\"width: 100%; height: 300px; margin-top: 40px;\" class=\"ag-theme-balham\" [rowData]=\"waveformData\"\r\n  [columnDefs]=\"waveformColumnDefs\" [gridOptions]=\"waveFormGridOptions\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n  [enableFilter]=\"true\" [paginationPageSize]=20 [rowSelection]=\"rowSelection\"\r\n  (selectionChanged)=\"onSelectionChanged($event)\" [pagination]=\"true\">\r\n</ag-grid-angular>\r\n<div>\r\n  <div    [hidden]=\"!enableOnGridClick\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 50px; padding-top:10px;\"> -->\r\n\r\n      <!-- <div class=\"col-md-4\">\r\n        <label>Start time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <label>End time</label> &nbsp;\r\n        <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n        </p-calendar>\r\n        <span style=\"margin-left:35px\"></span>\r\n\r\n      </div> -->\r\n      <!-- <div class=\"col-md-4\">\r\n        <button [disabled]='disablePlay' type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\r\n          Play\r\n        </button>\r\n        &nbsp;\r\n        <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\r\n          <i class=\"fa fa-download\"></i> Download\r\n        </button>\r\n      </div> -->\r\n      \r\n    <!-- </div> -->\r\n<div>\r\n    <div   class=\"col-md-12\">\r\n      <div  class=\"col-md-10\">\r\n        <div [hidden]=\"!enableWaveForm\">\r\n        <div  id=\"waveform\"></div>\r\n      <div id=\"waveform-timeline\"></div>\r\n    </div></div>\r\n      <div [hidden]=\"!enableOnGridClick\" class=\"col-md-2\">\r\n          <div class=\"row\">\r\n            <div class=\"col-md-3 padleftzero\" > <label style=\"\r\n              margin-top: 6%;\r\n          \">Start time</label></div>\r\n             <div class=\"col-md-9 padleftzero\"><p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n              </p-calendar></div>\r\n      \r\n            </div>\r\n            <br>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-3 padleftzero\"><label style=\"\r\n                  margin-top: 6%;\r\n              \">End time</label> </div>\r\n                <div class=\"col-md-9 padleftzero\"><p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n              </p-calendar></div>\r\n              \r\n              \r\n            </div>\r\n            <div class=\"row\"  style=\"\r\n            padding-top: 3%;\r\n            padding-left: 27%;\r\n        \"><button [disabled]='disablePlay' type=\"button\" class=\"btn btn-primary\" (click)=\"loadAudioUrl()\">\r\n                Play\r\n              </button>\r\n              &nbsp;\r\n              <button *ngIf=\"enableDownload\" type=\"button\" class=\"btn btn-primary\" (click)=\"downloadAudio()\">\r\n                <i class=\"fa fa-download\"></i> Download\r\n              </button></div>\r\n            <br>\r\n        <div *ngIf=\"showPlayer\" class=\"row\">\r\n        \r\n          <div class=\" text-center\">\r\n           \r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='toogleMute()'>\r\n               \r\n              <span [hidden]=\"!mute\"><i class=\"fa fa-volume-up\"></i></span>\r\n              <span [hidden]=\"mute\"><i class=\" fa fa-volume-off\"></i></span>\r\n            </button> &nbsp;\r\n\r\n            <button type=\"button\" id=\"button_bw\" class=\"btn \" (click)='waveSurfer.skipBackward()'>\r\n              <i class=\"fa fa-backward\"></i>\r\n            </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_play\" class=\"btn \" (click)=\"checkPlayPause()\">\r\n              <span [hidden] =\"!play\" ><i  class=\"fa fa-play\"></i></span> \r\n              <span [hidden] =\"play\" ><i [hidden] =\"!play\"class=\"fa fa-pause\"></i></span> \r\n             </button> &nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_stop\" class=\"btn \" (click)='wavesurferStop()'>\r\n              <i class=\"fa fa-stop\"></i>\r\n            </button>&nbsp;\r\n            \r\n            <button type=\"button\" id=\"button_fw\" class=\"btn \" (click)='waveSurfer.skipForward()'>\r\n              <i class=\"fa fa-forward\"></i>\r\n            </button>    \r\n          </div>\r\n        </div>\r\n        <br>\r\n        <br>\r\n        <h1 id=\"scroller\"></h1>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n  </div>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  \r\n</div>"
 
 /***/ }),
 
@@ -1800,7 +1795,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_wavesurfer_js_dist_plugin_wavesurfer_timeline_min_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_wavesurfer_js_dist_plugin_wavesurfer_timeline_min_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/data.service */ "./src/app/services/data.service.ts");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
-/* harmony import */ var _play_play_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../play/play.component */ "./src/app/components/play/play.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1810,7 +1804,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -1854,14 +1847,14 @@ var WaveformComponent = /** @class */ (function () {
                 headerName: "End time", field: "endTime", width: 200, cellRenderer: function (data) {
                     return data.value ? (new Date(data.value * 1000)).toLocaleDateString() + " " + new Date(data.value * 1000).toLocaleTimeString() : '';
                 }
-            },
-            {
-                headerName: '', cellRendererFramework: _play_play_component__WEBPACK_IMPORTED_MODULE_5__["PlayComponent"], cellRendererParams: {
-                    onClick: this.loadAudioUrl.bind(this),
-                    label: 'Click 1',
-                    width: 75
-                },
             }
+            // {
+            //   headerName: '', cellRendererFramework: PlayComponent, cellRendererParams: {
+            //     onClick: this.loadAudioUrl.bind(this),
+            //     label: 'Click 1',
+            //     width: 75
+            //   },
+            // }
         ];
     }
     WaveformComponent.prototype.ngOnInit = function () {
@@ -1943,14 +1936,14 @@ var WaveformComponent = /** @class */ (function () {
         });
     };
     ;
-    WaveformComponent.prototype.getStartEndTimes = function (selRow) {
+    WaveformComponent.prototype.onSelectionChanged = function () {
         this.enableOnGridClick = true;
-        var selectedRows = selRow.rowData;
-        if (selectedRows.startTime != null) {
-            this.startDate = (new Date(selectedRows.startTime * 1000));
+        var selectedRows = this.waveFormGridOptions.api.getSelectedRows();
+        if (selectedRows[0].startTime != null) {
+            this.startDate = (new Date(selectedRows[0].startTime * 1000));
         }
-        if (selectedRows.endTime != null) {
-            this.endDate = (new Date(selectedRows.endTime * 1000));
+        if (selectedRows[0].endTime != null) {
+            this.endDate = (new Date(selectedRows[0].endTime * 1000));
         }
         this.disablePlay = false;
     };
@@ -1974,13 +1967,13 @@ var WaveformComponent = /** @class */ (function () {
         this.waveSurfer.toggleMute();
         this.mute = !this.mute;
     };
-    WaveformComponent.prototype.loadAudioUrl = function (selectRow) {
+    WaveformComponent.prototype.loadAudioUrl = function () {
         var _this = this;
-        if (selectRow.isPlay && this.isWavformExist) {
+        if (this.isWavformExist) {
             this.waveSurfer.pause();
             this.waveSurfer.empty();
         }
-        this.getStartEndTimes(selectRow);
+        // this.getStartEndTimes(selectRow);
         this.audoInputData.endDate = new Date(this.endDate).getTime();
         this.audoInputData.startDate = new Date(this.startDate).getTime();
         this.audoInputData.channelName = this.gridChannelName;
@@ -1988,12 +1981,10 @@ var WaveformComponent = /** @class */ (function () {
         this.dataService.getUrlByChannelName(this.audoInputData)
             .subscribe(function (response) {
             _this.enableWaveForm = true;
-            if (selectRow.isPlay) {
-                _this.constructWaveSurfer(response);
-            }
+            _this.constructWaveSurfer(response);
             _this.disablePlay = false;
             _this.enableDownload = true;
-            _this.audioFileName = _this.getAudioFileName(response, selectRow.isPlay);
+            _this.audioFileName = _this.getAudioFileName(response);
             _this.autoScroll();
         }, function (error) {
             if (error.status != 200) {
@@ -2004,26 +1995,21 @@ var WaveformComponent = /** @class */ (function () {
             }
             if (error.status === 200) {
                 _this.enableWaveForm = true;
-                if (selectRow.isPlay) {
-                    _this.constructWaveSurfer(error.error.text);
-                }
+                _this.constructWaveSurfer(error.error.text);
                 _this.disablePlay = false;
-                _this.audioFileName = _this.getAudioFileName(error.error.text, selectRow.isPlay);
+                _this.audioFileName = _this.getAudioFileName(error.error.text);
                 _this.enableDownload = true;
                 _this.autoScroll();
             }
             console.log(error);
         });
     };
-    WaveformComponent.prototype.getAudioFileName = function (audioUrl, isPlay) {
+    WaveformComponent.prototype.getAudioFileName = function (audioUrl) {
         var arrVars = audioUrl.split("/");
-        if (!isPlay) {
-            this.dataService.downloadAudio(arrVars.pop());
-        }
         return arrVars.pop();
     };
-    WaveformComponent.prototype.downloadAudio = function (e) {
-        this.loadAudioUrl(e);
+    WaveformComponent.prototype.downloadAudio = function () {
+        // this.loadAudioUrl(e);
         this.dataService.downloadAudio(this.audioFileName);
     };
     WaveformComponent.prototype.autoScroll = function () {
