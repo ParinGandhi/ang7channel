@@ -103,6 +103,7 @@ export class DashboardComponent implements OnInit {
             return tooltip(key);
           }
         },
+        noData: 'No data available',
         showValues: true,
         valueFormat: function (d) {
           return d3.format('0f')(d);
@@ -111,9 +112,10 @@ export class DashboardComponent implements OnInit {
         xAxis: {
           axisLabel: 'CHANNELS'
         },
+        groupSpacing:0.3,
         yAxis: {
           axisLabel: 'SITES',
-          axisLabelDistance: -15,
+          axisLabelDistance: -5,
           tickFormat: function (d) {
             return d3.format('0f')(d);
           }
@@ -176,6 +178,8 @@ export class DashboardComponent implements OnInit {
         this.chartActivityData = this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
         this.optionsForTool.chart["yDomain"] = ([0, maxCount]);
+        
+       
       }
     )
     var tooltip = function (hoveredData) {
@@ -202,21 +206,16 @@ export class DashboardComponent implements OnInit {
           return d.siteCount;
         },
         showLabels: true,
+        noData: 'No data available',
         duration: 500,
         tooltip: {
           enabled: false
         },
         labelThreshold: 0.01,
-        labelSunbeamLayout: true,
-        legend: {
-          margin: {
-            top: 10,
-            right: 35,
-            bottom: 5,
-            left: 0
-          }
-        }
+        labelSunbeamLayout: false
+        
       }
+      
     };
     // this.optionsForTool = {
     //   chart: {

@@ -1,10 +1,10 @@
 <ag-grid-angular style="width: 100%; height: 300px; margin-top: 40px;" class="ag-theme-balham" [rowData]="waveformData"
   [columnDefs]="waveformColumnDefs" [gridOptions]="waveFormGridOptions" [enableColResize]="true" [enableSorting]="true"
   [enableFilter]="true" [paginationPageSize]=20 [rowSelection]="rowSelection"
-  [pagination]="true">
+  (selectionChanged)="onSelectionChanged($event)" [pagination]="true">
 </ag-grid-angular>
 <div>
-  <div [hidden]="!enableOnGridClick">
+  <div    [hidden]="!enableOnGridClick">
     <!-- <div class="col-md-12" style="padding-bottom: 50px; padding-top:10px;"> -->
 
       <!-- <div class="col-md-4">
@@ -33,12 +33,13 @@
       
     <!-- </div> -->
 <div>
-    <div  [hidden]="!enableWaveForm" class="col-md-12">
-      <div class="col-md-10"><div id="waveform"></div>
-      <div id="waveform-timeline"></div></div>
-      
-      <br>
-      <div *ngIf="showPlayer" class="col-md-2">
+    <div   class="col-md-12">
+      <div  class="col-md-10">
+        <div [hidden]="!enableWaveForm">
+        <div  id="waveform"></div>
+      <div id="waveform-timeline"></div>
+    </div></div>
+      <div [hidden]="!enableOnGridClick" class="col-md-2">
           <div class="row">
             <div class="col-md-3 padleftzero" > <label style="
               margin-top: 6%;
@@ -54,9 +55,21 @@
               ">End time</label> </div>
                 <div class="col-md-9 padleftzero"><p-calendar [(ngModel)]="endDate" [showIcon]="true" [showTime]="true" name="endDate" ngDefaultControl>
               </p-calendar></div>
+              
+              
             </div>
+            <div class="row"  style="
+            padding-top: 3%;
+            padding-left: 27%;
+        "><button [disabled]='disablePlay' type="button" class="btn btn-primary" (click)="loadAudioUrl()">
+                Play
+              </button>
+              &nbsp;
+              <button *ngIf="enableDownload" type="button" class="btn btn-primary" (click)="downloadAudio()">
+                <i class="fa fa-download"></i> Download
+              </button></div>
             <br>
-        <div class="row">
+        <div *ngIf="showPlayer" class="row">
         
           <div class=" text-center">
            

@@ -110,14 +110,14 @@ export class WaveformComponent implements OnInit {
       headerName: "End time", field: "endTime", width: 200, cellRenderer: (data) => {
         return data.value ? (new Date(data.value * 1000)).toLocaleDateString() + " " + new Date(data.value * 1000).toLocaleTimeString() : '';
       }
-    },
-    {
-      headerName: '', cellRendererFramework: PlayComponent, cellRendererParams: {
-        onClick: this.loadAudioUrl.bind(this),
-        label: 'Click 1',
-        width: 75
-      },
     }
+    // {
+    //   headerName: '', cellRendererFramework: PlayComponent, cellRendererParams: {
+    //     onClick: this.loadAudioUrl.bind(this),
+    //     label: 'Click 1',
+    //     width: 75
+    //   },
+    // }
    
    
   ];
@@ -154,14 +154,14 @@ export class WaveformComponent implements OnInit {
         }
       );
   };
-  getStartEndTimes(selRow) {
+  onSelectionChanged() {
     this.enableOnGridClick=true;
-    var selectedRows = selRow.rowData;
-    if (selectedRows.startTime != null) {
-      this.startDate = (new Date(selectedRows.startTime * 1000));
+    var selectedRows = this.waveFormGridOptions.api.getSelectedRows();
+    if (selectedRows[0].startTime != null) {
+      this.startDate = (new Date(selectedRows[0].startTime * 1000));
     }
-    if (selectedRows.endTime != null) {
-      this.endDate = (new Date(selectedRows.endTime * 1000));
+    if (selectedRows[0].endTime != null) {
+      this.endDate = (new Date(selectedRows[0].endTime * 1000));
     }
     this.disablePlay=false;
 
@@ -186,12 +186,12 @@ export class WaveformComponent implements OnInit {
     this.mute = !this.mute;
 
   }
-  loadAudioUrl(selectRow) {
-    if( selectRow.isPlay && this.isWavformExist){
+  loadAudioUrl() {
+    if(  this.isWavformExist){
       this.waveSurfer.pause();
      this.waveSurfer.empty();
    }
-   this.getStartEndTimes(selectRow);
+  // this.getStartEndTimes(selectRow);
     this.audoInputData.endDate = new Date(this.endDate).getTime();
     this.audoInputData.startDate = new Date(this.startDate).getTime();
     this.audoInputData.channelName = this.gridChannelName;
@@ -200,10 +200,10 @@ export class WaveformComponent implements OnInit {
       .subscribe(
         response => {
           this.enableWaveForm=true;
-          if(selectRow.isPlay) {this.constructWaveSurfer(response);}
+         this.constructWaveSurfer(response);
           this.disablePlay = false;
           this.enableDownload = true;
-          this.audioFileName = this.getAudioFileName(response,selectRow.isPlay);
+          this.audioFileName = this.getAudioFileName(response);
           this.autoScroll();
         },
         error => {
@@ -211,13 +211,13 @@ export class WaveformComponent implements OnInit {
             this.toastr.error('No audio found', '', {
               timeOut: this.toastrTimeOut
             });
-            this.enableDownload = false;
+           this.enableDownload = false;
           }
           if (error.status === 200) {
             this.enableWaveForm=true;
-            if(selectRow.isPlay) {this.constructWaveSurfer(error.error.text);}
+           this.constructWaveSurfer(error.error.text);
             this.disablePlay = false;
-            this.audioFileName = this.getAudioFileName(error.error.text,selectRow.isPlay);
+            this.audioFileName = this.getAudioFileName(error.error.text);
             this.enableDownload = true;
             this.autoScroll();
            
@@ -227,16 +227,14 @@ export class WaveformComponent implements OnInit {
         }
       );
   }
-  getAudioFileName(audioUrl,isPlay) {
+  getAudioFileName(audioUrl) {
    
     var arrVars = audioUrl.split("/");
-    if(!isPlay){
-      this.dataService.downloadAudio(arrVars.pop());
-    }
+    
     return arrVars.pop();
   }
-  downloadAudio(e) {
-    this.loadAudioUrl(e);
+  downloadAudio() {
+   // this.loadAudioUrl(e);
     this.dataService.downloadAudio(this.audioFileName);
   }
   autoScroll(){
