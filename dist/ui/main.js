@@ -363,9 +363,6 @@ var DashboardComponent = /** @class */ (function () {
                     },
                     noData: 'No data available',
                     showValues: true,
-                    valueFormat: function (d) {
-                        return d3.format('0f')(d);
-                    },
                     duration: 500,
                     xAxis: {
                         axisLabel: 'CHANNELS'
@@ -392,6 +389,17 @@ var DashboardComponent = /** @class */ (function () {
                 _this.dashboardData = response;
                 activeCount = _this.dashboardData.activeChannelsBySite;
                 maxCount = Math.max.apply(Math, _this.dashboardData.siteCount);
+                _this.optionsForTool.chart['valueFormat'] = function (d) {
+                    return d3.format('0f')(d);
+                };
+                if (_this.dashboardData.siteNames.length <= 5) {
+                    _this.optionsForTool.chart['valueFormat'] = function (d) {
+                        if (d != 0) {
+                            return d3.format('0f')(d);
+                        }
+                    };
+                    _this.setDummyData();
+                }
                 for (var i = 0; i < _this.dashboardData.siteNames.length; i++) {
                     var obj = {
                         label: _this.dashboardData.siteNames[i],
@@ -445,9 +453,6 @@ var DashboardComponent = /** @class */ (function () {
                 }
                 return toolTipView;
             };
-            //  var getMax = function(){
-            //   return ([0,maxCount]) ;
-            //  }
             this.options = {
                 chart: {
                     type: 'pieChart',
@@ -468,39 +473,6 @@ var DashboardComponent = /** @class */ (function () {
                     labelSunbeamLayout: false
                 }
             };
-            // this.optionsForTool = {
-            //   chart: {
-            //     type: 'pieChart',
-            //     height: 700,
-            //     x: function (d) {
-            //       return d.siteNames + ' ' + '[' + d.siteCount + ']';
-            //     },
-            //     y: function (d) {
-            //       return d.siteCount;
-            //     },
-            //     showLabels: true,
-            //     duration: 500,
-            //     tooltip: {
-            //       x: function (d) {
-            //         return d.siteNames + ' ' + '[' + d.siteCount + ']';
-            //       },
-            //       contentGenerator: function (key) {
-            //         return tooltip(key);
-            //       }
-            //     },
-            //     labelThreshold: 0.01,
-            //     labelSunbeamLayout: true,
-            //     legend: {
-            //       margin: {
-            //         top: 10,
-            //         right: 35,
-            //         bottom: 5,
-            //         left: 0
-            //       }
-            //     }
-            //   }
-            // };
-            //this.optionsForTool.chart.yDomain=([0,maxCount]);
         };
     }
     DashboardComponent.prototype.ngOnInit = function () {
@@ -515,6 +487,18 @@ var DashboardComponent = /** @class */ (function () {
             setTimeout(function () {
                 document.getElementById('login').click();
             }, 500);
+        }
+        this.dummySites = ["   ",
+            "",
+            " ",
+            "   ",
+            "    ",
+            "      "];
+    };
+    DashboardComponent.prototype.setDummyData = function () {
+        for (var k = 0; k <= this.dummySites.length; k++) {
+            this.dashboardData.siteNames.push(this.dummySites[k]);
+            this.dashboardData.siteCount.push("0");
         }
     };
     DashboardComponent.prototype.setRefreshInterval = function (refreshInterval) {
@@ -531,7 +515,6 @@ var DashboardComponent = /** @class */ (function () {
             this.toastr.success('Successfully cancelled auto refresh.', '', {
                 timeOut: 10000
             });
-            // clearInterval(this.dashboardInterval);
         }
     };
     DashboardComponent = __decorate([
@@ -1863,6 +1846,7 @@ var WaveformComponent = /** @class */ (function () {
         this.waveFormGridOptions = {
             onGridReady: function () {
                 _this.waveFormGridOptions.api.sizeColumnsToFit();
+                _this.waveFormGridOptions.api.forEachNode(function (node) { return node.rowIndex ? 0 : node.setSelected(true); });
             },
             rowHeight: 40
         };
@@ -1946,6 +1930,7 @@ var WaveformComponent = /** @class */ (function () {
             this.endDate = (new Date(selectedRows[0].endTime * 1000));
         }
         this.disablePlay = false;
+        this.autoScroll();
     };
     WaveformComponent.prototype.checkPlayPause = function () {
         this.waveSurfer.playPause();
