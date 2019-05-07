@@ -4,20 +4,25 @@
 </p-sidebar>
 <div class="row" style="margin-top: 25px;">
   <!-- <div class="col-md-12"> -->
-  <div class="col-md-1">
-    <button class="btn btn-success btn-block" (click)="display = true;"><span class="glyphicon glyphicon-search"
+  <div class="col-sm-6">
+    <button class="btn btn-success" (click)="display = true;"><span class="glyphicon glyphicon-search"
         aria-hidden="true"></span>&nbsp;Search</button>
+    <button *ngIf="loggedIn" class="btn btn-success" (click)="exportToCsv();" style="margin-left: 1%;"><span
+        class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;Export to CSV</button>
+    <button class="btn btn-success" (click)="archiveChannels();" style="margin-left: 1%;"><span
+        class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;&nbsp;Archive channels
+    </button>
   </div>
-  <div class="col-md-1">
+  <!-- <div class="col-sm-2">
     <button *ngIf="loggedIn" class="btn btn-success" (click)="exportToCsv();"><span
         class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;Export to CSV</button>
   </div>
-  <div class="col-md-1">
+  <div class="col-sm-2">
     <button class="btn btn-success" (click)="archiveChannels();"><span class="glyphicon glyphicon-folder-open"
         aria-hidden="true"></span>&nbsp;&nbsp;Archive channels
     </button>
-  </div>
-  <div class="col-md-3 col-md-offset-6">
+  </div> -->
+  <div class="col-sm-6">
     <div class="pull-right">
       Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;
       <button class="btn btn-sm btn-default" (click)="getGridData();"><span class="glyphicon glyphicon-refresh"

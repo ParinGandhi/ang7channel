@@ -77,31 +77,41 @@
             aria-hidden="true"></span></button>
       </div>
     </div>
-    <div class="row modalInputHeight">
+    <!-- <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="originatedIp">Originated IP *</label>
         <input class="form-control" id="originatedIp" type="text" [cleave]="{delimiter: '.', blocks: [3,3,3,3]}"
           [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.mediaOriginatedIp">
       </div>
+    </div> -->
+    <div class="row modalInputHeight">
+      <div class="col-sm-10 col-sm-offset-1">
+        <label for="originatedIp">Originated IP *</label>
+      </div>
     </div>
-    <!-- <div class="row modalInputHeight">
+    <div class="row modalInputHeight">
       <div class="col-sm-2 col-sm-offset-1">
-        <input class="form-control" id="originatedIp" type="text" maxlength="3" [ngModelOptions]="{standalone: true}"
+        <input class="form-control" id="octetOne" type="text" maxlength="3" (blur)="padIp(ipOctetOne, 'ipOctetOne')"
+          (keyup)="checkIpValue(ipOctetOne, 'octetTwo', $event, 'ipOctetOne')" [ngModelOptions]="{standalone: true}"
           [(ngModel)]="ipOctetOne">
       </div>
       <div class="col-sm-2">
-        <input class="form-control" id="originatedIp" type="text" maxlength="3" [ngModelOptions]="{standalone: true}"
+        <input class="form-control" id="octetTwo" type="text" maxlength="3" (blur)="padIp(ipOctetTwo, 'ipOctetTwo')"
+          (keyup)="checkIpValue(ipOctetTwo, 'octetThree', $event, 'ipOctetTwo')" [ngModelOptions]="{standalone: true}"
           [(ngModel)]="ipOctetTwo">
       </div>
       <div class="col-sm-2">
-        <input class="form-control" id="originatedIp" type="text" maxlength="3" [ngModelOptions]="{standalone: true}"
-          [(ngModel)]="ipOctetThree">
+        <input class="form-control" id="octetThree" type="text" maxlength="3"
+          (blur)="padIp(ipOctetThree, 'ipOctetThree')"
+          (keyup)="checkIpValue(ipOctetThree, 'octetFour', $event, 'ipOctetThree')"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="ipOctetThree">
       </div>
       <div class="col-sm-2 ">
-        <input class="form-control" id="originatedIp" type="text" maxlength="3" [ngModelOptions]="{standalone: true}"
+        <input class="form-control" id="octetFour" type="text" maxlength="3" (blur)="padIp(ipOctetFour, 'ipOctetFour')"
+          (keyup)="checkIpValue(ipOctetFour, 'octetFour', $event, 'ipOctetFour')" [ngModelOptions]="{standalone: true}"
           [(ngModel)]="ipOctetFour">
       </div>
-    </div> -->
+    </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="originatedPort">Originated port *</label>

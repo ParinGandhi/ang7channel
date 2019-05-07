@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
 
   selectedInterval: any;
   refreshInterval: number;
-  dashboardRefreshInverval: number = 1;
+  dashboardRefreshInverval: any;
   dashboardInterval: any;
   refreshIntervals: {}[] = [
     {
@@ -70,6 +70,14 @@ export class DashboardComponent implements OnInit {
       this.isLoggedIn = data
       if (this.isLoggedIn) {
         this.getDashBoardData();
+        this.setRefreshInterval({
+          description: "5 minutes",
+          value: 300000
+        });
+        this.dashboardRefreshInverval = {
+          description: "5 minutes",
+          value: 300000
+        };
       }
     })
     if (!this.isLoggedIn) {

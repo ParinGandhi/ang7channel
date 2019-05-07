@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 
 import { SharedService } from '../../shared.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -95,6 +96,7 @@ export class NavbarComponent implements OnInit {
   }
   addChannel() {
     if (this.validateAllInputs()) {
+      this.easMediaDataToCreate.mediaOriginatedIp = this.ipOctetOne + '.' + this.ipOctetTwo + '.' + this.ipOctetThree + '.' + this.ipOctetFour;
       this.easMediaDataToCreate.lastModifiedTs = new Date();
       this.easMediaDataToCreate.lastModifiedUserId = 'testUser';
       this.dataService.addChannel(this.easMediaDataToCreate)
@@ -151,17 +153,27 @@ export class NavbarComponent implements OnInit {
   };
 
   addClassification() {
-    this.standardClassification.lastModifiedTs = new Date();
-    this.standardClassification.lastModifiedUserId = 'testUser';
-    this.dataService.addClassification(this.standardClassification).subscribe(success => {
-      this.clearClassification();
-      this.toastr.success('Successfully added classification', '', {
+    let validClassificationName = true;
+    let classificationMatch = /^[a-zA-Z0-9\\\/ ]*$/g;
+    if (!this.standardClassification.nm.match(classificationMatch)) {
+      this.toastr.error('Classification name can only contain alphanumeric characters, spaces, and slashes.', '', {
         timeOut: this.toastrTimeOut
       });
-      this.dataService.getClassificationList().subscribe(classificationList => {
-        this.classificationList = classificationList;
+      validClassificationName = false;
+    }
+    if (validClassificationName) {
+      this.standardClassification.lastModifiedTs = new Date();
+      this.standardClassification.lastModifiedUserId = 'testUser';
+      this.dataService.addClassification(this.standardClassification).subscribe(success => {
+        this.clearClassification();
+        this.toastr.success('Successfully added classification', '', {
+          timeOut: this.toastrTimeOut
+        });
+        this.dataService.getClassificationList().subscribe(classificationList => {
+          this.classificationList = classificationList;
+        });
       });
-    });
+    }
   };
 
 
@@ -257,6 +269,11 @@ export class NavbarComponent implements OnInit {
     this.easMediaDataToCreate.encodingFormat = null;
     this.easMediaDataToCreate.id = null;
     this.showUpdateChannelButton = false;
+    this.ipOctetOne = null;
+    this.ipOctetTwo = null;
+    this.ipOctetThree = null;
+    this.ipOctetFour = null;
+
   };
 
   clearSite() {
@@ -437,9 +454,73 @@ export class NavbarComponent implements OnInit {
       this.toastr.error("Port cannot be larger than 65535");
       inputsAreValid = false;
     }
+    // if (parseInt(this.ipOctetOne) > 255 || parseInt(this.ipOctetTwo) > 255 || parseInt(this.ipOctetThree) > 255 || parseInt(this.ipOctetFour) > 255 ||) {
+    if (parseInt(this.ipOctetOne) > 255 || parseInt(this.ipOctetTwo) > 255 || parseInt(this.ipOctetThree) > 255 || parseInt(this.ipOctetFour) > 255) {
+      this.toastr.error("Invalid IP address. IP cannot be greater than 255.255.255.255");
+      inputsAreValid = false;
+    }
+    if (!this.ipOctetOne || !this.ipOctetTwo || !this.ipOctetThree || !this.ipOctetFour) {
+      this.toastr.error("Invalid IP address. Please verify and try again");
+    }
     return inputsAreValid;
   }
 
+  padIp(octet, modelName) {
+    let newIpOctet;
+    switch (octet.length) {
+      case 1:
+        newIpOctet = "00" + octet;
+        break;
+      case 2:
+        newIpOctet = "0" + octet;
+        break;
+      default:
+        break;
+    }
+    if (newIpOctet) {
+      switch (modelName) {
+        case "ipOctetOne":
+          this.ipOctetOne = newIpOctet;
+          break;
+        case "ipOctetTwo":
+          this.ipOctetTwo = newIpOctet;
+          break;
+        case "ipOctetThree":
+          this.ipOctetThree = newIpOctet;
+          break;
+        case "ipOctetFour":
+          this.ipOctetFour = newIpOctet;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  checkIpValue(fromTextBox, toTextBox, e, modelName) {
+    if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
+      switch (modelName) {
+        case "ipOctetOne":
+          this.ipOctetOne = this.ipOctetOne.substring(0, this.ipOctetOne.length - 1);;
+          break;
+        case "ipOctetTwo":
+          this.ipOctetTwo = this.ipOctetTwo.substring(0, this.ipOctetTwo.length - 1);;
+          break;
+        case "ipOctetThree":
+          this.ipOctetThree = this.ipOctetThree.substring(0, this.ipOctetThree.length - 1);;
+          break;
+        case "ipOctetFour":
+          this.ipOctetFour = this.ipOctetFour.substring(0, this.ipOctetFour.length - 1);;
+          break;
+        default:
+          break;
+      }
+    }
+    var length = fromTextBox.length;
+    if (length === 3) {
+      document.getElementById(toTextBox).focus();
+    }
+  }
 
   /** On init */
   ngOnInit() {

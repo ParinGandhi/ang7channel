@@ -64,6 +64,7 @@ export class SearchComponent implements OnInit {
   roleIdList: StandardRole[];
   classificationList: StandardClassification[];
 
+
   constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService, private gridComponent: GridComponent) {
 
   }
@@ -153,6 +154,13 @@ export class SearchComponent implements OnInit {
           this.searchData.emit(channelList);
         })
   };
+
+
+  checkIpValue(ipAddress, e) {
+    if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
+      this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp.substring(0, this.easMediaData.mediaOriginatedIp.length - 1);
+    }
+  }
 
 
   ngOnInit() {
