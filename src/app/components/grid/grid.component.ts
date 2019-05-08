@@ -84,6 +84,7 @@ export class GridComponent implements OnInit {
     { headerName: 'Role ID', field: 'stndRole.nm' },
     { headerName: "Originated IP", field: "mediaOriginatedIp", hide: true },
     { headerName: "Originated Port", field: "mediaOriginatedPort", hide: true },
+    { headerName: "EnableIn", field: "enableIn" },
     {
       headerName: 'History', cellRendererFramework: HistoryComponent, cellRendererParams: {
         onClick: this.getHistory.bind(this),
@@ -126,7 +127,7 @@ export class GridComponent implements OnInit {
 
   exportToCsv() {
     var params = {
-      columnKeys: ["channelName", "stndSite.nm", "mediaOriginatedIp", "mediaOriginatedPort", "standardClassification.nm", "stndRole.nm"],
+      columnKeys: ["channelName", "stndSite.nm", "mediaOriginatedIp", "mediaOriginatedPort", "standardClassification.nm", "stndRole.nm", "enableIn"],
       fileName: 'AudioExport.csv',
       suppressQuotes: true
     };
