@@ -57,7 +57,7 @@ export class DataService {
   updateChannelUrl: string = this.baseUrl + '/eas-media-data';
   getClassificationUrl: string = this.baseUrl + '/reference-data?type=clsf';
   addClassificationUrl: string = this.baseUrl + '/standard-classification';
-  updateClassificationUrl: string = this.baseUrl + 'standard-classification';
+  updateClassificationUrl: string = this.baseUrl + '/standard-classification';
   dashboardInfoUrl: string = this.baseUrl + '/dashboard-info';
   getChannelData: string = this.baseUrl + '/eas-media-data-activity?channelName=';
   getDownloadAudio: string = this.baseUrl + '/downloadClip/';
