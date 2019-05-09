@@ -972,7 +972,9 @@ var NavbarComponent = /** @class */ (function () {
     };
     NavbarComponent.prototype.addChannel = function () {
         var _this = this;
-        if (this.validateAllInputs()) {
+        this.validationMessage = "";
+        this.validationMessage += '<ul>';
+        if (this.validateAllInputs() && this.validateChannel()) {
             this.easMediaDataToCreate.mediaOriginatedIp = this.ipOctetOne + '.' + this.ipOctetTwo + '.' + this.ipOctetThree + '.' + this.ipOctetFour;
             this.easMediaDataToCreate.lastModifiedTs = new Date();
             this.easMediaDataToCreate.lastModifiedUserId = 'testUser';
@@ -986,6 +988,13 @@ var NavbarComponent = /** @class */ (function () {
                 _this.toastr.success('Successfully added channel', '', {
                     timeOut: _this.toastrTimeOut
                 });
+            });
+        }
+        else {
+            this.validationMessage += '</ul>';
+            this.toastr.error(this.validationMessage, 'Missing fields', {
+                timeOut: this.toastrTimeOut * 2,
+                enableHtml: true
             });
         }
     };
@@ -1084,6 +1093,11 @@ var NavbarComponent = /** @class */ (function () {
         if (selectedChannel !== "" && selectedChannel !== undefined) {
             this.easMediaDataToCreate.channelName = selectedChannel.channelName;
             this.easMediaDataToCreate.mediaOriginatedIp = selectedChannel.mediaOriginatedIp;
+            var ipArray = selectedChannel.mediaOriginatedIp.split('.');
+            this.ipOctetOne = ipArray[0];
+            this.ipOctetTwo = ipArray[1];
+            this.ipOctetThree = ipArray[2];
+            this.ipOctetFour = ipArray[3];
             this.easMediaDataToCreate.stndSite.id = selectedChannel.stndSite.id;
             this.easMediaDataToCreate.mediaOriginatedPort = selectedChannel.mediaOriginatedPort;
             this.easMediaDataToCreate.standardClassification = selectedChannel.standardClassification;
@@ -1237,7 +1251,9 @@ var NavbarComponent = /** @class */ (function () {
     ;
     NavbarComponent.prototype.updateChannel = function () {
         var _this = this;
-        if (this.validateChannel()) {
+        this.validationMessage = "";
+        this.validationMessage += '<ul>';
+        if (this.validateAllInputs() && this.validateChannel()) {
             this.easMediaDataToCreate.lastModifiedUserId = 'testUser';
             this.dataService.updateChannel(this.easMediaDataToCreate)
                 .subscribe(function (response) {
@@ -1255,7 +1271,8 @@ var NavbarComponent = /** @class */ (function () {
             });
         }
         else {
-            this.toastr.error(this.validationMessage, 'Missing fields:', {
+            this.validationMessage += '</ul>';
+            this.toastr.error(this.validationMessage, 'Missing mandatory fields', {
                 timeOut: this.toastrTimeOut * 2,
                 enableHtml: true
             });
@@ -1263,17 +1280,16 @@ var NavbarComponent = /** @class */ (function () {
     };
     ;
     NavbarComponent.prototype.validateChannel = function () {
-        this.validationMessage = "";
-        this.validationMessage += '<ul>';
+        this.validChannel = true;
         if (!this.easMediaDataToCreate.channelName.trim()) {
             this.validChannel = false;
             this.validationMessage += '<li>Channel name</li>';
         }
-        if (!this.easMediaDataToCreate.stndSite) {
+        if (!this.easMediaDataToCreate.stndSite.id) {
             this.validChannel = false;
-            this.validationMessage += '<li>Site</li>';
+            this.validationMessage += '<li>Site Id</li>';
         }
-        if (!this.easMediaDataToCreate.mediaOriginatedIp.trim()) {
+        if (!this.ipOctetOne || !this.ipOctetTwo || !this.ipOctetThree || !this.ipOctetFour) {
             this.validChannel = false;
             this.validationMessage += '<li>Originated IP</li>';
         }
@@ -1281,19 +1297,18 @@ var NavbarComponent = /** @class */ (function () {
             this.validChannel = false;
             this.validationMessage += '<li>Originated port</li>';
         }
-        if (!this.easMediaDataToCreate.standardClassification) {
+        if (!this.easMediaDataToCreate.standardClassification.id) {
             this.validChannel = false;
             this.validationMessage += '<li>Classification</li>';
         }
-        if (!this.easMediaDataToCreate.stndRole) {
+        if (!this.easMediaDataToCreate.stndRole.id) {
             this.validChannel = false;
-            this.validationMessage += '<li>Role</li>';
+            this.validationMessage += '<li>Role Id</li>';
         }
         if (!this.easMediaDataToCreate.enableIn) {
             this.validChannel = false;
             this.validationMessage += '<li>Active indicator</li>';
         }
-        this.validationMessage += '</ul>';
         return this.validChannel;
     };
     ;
@@ -1333,17 +1348,21 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent.prototype.validateAllInputs = function () {
         var inputsAreValid = true;
         if (this.easMediaDataToCreate.mediaOriginatedPort > 65535) {
-            this.toastr.error("Port cannot be larger than 65535");
+            this.validationMessage += '<li>Port cannot be larger than 65535</li>';
+            // this.toastr.error("Port cannot be larger than 65535");
             inputsAreValid = false;
         }
         // if (parseInt(this.ipOctetOne) > 255 || parseInt(this.ipOctetTwo) > 255 || parseInt(this.ipOctetThree) > 255 || parseInt(this.ipOctetFour) > 255 ||) {
         if (parseInt(this.ipOctetOne) > 255 || parseInt(this.ipOctetTwo) > 255 || parseInt(this.ipOctetThree) > 255 || parseInt(this.ipOctetFour) > 255) {
-            this.toastr.error("Invalid IP address. IP cannot be greater than 255.255.255.255");
+            // this.toastr.error("Invalid IP address. IP cannot be greater than 255.255.255.255");
+            this.validationMessage += '<li> IP address cannot be greater than 255.255.255.255"</li>';
             inputsAreValid = false;
+            return inputsAreValid;
         }
-        if (!this.ipOctetOne || !this.ipOctetTwo || !this.ipOctetThree || !this.ipOctetFour) {
-            this.toastr.error("Invalid IP address. Please verify and try again");
-        }
+        // if (!this.ipOctetOne || !this.ipOctetTwo || !this.ipOctetThree || !this.ipOctetFour) {
+        // //  this.toastr.error("Invalid IP address. Please verify and try again");
+        //   this.validationMessage += '<li>Invalid IP address. Please verify and try again</li>';
+        // }
         return inputsAreValid;
     };
     NavbarComponent.prototype.padIp = function (octet, modelName) {
