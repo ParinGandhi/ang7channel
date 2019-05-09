@@ -2089,6 +2089,7 @@ var WaveformComponent = /** @class */ (function () {
                     timeOut: _this.toastrTimeOut
                 });
                 _this.enableDownload = false;
+                _this.disablePlay = false;
             }
             if (error.status === 200) {
                 _this.enableWaveForm = true;
@@ -2206,7 +2207,7 @@ var DataService = /** @class */ (function () {
         this.updateChannelUrl = this.baseUrl + '/eas-media-data';
         this.getClassificationUrl = this.baseUrl + '/reference-data?type=clsf';
         this.addClassificationUrl = this.baseUrl + '/standard-classification';
-        this.updateClassificationUrl = this.baseUrl + 'standard-classification';
+        this.updateClassificationUrl = this.baseUrl + '/standard-classification';
         this.dashboardInfoUrl = this.baseUrl + '/dashboard-info';
         this.getChannelData = this.baseUrl + '/eas-media-data-activity?channelName=';
         this.getDownloadAudio = this.baseUrl + '/downloadClip/';
