@@ -215,6 +215,7 @@ export class WaveformComponent implements OnInit {
               timeOut: this.toastrTimeOut
             });
             this.enableDownload = false;
+            this.disablePlay = false;
           }
           if (error.status === 200) {
             this.enableWaveForm=true;
