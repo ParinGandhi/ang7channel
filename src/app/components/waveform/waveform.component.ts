@@ -148,6 +148,7 @@ export class WaveformComponent implements OnInit {
           // this.ngxSmartModalService.setModalData(response, 'historyModal');
           //this.waveformData =response;
           this.waveFormGridOptions.api.setRowData(response);
+          this.waveFormGridOptions.api.forEachNode(node => node.rowIndex?0:node.setSelected(true));
         },
         error => {
           console.log(error);
@@ -165,7 +166,7 @@ export class WaveformComponent implements OnInit {
       this.endDate = (new Date(selectedRows[0].endTime * 1000));
     }
     this.disablePlay=false;
-    this.autoScroll();
+   // this.autoScroll();
 
   }
   checkPlayPause(){
