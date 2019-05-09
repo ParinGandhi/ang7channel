@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
   refreshInterval: number;
   dashboardRefreshInverval: any;
   dashboardInterval: any;
-  refreshIntervals: {}[] = [
+  refreshIntervals: any[] = [
     {
       description: "1 minute",
       value: 60000
@@ -74,10 +74,7 @@ export class DashboardComponent implements OnInit {
           description: "5 minutes",
           value: 300000
         });
-        this.dashboardRefreshInverval = {
-          description: "5 minutes",
-          value: 300000
-        };
+        this.dashboardRefreshInverval = this.refreshIntervals[1];
       }
     })
     if (!this.isLoggedIn) {
@@ -150,7 +147,7 @@ export class DashboardComponent implements OnInit {
         this.optionsForTool.chart['valueFormat'] = function (d) {
           return d3.format('0f')(d);
         }
-        if (this.dashboardData.siteNames.length <= 5 && this.dashboardData.siteNames.length!=0) {
+        if (this.dashboardData.siteNames.length <= 5 && this.dashboardData.siteNames.length != 0) {
           this.optionsForTool.chart['valueFormat'] = function (d) {
             if (d != 0) {
               return d3.format('0f')(d);
