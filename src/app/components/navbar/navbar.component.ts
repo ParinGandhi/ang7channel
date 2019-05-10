@@ -112,13 +112,13 @@ export class NavbarComponent implements OnInit {
             timeOut: this.toastrTimeOut
           });
         });
-    }else{
+    } else {
       this.validationMessage += '</ul>';
-        this.toastr.error(this.validationMessage, 'Missing fields', {
-          timeOut: this.toastrTimeOut * 2,
-          enableHtml: true
-        });
-      }
+      this.toastr.error(this.validationMessage, 'Missing fields', {
+        timeOut: this.toastrTimeOut * 2,
+        enableHtml: true
+      });
+    }
   };
 
   addSite() {
@@ -215,10 +215,10 @@ export class NavbarComponent implements OnInit {
       this.easMediaDataToCreate.channelName = selectedChannel.channelName;
       this.easMediaDataToCreate.mediaOriginatedIp = selectedChannel.mediaOriginatedIp;
       let ipArray = selectedChannel.mediaOriginatedIp.split('.');
-      this.ipOctetOne=ipArray[0];
-      this.ipOctetTwo=ipArray[1];
-      this.ipOctetThree=ipArray[2];
-      this.ipOctetFour=ipArray[3];
+      this.ipOctetOne = ipArray[0];
+      this.ipOctetTwo = ipArray[1];
+      this.ipOctetThree = ipArray[2];
+      this.ipOctetFour = ipArray[3];
       this.easMediaDataToCreate.stndSite.id = selectedChannel.stndSite.id;
       this.easMediaDataToCreate.mediaOriginatedPort = selectedChannel.mediaOriginatedPort;
       this.easMediaDataToCreate.standardClassification = selectedChannel.standardClassification;
@@ -371,6 +371,7 @@ export class NavbarComponent implements OnInit {
     this.validationMessage = "";
     this.validationMessage += '<ul>';
     if (this.validateAllInputs() && this.validateChannel()) {
+      this.easMediaDataToCreate.mediaOriginatedIp = this.ipOctetOne + '.' + this.ipOctetTwo + '.' + this.ipOctetThree + '.' + this.ipOctetFour;
       this.easMediaDataToCreate.lastModifiedUserId = 'testUser';
       this.dataService.updateChannel(this.easMediaDataToCreate)
         .subscribe(
@@ -397,8 +398,8 @@ export class NavbarComponent implements OnInit {
   };
 
   validateChannel() {
-    this.validChannel=true;
-    
+    this.validChannel = true;
+
     if (!this.easMediaDataToCreate.channelName.trim()) {
       this.validChannel = false;
       this.validationMessage += '<li>Channel name</li>';
@@ -427,7 +428,7 @@ export class NavbarComponent implements OnInit {
       this.validChannel = false;
       this.validationMessage += '<li>Active indicator</li>';
     }
-    
+
     return this.validChannel;
   };
 
@@ -468,12 +469,12 @@ export class NavbarComponent implements OnInit {
     let inputsAreValid = true;
     if (this.easMediaDataToCreate.mediaOriginatedPort > 65535) {
       this.validationMessage += '<li>Port cannot be larger than 65535</li>';
-     // this.toastr.error("Port cannot be larger than 65535");
+      // this.toastr.error("Port cannot be larger than 65535");
       inputsAreValid = false;
     }
     // if (parseInt(this.ipOctetOne) > 255 || parseInt(this.ipOctetTwo) > 255 || parseInt(this.ipOctetThree) > 255 || parseInt(this.ipOctetFour) > 255 ||) {
     if (parseInt(this.ipOctetOne) > 255 || parseInt(this.ipOctetTwo) > 255 || parseInt(this.ipOctetThree) > 255 || parseInt(this.ipOctetFour) > 255) {
-     // this.toastr.error("Invalid IP address. IP cannot be greater than 255.255.255.255");
+      // this.toastr.error("Invalid IP address. IP cannot be greater than 255.255.255.255");
       this.validationMessage += '<li> IP address cannot be greater than 255.255.255.255"</li>';
       inputsAreValid = false;
       return inputsAreValid;
