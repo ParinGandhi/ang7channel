@@ -40,11 +40,11 @@ export class NavbarComponent implements OnInit {
   };
   standardClassification: StandardClassification = {
     id: null,
-    descriptionTx: null,
+    descriptionTx: "",
     endTs: null,
     lastModifiedTs: null,
     lastModifiedUserId: null,
-    nm: null,
+    nm: "",
     startTs: null,
     notificationThreshold: null,
   };
@@ -122,17 +122,23 @@ export class NavbarComponent implements OnInit {
   };
 
   addSite() {
-    this.stndSite.lastModifiedTs = new Date();
-    this.stndSite.lastModifiedUserId = 'testUser';
-    this.dataService.addSite(this.stndSite).subscribe(success => {
-      this.clearSite();
-      this.toastr.success('Successfully added site', '', {
+    if (this.stndSite.nm) {
+      this.stndSite.lastModifiedTs = new Date();
+      this.stndSite.lastModifiedUserId = 'testUser';
+      this.dataService.addSite(this.stndSite).subscribe(success => {
+        this.clearSite();
+        this.toastr.success('Successfully added site', '', {
+          timeOut: this.toastrTimeOut
+        });
+        this.dataService.getSiteIdList().subscribe(siteIdList => {
+          this.siteIdList = siteIdList;
+        });
+      });
+    } else {
+      this.toastr.error('Site name is mandatory', '', {
         timeOut: this.toastrTimeOut
       });
-      this.dataService.getSiteIdList().subscribe(siteIdList => {
-        this.siteIdList = siteIdList;
-      });
-    });
+    }
   };
   checkLogin(loginModel) {
     this.loggedIn = true;
@@ -147,39 +153,51 @@ export class NavbarComponent implements OnInit {
     }, 500)
   }
   addRole() {
-    this.stndRole.lastModifiedTs = new Date();
-    this.stndRole.lastModifiedUserId = 'testUser';
-    this.dataService.addRole(this.stndRole).subscribe(success => {
-      this.clearRole();
-      this.toastr.success('Successfully added role', '', {
+    if (this.stndRole.nm) {
+      this.stndRole.lastModifiedTs = new Date();
+      this.stndRole.lastModifiedUserId = 'testUser';
+      this.dataService.addRole(this.stndRole).subscribe(success => {
+        this.clearRole();
+        this.toastr.success('Successfully added role', '', {
+          timeOut: this.toastrTimeOut
+        });
+        this.dataService.getRoleIdList().subscribe(roleIdList => {
+          this.roleIdList = roleIdList;
+        });
+      });
+    } else {
+      this.toastr.error('Role name is mandatory', '', {
         timeOut: this.toastrTimeOut
       });
-      this.dataService.getRoleIdList().subscribe(roleIdList => {
-        this.roleIdList = roleIdList;
-      });
-    });
+    }
   };
 
   addClassification() {
-    let validClassificationName = true;
-    let classificationMatch = /^[a-zA-Z0-9\\\/ ]*$/g;
-    if (!this.standardClassification.nm.match(classificationMatch)) {
-      this.toastr.error('Classification name can only contain alphanumeric characters, spaces, and slashes.', '', {
-        timeOut: this.toastrTimeOut
-      });
-      validClassificationName = false;
-    }
-    if (validClassificationName) {
-      this.standardClassification.lastModifiedTs = new Date();
-      this.standardClassification.lastModifiedUserId = 'testUser';
-      this.dataService.addClassification(this.standardClassification).subscribe(success => {
-        this.clearClassification();
-        this.toastr.success('Successfully added classification', '', {
+    if (this.standardClassification.nm.trim() && this.standardClassification.descriptionTx) {
+      let validClassificationName = true;
+      let classificationMatch = /^[a-zA-Z0-9\\\/ ]*$/g;
+      if (!this.standardClassification.nm.match(classificationMatch)) {
+        this.toastr.error('Classification name can only contain alphanumeric characters, spaces, and slashes.', '', {
           timeOut: this.toastrTimeOut
         });
-        this.dataService.getClassificationList().subscribe(classificationList => {
-          this.classificationList = classificationList;
+        validClassificationName = false;
+      }
+      if (validClassificationName) {
+        this.standardClassification.lastModifiedTs = new Date();
+        this.standardClassification.lastModifiedUserId = 'testUser';
+        this.dataService.addClassification(this.standardClassification).subscribe(success => {
+          this.clearClassification();
+          this.toastr.success('Successfully added classification', '', {
+            timeOut: this.toastrTimeOut
+          });
+          this.dataService.getClassificationList().subscribe(classificationList => {
+            this.classificationList = classificationList;
+          });
         });
+      }
+    } else {
+      this.toastr.error('Classification name and description are mandatory', '', {
+        timeOut: this.toastrTimeOut
       });
     }
   };
@@ -317,54 +335,83 @@ export class NavbarComponent implements OnInit {
   };
 
   updateSite() {
-    this.stndSite.lastModifiedUserId = "testUser";
-    this.stndSite.startTs = new Date();
-    this.dataService.updateSite(this.stndSite)
-      .subscribe(site => {
-        this.clearSite();
-        this.toastr.success('Successfully updated site', '', {
-          timeOut: this.toastrTimeOut
-        });
-        this.dataService.getSiteIdList()
-          .subscribe(siteIdList => {
-            this.siteIdList = siteIdList;
-
+    if (this.stndSite.nm) {
+      this.stndSite.lastModifiedUserId = "testUser";
+      this.stndSite.startTs = new Date();
+      this.dataService.updateSite(this.stndSite)
+        .subscribe(site => {
+          this.clearSite();
+          this.toastr.success('Successfully updated site', '', {
+            timeOut: this.toastrTimeOut
           });
+          this.dataService.getSiteIdList()
+            .subscribe(siteIdList => {
+              this.siteIdList = siteIdList;
+
+            });
+        });
+    } else {
+      this.toastr.error('Site name is mandatory', '', {
+        timeOut: this.toastrTimeOut
       });
+    }
   };
 
   updateRole() {
-    this.stndRole.lastModifiedUserId = "testUser";
-    this.stndRole.startTs = new Date();
-    this.dataService.updateRole(this.stndRole)
-      .subscribe(role => {
-        this.clearRole();
-        this.toastr.success('Successfully updated role', '', {
-          timeOut: this.toastrTimeOut
-        });
-        this.dataService.getRoleIdList()
-          .subscribe(roleIdList => {
-            this.roleIdList = roleIdList;
-
+    if (this.stndRole.nm) {
+      this.stndRole.lastModifiedUserId = "testUser";
+      this.stndRole.startTs = new Date();
+      this.dataService.updateRole(this.stndRole)
+        .subscribe(role => {
+          this.clearRole();
+          this.toastr.success('Successfully updated role', '', {
+            timeOut: this.toastrTimeOut
           });
+          this.dataService.getRoleIdList()
+            .subscribe(roleIdList => {
+              this.roleIdList = roleIdList;
+
+            });
+        });
+    } else {
+      this.toastr.error('Role name is mandatory', '', {
+        timeOut: this.toastrTimeOut
       });
+    }
   };
 
+
   updateClassification() {
-    this.standardClassification.lastModifiedUserId = "testUser";
-    this.standardClassification.startTs = new Date();
-    this.dataService.updateClassification(this.standardClassification)
-      .subscribe(role => {
-        this.clearClassification();
-        this.toastr.success('Successfully updated classification', '', {
+    if (this.standardClassification.nm.trim() && this.standardClassification.descriptionTx) {
+      let validClassificationName = true;
+      let classificationMatch = /^[a-zA-Z0-9\\\/ ]*$/g;
+      if (!this.standardClassification.nm.match(classificationMatch)) {
+        this.toastr.error('Classification name can only contain alphanumeric characters, spaces, and slashes.', '', {
           timeOut: this.toastrTimeOut
         });
-        this.dataService.getClassificationList()
-          .subscribe(classificationList => {
-            this.classificationList = classificationList;
+        validClassificationName = false;
+      }
+      if (validClassificationName) {
+        this.standardClassification.lastModifiedUserId = "testUser";
+        this.standardClassification.startTs = new Date();
+        this.dataService.updateClassification(this.standardClassification)
+          .subscribe(role => {
+            this.clearClassification();
+            this.toastr.success('Successfully updated classification', '', {
+              timeOut: this.toastrTimeOut
+            });
+            this.dataService.getClassificationList()
+              .subscribe(classificationList => {
+                this.classificationList = classificationList;
 
+              });
           });
+      }
+    } else {
+      this.toastr.error('Classification name and description are mandatory', '', {
+        timeOut: this.toastrTimeOut
       });
+    }
   };
 
   updateChannel() {

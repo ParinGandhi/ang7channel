@@ -199,7 +199,7 @@
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
-        <label for="siteName">Site name</label>
+        <label for="siteName">Site name *</label>
         <input required class="form-control" id="siteName" type="text" [(ngModel)]="stndSite.nm"
           [ngModelOptions]="{standalone: true}" maxlength="16" [cleave]="{blocks: [16]}">
       </div>
@@ -241,7 +241,7 @@
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
-        <label for="roleName">Role name</label>
+        <label for="roleName">Role name *</label>
         <input required class="form-control" id="roleName" type="text" [(ngModel)]="stndRole.nm"
           [ngModelOptions]="{standalone: true}" maxlength="16" [cleave]="{blocks: [16]}">
       </div>
@@ -285,14 +285,14 @@
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
-        <label for="classificationName">Classification name</label>
+        <label for="classificationName">Classification name *</label>
         <input required class="form-control" id="classificationName" type="text" [(ngModel)]="standardClassification.nm"
           [ngModelOptions]="{standalone: true}" maxlength="32">
       </div>
     </div>
     <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
-        <label for="classificationDescription">Classification description</label>
+        <label for="classificationDescription">Classification description *</label>
         <input required class="form-control" id="classificationDescription" type="text"
           [(ngModel)]="standardClassification.descriptionTx" [ngModelOptions]="{standalone: true}">
       </div>
