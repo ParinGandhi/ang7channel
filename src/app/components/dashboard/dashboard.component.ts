@@ -120,13 +120,16 @@ export class DashboardComponent implements OnInit {
         xAxis: {
           axisLabel: 'CHANNELS'
         },
+        
         groupSpacing: 0.3,
         yAxis: {
           axisLabel: 'SITES',
           axisLabelDistance: -5,
-          tickFormat: function (d) {
-            return d3.format('0f')(d);
-          }
+          // tickFormat: function (d) {
+          //   return d3.format('0f')(d);
+          // }
+          tickValues:([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200]),
+          
         }
       }
     };
@@ -170,7 +173,6 @@ export class DashboardComponent implements OnInit {
         this.chartAppAttributesChartData = this.appAttributesChartData;
         this.data = [
           {
-            key: "Cumulative Return",
             values: this.chartData
           }
         ];
@@ -196,7 +198,7 @@ export class DashboardComponent implements OnInit {
         this.activityData.push(inActiveData);
         this.chartActivityData = this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
-        this.optionsForTool.chart["yDomain"] = ([0, maxCount]);
+        this.optionsForTool.chart["yDomain"] = ([0, 200]);
 
 
       }
@@ -236,7 +238,7 @@ export class DashboardComponent implements OnInit {
   }
 
   setDummyData() {
-    for (var k = 0; k <= this.dummySites.length; k++) {
+    for (var k = 0; k <= this.dummySites.length-1; k++) {
       this.dashboardData.siteNames.push(this.dummySites[k]);
       this.dashboardData.siteCount.push("0");
 
