@@ -129,7 +129,18 @@ export class GridComponent implements OnInit {
     var params = {
       columnKeys: ["channelName", "stndSite.nm", "mediaOriginatedIp", "mediaOriginatedPort", "standardClassification.nm", "stndRole.nm", "enableIn"],
       fileName: 'AudioExport.csv',
-      suppressQuotes: true
+      suppressQuotes: true,
+      processHeaderCallback: function (params) {
+        console.clear();
+        console.log(params);
+        console.log(params.column.getColDef().headerName);
+        if (params.column.getColDef().field === "channelName") {
+          return "Channel Name";
+        } else {
+          return params.column.getColDef().headerName;
+        }
+        // return params.column.getColDef().headerName.toUpperCase();
+      },
     };
     this.gridOptions.api.exportDataAsCsv(params);
   };
