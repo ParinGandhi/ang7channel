@@ -509,7 +509,7 @@ export class NavbarComponent implements OnInit {
   };
 
   openHelp() {
-    console.log("Help option clicked");
+   window.open('/help');
   };
 
   validateAllInputs() {
