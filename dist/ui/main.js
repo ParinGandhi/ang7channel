@@ -304,36 +304,36 @@ var DashboardComponent = /** @class */ (function () {
         this.dataService = dataService;
         this.sharedService = sharedService;
         this.toastr = toastr;
-        this.eventsRowData = [
-            {
-                "id": 1,
-                "name": "Manage Channel",
-                "descriptionText": "Manage Channel",
-                "eventType": "Create Channel",
-                "eventPayLoad": "{\"id\":1,\"channelName\":\"239.1.5.1-DGS-5-GMS\",\"encodingFormat\":\"YBD\",\"lastModifiedTs\":1557690562650,\"lastModifiedUserId\":\"EASLoader\",\"mediaOriginatedIp\":\"239.1.5.2\",\"mediaOriginatedPort\":5002,\"stndRole\":{\"id\":1,\"descriptionTx\":\"GMS\",\"endTs\":null,\"lastModifiedTs\":1557690562481,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"GMS\",\"startTs\":1557690562481},\"stndSite\":{\"id\":1,\"descriptionTx\":\"DGS-5\",\"endTs\":null,\"lastModifiedTs\":1557690562592,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"DGS-5\",\"notificationThreshold\":10,\"startTs\":1557690562592},\"standardClassification\":{\"id\":1,\"descriptionTx\":\"FOUO\",\"endTs\":null,\"lastModifiedTs\":1557690562616,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"FOUO\",\"notificationThreshold\":10,\"startTs\":1557690562616},\"activity\":[],\"enableIn\":\"TRUE\"}",
-                "eventResponse": "Successfully created channel",
-                "category": "Success",
-                "initiator": "EASSYSTEM",
-                "startTs": "2019-05-12T19:49:23.000+0000",
-                "endTs": "2019-05-12T19:49:23.000+0000",
-                "lastModifiedUserId": "EAS",
-                "lastModifiedTs": "2019-05-12T19:49:23.000+0000"
-            },
-            {
-                "id": 2,
-                "name": "Manage Channel",
-                "descriptionText": "Manage Channel",
-                "eventType": "Create Channel",
-                "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-                "eventResponse": "Channel Started for listening",
-                "category": "Success",
-                "initiator": "EASSYSTEM",
-                "startTs": "2019-05-12T19:49:24.000+0000",
-                "endTs": "2019-05-12T19:49:24.000+0000",
-                "lastModifiedUserId": "EAS",
-                "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
-            }
-        ];
+        // = [
+        //   {
+        //     "id": 1,
+        //     "name": "Manage Channel",
+        //     "descriptionText": "Manage Channel",
+        //     "eventType": "Create Channel",
+        //     "eventPayLoad": "{\"id\":1,\"channelName\":\"239.1.5.1-DGS-5-GMS\",\"encodingFormat\":\"YBD\",\"lastModifiedTs\":1557690562650,\"lastModifiedUserId\":\"EASLoader\",\"mediaOriginatedIp\":\"239.1.5.2\",\"mediaOriginatedPort\":5002,\"stndRole\":{\"id\":1,\"descriptionTx\":\"GMS\",\"endTs\":null,\"lastModifiedTs\":1557690562481,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"GMS\",\"startTs\":1557690562481},\"stndSite\":{\"id\":1,\"descriptionTx\":\"DGS-5\",\"endTs\":null,\"lastModifiedTs\":1557690562592,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"DGS-5\",\"notificationThreshold\":10,\"startTs\":1557690562592},\"standardClassification\":{\"id\":1,\"descriptionTx\":\"FOUO\",\"endTs\":null,\"lastModifiedTs\":1557690562616,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"FOUO\",\"notificationThreshold\":10,\"startTs\":1557690562616},\"activity\":[],\"enableIn\":\"TRUE\"}",
+        //     "eventResponse": "Successfully created channel",
+        //     "category": "Success",
+        //     "initiator": "EASSYSTEM",
+        //     "startTs": "2019-05-12T19:49:23.000+0000",
+        //     "endTs": "2019-05-12T19:49:23.000+0000",
+        //     "lastModifiedUserId": "EAS",
+        //     "lastModifiedTs": "2019-05-12T19:49:23.000+0000"
+        //   },
+        //   {
+        //     "id": 2,
+        //     "name": "Manage Channel",
+        //     "descriptionText": "Manage Channel",
+        //     "eventType": "Create Channel",
+        //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
+        //     "eventResponse": "Channel Started for listening",
+        //     "category": "Success",
+        //     "initiator": "EASSYSTEM",
+        //     "startTs": "2019-05-12T19:49:24.000+0000",
+        //     "endTs": "2019-05-12T19:49:24.000+0000",
+        //     "lastModifiedUserId": "EAS",
+        //     "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
+        //   }
+        // ];
         this.rowSelection = "multiple";
         this.appAttributes = {
             ApplicationVersion: null,
@@ -517,6 +517,15 @@ var DashboardComponent = /** @class */ (function () {
                 }
             };
         };
+        this.getEventsData = function () {
+            var _this = this;
+            this.dataService.getErrorAdvisoryData().subscribe(function (response) {
+                _this.eventsRowData = response;
+                setInterval(function () {
+                    _this.getEventsData();
+                }, 300000);
+            });
+        };
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -536,6 +545,7 @@ var DashboardComponent = /** @class */ (function () {
                 document.getElementById('login').click();
             }, 500);
         }
+        this.getEventsData();
         this.dummySites = ["   ",
             "",
             " ",
@@ -2322,6 +2332,7 @@ var DataService = /** @class */ (function () {
         this.getDownloadAudio = this.baseUrl + '/downloadClip/';
         this.urlByChannelName = this.baseUrl + '/fetch-audio';
         this.authenticateUserUrl = this.baseUrl + '/authenticate';
+        this.errorAdvisoryUrl = this.baseUrl + '/eas-event';
         this.dashboardArray = [];
     }
     DataService.prototype.getChannelList = function () {
