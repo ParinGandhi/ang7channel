@@ -96,7 +96,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".navbar {\n  background-color: #337ab7;\n  color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDBCQUFBO0VBQ0EsYUFBQTtDQ0NIIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm5hdmJhciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzMzN2FiNztcbiAgICBjb2xvcjogd2hpdGU7XG59IiwiLm5hdmJhciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMzMzdhYjc7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cbiJdfQ== */"
+module.exports = ".navbar {\n  background-color: #337ab7;\n  color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzovZGV2ZWxvcG1lbnQvRGl2ZXNoL3RydW5rL3NyYy9hcHAvYXBwLmNvbXBvbmVudC5sZXNzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSwwQkFBQTtFQUNBLGFBQUE7Q0NDSCIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uYXZiYXIge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMzMzdhYjc7XG4gICAgY29sb3I6IHdoaXRlO1xufSIsIi5uYXZiYXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzM3YWI3O1xuICBjb2xvcjogd2hpdGU7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -268,7 +268,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf='isLoggedIn'>\r\n  <div class=\"row\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-3\"></div>\r\n      <div class=\"col-md-5\">\r\n        <div class=\" pull-right\">\r\n          Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n          <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n              aria-hidden=\"true\"></span></button>\r\n        </div>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"col-md-3 col-md-offset-7\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"pull-right\">\r\n        Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n        <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-2\" style=\"padding-bottom: 20px;\">\r\n      <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"dashboardRefreshInverval\" (change)=\"setRefreshInterval(dashboardRefreshInverval)\">\r\n        <option value=\"1\">Select an auto refresh interval...</option>\r\n        <option *ngFor=\"let refreshInterval of refreshIntervals\" [ngValue]=\"refreshInterval\">\r\n          {{refreshInterval.description}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Channels By Site\r\n          <span class=\"pull-right\">Total: {{dashboardData?.siteNames?.length}} </span>\r\n          <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{dashboardData.siteNames.length}}\r\n                  </div> -->\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <nvd3 [options]=\"optionsForTool\" [data]=\"data\"></nvd3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Active/Inactive Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                        Total: {{activeInactiveChartLabels.length}}\r\n                      </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Enabled/Disabled Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{activeInactiveChartLabels.length}}\r\n                  </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Application Details\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                      Total: {{activeInactiveChartLabels.length}}\r\n                    </div> -->\r\n            </div>\r\n            <div class=\"panel-body\" style=\"\r\n                  height: 80%\">\r\n              <div>\r\n                <span *ngFor=\"let item of dashboardData?.applicationAttributes | keyvalue\">\r\n                  <span class=\"blackdot\" style=\"\r\n                          margin-bottom: 0%\"></span> &nbsp;<span><label>{{item?.key}}\r\n                      &nbsp;:</label>\r\n                    {{item?.value}}</span><br><br>\r\n                </span>\r\n                <!-- <span class=\"blackdot\" style=\"\r\n                    margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version\r\n                        &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\r\n                    <span class=\"blackdot\" style=\"\r\n            margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\r\n                      {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n\r\n\r\n\r\n\r\n\r\n  </div>\r\n</div>"
+module.exports = "<div *ngIf='isLoggedIn'>\r\n  <div class=\"row\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-3\"></div>\r\n      <div class=\"col-md-5\">\r\n        <div class=\" pull-right\">\r\n          Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n          <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n              aria-hidden=\"true\"></span></button>\r\n        </div>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"col-md-3 col-md-offset-7\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"pull-right\">\r\n        Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n        <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-2\" style=\"padding-bottom: 20px;\">\r\n      <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"dashboardRefreshInverval\" (change)=\"setRefreshInterval(dashboardRefreshInverval)\">\r\n        <option value=\"1\">Select an auto refresh interval...</option>\r\n        <option *ngFor=\"let refreshInterval of refreshIntervals\" [ngValue]=\"refreshInterval\">\r\n          {{refreshInterval.description}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Channels By Site\r\n          <span class=\"pull-right\">Total: {{dashboardData?.siteNames?.length}} </span>\r\n          <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{dashboardData.siteNames.length}}\r\n                  </div> -->\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <nvd3 [options]=\"optionsForTool\" [data]=\"data\"></nvd3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Active/Inactive Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                        Total: {{activeInactiveChartLabels.length}}\r\n                      </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Enabled/Disabled Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{activeInactiveChartLabels.length}}\r\n                  </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <ag-grid-angular style=\"width: 100%; height: 500px; margin-top: 10px;\" class=\"ag-theme-balham\"\r\n        [rowData]=\"eventsRowData\" [columnDefs]=\"eventsColumnDefs\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n        [enableFilter]=\"true\" [gridOptions]=\"eventsGridOptions\" [paginationPageSize]=20 [pagination]=\"true\"\r\n        [rowSelection]=\"eventsRowSelection\">\r\n      </ag-grid-angular>\r\n    </div>\r\n    <div class=\"col-sm-4\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\" style=\"margin-top: 8px;\">\r\n            <div class=\"panel-heading\" style=\"height: 35px;\">\r\n              Application Details\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                  Total: {{activeInactiveChartLabels.length}}\r\n                </div> -->\r\n            </div>\r\n            <div class=\"panel-body\" style=\"\r\n              height: 433px;\">\r\n              <div>\r\n                <span *ngFor=\"let item of dashboardData?.applicationAttributes | keyvalue\">\r\n                  <span class=\"blackdot\" style=\"\r\n                      margin-bottom: 0%\"></span> &nbsp;<span><label>{{item?.key}}\r\n                      &nbsp;:</label>\r\n                    {{item?.value}}</span><br><br>\r\n                </span>\r\n                <!-- <span class=\"blackdot\" style=\"\r\n                margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name\r\n                    &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version\r\n                    &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n\r\n\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -304,6 +304,37 @@ var DashboardComponent = /** @class */ (function () {
         this.dataService = dataService;
         this.sharedService = sharedService;
         this.toastr = toastr;
+        this.eventsRowData = [
+            {
+                "id": 1,
+                "name": "Manage Channel",
+                "descriptionText": "Manage Channel",
+                "eventType": "Create Channel",
+                "eventPayLoad": "{\"id\":1,\"channelName\":\"239.1.5.1-DGS-5-GMS\",\"encodingFormat\":\"YBD\",\"lastModifiedTs\":1557690562650,\"lastModifiedUserId\":\"EASLoader\",\"mediaOriginatedIp\":\"239.1.5.2\",\"mediaOriginatedPort\":5002,\"stndRole\":{\"id\":1,\"descriptionTx\":\"GMS\",\"endTs\":null,\"lastModifiedTs\":1557690562481,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"GMS\",\"startTs\":1557690562481},\"stndSite\":{\"id\":1,\"descriptionTx\":\"DGS-5\",\"endTs\":null,\"lastModifiedTs\":1557690562592,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"DGS-5\",\"notificationThreshold\":10,\"startTs\":1557690562592},\"standardClassification\":{\"id\":1,\"descriptionTx\":\"FOUO\",\"endTs\":null,\"lastModifiedTs\":1557690562616,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"FOUO\",\"notificationThreshold\":10,\"startTs\":1557690562616},\"activity\":[],\"enableIn\":\"TRUE\"}",
+                "eventResponse": "Successfully created channel",
+                "category": "Success",
+                "initiator": "EASSYSTEM",
+                "startTs": "2019-05-12T19:49:23.000+0000",
+                "endTs": "2019-05-12T19:49:23.000+0000",
+                "lastModifiedUserId": "EAS",
+                "lastModifiedTs": "2019-05-12T19:49:23.000+0000"
+            },
+            {
+                "id": 2,
+                "name": "Manage Channel",
+                "descriptionText": "Manage Channel",
+                "eventType": "Create Channel",
+                "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
+                "eventResponse": "Channel Started for listening",
+                "category": "Success",
+                "initiator": "EASSYSTEM",
+                "startTs": "2019-05-12T19:49:24.000+0000",
+                "endTs": "2019-05-12T19:49:24.000+0000",
+                "lastModifiedUserId": "EAS",
+                "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
+            }
+        ];
+        this.rowSelection = "multiple";
         this.appAttributes = {
             ApplicationVersion: null,
             OSVersion: null,
@@ -338,6 +369,14 @@ var DashboardComponent = /** @class */ (function () {
         ];
         this.activeInactiveChartLabels = ['Enabled', 'Disabled'];
         this.activityLabels = ['Active', 'Inactive'];
+        this.eventsColumnDefs = [
+            // { headerCheckboxSelection: true, checkboxSelection: true, width: 30 },
+            { headerName: 'Category', field: 'category' },
+            { headerName: 'Name', field: 'name' },
+            { headerName: 'Type', field: 'eventType' },
+            { headerName: 'Event', field: 'eventResponse' },
+            { headerName: 'Time', field: 'lastModifiedTs', type: 'dateColumn' }
+        ];
         this.getDashBoardData = function () {
             var _this = this;
             this.optionsForTool = {
@@ -460,7 +499,7 @@ var DashboardComponent = /** @class */ (function () {
             this.options = {
                 chart: {
                     type: 'pieChart',
-                    height: 300,
+                    height: 325,
                     x: function (d) {
                         return d.siteNames + ' ' + '[' + d.siteCount + ']';
                     },
@@ -558,7 +597,7 @@ module.exports = "<p-sidebar [(visible)]=\"display\" [style]=\"{width:'325px'}\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nsm-content {\n  width: inherit;\n}\n.historyModal {\n  width: 213%;\n  margin-left: 20%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL0M6L1VzZXJzL1NhaSBLdW1hci9Eb3dubG9hZHMvZm9yYnVpbGRzL3RydW5rL3NyYy9hcHAvY29tcG9uZW50cy9ncmlkL2dyaWQuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZUFBQTtDQ0NIO0FEQ0M7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7Q0NDRCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm5zbS1jb250ZW50e1xuICAgIHdpZHRoOiBpbmhlcml0O1xuICB9XG4gIC5oaXN0b3J5TW9kYWx7XG4gIHdpZHRoOiAyMTMlO1xuICBtYXJnaW4tbGVmdDogMjAlO1xuICB9IiwiLm5zbS1jb250ZW50IHtcbiAgd2lkdGg6IGluaGVyaXQ7XG59XG4uaGlzdG9yeU1vZGFsIHtcbiAgd2lkdGg6IDIxMyU7XG4gIG1hcmdpbi1sZWZ0OiAyMCU7XG59XG4iXX0= */"
+module.exports = ".nsm-content {\n  width: inherit;\n}\n.historyModal {\n  width: 213%;\n  margin-left: 20%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ncmlkL0M6L2RldmVsb3BtZW50L0RpdmVzaC90cnVuay9zcmMvYXBwL2NvbXBvbmVudHMvZ3JpZC9ncmlkLmNvbXBvbmVudC5sZXNzIiwic3JjL2FwcC9jb21wb25lbnRzL2dyaWQvZ3JpZC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGVBQUE7Q0NDSDtBRENDO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0NDQ0QiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2dyaWQvZ3JpZC5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uc20tY29udGVudHtcbiAgICB3aWR0aDogaW5oZXJpdDtcbiAgfVxuICAuaGlzdG9yeU1vZGFse1xuICB3aWR0aDogMjEzJTtcbiAgbWFyZ2luLWxlZnQ6IDIwJTtcbiAgfSIsIi5uc20tY29udGVudCB7XG4gIHdpZHRoOiBpbmhlcml0O1xufVxuLmhpc3RvcnlNb2RhbCB7XG4gIHdpZHRoOiAyMTMlO1xuICBtYXJnaW4tbGVmdDogMjAlO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -881,7 +920,7 @@ module.exports = "<div class=\"navbar-brand\">vEAS</div>\r\n<button class=\"btn 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".modalInputHeight {\n  margin-top: 10px;\n}\n.navbarLinks {\n  color: white;\n  text-decoration: none;\n  margin-top: 10px;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyL25hdmJhci5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFBO0NDQ0g7QURFRDtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLGlCQUFBO0NDQUg7QURHRDtFQUNJLDJCQUFBO0NDREgiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubW9kYWxJbnB1dEhlaWdodCB7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbn1cblxuLm5hdmJhckxpbmtzIHtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG59XG5cbmlucHV0W3R5cGU9bnVtYmVyXSB7XG4gICAgLW1vei1hcHBlYXJhbmNlOiB0ZXh0ZmllbGQ7XG59IiwiLm1vZGFsSW5wdXRIZWlnaHQge1xuICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuLm5hdmJhckxpbmtzIHtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIG1hcmdpbi10b3A6IDEwcHg7XG59XG5pbnB1dFt0eXBlPW51bWJlcl0ge1xuICAtbW96LWFwcGVhcmFuY2U6IHRleHRmaWVsZDtcbn1cbiJdfQ== */"
+module.exports = ".modalInputHeight {\n  margin-top: 10px;\n}\n.navbarLinks {\n  color: white;\n  text-decoration: none;\n  margin-top: 10px;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvQzovZGV2ZWxvcG1lbnQvRGl2ZXNoL3RydW5rL3NyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5sZXNzIiwic3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxpQkFBQTtDQ0NIO0FERUQ7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxpQkFBQTtDQ0FIO0FER0Q7RUFDSSwyQkFBQTtDQ0RIIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLm1vZGFsSW5wdXRIZWlnaHQge1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG59XG5cbi5uYXZiYXJMaW5rcyB7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuXG5pbnB1dFt0eXBlPW51bWJlcl0ge1xuICAgIC1tb3otYXBwZWFyYW5jZTogdGV4dGZpZWxkO1xufSIsIi5tb2RhbElucHV0SGVpZ2h0IHtcbiAgbWFyZ2luLXRvcDogMTBweDtcbn1cbi5uYXZiYXJMaW5rcyB7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuaW5wdXRbdHlwZT1udW1iZXJdIHtcbiAgLW1vei1hcHBlYXJhbmNlOiB0ZXh0ZmllbGQ7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -1661,7 +1700,7 @@ module.exports = "<div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".searchHeight {\n  margin-top: 5px;\n}\n.searchHeightBtns {\n  margin-top: 15px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovVXNlcnMvU2FpIEt1bWFyL0Rvd25sb2Fkcy9mb3JidWlsZHMvdHJ1bmsvc3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGdCQUFBO0NDQ0g7QURFRDtFQUNJLGlCQUFBO0NDQUgiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2VhcmNoSGVpZ2h0IHtcbiAgICBtYXJnaW4tdG9wOiA1cHg7XG59XG5cbi5zZWFyY2hIZWlnaHRCdG5zIHtcbiAgICBtYXJnaW4tdG9wOiAxNXB4O1xufVxuXG4vLyAuc2VhcmNoTGFiZWwge1xuLy8gICAgIGZvbnQtc2l6ZTogMXJlbTtcbi8vIH0iLCIuc2VhcmNoSGVpZ2h0IHtcbiAgbWFyZ2luLXRvcDogNXB4O1xufVxuLnNlYXJjaEhlaWdodEJ0bnMge1xuICBtYXJnaW4tdG9wOiAxNXB4O1xufVxuIl19 */"
+module.exports = ".searchHeight {\n  margin-top: 5px;\n}\n.searchHeightBtns {\n  margin-top: 15px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovZGV2ZWxvcG1lbnQvRGl2ZXNoL3RydW5rL3NyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5sZXNzIiwic3JjL2FwcC9jb21wb25lbnRzL3NlYXJjaC9zZWFyY2guY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxnQkFBQTtDQ0NIO0FERUQ7RUFDSSxpQkFBQTtDQ0FIIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLnNlYXJjaEhlaWdodCB7XG4gICAgbWFyZ2luLXRvcDogNXB4O1xufVxuXG4uc2VhcmNoSGVpZ2h0QnRucyB7XG4gICAgbWFyZ2luLXRvcDogMTVweDtcbn1cblxuLy8gLnNlYXJjaExhYmVsIHtcbi8vICAgICBmb250LXNpemU6IDFyZW07XG4vLyB9IiwiLnNlYXJjaEhlaWdodCB7XG4gIG1hcmdpbi10b3A6IDVweDtcbn1cbi5zZWFyY2hIZWlnaHRCdG5zIHtcbiAgbWFyZ2luLXRvcDogMTVweDtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -2301,6 +2340,10 @@ var DataService = /** @class */ (function () {
         return this.http.get(this.getChannelData + channelName);
     };
     ;
+    DataService.prototype.getErrorAdvisoryData = function () {
+        return this.http.get(this.errorAdvisoryUrl);
+    };
+    ;
     DataService.prototype.downloadAudio = function (audioFileName) {
         window.open(this.getDownloadAudio + audioFileName, "_blank");
     };
@@ -2524,7 +2567,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Sai Kumar\Downloads\forbuilds\trunk\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\development\Divesh\trunk\src\main.ts */"./src/main.ts");
 
 
 /***/ })
