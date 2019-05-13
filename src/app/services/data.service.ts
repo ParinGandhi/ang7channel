@@ -63,6 +63,7 @@ export class DataService {
   getDownloadAudio: string = this.baseUrl + '/downloadClip/';
   urlByChannelName: string = this.baseUrl + '/fetch-audio';
   authenticateUserUrl: string = this.baseUrl + '/authenticate';
+  errorAdvisoryUrl: string;
 
   dashboardArray = [];
   constructor(private http: HttpClient) { }
@@ -78,8 +79,13 @@ export class DataService {
   getRoleIdList(): Observable<StandardRole[]> {
     return this.http.get<StandardRole[]>(this.getRoleIdListUrl);
   };
+
   getDataByChannelName(channelName: string): Observable<ChannelData[]> {
     return this.http.get<ChannelData[]>(this.getChannelData + channelName);
+  };
+
+  getErrorAdvisoryData(): Observable<any[]> {
+    return this.http.get<any[]>(this.errorAdvisoryUrl);
   };
 
   downloadAudio(audioFileName: string) {

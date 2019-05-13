@@ -81,39 +81,50 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <ag-grid-angular style="width: 100%; height: 500px; margin-top: 10px;" class="ag-theme-balham"
+        [rowData]="eventsRowData" [columnDefs]="eventsColumnDefs" [enableColResize]="true" [enableSorting]="true"
+        [enableFilter]="true" [gridOptions]="eventsGridOptions" [paginationPageSize]=20 [pagination]="true"
+        [rowSelection]="eventsRowSelection">
+      </ag-grid-angular>
+    </div>
+    <div class="col-sm-4">
       <div class="row">
         <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
+          <div class="panel panel-default" style="margin-top: 8px;">
+            <div class="panel-heading" style="height: 35px;">
               Application Details
               <span class="pull-right"></span>
               <!-- <div class="card-header-actions pull-right">
-                      Total: {{activeInactiveChartLabels.length}}
-                    </div> -->
+                  Total: {{activeInactiveChartLabels.length}}
+                </div> -->
             </div>
             <div class="panel-body" style="
-                  height: 80%">
+              height: 433px;">
               <div>
                 <span *ngFor="let item of dashboardData?.applicationAttributes | keyvalue">
                   <span class="blackdot" style="
-                          margin-bottom: 0%"></span> &nbsp;<span><label>{{item?.key}}
+                      margin-bottom: 0%"></span> &nbsp;<span><label>{{item?.key}}
                       &nbsp;:</label>
                     {{item?.value}}</span><br><br>
                 </span>
                 <!-- <span class="blackdot" style="
-                    margin-bottom: -1%"></span> &nbsp;<span><label>Application Name
-                        &nbsp;:</label>
-                      {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>
-                    <span class="blackdot" style="
-            margin-bottom: -1%"></span> &nbsp;<span><label>Application Version
-                        &nbsp;:</label>
-                      {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>
-                    <span class="blackdot" style="
-            margin-bottom: -1%"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>
-                      {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>
-                    <span class="blackdot" style="
-            margin-bottom: -1%"></span> &nbsp;<span><label>Application State&nbsp;:</label>
-                      {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->
+                margin-bottom: -1%"></span> &nbsp;<span><label>Application Name
+                    &nbsp;:</label>
+                  {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>
+                <span class="blackdot" style="
+        margin-bottom: -1%"></span> &nbsp;<span><label>Application Version
+                    &nbsp;:</label>
+                  {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>
+                <span class="blackdot" style="
+        margin-bottom: -1%"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>
+                  {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>
+                <span class="blackdot" style="
+        margin-bottom: -1%"></span> &nbsp;<span><label>Application State&nbsp;:</label>
+                  {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->
 
               </div>
             </div>
@@ -121,10 +132,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-
-
 
 
 

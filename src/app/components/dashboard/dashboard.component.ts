@@ -5,6 +5,7 @@ import { SharedService } from '../../shared.service';
 import { DashBoardData } from '../../models/dashboardData';
 import { applicationAttributes } from '../../models/applicationAttributes';
 import { ToastrService } from 'ngx-toastr';
+import { GridOptions, GridCellDef } from 'ag-grid-community';
 
 
 @Component({
@@ -16,6 +17,39 @@ export class DashboardComponent implements OnInit {
   options: any;
   dummySites: any;
   data: any;
+  eventsGridOptions: GridOptions;
+  eventsRowData: {}[] = [
+    {
+      "id": 1,
+      "name": "Manage Channel",
+      "descriptionText": "Manage Channel",
+      "eventType": "Create Channel",
+      "eventPayLoad": "{\"id\":1,\"channelName\":\"239.1.5.1-DGS-5-GMS\",\"encodingFormat\":\"YBD\",\"lastModifiedTs\":1557690562650,\"lastModifiedUserId\":\"EASLoader\",\"mediaOriginatedIp\":\"239.1.5.2\",\"mediaOriginatedPort\":5002,\"stndRole\":{\"id\":1,\"descriptionTx\":\"GMS\",\"endTs\":null,\"lastModifiedTs\":1557690562481,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"GMS\",\"startTs\":1557690562481},\"stndSite\":{\"id\":1,\"descriptionTx\":\"DGS-5\",\"endTs\":null,\"lastModifiedTs\":1557690562592,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"DGS-5\",\"notificationThreshold\":10,\"startTs\":1557690562592},\"standardClassification\":{\"id\":1,\"descriptionTx\":\"FOUO\",\"endTs\":null,\"lastModifiedTs\":1557690562616,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"FOUO\",\"notificationThreshold\":10,\"startTs\":1557690562616},\"activity\":[],\"enableIn\":\"TRUE\"}",
+      "eventResponse": "Successfully created channel",
+      "category": "Success",
+      "initiator": "EASSYSTEM",
+      "startTs": "2019-05-12T19:49:23.000+0000",
+      "endTs": "2019-05-12T19:49:23.000+0000",
+      "lastModifiedUserId": "EAS",
+      "lastModifiedTs": "2019-05-12T19:49:23.000+0000"
+    },
+    {
+      "id": 2,
+      "name": "Manage Channel",
+      "descriptionText": "Manage Channel",
+      "eventType": "Create Channel",
+      "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
+      "eventResponse": "Channel Started for listening",
+      "category": "Success",
+      "initiator": "EASSYSTEM",
+      "startTs": "2019-05-12T19:49:24.000+0000",
+      "endTs": "2019-05-12T19:49:24.000+0000",
+      "lastModifiedUserId": "EAS",
+      "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
+    }
+  ];
+  rowSelection: string = "multiple";
+
   public appAttributes: applicationAttributes = {
     ApplicationVersion: null,
     OSVersion: null,
@@ -64,6 +98,14 @@ export class DashboardComponent implements OnInit {
   constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService) {
   }
 
+  eventsColumnDefs = [
+    // { headerCheckboxSelection: true, checkboxSelection: true, width: 30 },
+    { headerName: 'Category', field: 'category' },
+    { headerName: 'Name', field: 'name' },
+    { headerName: 'Type', field: 'eventType' },
+    { headerName: 'Event', field: 'eventResponse' },
+    { headerName: 'Time', field: 'lastModifiedTs', type: 'dateColumn' }
+  ];
 
   ngOnInit() {
     this.sharedService.sharedLoginResource.subscribe(data => {
@@ -221,7 +263,7 @@ export class DashboardComponent implements OnInit {
     this.options = {
       chart: {
         type: 'pieChart',
-        height: 300,
+        height: 325,
         x: function (d) {
           return d.siteNames + ' ' + '[' + d.siteCount + ']';
         },
