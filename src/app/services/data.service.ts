@@ -63,7 +63,7 @@ export class DataService {
   getDownloadAudio: string = this.baseUrl + '/downloadClip/';
   urlByChannelName: string = this.baseUrl + '/fetch-audio';
   authenticateUserUrl: string = this.baseUrl + '/authenticate';
-  errorAdvisoryUrl: string;
+  errorAdvisoryUrl: string = this.baseUrl + '/eas-event';
 
   dashboardArray = [];
   constructor(private http: HttpClient) { }

@@ -18,36 +18,37 @@ export class DashboardComponent implements OnInit {
   dummySites: any;
   data: any;
   eventsGridOptions: GridOptions;
-  eventsRowData: {}[] = [
-    {
-      "id": 1,
-      "name": "Manage Channel",
-      "descriptionText": "Manage Channel",
-      "eventType": "Create Channel",
-      "eventPayLoad": "{\"id\":1,\"channelName\":\"239.1.5.1-DGS-5-GMS\",\"encodingFormat\":\"YBD\",\"lastModifiedTs\":1557690562650,\"lastModifiedUserId\":\"EASLoader\",\"mediaOriginatedIp\":\"239.1.5.2\",\"mediaOriginatedPort\":5002,\"stndRole\":{\"id\":1,\"descriptionTx\":\"GMS\",\"endTs\":null,\"lastModifiedTs\":1557690562481,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"GMS\",\"startTs\":1557690562481},\"stndSite\":{\"id\":1,\"descriptionTx\":\"DGS-5\",\"endTs\":null,\"lastModifiedTs\":1557690562592,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"DGS-5\",\"notificationThreshold\":10,\"startTs\":1557690562592},\"standardClassification\":{\"id\":1,\"descriptionTx\":\"FOUO\",\"endTs\":null,\"lastModifiedTs\":1557690562616,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"FOUO\",\"notificationThreshold\":10,\"startTs\":1557690562616},\"activity\":[],\"enableIn\":\"TRUE\"}",
-      "eventResponse": "Successfully created channel",
-      "category": "Success",
-      "initiator": "EASSYSTEM",
-      "startTs": "2019-05-12T19:49:23.000+0000",
-      "endTs": "2019-05-12T19:49:23.000+0000",
-      "lastModifiedUserId": "EAS",
-      "lastModifiedTs": "2019-05-12T19:49:23.000+0000"
-    },
-    {
-      "id": 2,
-      "name": "Manage Channel",
-      "descriptionText": "Manage Channel",
-      "eventType": "Create Channel",
-      "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-      "eventResponse": "Channel Started for listening",
-      "category": "Success",
-      "initiator": "EASSYSTEM",
-      "startTs": "2019-05-12T19:49:24.000+0000",
-      "endTs": "2019-05-12T19:49:24.000+0000",
-      "lastModifiedUserId": "EAS",
-      "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
-    }
-  ];
+  eventsRowData: any;
+  // = [
+  //   {
+  //     "id": 1,
+  //     "name": "Manage Channel",
+  //     "descriptionText": "Manage Channel",
+  //     "eventType": "Create Channel",
+  //     "eventPayLoad": "{\"id\":1,\"channelName\":\"239.1.5.1-DGS-5-GMS\",\"encodingFormat\":\"YBD\",\"lastModifiedTs\":1557690562650,\"lastModifiedUserId\":\"EASLoader\",\"mediaOriginatedIp\":\"239.1.5.2\",\"mediaOriginatedPort\":5002,\"stndRole\":{\"id\":1,\"descriptionTx\":\"GMS\",\"endTs\":null,\"lastModifiedTs\":1557690562481,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"GMS\",\"startTs\":1557690562481},\"stndSite\":{\"id\":1,\"descriptionTx\":\"DGS-5\",\"endTs\":null,\"lastModifiedTs\":1557690562592,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"DGS-5\",\"notificationThreshold\":10,\"startTs\":1557690562592},\"standardClassification\":{\"id\":1,\"descriptionTx\":\"FOUO\",\"endTs\":null,\"lastModifiedTs\":1557690562616,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"FOUO\",\"notificationThreshold\":10,\"startTs\":1557690562616},\"activity\":[],\"enableIn\":\"TRUE\"}",
+  //     "eventResponse": "Successfully created channel",
+  //     "category": "Success",
+  //     "initiator": "EASSYSTEM",
+  //     "startTs": "2019-05-12T19:49:23.000+0000",
+  //     "endTs": "2019-05-12T19:49:23.000+0000",
+  //     "lastModifiedUserId": "EAS",
+  //     "lastModifiedTs": "2019-05-12T19:49:23.000+0000"
+  //   },
+  //   {
+  //     "id": 2,
+  //     "name": "Manage Channel",
+  //     "descriptionText": "Manage Channel",
+  //     "eventType": "Create Channel",
+  //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
+  //     "eventResponse": "Channel Started for listening",
+  //     "category": "Success",
+  //     "initiator": "EASSYSTEM",
+  //     "startTs": "2019-05-12T19:49:24.000+0000",
+  //     "endTs": "2019-05-12T19:49:24.000+0000",
+  //     "lastModifiedUserId": "EAS",
+  //     "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
+  //   }
+  // ];
   rowSelection: string = "multiple";
 
   public appAttributes: applicationAttributes = {
@@ -124,6 +125,8 @@ export class DashboardComponent implements OnInit {
         document.getElementById('login').click();
       }, 500)
     }
+
+    this.getEventsData();
 
     this.dummySites = ["   ",
       "",
@@ -250,6 +253,10 @@ export class DashboardComponent implements OnInit {
 
       }
     )
+
+
+
+
     var tooltip = function (hoveredData) {
       var toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0  </button>'
       for (let appViewState of activeCount) {
@@ -284,6 +291,19 @@ export class DashboardComponent implements OnInit {
     };
   }
 
+  getEventsData = function () {
+    this.dataService.getErrorAdvisoryData().subscribe(
+      response => {
+        this.eventsRowData = response;
+        setInterval(() => {
+          this.getEventsData();
+        }, 300000)
+      }
+    )
+  }
+
+
+
   setDummyData() {
     for (var k = 0; k <= this.dummySites.length - 1; k++) {
       this.dashboardData.siteNames.push(this.dummySites[k]);
@@ -291,6 +311,7 @@ export class DashboardComponent implements OnInit {
 
     }
   }
+
   setRefreshInterval(refreshInterval) {
     this.dashboardInterval = setInterval(() => {
       this.getDashBoardData();
@@ -305,5 +326,7 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
+
+
 
 }
