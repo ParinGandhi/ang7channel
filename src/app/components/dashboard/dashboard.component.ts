@@ -47,6 +47,47 @@ export class DashboardComponent implements OnInit {
   //     "endTs": "2019-05-12T19:49:24.000+0000",
   //     "lastModifiedUserId": "EAS",
   //     "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
+  //   },
+  //   {
+  //     "id": 3,
+  //     "name": "Manage Channel",
+  //     "descriptionText": "Manage Channel",
+  //     "eventType": "Update Channel",
+  //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
+  //     "eventResponse": "Update channel failed",
+  //     "category": "Failure",
+  //     "initiator": "EASSYSTEM",
+  //     "startTs": "2019-05-12T19:49:24.000+0000",
+  //     "endTs": "2019-05-12T19:49:24.000+0000",
+  //     "lastModifiedUserId": "EAS",
+  //     "lastModifiedTs": "2019-02-12T09:39:24.000+0000"
+  //   },
+  //   {
+  //     "id": 4,
+  //     "name": "Manage Channel",
+  //     "descriptionText": "Manage Channel",
+  //     "eventType": "Create Channel",
+  //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
+  //     "eventResponse": "Channel Started for listening",
+  //     "category": "Success",
+  //     "initiator": "EASSYSTEM",
+  //     "startTs": "2019-05-12T19:49:24.000+0000",
+  //     "endTs": "2019-05-12T19:49:24.000+0000",
+  //     "lastModifiedUserId": "EAS",
+  //     "lastModifiedTs": "2019-01-11T05:05:05.000+0000"
+  //   }, {
+  //     "id": 5,
+  //     "name": "Manage Channel",
+  //     "descriptionText": "Manage Channel",
+  //     "eventType": "Create Channel",
+  //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
+  //     "eventResponse": "Channel Started for listening",
+  //     "category": "Success",
+  //     "initiator": "EASSYSTEM",
+  //     "startTs": "2019-05-12T19:49:24.000+0000",
+  //     "endTs": "2019-05-12T19:49:24.000+0000",
+  //     "lastModifiedUserId": "EAS",
+  //     "lastModifiedTs": "2019-01-05T17:17:24.000+0000"
   //   }
   // ];
   rowSelection: string = "multiple";
@@ -105,7 +146,7 @@ export class DashboardComponent implements OnInit {
     { headerName: 'Name', field: 'name' },
     { headerName: 'Type', field: 'eventType' },
     { headerName: 'Event', field: 'eventResponse' },
-    { headerName: 'Time', field: 'lastModifiedTs', type: 'dateColumn' }
+    { headerName: 'Time', field: 'eventTime' }
   ];
 
   ngOnInit() {
@@ -295,6 +336,9 @@ export class DashboardComponent implements OnInit {
     this.dataService.getErrorAdvisoryData().subscribe(
       response => {
         this.eventsRowData = response;
+        for (var i = 0; i < this.eventsRowData.length; i++) {
+          this.eventsRowData[i].eventTime = this.calculateJulianDay(this.eventsRowData[i].lastModifiedTs);
+        }
         setInterval(() => {
           this.getEventsData();
         }, 300000)
@@ -302,7 +346,34 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  calculateJulianDay = function (lastModTime) {
+    var myDate = lastModTime;
+    var year = myDate.substring(0, 4);
+    var month = myDate.substring(5, 7);
+    var day = myDate.substring(8, 10);
+    var hour = myDate.substring(11, 13);
+    var minutes = myDate.substring(14, 16);
+    var seconds = myDate.substring(17, 19);
 
+    var currentYear = new Date().getFullYear();
+    var dayOne = new Date(currentYear, 0, 1);
+
+    var eventDate = new Date(year, month - 1, day);
+
+    var timeDiff = Math.abs(eventDate.getTime() - dayOne.getTime());
+    var dayDifference: any = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (dayDifference < 100) {
+      if (dayDifference < 10) {
+        dayDifference = "00" + dayDifference;
+      } else {
+        dayDifference = "0" + dayDifference;
+      }
+    }
+
+    var finalOutput = dayDifference.toString() + ":" + year + ":" + hour + minutes + seconds;
+    return finalOutput;
+  }
 
   setDummyData() {
     for (var k = 0; k <= this.dummySites.length - 1; k++) {
