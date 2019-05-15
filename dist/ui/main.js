@@ -762,7 +762,7 @@ var GridComponent = /** @class */ (function () {
             }
         ];
         this.columnDefs = [
-            { headerCheckboxSelection: true, checkboxSelection: true, width: 30 },
+            { headerCheckboxSelection: true, checkboxSelection: true, width: 40 },
             // {
             //   headerName: 'Play', cellRendererFramework: PlayAudioComponent, cellRendererParams: {
             //     onClick: this.sample.bind(this),
