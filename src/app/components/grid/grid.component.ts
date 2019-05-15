@@ -192,6 +192,7 @@ export class GridComponent implements OnInit {
     this.dataService.getChannelList().subscribe(rowData => {
       this.lastRefreshed = new Date();
       this.rowData = rowData;
+      this,this.showPlayer=false;
       this.toastr.success('', 'Retrieved ' + rowData.length + ' records', {
         timeOut: 10000
       });

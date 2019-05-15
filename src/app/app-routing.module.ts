@@ -11,11 +11,13 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    data: {reuse: true}
   },
   {
     path: 'view',
-    component: ViewComponent
+    component: ViewComponent,
+    data: {reuse: true}
   }
 ];
 

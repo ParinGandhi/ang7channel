@@ -7,7 +7,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
-
+import{routeReuseStrategy} from './routeReuse';
+import { RouteReuseStrategy } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -16,6 +17,7 @@ import { GridComponent } from './components/grid/grid.component';
 import { WaveformComponent } from './components/waveform/waveform.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NvD3Module } from "ng2-nvd3";
+import{CustomRouterLink} from "./custom-router";
 import 'd3';
 import 'nvd3';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
@@ -42,7 +44,8 @@ import { PlayComponent } from './components/play/play.component';
     ViewComponent,
     HistoryComponent,
     PlayAudioComponent,
-    PlayComponent
+    PlayComponent,
+    CustomRouterLink
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ import { PlayComponent } from './components/play/play.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [DataService],
+  providers: [{ provide:DataService,useClass:DataService},{provide:RouteReuseStrategy,useClass:routeReuseStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

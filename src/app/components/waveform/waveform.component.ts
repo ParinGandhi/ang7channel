@@ -66,7 +66,15 @@ export class WaveformComponent implements OnInit {
     }
     this.getChannelData(this.metaDataChannelName[this.metaDataChannelName.length - 1])
   }
-
+ngOnDestroy(){
+  if(this.isWavformExist){
+    this.waveSurfer.pause();
+   this.waveSurfer.empty();
+   this.startDate=null;
+  this.endDate=null;
+  this.enableWaveForm=false;
+ }
+}
   constructWaveSurfer(url) {
     this.isPlayAudio = true;
     if (!this.isWavformExist) {
