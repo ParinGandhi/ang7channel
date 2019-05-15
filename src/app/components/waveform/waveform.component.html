@@ -108,30 +108,30 @@
             <br> -->
         <div *ngIf="showPlayer" class="row" style="margin-top: 16%;">
         
-          <div class=" text-center">
+          <div class="text-center flexDisplay">
            
-            <button type="button" id="button_bw" class="btn pauseMenu " (click)='toogleMute()'>
+            <!-- <button type="button" id="button_bw" class="btn pauseMenu " (click)='toogleMute()'>
                
               <span [hidden]="!mute"><i class="fa fa-volume-up"></i></span>
               <span [hidden]="mute"><i class=" fa fa-volume-off"></i></span>
-            </button> &nbsp;
-
-            <button type="button" id="button_bw" class="btn pauseMenu" (click)='waveSurfer.skipBackward()'>
-              <i class="fa fa-backward"></i>
-            </button> &nbsp;
+            </button> &nbsp; -->
+            <img src="assets/stop.png" (click)='wavesurferStop()'>
+            <!-- <button type="button" id="button_bw" class="btn pauseMenu" (click)='waveSurfer.skipBackward()'> -->
+              <img src="assets/back.png" (click)="waveSurfer.skipBackward()">
+            <!-- </button> &nbsp; -->
             
-            <button type="button" id="button_play" class="btn pauseMenu" (click)="checkPlayPause()">
-              <span [hidden] ="!play" ><i  class="fa fa-play"></i></span> 
-              <span [hidden] ="play" ><i [hidden] ="!play"class="fa fa-pause"></i></span> 
-             </button> &nbsp;
+            <!-- <button type="button" id="button_play" class="btn pauseMenu" (click)="checkPlayPause()"> -->
+              <span [hidden] ="!play" ><img src="assets/play.png" style="border-radius: 20%"(click)="checkPlayPause()"></span> 
+              <span [hidden] ="play" ><img src="assets/pause.png" style="border-radius: 20%" (click)="checkPlayPause()"></span> 
+             <!-- </button> &nbsp; -->
             
-            <button type="button" id="button_stop" class="btn pauseMenu" (click)='wavesurferStop()'>
+            <!-- <button type="button" id="button_stop" class="btn pauseMenu" (click)='wavesurferStop()'>
               <i class="fa fa-stop"></i>
-            </button>&nbsp;
+            </button>&nbsp; -->
             
-            <button type="button" id="button_fw" class="btn pauseMenu" (click)='waveSurfer.skipForward()'>
-              <i class="fa fa-forward"></i>
-            </button>    
+            <!-- <button type="button" id="button_fw" class="btn pauseMenu" (click)='waveSurfer.skipForward()'> -->
+              <img src="assets/forward.png"  (click)="waveSurfer.skipForward()">
+            <!-- </button>     -->
           </div>
         </div>
         
