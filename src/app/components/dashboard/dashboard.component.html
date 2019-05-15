@@ -85,17 +85,24 @@
   </div>
   <div class="row">
     <div class="col-sm-8">
-      <ag-grid-angular style="width: 100%; height: 500px; margin-top: 10px;" class="ag-theme-balham"
-        [rowData]="eventsRowData" [columnDefs]="eventsColumnDefs" [enableColResize]="true" [enableSorting]="true"
-        [enableFilter]="true" [gridOptions]="eventsGridOptions" [paginationPageSize]=20 [pagination]="true"
-        [rowSelection]="eventsRowSelection">
-      </ag-grid-angular>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Error Advisory
+        </div>
+        <div class="panel-body">
+          <ag-grid-angular style="width: 100%; height: 500px; margin-top: 10px;" class="ag-theme-balham"
+            [rowData]="eventsRowData" [columnDefs]="eventsColumnDefs" [enableColResize]="true" [enableSorting]="true"
+            [enableFilter]="true" [gridOptions]="eventsGridOptions" [paginationPageSize]=20 [pagination]="true"
+            [rowSelection]="eventsRowSelection">
+          </ag-grid-angular>
+        </div>
+      </div>
     </div>
     <div class="col-sm-4">
       <div class="row">
         <div class="col-sm-12">
-          <div class="panel panel-default" style="margin-top: 8px;">
-            <div class="panel-heading" style="height: 35px;">
+          <div class="panel panel-default">
+            <div class="panel-heading">
               Application Details
               <span class="pull-right"></span>
               <!-- <div class="card-header-actions pull-right">
@@ -103,7 +110,7 @@
                 </div> -->
             </div>
             <div class="panel-body" style="
-              height: 433px;">
+              height: 540px;">
               <div>
                 <span *ngFor="let item of dashboardData?.applicationAttributes | keyvalue">
                   <span class="blackdot" style="
