@@ -5,7 +5,7 @@
 <div class="row" style="margin-top: 25px;">
   <!-- <div class="col-md-12"> -->
   <div class="col-sm-6">
-    <button class="btn btn-success" (click)="display = true;"><span class="glyphicon glyphicon-search"
+    <button class="btn btn-success" (click)="setSearchFlag()"><span class="glyphicon glyphicon-search"
         aria-hidden="true"></span>&nbsp;Search</button>
     <button *ngIf="loggedIn" class="btn btn-success" (click)="exportToCsv();" style="margin-left: 1%;"><span
         class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;Export to CSV</button>

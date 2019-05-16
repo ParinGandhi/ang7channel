@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
   startDate: any;
   endDate: any;
   @Output() searchData: EventEmitter<any> = new EventEmitter<any>();
+
   stndSite: StandardSite = {
     id: null,
     descriptionTx: null,
@@ -75,7 +76,7 @@ export class SearchComponent implements OnInit {
     let queryString: string;
     let searchUrl: string;
     let validDate: boolean = true;
-
+   
     if (this.easMediaData.channelName !== 'undefined' && this.easMediaData.channelName !== null && this.easMediaData.channelName !== '') {
       queryParams.push('channelName=' + this.easMediaData.channelName);
     }
@@ -129,6 +130,7 @@ export class SearchComponent implements OnInit {
         .subscribe(rowData => {
           console.log('Table response: %o', rowData);
           this.searchData.emit(rowData);
+          this.sharedService.setSearchFlag(false);
           this.sharedService.changeDataSource(rowData);
           this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
             timeOut: 10000

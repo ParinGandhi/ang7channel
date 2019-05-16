@@ -192,14 +192,21 @@ export class GridComponent implements OnInit {
     this.dataService.getChannelList().subscribe(rowData => {
       this.lastRefreshed = new Date();
       this.rowData = rowData;
-      this,this.showPlayer=false;
+      this.showPlayer=false;
       this.toastr.success('', 'Retrieved ' + rowData.length + ' records', {
         timeOut: 10000
       });
     });
   }
+  setSearchFlag(){
+    this.sharedService.setSearchFlag(true);
+  }
   ngOnInit() {
-    this.sharedService.sharedDataSource.subscribe(data => this.rowData = data);
+    this.sharedService.sharedDataSource.subscribe(data =>{ 
+      this.rowData = data;
+      this.showPlayer=false;
+    });
+    this.sharedService.currentFlag.subscribe(data=>this.display=data);
     this.sharedService.sharedLoginResource.subscribe(data => {
       this.loggedIn = data;
       console.log(data);
