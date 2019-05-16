@@ -638,6 +638,9 @@ var DashboardComponent = /** @class */ (function () {
     };
     DashboardComponent.prototype.setRefreshInterval = function (refreshInterval) {
         var _this = this;
+        if (this.dashboardInterval) {
+            clearInterval(this.dashboardInterval);
+        }
         this.dashboardInterval = setInterval(function () {
             _this.getDashBoardData();
         }, refreshInterval.value);
