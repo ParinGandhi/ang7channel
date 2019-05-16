@@ -673,7 +673,7 @@ var DashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-sidebar [(visible)]=\"display\" [style]=\"{width:'350px'}\">\r\n  <!-- <app-search (searchData)=\"setSearchData($event)\"> </app-search> -->\r\n  <app-search (searchData)=\"setSearchData($event);\"> </app-search>\r\n</p-sidebar>\r\n<div class=\"row\" style=\"margin-top: 25px;\">\r\n  <!-- <div class=\"col-md-12\"> -->\r\n  <div class=\"col-sm-6\">\r\n    <button class=\"btn btn-success\" (click)=\"display = true;\"><span class=\"glyphicon glyphicon-search\"\r\n        aria-hidden=\"true\"></span>&nbsp;Search</button>\r\n    <button *ngIf=\"loggedIn\" class=\"btn btn-success\" (click)=\"exportToCsv();\" style=\"margin-left: 1%;\"><span\r\n        class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span>&nbsp;Export to CSV</button>\r\n    <button class=\"btn btn-success\" (click)=\"archiveChannels();\" style=\"margin-left: 1%;\"><span\r\n        class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>&nbsp;&nbsp;Archive channels\r\n    </button>\r\n  </div>\r\n  <!-- <div class=\"col-sm-2\">\r\n    <button *ngIf=\"loggedIn\" class=\"btn btn-success\" (click)=\"exportToCsv();\"><span\r\n        class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span>&nbsp;Export to CSV</button>\r\n  </div>\r\n  <div class=\"col-sm-2\">\r\n    <button class=\"btn btn-success\" (click)=\"archiveChannels();\"><span class=\"glyphicon glyphicon-folder-open\"\r\n        aria-hidden=\"true\"></span>&nbsp;&nbsp;Archive channels\r\n    </button>\r\n  </div> -->\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"pull-right\">\r\n      Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n      <button class=\"btn btn-sm btn-default\" (click)=\"getGridData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n          aria-hidden=\"true\"></span></button>\r\n    </div>\r\n  </div>\r\n  <!-- <div class=\"col-md-2\">\r\n    <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n      [(ngModel)]=\"gridRefreshInterval\" (change)=\"setRefreshInterval(gridRefreshInterval)\">\r\n      <option value=\"1\">Select an auto refresh interval...</option>\r\n      <option *ngFor=\"let refreshInterval of refreshIntervals\" [ngValue]=\"refreshInterval\">\r\n        {{refreshInterval.description}}</option>\r\n    </select>\r\n  </div> -->\r\n  <!-- </div> -->\r\n</div>\r\n<ag-grid-angular style=\"width: 100%; height: 500px; margin-top: 10px;\" class=\"ag-theme-balham\" [rowData]=\"rowData\"\r\n  [columnDefs]=\"columnDefs\" [enableColResize]=\"true\" [enableSorting]=\"true\" [enableFilter]=\"true\"\r\n  [gridOptions]=\"gridOptions\" [paginationPageSize]=20 [pagination]=\"true\" [rowSelection]=\"rowSelection\">\r\n</ag-grid-angular>\r\n<div *ngIf=\"showPlayer\" class=\"row\">\r\n  <div class=\"col-sm-12\">\r\n    <app-waveform [metaDataChannelName]=channelName></app-waveform>\r\n  </div>\r\n</div>\r\n\r\n<!-- History Modal -->\r\n<ngx-smart-modal #historyModal customClass=\"nsm-dialog-animation-ttb historyModal\" identifier=\"historyModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">History</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-6\">\r\n        <button class=\"btn btn-success widthUnset btn-block\" (click)=\"exportHistoryToCsv();\"><span\r\n            class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span>&nbsp;Export to CSV</button>\r\n      </div>\r\n    </div>\r\n    <ag-grid-angular style=\"width: 100%; height: 500px; margin-top: 40px;\" class=\"ag-theme-balham\"\r\n      [rowData]=\"historyRowData\" [columnDefs]=\"historyColumnDefs\" [gridOptions]=\"historyGridOptions\"\r\n      [enableColResize]=\"true\" [enableSorting]=\"true\" [enableFilter]=\"true\" [paginationPageSize]=20 [pagination]=\"true\">\r\n    </ag-grid-angular>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"historyModal.close()\">Close</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End History Modal -->"
+module.exports = "<p-sidebar [(visible)]=\"display\" [style]=\"{width:'350px'}\">\r\n  <!-- <app-search (searchData)=\"setSearchData($event)\"> </app-search> -->\r\n  <app-search (searchData)=\"setSearchData($event);\"> </app-search>\r\n</p-sidebar>\r\n<div class=\"row\" style=\"margin-top: 25px;\">\r\n  <!-- <div class=\"col-md-12\"> -->\r\n  <div class=\"col-sm-6\">\r\n    <button class=\"btn btn-success\" (click)=\"setSearchFlag()\"><span class=\"glyphicon glyphicon-search\"\r\n        aria-hidden=\"true\"></span>&nbsp;Search</button>\r\n    <button *ngIf=\"loggedIn\" class=\"btn btn-success\" (click)=\"exportToCsv();\" style=\"margin-left: 1%;\"><span\r\n        class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span>&nbsp;Export to CSV</button>\r\n    <button class=\"btn btn-success\" (click)=\"archiveChannels();\" style=\"margin-left: 1%;\"><span\r\n        class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>&nbsp;&nbsp;Archive channels\r\n    </button>\r\n  </div>\r\n  <!-- <div class=\"col-sm-2\">\r\n    <button *ngIf=\"loggedIn\" class=\"btn btn-success\" (click)=\"exportToCsv();\"><span\r\n        class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span>&nbsp;Export to CSV</button>\r\n  </div>\r\n  <div class=\"col-sm-2\">\r\n    <button class=\"btn btn-success\" (click)=\"archiveChannels();\"><span class=\"glyphicon glyphicon-folder-open\"\r\n        aria-hidden=\"true\"></span>&nbsp;&nbsp;Archive channels\r\n    </button>\r\n  </div> -->\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"pull-right\">\r\n      Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n      <button class=\"btn btn-sm btn-default\" (click)=\"getGridData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n          aria-hidden=\"true\"></span></button>\r\n    </div>\r\n  </div>\r\n  <!-- <div class=\"col-md-2\">\r\n    <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n      [(ngModel)]=\"gridRefreshInterval\" (change)=\"setRefreshInterval(gridRefreshInterval)\">\r\n      <option value=\"1\">Select an auto refresh interval...</option>\r\n      <option *ngFor=\"let refreshInterval of refreshIntervals\" [ngValue]=\"refreshInterval\">\r\n        {{refreshInterval.description}}</option>\r\n    </select>\r\n  </div> -->\r\n  <!-- </div> -->\r\n</div>\r\n<ag-grid-angular style=\"width: 100%; height: 500px; margin-top: 10px;\" class=\"ag-theme-balham\" [rowData]=\"rowData\"\r\n  [columnDefs]=\"columnDefs\" [enableColResize]=\"true\" [enableSorting]=\"true\" [enableFilter]=\"true\"\r\n  [gridOptions]=\"gridOptions\" [paginationPageSize]=20 [pagination]=\"true\" [rowSelection]=\"rowSelection\">\r\n</ag-grid-angular>\r\n<div *ngIf=\"showPlayer\" class=\"row\">\r\n  <div class=\"col-sm-12\">\r\n    <app-waveform [metaDataChannelName]=channelName></app-waveform>\r\n  </div>\r\n</div>\r\n\r\n<!-- History Modal -->\r\n<ngx-smart-modal #historyModal customClass=\"nsm-dialog-animation-ttb historyModal\" identifier=\"historyModal\">\r\n  <div class=\"modal-header\">\r\n    <h4 class=\"modal-title\">History</h4>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-6\">\r\n        <button class=\"btn btn-success widthUnset btn-block\" (click)=\"exportHistoryToCsv();\"><span\r\n            class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span>&nbsp;Export to CSV</button>\r\n      </div>\r\n    </div>\r\n    <ag-grid-angular style=\"width: 100%; height: 500px; margin-top: 40px;\" class=\"ag-theme-balham\"\r\n      [rowData]=\"historyRowData\" [columnDefs]=\"historyColumnDefs\" [gridOptions]=\"historyGridOptions\"\r\n      [enableColResize]=\"true\" [enableSorting]=\"true\" [enableFilter]=\"true\" [paginationPageSize]=20 [pagination]=\"true\">\r\n    </ag-grid-angular>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default pull-left\" (click)=\"historyModal.close()\">Close</button>\r\n  </div>\r\n</ngx-smart-modal>\r\n<!-- End History Modal -->"
 
 /***/ }),
 
@@ -887,15 +887,22 @@ var GridComponent = /** @class */ (function () {
         this.dataService.getChannelList().subscribe(function (rowData) {
             _this.lastRefreshed = new Date();
             _this.rowData = rowData;
-            _this, _this.showPlayer = false;
+            _this.showPlayer = false;
             _this.toastr.success('', 'Retrieved ' + rowData.length + ' records', {
                 timeOut: 10000
             });
         });
     };
+    GridComponent.prototype.setSearchFlag = function () {
+        this.sharedService.setSearchFlag(true);
+    };
     GridComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.sharedService.sharedDataSource.subscribe(function (data) { return _this.rowData = data; });
+        this.sharedService.sharedDataSource.subscribe(function (data) {
+            _this.rowData = data;
+            _this.showPlayer = false;
+        });
+        this.sharedService.currentFlag.subscribe(function (data) { return _this.display = data; });
         this.sharedService.sharedLoginResource.subscribe(function (data) {
             _this.loggedIn = data;
             console.log(data);
@@ -1928,6 +1935,7 @@ var SearchComponent = /** @class */ (function () {
                 .subscribe(function (rowData) {
                 console.log('Table response: %o', rowData);
                 _this.searchData.emit(rowData);
+                _this.sharedService.setSearchFlag(false);
                 _this.sharedService.changeDataSource(rowData);
                 _this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
                     timeOut: 10000
@@ -2725,6 +2733,7 @@ var SharedService = /** @class */ (function () {
         this.sharedSiteIdDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
         this.sharedRoleIdDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
         this.sharedClassDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
+        this.searchFlag = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
         this.changeDashboardDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
         this.sharedLoginResource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
         this.currentMessage = this.sharedDataSource.asObservable();
@@ -2732,6 +2741,7 @@ var SharedService = /** @class */ (function () {
         this.currentSitId = this.sharedSiteIdDataSource.asObservable();
         this.currentRoleId = this.sharedRoleIdDataSource.asObservable();
         this.currentClassData = this.sharedClassDataSource.asObservable();
+        this.currentFlag = this.searchFlag.asObservable();
     }
     SharedService.prototype.changeDataSource = function (data) {
         this.sharedDataSource.next(data);
@@ -2750,6 +2760,9 @@ var SharedService = /** @class */ (function () {
     };
     SharedService.prototype.changeClassData = function (data) {
         this.sharedClassDataSource.next(data);
+    };
+    SharedService.prototype.setSearchFlag = function (data) {
+        this.searchFlag.next(data);
     };
     SharedService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
