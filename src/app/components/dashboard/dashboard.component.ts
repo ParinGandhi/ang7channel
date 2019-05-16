@@ -235,7 +235,7 @@ export class DashboardComponent implements OnInit {
     this.dataService.getDashboardData().subscribe(
       response => {
         this.lastRefreshed = new Date();
-        this.dashboardData = response;
+        this.dashboardData = response; 
         activeCount = this.dashboardData.activeChannelsBySite;
         maxCount = Math.max(...this.dashboardData.siteCount);
         this.optionsForTool.chart['valueFormat'] = function (d) {
@@ -384,6 +384,9 @@ export class DashboardComponent implements OnInit {
   }
 
   setRefreshInterval(refreshInterval) {
+    if(this.dashboardInterval){
+    clearInterval(this.dashboardInterval);
+    }
     this.dashboardInterval = setInterval(() => {
       this.getDashBoardData();
     }, refreshInterval.value);
