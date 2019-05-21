@@ -79,6 +79,8 @@ export class NavbarComponent implements OnInit {
     username: null,
     password: null
   };
+
+  keyCodeList: number[] = [8, 9, 13, 16, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105];
   guestUser: boolean = false;
   ipOctetOne: any;
   ipOctetTwo: any;
@@ -479,7 +481,7 @@ export class NavbarComponent implements OnInit {
     }
     if (!this.easMediaDataToCreate.enableIn) {
       this.validChannel = false;
-      this.validationMessage += '<li>Active indicator</li>';
+      this.validationMessage += '<li>Enabled</li>';
     }
 
     return this.validChannel;
@@ -570,7 +572,6 @@ export class NavbarComponent implements OnInit {
       }
     }
   }
-  keyCodeList: number[] = [8, 9, 16, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
   checkIpValue(fromTextBox, toTextBox, e, modelName) {
     // if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
     if (!this.keyCodeList.includes(e.keyCode)) {

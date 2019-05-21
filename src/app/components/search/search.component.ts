@@ -65,6 +65,14 @@ export class SearchComponent implements OnInit {
   roleIdList: StandardRole[];
   classificationList: StandardClassification[];
 
+  toastrTimeOut: number = 10000;
+
+  keyCodeList: number[] = [8, 9, 13, 16, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105];
+
+  ipOctetOne: any;
+  ipOctetTwo: any;
+  ipOctetThree: any;
+  ipOctetFour: any;
   TRUE: string = "TRUE";
   FALSE: string = "FALSE";
 
@@ -74,6 +82,10 @@ export class SearchComponent implements OnInit {
   }
 
   submitSearch() {
+
+    if (this.ipOctetOne && this.ipOctetTwo && this.ipOctetThree && this.ipOctetFour) {
+      this.easMediaData.mediaOriginatedIp = this.ipOctetOne + '.' + this.ipOctetTwo + '.' + this.ipOctetThree + '.' + this.ipOctetFour;
+    }
 
     let queryParams: any = [];
     let queryString: string;
@@ -147,6 +159,10 @@ export class SearchComponent implements OnInit {
     this.easMediaData.channelName = null;
     this.easMediaData.stndSite.id = -1;
     this.easMediaData.mediaOriginatedIp = null;
+    this.ipOctetOne = null;
+    this.ipOctetTwo = null;
+    this.ipOctetThree = null;
+    this.ipOctetFour = null;
     this.easMediaData.mediaOriginatedPort = null;
     this.stndRole.id = -1;
     this.easMediaData.standardClassification.id = -1;
@@ -161,11 +177,34 @@ export class SearchComponent implements OnInit {
   };
 
 
-  checkIpValue(ipAddress, e) {
-    if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
-      this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp.substring(0, this.easMediaData.mediaOriginatedIp.length - 1);
+
+  checkIpValue(fromTextBox, toTextBox, e, modelName) {
+    // if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
+    if (!this.keyCodeList.includes(e.keyCode)) {
+      switch (modelName) {
+        case "ipOctetOne":
+          this.ipOctetOne = this.ipOctetOne.substring(0, this.ipOctetOne.length - 1);;
+          break;
+        case "ipOctetTwo":
+          this.ipOctetTwo = this.ipOctetTwo.substring(0, this.ipOctetTwo.length - 1);;
+          break;
+        case "ipOctetThree":
+          this.ipOctetThree = this.ipOctetThree.substring(0, this.ipOctetThree.length - 1);;
+          break;
+        case "ipOctetFour":
+          this.ipOctetFour = this.ipOctetFour.substring(0, this.ipOctetFour.length - 1);;
+          break;
+        default:
+          break;
+      }
     }
+    // var length = fromTextBox.length;
+    // if (length === 3) {
+    //   document.getElementById(toTextBox).focus();
+    // }
   }
+
+
 
 
   ngOnInit() {

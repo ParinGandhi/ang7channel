@@ -16,13 +16,53 @@
       </select>
     </div>
   </div>
-  <div class="row searchHeight">
+  <!-- <div class="row searchHeight">
     <div class="input-field col-sm-10 col-sm-offset-1">
       <label for="originatedIp" class="searchLabel">Originated IP</label>
       <input class="form-control input-sm" id="originatedIp" type="text" [cleave]="{delimiter: '.', blocks: [3,3,3,3]}"
         (keyup)="checkIpValue(easMediaData.mediaOriginatedIp, $event)" (keydown.enter)="submitSearch();"
         [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.mediaOriginatedIp">
     </div>
+  </div> -->
+  <div class="row searchHeight">
+    <div class="col-sm-10 col-sm-offset-1">
+      <label for="originatedIp">Originated IP</label>
+    </div>
+  </div>
+  <div class="row searchHeight">
+    <div class="col-sm-offset-1" style="margin-left: 44px;">
+      <!-- <input class="form-control" id="octetOne" type="text" maxlength="3" (blur)="padIp(ipOctetOne, 'ipOctetOne')" -->
+      <div>
+        <input class="form-control-custom" id="octetOne" type="text" maxlength="3" (blur)="validateIPValue(ipOctetOne)"
+          (keyup)="checkIpValue(ipOctetOne, 'octetTwo', $event, 'ipOctetOne')" [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="ipOctetOne" style="width: 18%;">
+        <input class="form-control-custom ipOctets" id="octetTwo" type="text" maxlength="3"
+          (blur)="validateIPValue(ipOctetTwo)" (keyup)="checkIpValue(ipOctetTwo, 'octetThree', $event, 'ipOctetTwo')"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="ipOctetTwo">
+        <input class="form-control-custom ipOctets" id="octetThree" type="text" maxlength="3"
+          (blur)="validateIPValue(ipOctetThree)"
+          (keyup)="checkIpValue(ipOctetThree, 'octetFour', $event, 'ipOctetThree')"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="ipOctetThree">
+        <input class="form-control-custom ipOctets" id="octetFour" type="text" maxlength="3"
+          (blur)="validateIPValue(ipOctetFour)" (keyup)="checkIpValue(ipOctetFour, 'octetFour', $event, 'ipOctetFour')"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="ipOctetFour">
+      </div>
+    </div>
+    <!-- <div>
+      <input class="form-control" id="octetTwo" type="text" maxlength="3" (blur)="validateIPValue(ipOctetTwo)"
+        (keyup)="checkIpValue(ipOctetTwo, 'octetThree', $event, 'ipOctetTwo')" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="ipOctetTwo" style="width: 50px;">
+    </div> -->
+    <!-- <div class="col-sm-2">
+      <input class="form-control" id="octetThree" type="text" maxlength="3" (blur)="validateIPValue(ipOctetThree)"
+        (keyup)="checkIpValue(ipOctetThree, 'octetFour', $event, 'ipOctetThree')" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="ipOctetThree">
+    </div>
+    <div class="col-sm-2 ">
+      <input class="form-control" id="octetFour" type="text" maxlength="3" (blur)="validateIPValue(ipOctetFour)"
+        (keyup)="checkIpValue(ipOctetFour, 'octetFour', $event, 'ipOctetFour')" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="ipOctetFour">
+    </div> -->
   </div>
   <div class="row searchHeight">
     <div class="input-field col-sm-10 col-sm-offset-1">
