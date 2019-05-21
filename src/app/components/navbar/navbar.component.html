@@ -4,7 +4,7 @@
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn && !guestUser"
   (click)="ngxSmartModalService.getModal('manageChannelModal').open()">Manage
   Channels</button>
-<button class="btn btn-link navbarLinks" *ngIf="loggedIn"
+<button class="btn btn-link navbarLinks" *ngIf="loggedIn && !guestUser"
   (click)="ngxSmartModalService.getModal('uploadFileModal').open()">Upload
   File</button>
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn" (click)="openHelp()">Help</button>
@@ -91,23 +91,23 @@
     </div>
     <div class="row modalInputHeight">
       <div class="col-sm-2 col-sm-offset-1">
-        <input class="form-control" id="octetOne" type="text" maxlength="3" (blur)="padIp(ipOctetOne, 'ipOctetOne')"
+        <!-- <input class="form-control" id="octetOne" type="text" maxlength="3" (blur)="padIp(ipOctetOne, 'ipOctetOne')" -->
+        <input class="form-control" id="octetOne" type="text" maxlength="3" (blur)="validateIPValue(ipOctetOne)"
           (keyup)="checkIpValue(ipOctetOne, 'octetTwo', $event, 'ipOctetOne')" [ngModelOptions]="{standalone: true}"
           [(ngModel)]="ipOctetOne">
       </div>
       <div class="col-sm-2">
-        <input class="form-control" id="octetTwo" type="text" maxlength="3" (blur)="padIp(ipOctetTwo, 'ipOctetTwo')"
+        <input class="form-control" id="octetTwo" type="text" maxlength="3" (blur)="validateIPValue(ipOctetTwo)"
           (keyup)="checkIpValue(ipOctetTwo, 'octetThree', $event, 'ipOctetTwo')" [ngModelOptions]="{standalone: true}"
           [(ngModel)]="ipOctetTwo">
       </div>
       <div class="col-sm-2">
-        <input class="form-control" id="octetThree" type="text" maxlength="3"
-          (blur)="padIp(ipOctetThree, 'ipOctetThree')"
+        <input class="form-control" id="octetThree" type="text" maxlength="3" (blur)="validateIPValue(ipOctetThree)"
           (keyup)="checkIpValue(ipOctetThree, 'octetFour', $event, 'ipOctetThree')"
           [ngModelOptions]="{standalone: true}" [(ngModel)]="ipOctetThree">
       </div>
       <div class="col-sm-2 ">
-        <input class="form-control" id="octetFour" type="text" maxlength="3" (blur)="padIp(ipOctetFour, 'ipOctetFour')"
+        <input class="form-control" id="octetFour" type="text" maxlength="3" (blur)="validateIPValue(ipOctetFour)"
           (keyup)="checkIpValue(ipOctetFour, 'octetFour', $event, 'ipOctetFour')" [ngModelOptions]="{standalone: true}"
           [(ngModel)]="ipOctetFour">
       </div>
@@ -150,7 +150,7 @@
             aria-hidden="true"></span></button>
       </div>
     </div>
-    <div class="row modalInputHeight">
+    <!-- <div class="row modalInputHeight">
       <div class="input-field col-sm-10 col-sm-offset-1">
         <label for="active">Active *</label>
         <select class="form-control" name="activeIndSearch" id="activeIndSearch" [ngModelOptions]="{standalone: true}"
@@ -159,6 +159,17 @@
           <option value="TRUE">Active</option>
           <option value="FALSE">Inactive</option>
         </select>
+      </div>
+    </div> -->
+    <div class="row" style="margin-top: 15px;">
+      <div class="input-field col-sm-3 col-sm-offset-1">
+        <label for="">Enabled? *</label>
+      </div>
+      <div class="col-sm-6">
+        <label for="manageEnableTrue" class="radio-inline"><input type="radio" name="manageTrue" [value]="TRUE"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.enableIn">Yes</label>
+        <label for="manageEnableFalse" class="radio-inline"><input type="radio" name="manageFalse" [value]="FALSE"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaDataToCreate.enableIn">No</label>
       </div>
     </div>
     <div class="row modalInputHeight">

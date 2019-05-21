@@ -53,7 +53,7 @@
       </select>
     </div>
   </div>
-  <div class="row searchHeight">
+  <!-- <div class="row searchHeight">
     <div class="input-field col-sm-10 col-sm-offset-1">
       <label for="activeIndSearch" class="searchLabel">Active indicator</label>
       <select class="form-control input-sm" name="activeIndSearch" id="activeIndSearch"
@@ -63,10 +63,26 @@
         <option value="FALSE">Inactive</option>
       </select>
     </div>
+  </div> -->
+  <div class="row" style="margin-top: 10px;">
+    <div class="input-field col-sm-3 col-sm-offset-1">
+      <label for="">Enabled?</label>
+    </div>
+    <div class="col-sm-6">
+      <label for="enabledTrue" class="radio-inline"><input type="radio" name="true" [value]="TRUE"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.enableIn">Yes</label>
+      <label for="enabledFalse" class="radio-inline"><input type="radio" name="false" [value]="FALSE"
+          [ngModelOptions]="{standalone: true}" [(ngModel)]="easMediaData.enableIn">No</label>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px;">
+    <div class="input-field col-sm-10 col-sm-offset-1">
+      <label for="timeRange">Time range</label>
+    </div>
   </div>
   <div class="row searchHeight">
     <div class="input-field col-sm-10 col-sm-offset-1">
-      <label for="startDate" class="searchLabel">Start date</label>
+      <label for="startDate" class="searchLabel">Begin</label>
       <br>
       <p-calendar [(ngModel)]="startDate" [showIcon]="true" [showTime]="true" name="startDate" ngDefaultControl>
       </p-calendar>
@@ -75,7 +91,7 @@
   </div>
   <div class="row searchHeight">
     <div class="input-field col-sm-10 col-sm-offset-1">
-      <label for="endDate" class="searchLabel">End date</label>
+      <label for="endDate" class="searchLabel">End</label>
       <br>
       <p-calendar [(ngModel)]="endDate" [showIcon]="true" [showTime]="true" name="endDate" ngDefaultControl>
       </p-calendar>

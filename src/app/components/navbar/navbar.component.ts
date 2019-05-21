@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit {
     lastModifiedUserId: null,
     mediaOriginatedIp: null,
     mediaOriginatedPort: null,
-    enableIn: "",
+    enableIn: null,
     stndSite: this.stndSite,
     stndRole: this.stndRole
   };
@@ -83,7 +83,10 @@ export class NavbarComponent implements OnInit {
   ipOctetOne: any;
   ipOctetTwo: any;
   ipOctetThree: any;
-  ipOctetFour: any
+  ipOctetFour: any;
+  TRUE: string = "TRUE";
+  FALSE: string = "FALSE";
+
 
 
   /** Constructor */
@@ -101,6 +104,7 @@ export class NavbarComponent implements OnInit {
       this.easMediaDataToCreate.mediaOriginatedIp = this.ipOctetOne + '.' + this.ipOctetTwo + '.' + this.ipOctetThree + '.' + this.ipOctetFour;
       this.easMediaDataToCreate.lastModifiedTs = new Date();
       this.easMediaDataToCreate.lastModifiedUserId = 'testUser';
+      this.easMediaDataToCreate.enableIn = this.easMediaDataToCreate.enableIn.toUpperCase();
       this.dataService.addChannel(this.easMediaDataToCreate)
         .subscribe(createdChannel => {
           console.log(createdChannel);
@@ -420,6 +424,8 @@ export class NavbarComponent implements OnInit {
     if (this.validateAllInputs() && this.validateChannel()) {
       this.easMediaDataToCreate.mediaOriginatedIp = this.ipOctetOne + '.' + this.ipOctetTwo + '.' + this.ipOctetThree + '.' + this.ipOctetFour;
       this.easMediaDataToCreate.lastModifiedUserId = 'testUser';
+      // this.easMediaDataToCreate.enableIn = this.easMediaDataToCreate.enableIn.toString().toUpperCase();
+      this.easMediaDataToCreate.enableIn = this.easMediaDataToCreate.enableIn;
       this.dataService.updateChannel(this.easMediaDataToCreate)
         .subscribe(
           response => {
@@ -509,7 +515,7 @@ export class NavbarComponent implements OnInit {
   };
 
   openHelp() {
-   window.open('/help');
+    window.open('/help');
   };
 
   validateAllInputs() {
@@ -564,9 +570,10 @@ export class NavbarComponent implements OnInit {
       }
     }
   }
-
+  keyCodeList: number[] = [8, 9, 16, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
   checkIpValue(fromTextBox, toTextBox, e, modelName) {
-    if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
+    // if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
+    if (!this.keyCodeList.includes(e.keyCode)) {
       switch (modelName) {
         case "ipOctetOne":
           this.ipOctetOne = this.ipOctetOne.substring(0, this.ipOctetOne.length - 1);;
@@ -584,9 +591,17 @@ export class NavbarComponent implements OnInit {
           break;
       }
     }
-    var length = fromTextBox.length;
-    if (length === 3) {
-      document.getElementById(toTextBox).focus();
+    // var length = fromTextBox.length;
+    // if (length === 3) {
+    //   document.getElementById(toTextBox).focus();
+    // }
+  }
+
+  validateIPValue(ipValue) {
+    if (ipValue < 0 || ipValue > 255) {
+      this.toastr.error(ipValue + ' is not a valid IP. Please check the value and try again', '', {
+        timeOut: this.toastrTimeOut
+      });
     }
   }
 

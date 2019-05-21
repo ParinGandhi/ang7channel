@@ -65,6 +65,9 @@ export class SearchComponent implements OnInit {
   roleIdList: StandardRole[];
   classificationList: StandardClassification[];
 
+  TRUE: string = "TRUE";
+  FALSE: string = "FALSE";
+
 
   constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService, private gridComponent: GridComponent) {
 
@@ -76,7 +79,7 @@ export class SearchComponent implements OnInit {
     let queryString: string;
     let searchUrl: string;
     let validDate: boolean = true;
-   
+
     if (this.easMediaData.channelName !== 'undefined' && this.easMediaData.channelName !== null && this.easMediaData.channelName !== '') {
       queryParams.push('channelName=' + this.easMediaData.channelName);
     }

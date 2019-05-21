@@ -1,50 +1,60 @@
 <div class="col-md-12">
   <div class="col-md-10">
-<ag-grid-angular style="width: 100%; height: 300px; margin-top: 2%;" class="ag-theme-balham" [rowData]="waveformData"
-  [columnDefs]="waveformColumnDefs" [gridOptions]="waveFormGridOptions" [enableColResize]="true" [enableSorting]="true"
-  [enableFilter]="true" [paginationPageSize]=20 [rowSelection]="rowSelection"
-  (selectionChanged)="onSelectionChanged($event)" [pagination]="true">
-</ag-grid-angular>
-</div>
-<div class="col-md-2">
-<div style="margin-top:10%">
-    <div class="row">
-        
-        <div class="col-md-3 padleftzero" > <label style="
+    <ag-grid-angular style="width: 100%; height: 165px; margin-top: 2%;" class="ag-theme-balham"
+      [rowData]="waveformData" [columnDefs]="waveformColumnDefs" [gridOptions]="waveFormGridOptions"
+      [enableColResize]="true" [enableSorting]="true" [enableFilter]="true" [paginationPageSize]=20
+      [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)" [pagination]="true">
+    </ag-grid-angular>
+  </div>
+  <div class="col-md-2">
+    <div style="margin-top:10%">
+      <div class="row">
+
+        <div class="col-md-3 padleftzero"> <label style="
           margin-top: 6%;
       ">Start time</label></div>
-         <div class="col-md-9 padleftzero"><p-calendar [(ngModel)]="startDate" [inputStyle]="{'width':'70%'}" [showIcon]="true" [showTime]="true" name="startDate" ngDefaultControl>
-          </p-calendar></div>
-  
+        <div class="col-md-9 padleftzero">
+          <p-calendar [(ngModel)]="startDate" [inputStyle]="{'width':'70%'}" [showIcon]="true" [showTime]="true"
+            name="startDate" ngDefaultControl>
+          </p-calendar>
         </div>
-        
-        <div class="row" style="
+
+      </div>
+
+      <div class="row" style="
         margin-top: 6%;
     ">
-            <div class=" col-md-3 padleftzero"><label style="
+        <div class=" col-md-3 padleftzero"><label style="
               margin-top: 6%;
           ">End time</label> </div>
-            <div class="col-md-9 padleftzero"><p-calendar [(ngModel)]="endDate" [inputStyle]="{'width':'70%'}"  [showIcon]="true" [showTime]="true" name="endDate" ngDefaultControl>
-          </p-calendar></div>
-          
-          
+        <div class="col-md-9 padleftzero">
+          <p-calendar [(ngModel)]="endDate" [inputStyle]="{'width':'70%'}" [showIcon]="true" [showTime]="true"
+            name="endDate" ngDefaultControl>
+          </p-calendar>
         </div>
-        <div class="row"><div class="col-md-12"><button [disabled]='disablePlay' type="button" style="margin-top: 6%;"  class="btn btn-primary" (click)="loadAudioUrl()">
+
+
+      </div>
+      <div class="row">
+        <div class="col-md-12"><button [disabled]='disablePlay' type="button" style="margin-top: 6%;"
+            class="btn btn-primary" (click)="loadAudioUrl()">
             Play
           </button>
           &nbsp;
-          <button *ngIf="enableDownload" type="button" style="margin-top: 6%;" class="btn btn-primary" (click)="downloadAudio()">
+          <button *ngIf="enableDownload" type="button" style="margin-top: 6%;" class="btn btn-primary"
+            (click)="downloadAudio()">
             <i class="fa fa-download"></i> Download
-          </button></div></div>
-          </div>
+          </button></div>
+      </div>
+    </div>
 
+  </div>
 </div>
-</div>
-<div >
-  <div    [hidden]="!enableOnGridClick">
+<div>
+  <div [hidden]="!enableOnGridClick">
     <!-- <div class="col-md-12" style="padding-bottom: 50px; padding-top:10px;"> -->
 
-      <!-- <div class="col-md-4">
+    <!-- <div class="col-md-4">
         <label>Start time</label> &nbsp;
         <p-calendar [(ngModel)]="startDate" [showIcon]="true" [showTime]="true" name="startDate" ngDefaultControl>
         </p-calendar>
@@ -58,7 +68,7 @@
         <span style="margin-left:35px"></span>
 
       </div> -->
-      <!-- <div class="col-md-4">
+    <!-- <div class="col-md-4">
         <button [disabled]='disablePlay' type="button" class="btn btn-primary" (click)="loadAudioUrl()">
           Play
         </button>
@@ -67,16 +77,17 @@
           <i class="fa fa-download"></i> Download
         </button>
       </div> -->
-      
+
     <!-- </div> -->
-<div>
-    <div   class="col-md-12" >
-      <div  class="col-md-10">
-        <div [hidden]="!enableWaveForm">
-        <div  id="waveform"></div>
-      <div id="waveform-timeline"></div>
-    </div></div>
-      <div [hidden]="!enableOnGridClick" class="col-md-2">
+    <div>
+      <div class="col-md-12">
+        <div class="col-md-10">
+          <div [hidden]="!enableWaveForm">
+            <div id="waveform"></div>
+            <div id="waveform-timeline"></div>
+          </div>
+        </div>
+        <div [hidden]="!enableOnGridClick" class="col-md-2">
           <!-- <div class="row">
             <div class="col-md-3 padleftzero" > <label style="
               margin-top: 6%;
@@ -106,44 +117,50 @@
                 <i class="fa fa-download"></i> Download
               </button></div>
             <br> -->
-        <div *ngIf="showPlayer" class="row" style="margin-top: 16%;">
-        
-          <div class="text-center flexDisplay">
-           
-            <!-- <button type="button" id="button_bw" class="btn pauseMenu " (click)='toogleMute()'>
+          <div *ngIf="showPlayer" class="row" style="margin-top: 16%;">
+
+            <div class="text-center flexDisplay">
+
+              <!-- <button type="button" id="button_bw" class="btn pauseMenu " (click)='toogleMute()'>
                
               <span [hidden]="!mute"><i class="fa fa-volume-up"></i></span>
               <span [hidden]="mute"><i class=" fa fa-volume-off"></i></span>
             </button> &nbsp; -->
-            <img src="assets/stop.png" (click)='wavesurferStop()'>
-            <!-- <button type="button" id="button_bw" class="btn pauseMenu" (click)='waveSurfer.skipBackward()'> -->
+              <img src="assets/stop.png" (click)='wavesurferStop()'>
+              <!-- <button type="button" id="button_bw" class="btn pauseMenu" (click)='waveSurfer.skipBackward()'> -->
               <img src="assets/back.png" (click)="waveSurfer.skipBackward()">
-            <!-- </button> &nbsp; -->
-            
-            <!-- <button type="button" id="button_play" class="btn pauseMenu" (click)="checkPlayPause()"> -->
-              <span [hidden] ="!play" ><img src="assets/play.png" style="border-radius: 20%"(click)="checkPlayPause()"></span> 
-              <span [hidden] ="play" ><img src="assets/pause.png" style="border-radius: 20%" (click)="checkPlayPause()"></span> 
-             <!-- </button> &nbsp; -->
-            
-            <!-- <button type="button" id="button_stop" class="btn pauseMenu" (click)='wavesurferStop()'>
+              <!-- </button> &nbsp; -->
+
+              <!-- <button type="button" id="button_play" class="btn pauseMenu" (click)="checkPlayPause()"> -->
+              <span [hidden]="!play"><img src="assets/play.png" style="border-radius: 20%"
+                  (click)="checkPlayPause()"></span>
+              <span [hidden]="play"><img src="assets/pause.png" style="border-radius: 20%"
+                  (click)="checkPlayPause()"></span>
+              <!-- </button> &nbsp; -->
+
+              <!-- <button type="button" id="button_stop" class="btn pauseMenu" (click)='wavesurferStop()'>
               <i class="fa fa-stop"></i>
             </button>&nbsp; -->
-            
-            <!-- <button type="button" id="button_fw" class="btn pauseMenu" (click)='waveSurfer.skipForward()'> -->
-              <img src="assets/forward.png"  (click)="waveSurfer.skipForward()">
-            <!-- </button>     -->
+
+              <!-- <button type="button" id="button_fw" class="btn pauseMenu" (click)='waveSurfer.skipForward()'> -->
+              <img src="assets/forward.png" (click)="waveSurfer.skipForward()">
+              <!-- </button>     -->
+            </div>
           </div>
+
+
         </div>
-        
-        
+
       </div>
-      
+      <div class="col-md-12">
+        <div *ngIf="enableWaveForm" style="padding-top: 5%">
+          <h1 id="scroller"></h1>
+        </div>
+      </div>
+
     </div>
-    <div class="col-md-12"><div *ngIf="enableWaveForm" style="padding-top: 5%"><h1 id="scroller"></h1></div></div>
-    
   </div>
-  </div>
- 
-  
+
+
 
 </div>
