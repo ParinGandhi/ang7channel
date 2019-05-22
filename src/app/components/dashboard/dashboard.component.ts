@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   lengthOfsites: number;
   eventsGridOptions: GridOptions;
   eventsRowData: any;
-  
+
   rowSelection: string = "multiple";
 
   public appAttributes: applicationAttributes = {
@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit {
   refreshInterval: number;
   dashboardRefreshInverval: any;
   dashboardInterval: any;
+  applicationAttributes: {}[] = [];
   refreshIntervals: any[] = [
     {
       description: "1 minute",
@@ -69,7 +70,7 @@ export class DashboardComponent implements OnInit {
   chartAppAttributesChartData: any;
   public activeInactiveChartLabels: string[] = ['Enabled', 'Disabled'];
   public activityLabels: string[] = ['Active', 'Inactive'];
-  constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService,private router:Router) {
+  constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService, private router: Router) {
   }
 
   eventsColumnDefs = [
@@ -135,7 +136,7 @@ export class DashboardComponent implements OnInit {
           },
           hideDelay: 0
         },
-       
+
         noData: 'No data available',
         showValues: true,
 
@@ -145,7 +146,7 @@ export class DashboardComponent implements OnInit {
         },
         discretebar: {
           dispatch: {
-            elementClick:(e) => { 
+            elementClick: (e) => {
               this.redirectToRecordings(e);
             }
           }
@@ -175,10 +176,20 @@ export class DashboardComponent implements OnInit {
     this.appAttributesChartData = [];
     this.activeInactiveData = [];
     this.activityData = [];
+    this.applicationAttributes = [];
     this.dataService.getDashboardData().subscribe(
       response => {
         this.lastRefreshed = new Date();
         this.dashboardData = response;
+        for (var key in this.dashboardData.applicationAttributes) {
+          if (this.dashboardData.applicationAttributes.hasOwnProperty(key)) {
+            var appProp = {
+              title: key,
+              name: this.dashboardData.applicationAttributes[key]
+            }
+            this.applicationAttributes.push(appProp);
+          }
+        }
         activeCount = this.dashboardData.activeChannelsBySite;
         maxCount = Math.max(...this.dashboardData.siteCount);
         this.optionsForTool.chart['valueFormat'] = function (d) {
@@ -251,7 +262,7 @@ export class DashboardComponent implements OnInit {
       return toolTipView;
     }
 
-    
+
     this.options = {
       chart: {
         type: 'pieChart',
@@ -345,19 +356,19 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  redirectToRecordings(a){
-  this.dataService.getSearchData('siteName='+a.data.label)
-  .subscribe(rowData => {
-    console.log('Table response: %o', rowData);
-    this.sharedService.setSearchFlag(false);
-    this.sharedService.changeDataSource(rowData);
-    this.sharedService.setDashboardSearch(true);
-    d3.selectAll('.nvtooltip').remove();
-    this.router.navigateByUrl('/view');
-    this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
-      timeOut: 10000
-    });
-  });
-}
+  redirectToRecordings(a) {
+    this.dataService.getSearchData('siteName=' + a.data.label)
+      .subscribe(rowData => {
+        console.log('Table response: %o', rowData);
+        this.sharedService.setSearchFlag(false);
+        this.sharedService.changeDataSource(rowData);
+        this.sharedService.setDashboardSearch(true);
+        d3.selectAll('.nvtooltip').remove();
+        this.router.navigateByUrl('/view');
+        this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
+          timeOut: 10000
+        });
+      });
+  }
 
 }

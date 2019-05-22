@@ -13,12 +13,14 @@ export class SharedService {
   searchFlag = new BehaviorSubject(false);
   changeDashboardDataSource = new BehaviorSubject(false);
   sharedLoginResource = new BehaviorSubject(false);
+  sharedGuestUser = new BehaviorSubject(false);
   currentMessage = this.sharedDataSource.asObservable();
   currentLogin = this.sharedLoginResource.asObservable();
   currentSitId = this.sharedSiteIdDataSource.asObservable();
   currentRoleId = this.sharedRoleIdDataSource.asObservable();
   currentClassData = this.sharedClassDataSource.asObservable();
   currentFlag = this.searchFlag.asObservable();
+  currentGuestUser = this.sharedGuestUser.asObservable();
   dashboardSearch = this.isDashboardSearch.asObservable();
 
   constructor() { }
@@ -31,7 +33,7 @@ export class SharedService {
   changeSiteIdData(data: any) {
     this.sharedSiteIdDataSource.next(data);
   }
-  setDashboardSearch(data:any){
+  setDashboardSearch(data: any) {
     this.isDashboardSearch.next(data);
   }
   changeDashboardData(data: boolean) {
@@ -45,5 +47,8 @@ export class SharedService {
   }
   setSearchFlag(data: any) {
     this.searchFlag.next(data);
+  }
+  setGuestUser(data: boolean) {
+    this.sharedGuestUser.next(data);
   }
 }

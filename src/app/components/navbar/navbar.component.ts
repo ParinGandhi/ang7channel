@@ -213,6 +213,7 @@ export class NavbarComponent implements OnInit {
     this.dataService.login(this.credentials).subscribe(response => {
       this.checkLogin(loginModal);
       this.guestUser = response.guestUser;
+      this.sharedService.setGuestUser(this.guestUser);
     },
       error => {
         if (error.status === 401) {

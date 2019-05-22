@@ -32,6 +32,7 @@ export class GridComponent implements OnInit {
   display: boolean = false;
   gridRefreshInterval: number = 1;
   gridInterval: any;
+  guestUser: boolean;
   refreshIntervals: {}[] = [
     {
       description: "1 minute",
@@ -192,32 +193,34 @@ export class GridComponent implements OnInit {
     this.dataService.getChannelList().subscribe(rowData => {
       this.lastRefreshed = new Date();
       this.rowData = rowData;
-      this.showPlayer=false;
+      this.showPlayer = false;
       //this.sharedService.isDashboardSearch.next(false);
       this.toastr.success('', 'Retrieved ' + rowData.length + ' records', {
         timeOut: 10000
       });
     });
   }
-  setSearchFlag(){
+  setSearchFlag() {
     this.sharedService.setSearchFlag(true);
   }
   ngOnInit() {
-    this.sharedService.sharedDataSource.subscribe(data =>{ 
+    this.sharedService.sharedDataSource.subscribe(data => {
       this.rowData = data;
-      this.showPlayer=false;
+      this.showPlayer = false;
     });
-    this.sharedService.currentFlag.subscribe(data=>this.display=data);
+    this.sharedService.currentFlag.subscribe(data => this.display = data);
     this.sharedService.sharedLoginResource.subscribe(data => {
       this.loggedIn = data;
       console.log(data);
     })
-    this.sharedService.dashboardSearch.subscribe(data=>{
-      if(!data){
+    this.sharedService.dashboardSearch.subscribe(data => {
+      if (!data) {
         this.getGridData();
       }
     })
-    
+    this.sharedService.currentGuestUser.subscribe(data => {
+      this.guestUser = data;
+    })
 
 
     this.gridOptions = <GridOptions>{
