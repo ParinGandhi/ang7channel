@@ -19,10 +19,11 @@
       </div>
     </div>
     <div class="col-md-2" style="padding-bottom: 20px;">
+      
       <select class="form-control" name="siteid" id="siteid" [ngModelOptions]="{standalone: true}"
         [(ngModel)]="dashboardRefreshInverval" (change)="setRefreshInterval(dashboardRefreshInverval)">
-        <option value="1">Select an auto refresh interval...</option>
-        <option *ngFor="let refreshInterval of refreshIntervals" [ngValue]="refreshInterval">
+        <option  value="1">Select an auto refresh interval...</option>
+        <option  *ngFor="let refreshInterval of refreshIntervals" [ngValue]="refreshInterval">
           {{refreshInterval.description}}</option>
       </select>
     </div>
@@ -32,7 +33,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           Channels By Site
-          <span class="pull-right">Total: {{dashboardData?.siteNames?.length}} </span>
+          <span class="pull-right">Total: {{lengthOfsites}} </span>
           <!-- <div class="card-header-actions pull-right">
                     Total: {{dashboardData.siteNames.length}}
                   </div> -->

@@ -6,6 +6,7 @@ import { DashBoardData } from '../../models/dashboardData';
 import { applicationAttributes } from '../../models/applicationAttributes';
 import { ToastrService } from 'ngx-toastr';
 import { GridOptions, GridCellDef } from 'ag-grid-community';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,79 +18,10 @@ export class DashboardComponent implements OnInit {
   options: any;
   dummySites: any;
   data: any;
+  lengthOfsites: number;
   eventsGridOptions: GridOptions;
   eventsRowData: any;
-  // = [
-  //   {
-  //     "id": 1,
-  //     "name": "Manage Channel",
-  //     "descriptionText": "Manage Channel",
-  //     "eventType": "Create Channel",
-  //     "eventPayLoad": "{\"id\":1,\"channelName\":\"239.1.5.1-DGS-5-GMS\",\"encodingFormat\":\"YBD\",\"lastModifiedTs\":1557690562650,\"lastModifiedUserId\":\"EASLoader\",\"mediaOriginatedIp\":\"239.1.5.2\",\"mediaOriginatedPort\":5002,\"stndRole\":{\"id\":1,\"descriptionTx\":\"GMS\",\"endTs\":null,\"lastModifiedTs\":1557690562481,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"GMS\",\"startTs\":1557690562481},\"stndSite\":{\"id\":1,\"descriptionTx\":\"DGS-5\",\"endTs\":null,\"lastModifiedTs\":1557690562592,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"DGS-5\",\"notificationThreshold\":10,\"startTs\":1557690562592},\"standardClassification\":{\"id\":1,\"descriptionTx\":\"FOUO\",\"endTs\":null,\"lastModifiedTs\":1557690562616,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"FOUO\",\"notificationThreshold\":10,\"startTs\":1557690562616},\"activity\":[],\"enableIn\":\"TRUE\"}",
-  //     "eventResponse": "Successfully created channel",
-  //     "category": "Success",
-  //     "initiator": "EASSYSTEM",
-  //     "startTs": "2019-05-12T19:49:23.000+0000",
-  //     "endTs": "2019-05-12T19:49:23.000+0000",
-  //     "lastModifiedUserId": "EAS",
-  //     "lastModifiedTs": "2019-05-12T19:49:23.000+0000"
-  //   },
-  //   {
-  //     "id": 2,
-  //     "name": "Manage Channel",
-  //     "descriptionText": "Manage Channel",
-  //     "eventType": "Create Channel",
-  //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-  //     "eventResponse": "Channel Started for listening",
-  //     "category": "Success",
-  //     "initiator": "EASSYSTEM",
-  //     "startTs": "2019-05-12T19:49:24.000+0000",
-  //     "endTs": "2019-05-12T19:49:24.000+0000",
-  //     "lastModifiedUserId": "EAS",
-  //     "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
-  //   },
-  //   {
-  //     "id": 3,
-  //     "name": "Manage Channel",
-  //     "descriptionText": "Manage Channel",
-  //     "eventType": "Update Channel",
-  //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-  //     "eventResponse": "Update channel failed",
-  //     "category": "Failure",
-  //     "initiator": "EASSYSTEM",
-  //     "startTs": "2019-05-12T19:49:24.000+0000",
-  //     "endTs": "2019-05-12T19:49:24.000+0000",
-  //     "lastModifiedUserId": "EAS",
-  //     "lastModifiedTs": "2019-02-12T09:39:24.000+0000"
-  //   },
-  //   {
-  //     "id": 4,
-  //     "name": "Manage Channel",
-  //     "descriptionText": "Manage Channel",
-  //     "eventType": "Create Channel",
-  //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-  //     "eventResponse": "Channel Started for listening",
-  //     "category": "Success",
-  //     "initiator": "EASSYSTEM",
-  //     "startTs": "2019-05-12T19:49:24.000+0000",
-  //     "endTs": "2019-05-12T19:49:24.000+0000",
-  //     "lastModifiedUserId": "EAS",
-  //     "lastModifiedTs": "2019-01-11T05:05:05.000+0000"
-  //   }, {
-  //     "id": 5,
-  //     "name": "Manage Channel",
-  //     "descriptionText": "Manage Channel",
-  //     "eventType": "Create Channel",
-  //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-  //     "eventResponse": "Channel Started for listening",
-  //     "category": "Success",
-  //     "initiator": "EASSYSTEM",
-  //     "startTs": "2019-05-12T19:49:24.000+0000",
-  //     "endTs": "2019-05-12T19:49:24.000+0000",
-  //     "lastModifiedUserId": "EAS",
-  //     "lastModifiedTs": "2019-01-05T17:17:24.000+0000"
-  //   }
-  // ];
+  
   rowSelection: string = "multiple";
 
   public appAttributes: applicationAttributes = {
@@ -137,7 +69,7 @@ export class DashboardComponent implements OnInit {
   chartAppAttributesChartData: any;
   public activeInactiveChartLabels: string[] = ['Enabled', 'Disabled'];
   public activityLabels: string[] = ['Active', 'Inactive'];
-  constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService) {
+  constructor(private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService,private router:Router) {
   }
 
   eventsColumnDefs = [
@@ -161,6 +93,9 @@ export class DashboardComponent implements OnInit {
         this.dashboardRefreshInverval = this.refreshIntervals[1];
       }
     })
+    this.sharedService.sharedDataSource.subscribe(data => {
+      this.getDashBoardData();
+    });
     if (!this.isLoggedIn) {
       setTimeout(() => {
         document.getElementById('login').click();
@@ -197,8 +132,10 @@ export class DashboardComponent implements OnInit {
           },
           contentGenerator: function (key) {
             return tooltip(key);
-          }
+          },
+          hideDelay: 0
         },
+       
         noData: 'No data available',
         showValues: true,
 
@@ -206,7 +143,13 @@ export class DashboardComponent implements OnInit {
         xAxis: {
           axisLabel: 'CHANNELS'
         },
-
+        discretebar: {
+          dispatch: {
+            elementClick:(e) => { 
+              this.redirectToRecordings(e);
+            }
+          }
+        },
         groupSpacing: 0.3,
         yAxis: {
           axisLabel: 'SITES',
@@ -235,12 +178,13 @@ export class DashboardComponent implements OnInit {
     this.dataService.getDashboardData().subscribe(
       response => {
         this.lastRefreshed = new Date();
-        this.dashboardData = response; 
+        this.dashboardData = response;
         activeCount = this.dashboardData.activeChannelsBySite;
         maxCount = Math.max(...this.dashboardData.siteCount);
         this.optionsForTool.chart['valueFormat'] = function (d) {
           return d3.format('0f')(d);
         }
+        this.lengthOfsites = this.dashboardData.siteNames.length;
         if (this.dashboardData.siteNames.length <= 5 && this.dashboardData.siteNames.length != 0) {
           this.optionsForTool.chart['valueFormat'] = function (d) {
             if (d != 0) {
@@ -290,8 +234,6 @@ export class DashboardComponent implements OnInit {
         this.chartActivityData = this.activityData;
         this.chartActiveInactiveData = this.activeInactiveData;
         this.optionsForTool.chart["yDomain"] = ([0, maxCount]);
-
-
       }
     )
 
@@ -308,6 +250,8 @@ export class DashboardComponent implements OnInit {
       }
       return toolTipView;
     }
+
+    
     this.options = {
       chart: {
         type: 'pieChart',
@@ -384,8 +328,8 @@ export class DashboardComponent implements OnInit {
   }
 
   setRefreshInterval(refreshInterval) {
-    if(this.dashboardInterval){
-    clearInterval(this.dashboardInterval);
+    if (this.dashboardInterval) {
+      clearInterval(this.dashboardInterval);
     }
     this.dashboardInterval = setInterval(() => {
       this.getDashBoardData();
@@ -401,6 +345,19 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-
+  redirectToRecordings(a){
+  this.dataService.getSearchData('siteName='+a.data.label)
+  .subscribe(rowData => {
+    console.log('Table response: %o', rowData);
+    this.sharedService.setSearchFlag(false);
+    this.sharedService.changeDataSource(rowData);
+    this.sharedService.setDashboardSearch(true);
+    d3.selectAll('.nvtooltip').remove();
+    this.router.navigateByUrl('/view');
+    this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
+      timeOut: 10000
+    });
+  });
+}
 
 }

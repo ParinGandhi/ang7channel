@@ -193,6 +193,7 @@ export class GridComponent implements OnInit {
       this.lastRefreshed = new Date();
       this.rowData = rowData;
       this.showPlayer=false;
+      //this.sharedService.isDashboardSearch.next(false);
       this.toastr.success('', 'Retrieved ' + rowData.length + ' records', {
         timeOut: 10000
       });
@@ -211,7 +212,12 @@ export class GridComponent implements OnInit {
       this.loggedIn = data;
       console.log(data);
     })
-    this.getGridData();
+    this.sharedService.dashboardSearch.subscribe(data=>{
+      if(!data){
+        this.getGridData();
+      }
+    })
+    
 
 
     this.gridOptions = <GridOptions>{

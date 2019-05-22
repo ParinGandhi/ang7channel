@@ -9,6 +9,7 @@ export class SharedService {
   sharedSiteIdDataSource = new BehaviorSubject([]);
   sharedRoleIdDataSource = new BehaviorSubject([]);
   sharedClassDataSource = new BehaviorSubject([]);
+  isDashboardSearch = new BehaviorSubject(false);
   searchFlag = new BehaviorSubject(false);
   changeDashboardDataSource = new BehaviorSubject(false);
   sharedLoginResource = new BehaviorSubject(false);
@@ -18,6 +19,7 @@ export class SharedService {
   currentRoleId = this.sharedRoleIdDataSource.asObservable();
   currentClassData = this.sharedClassDataSource.asObservable();
   currentFlag = this.searchFlag.asObservable();
+  dashboardSearch = this.isDashboardSearch.asObservable();
 
   constructor() { }
   changeDataSource(data: any) {
@@ -28,6 +30,9 @@ export class SharedService {
   }
   changeSiteIdData(data: any) {
     this.sharedSiteIdDataSource.next(data);
+  }
+  setDashboardSearch(data:any){
+    this.isDashboardSearch.next(data);
   }
   changeDashboardData(data: boolean) {
     this.changeDashboardDataSource.next(data);
