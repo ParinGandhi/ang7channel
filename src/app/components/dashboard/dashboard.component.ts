@@ -252,10 +252,10 @@ export class DashboardComponent implements OnInit {
 
 
     var tooltip = function (hoveredData) {
-      var toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0  </button>'
+      var toolTipView = '<button type="button" id="hideon" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0  </button>'
       for (let appViewState of activeCount) {
         if (appViewState.siteName == hoveredData.data.label) {
-          toolTipView = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : ' + appViewState.count + ' </button>';
+          toolTipView = '<button type="button" id="hideon" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : ' + appViewState.count + ' </button>';
         }
 
       }
@@ -363,7 +363,7 @@ export class DashboardComponent implements OnInit {
         this.sharedService.setSearchFlag(false);
         this.sharedService.changeDataSource(rowData);
         this.sharedService.setDashboardSearch(true);
-        d3.selectAll('.nvtooltip').remove();
+        document.getElementById('hideon').remove();
         this.router.navigateByUrl('/view');
         this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
           timeOut: 10000
