@@ -277,7 +277,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf='isLoggedIn'>\r\n  <div class=\"row\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-3\"></div>\r\n      <div class=\"col-md-5\">\r\n        <div class=\" pull-right\">\r\n          Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n          <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n              aria-hidden=\"true\"></span></button>\r\n        </div>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"col-md-3 col-md-offset-7\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"pull-right\">\r\n        Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n        <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-2\" style=\"padding-bottom: 20px;\">\r\n      <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"dashboardRefreshInverval\" (change)=\"setRefreshInterval(dashboardRefreshInverval)\">\r\n        <option value=\"1\">Select an auto refresh interval...</option>\r\n        <option *ngFor=\"let refreshInterval of refreshIntervals\" [ngValue]=\"refreshInterval\">\r\n          {{refreshInterval.description}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Channels By Site\r\n          <span class=\"pull-right\">Total: {{dashboardData?.siteNames?.length}} </span>\r\n          <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{dashboardData.siteNames.length}}\r\n                  </div> -->\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <nvd3 [options]=\"optionsForTool\" [data]=\"data\"></nvd3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Active/Inactive Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                        Total: {{activeInactiveChartLabels.length}}\r\n                      </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Enabled/Disabled Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{activeInactiveChartLabels.length}}\r\n                  </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Error Advisory\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <ag-grid-angular style=\"width: 100%; height: 500px; margin-top: 10px;\" class=\"ag-theme-balham\"\r\n            [rowData]=\"eventsRowData\" [columnDefs]=\"eventsColumnDefs\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n            [enableFilter]=\"true\" [gridOptions]=\"eventsGridOptions\" [paginationPageSize]=20 [pagination]=\"true\"\r\n            [rowSelection]=\"eventsRowSelection\">\r\n          </ag-grid-angular>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-sm-4\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Application Details\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                  Total: {{activeInactiveChartLabels.length}}\r\n                </div> -->\r\n            </div>\r\n            <div class=\"panel-body\" style=\"\r\n              height: 540px;\">\r\n              <div>\r\n                <span *ngFor=\"let item of dashboardData?.applicationAttributes | keyvalue\">\r\n                  <span class=\"blackdot\" style=\"\r\n                      margin-bottom: 0%\"></span> &nbsp;<span><label>{{item?.key}}\r\n                      &nbsp;:</label>\r\n                    {{item?.value}}</span><br><br>\r\n                </span>\r\n                <!-- <span class=\"blackdot\" style=\"\r\n                margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name\r\n                    &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version\r\n                    &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n\r\n\r\n  </div>\r\n</div>"
+module.exports = "<div *ngIf='isLoggedIn'>\r\n  <div class=\"row\">\r\n    <!-- <div class=\"col-md-12\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-3\"></div>\r\n      <div class=\"col-md-5\">\r\n        <div class=\" pull-right\">\r\n          Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n          <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n              aria-hidden=\"true\"></span></button>\r\n        </div>\r\n      </div>\r\n    </div> -->\r\n    <div class=\"col-md-3 col-md-offset-7\" style=\"padding-bottom: 20px;\">\r\n      <div class=\"pull-right\">\r\n        Last refreshed: {{lastRefreshed | date:'medium'}}&nbsp;&nbsp;&nbsp;\r\n        <button class=\"btn btn-sm btn-default\" (click)=\"getDashBoardData();\"><span class=\"glyphicon glyphicon-refresh\"\r\n            aria-hidden=\"true\"></span></button>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-2\" style=\"padding-bottom: 20px;\">\r\n\r\n      <select class=\"form-control\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"dashboardRefreshInverval\" (change)=\"setRefreshInterval(dashboardRefreshInverval)\">\r\n        <option value=\"1\">Select an auto refresh interval...</option>\r\n        <option *ngFor=\"let refreshInterval of refreshIntervals\" [ngValue]=\"refreshInterval\">\r\n          {{refreshInterval.description}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Channels By Site\r\n          <span class=\"pull-right\">Total: {{lengthOfsites}} </span>\r\n          <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{dashboardData.siteNames.length}}\r\n                  </div> -->\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <nvd3 [options]=\"optionsForTool\" [data]=\"data\"></nvd3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Active/Inactive Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                        Total: {{activeInactiveChartLabels.length}}\r\n                      </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActivityData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Enabled/Disabled Channels\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                    Total: {{activeInactiveChartLabels.length}}\r\n                  </div> -->\r\n            </div>\r\n            <div class=\"panel-body\">\r\n              <div class=\"chart-wrapper\">\r\n                <nvd3 [options]=\"options\" [data]=\"chartActiveInactiveData\"></nvd3>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <div class=\"panel panel-default\">\r\n        <div class=\"panel-heading\">\r\n          Error Advisory\r\n        </div>\r\n        <div class=\"panel-body\">\r\n          <ag-grid-angular style=\"width: 100%; height: 500px; margin-top: 10px;\" class=\"ag-theme-balham\"\r\n            [rowData]=\"eventsRowData\" [columnDefs]=\"eventsColumnDefs\" [enableColResize]=\"true\" [enableSorting]=\"true\"\r\n            [enableFilter]=\"true\" [gridOptions]=\"eventsGridOptions\" [paginationPageSize]=20 [pagination]=\"true\"\r\n            [rowSelection]=\"eventsRowSelection\">\r\n          </ag-grid-angular>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-sm-4\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n          <div class=\"panel panel-default\">\r\n            <div class=\"panel-heading\">\r\n              Application Details\r\n              <span class=\"pull-right\"></span>\r\n              <!-- <div class=\"card-header-actions pull-right\">\r\n                  Total: {{activeInactiveChartLabels.length}}\r\n                </div> -->\r\n            </div>\r\n            <div class=\"panel-body\" style=\"\r\n              height: 540px;\">\r\n              <div>\r\n                <!-- <span *ngFor=\"let item of dashboardData?.applicationAttributes | keyvalue\">\r\n                  <span class=\"blackdot\" style=\"\r\n                      margin-bottom: 0%\"></span> &nbsp;<span><label>{{item?.key}}\r\n                      &nbsp;:</label>\r\n                    {{item?.value}}</span><br><br>\r\n                </span> -->\r\n\r\n                <span *ngFor=\"let item of applicationAttributes\">\r\n                  <span class=\"blackdot\" style=\"margin-bottom: 0%\"></span> &nbsp;<span><label>{{item.title}}:</label>\r\n                    &nbsp;{{item.name}}</span><br><br>\r\n                </span>\r\n\r\n\r\n                <!-- <span class=\"blackdot\" style=\"\r\n                margin-bottom: -1%\"></span> &nbsp;<span><label>Application Name\r\n                    &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationName}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>Application Version\r\n                    &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationVersion}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>OSVersion &nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.OSVersion}}</span><br><br>\r\n                <span class=\"blackdot\" style=\"\r\n        margin-bottom: -1%\"></span> &nbsp;<span><label>Application State&nbsp;:</label>\r\n                  {{dashboardData.applicationAttributes.ApplicationState}}</span><br><br> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n\r\n\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -295,6 +295,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/data.service */ "./src/app/services/data.service.ts");
 /* harmony import */ var _shared_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared.service */ "./src/app/shared.service.ts");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -308,82 +309,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(dataService, sharedService, toastr) {
+    function DashboardComponent(dataService, sharedService, toastr, router) {
         this.dataService = dataService;
         this.sharedService = sharedService;
         this.toastr = toastr;
-        // = [
-        //   {
-        //     "id": 1,
-        //     "name": "Manage Channel",
-        //     "descriptionText": "Manage Channel",
-        //     "eventType": "Create Channel",
-        //     "eventPayLoad": "{\"id\":1,\"channelName\":\"239.1.5.1-DGS-5-GMS\",\"encodingFormat\":\"YBD\",\"lastModifiedTs\":1557690562650,\"lastModifiedUserId\":\"EASLoader\",\"mediaOriginatedIp\":\"239.1.5.2\",\"mediaOriginatedPort\":5002,\"stndRole\":{\"id\":1,\"descriptionTx\":\"GMS\",\"endTs\":null,\"lastModifiedTs\":1557690562481,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"GMS\",\"startTs\":1557690562481},\"stndSite\":{\"id\":1,\"descriptionTx\":\"DGS-5\",\"endTs\":null,\"lastModifiedTs\":1557690562592,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"DGS-5\",\"notificationThreshold\":10,\"startTs\":1557690562592},\"standardClassification\":{\"id\":1,\"descriptionTx\":\"FOUO\",\"endTs\":null,\"lastModifiedTs\":1557690562616,\"lastModifiedUserId\":\"mass upload\",\"nm\":\"FOUO\",\"notificationThreshold\":10,\"startTs\":1557690562616},\"activity\":[],\"enableIn\":\"TRUE\"}",
-        //     "eventResponse": "Successfully created channel",
-        //     "category": "Success",
-        //     "initiator": "EASSYSTEM",
-        //     "startTs": "2019-05-12T19:49:23.000+0000",
-        //     "endTs": "2019-05-12T19:49:23.000+0000",
-        //     "lastModifiedUserId": "EAS",
-        //     "lastModifiedTs": "2019-05-12T19:49:23.000+0000"
-        //   },
-        //   {
-        //     "id": 2,
-        //     "name": "Manage Channel",
-        //     "descriptionText": "Manage Channel",
-        //     "eventType": "Create Channel",
-        //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-        //     "eventResponse": "Channel Started for listening",
-        //     "category": "Success",
-        //     "initiator": "EASSYSTEM",
-        //     "startTs": "2019-05-12T19:49:24.000+0000",
-        //     "endTs": "2019-05-12T19:49:24.000+0000",
-        //     "lastModifiedUserId": "EAS",
-        //     "lastModifiedTs": "2019-05-12T19:49:24.000+0000"
-        //   },
-        //   {
-        //     "id": 3,
-        //     "name": "Manage Channel",
-        //     "descriptionText": "Manage Channel",
-        //     "eventType": "Update Channel",
-        //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-        //     "eventResponse": "Update channel failed",
-        //     "category": "Failure",
-        //     "initiator": "EASSYSTEM",
-        //     "startTs": "2019-05-12T19:49:24.000+0000",
-        //     "endTs": "2019-05-12T19:49:24.000+0000",
-        //     "lastModifiedUserId": "EAS",
-        //     "lastModifiedTs": "2019-02-12T09:39:24.000+0000"
-        //   },
-        //   {
-        //     "id": 4,
-        //     "name": "Manage Channel",
-        //     "descriptionText": "Manage Channel",
-        //     "eventType": "Create Channel",
-        //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-        //     "eventResponse": "Channel Started for listening",
-        //     "category": "Success",
-        //     "initiator": "EASSYSTEM",
-        //     "startTs": "2019-05-12T19:49:24.000+0000",
-        //     "endTs": "2019-05-12T19:49:24.000+0000",
-        //     "lastModifiedUserId": "EAS",
-        //     "lastModifiedTs": "2019-01-11T05:05:05.000+0000"
-        //   }, {
-        //     "id": 5,
-        //     "name": "Manage Channel",
-        //     "descriptionText": "Manage Channel",
-        //     "eventType": "Create Channel",
-        //     "eventPayLoad": "\"239.1.5.1-DGS-5-GMS\"",
-        //     "eventResponse": "Channel Started for listening",
-        //     "category": "Success",
-        //     "initiator": "EASSYSTEM",
-        //     "startTs": "2019-05-12T19:49:24.000+0000",
-        //     "endTs": "2019-05-12T19:49:24.000+0000",
-        //     "lastModifiedUserId": "EAS",
-        //     "lastModifiedTs": "2019-01-05T17:17:24.000+0000"
-        //   }
-        // ];
+        this.router = router;
         this.rowSelection = "multiple";
         this.appAttributes = {
             ApplicationVersion: null,
@@ -399,6 +331,7 @@ var DashboardComponent = /** @class */ (function () {
         this.appAttributesChartData = [];
         this.isLoggedIn = false;
         this.activeChannelsBySite = [];
+        this.applicationAttributes = [];
         this.refreshIntervals = [
             {
                 description: "1 minute",
@@ -447,13 +380,21 @@ var DashboardComponent = /** @class */ (function () {
                         },
                         contentGenerator: function (key) {
                             return tooltip(key);
-                        }
+                        },
+                        hideDelay: 0
                     },
                     noData: 'No data available',
                     showValues: true,
                     duration: 500,
                     xAxis: {
                         axisLabel: 'CHANNELS'
+                    },
+                    discretebar: {
+                        dispatch: {
+                            elementClick: function (e) {
+                                _this.redirectToRecordings(e);
+                            }
+                        }
                     },
                     groupSpacing: 0.3,
                     yAxis: {
@@ -478,14 +419,25 @@ var DashboardComponent = /** @class */ (function () {
             this.appAttributesChartData = [];
             this.activeInactiveData = [];
             this.activityData = [];
+            this.applicationAttributes = [];
             this.dataService.getDashboardData().subscribe(function (response) {
                 _this.lastRefreshed = new Date();
                 _this.dashboardData = response;
+                for (var key in _this.dashboardData.applicationAttributes) {
+                    if (_this.dashboardData.applicationAttributes.hasOwnProperty(key)) {
+                        var appProp = {
+                            title: key,
+                            name: _this.dashboardData.applicationAttributes[key]
+                        };
+                        _this.applicationAttributes.push(appProp);
+                    }
+                }
                 activeCount = _this.dashboardData.activeChannelsBySite;
                 maxCount = Math.max.apply(Math, _this.dashboardData.siteCount);
                 _this.optionsForTool.chart['valueFormat'] = function (d) {
                     return d3.format('0f')(d);
                 };
+                _this.lengthOfsites = _this.dashboardData.siteNames.length;
                 if (_this.dashboardData.siteNames.length <= 5 && _this.dashboardData.siteNames.length != 0) {
                     _this.optionsForTool.chart['valueFormat'] = function (d) {
                         if (d != 0) {
@@ -617,6 +569,9 @@ var DashboardComponent = /** @class */ (function () {
                 _this.dashboardRefreshInverval = _this.refreshIntervals[1];
             }
         });
+        this.sharedService.sharedDataSource.subscribe(function (data) {
+            _this.getDashBoardData();
+        });
         if (!this.isLoggedIn) {
             setTimeout(function () {
                 document.getElementById('login').click();
@@ -655,12 +610,27 @@ var DashboardComponent = /** @class */ (function () {
             });
         }
     };
+    DashboardComponent.prototype.redirectToRecordings = function (a) {
+        var _this = this;
+        this.dataService.getSearchData('siteName=' + a.data.label)
+            .subscribe(function (rowData) {
+            console.log('Table response: %o', rowData);
+            _this.sharedService.setSearchFlag(false);
+            _this.sharedService.changeDataSource(rowData);
+            _this.sharedService.setDashboardSearch(true);
+            d3.selectAll('.nvtooltip').remove();
+            _this.router.navigateByUrl('/view');
+            _this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
+                timeOut: 10000
+            });
+        });
+    };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-dashboard',
             template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/components/dashboard/dashboard.component.html")
         }),
-        __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _shared_service__WEBPACK_IMPORTED_MODULE_2__["SharedService"], ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
+        __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _shared_service__WEBPACK_IMPORTED_MODULE_2__["SharedService"], ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -891,6 +861,7 @@ var GridComponent = /** @class */ (function () {
             _this.lastRefreshed = new Date();
             _this.rowData = rowData;
             _this.showPlayer = false;
+            //this.sharedService.isDashboardSearch.next(false);
             _this.toastr.success('', 'Retrieved ' + rowData.length + ' records', {
                 timeOut: 10000
             });
@@ -910,7 +881,14 @@ var GridComponent = /** @class */ (function () {
             _this.loggedIn = data;
             console.log(data);
         });
-        this.getGridData();
+        this.sharedService.dashboardSearch.subscribe(function (data) {
+            if (!data) {
+                _this.getGridData();
+            }
+        });
+        this.sharedService.currentGuestUser.subscribe(function (data) {
+            _this.guestUser = data;
+        });
         this.gridOptions = {
             onGridReady: function () {
                 _this.gridOptions.api.sizeColumnsToFit();
@@ -1115,10 +1093,10 @@ var NavbarComponent = /** @class */ (function () {
             username: null,
             password: null
         };
+        this.keyCodeList = [8, 9, 13, 16, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105];
         this.guestUser = false;
         this.TRUE = "TRUE";
         this.FALSE = "FALSE";
-        this.keyCodeList = [8, 9, 16, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
     }
     NavbarComponent.prototype.getGridData = function () {
         var _this = this;
@@ -1250,6 +1228,7 @@ var NavbarComponent = /** @class */ (function () {
         this.dataService.login(this.credentials).subscribe(function (response) {
             _this.checkLogin(loginModal);
             _this.guestUser = response.guestUser;
+            _this.sharedService.setGuestUser(_this.guestUser);
         }, function (error) {
             if (error.status === 401) {
                 _this.toastr.error('You are not authorized to access this site.', '', {
@@ -1520,7 +1499,7 @@ var NavbarComponent = /** @class */ (function () {
         }
         if (!this.easMediaDataToCreate.enableIn) {
             this.validChannel = false;
-            this.validationMessage += '<li>Active indicator</li>';
+            this.validationMessage += '<li>Enabled</li>';
         }
         return this.validChannel;
     };
@@ -1801,7 +1780,7 @@ var PlayComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"channelName\" class=\"searchLabel\">Channel name</label>\r\n      <input class=\"form-control input-sm\" id=\"channelName\" type=\"text\" (keydown.enter)=\"submitSearch();\"\r\n        [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.channelName\">\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"siteId\" class=\"searchLabel\">Site ID</label>\r\n      <select class=\"form-control input-sm\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"easMediaData.stndSite.id\">\r\n        <option value=\"-1\" disabled>Select a site id...</option>\r\n        <option *ngFor=\"let siteId of siteIdList.results\" [value]=\"siteId.id\">{{siteId.nm}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"originatedIp\" class=\"searchLabel\">Originated IP</label>\r\n      <input class=\"form-control input-sm\" id=\"originatedIp\" type=\"text\" [cleave]=\"{delimiter: '.', blocks: [3,3,3,3]}\"\r\n        (keyup)=\"checkIpValue(easMediaData.mediaOriginatedIp, $event)\" (keydown.enter)=\"submitSearch();\"\r\n        [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.mediaOriginatedIp\">\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"originatedPort\" class=\"searchLabel\">Originated port</label>\r\n      <input class=\"form-control input-sm\" id=\"originatedPort\" type=\"text\" [cleave]=\"{blocks: [5]}\"\r\n        (keydown.enter)=\"submitSearch();\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"easMediaData.mediaOriginatedPort\">\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"manageClassification\" class=\"searchLabel\">Classification</label>\r\n      <select class=\"form-control input-sm\" name=\"manageClassification\" id=\"manageClassification\"\r\n        [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.standardClassification.id\">\r\n        <option value=\"-1\" disabled>Select a classification...</option>\r\n        <option *ngFor=\"let classificationId of classificationList.results\" [value]=\"classificationId.id\">\r\n          {{classificationId.nm}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"roleId\" class=\"searchLabel\">Role ID</label>\r\n      <select class=\"form-control input-sm\" name=\"roleId\" id=\"roleId\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"easMediaData.stndRole.id\">\r\n        <option value=\"-1\" disabled>Select a role id...</option>\r\n        <option *ngFor=\"let roleId of roleIdList.results\" [value]=\"roleId.id\">{{roleId.nm}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <!-- <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"activeIndSearch\" class=\"searchLabel\">Active indicator</label>\r\n      <select class=\"form-control input-sm\" name=\"activeIndSearch\" id=\"activeIndSearch\"\r\n        [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.enableIn\">\r\n        <option value=\"default\" disabled>Select an active indicator...</option>\r\n        <option value=\"TRUE\">Active</option>\r\n        <option value=\"FALSE\">Inactive</option>\r\n      </select>\r\n    </div>\r\n  </div> -->\r\n  <div class=\"row\" style=\"margin-top: 10px;\">\r\n    <div class=\"input-field col-sm-3 col-sm-offset-1\">\r\n      <label for=\"\">Enabled?</label>\r\n    </div>\r\n    <div class=\"col-sm-6\">\r\n      <label for=\"enabledTrue\" class=\"radio-inline\"><input type=\"radio\" name=\"true\" [value]=\"TRUE\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.enableIn\">Yes</label>\r\n      <label for=\"enabledFalse\" class=\"radio-inline\"><input type=\"radio\" name=\"false\" [value]=\"FALSE\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.enableIn\">No</label>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\" style=\"margin-top: 20px;\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"timeRange\">Time range</label>\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"startDate\" class=\"searchLabel\">Begin</label>\r\n      <br>\r\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n      </p-calendar>\r\n      <!-- <span style=\"margin-left:35px\"></span> -->\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"endDate\" class=\"searchLabel\">End</label>\r\n      <br>\r\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n      </p-calendar>\r\n\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeightBtns\">\r\n    <div class=\"col-sm-5 col-sm-offset-1\">\r\n      <button class=\"btn btn-primary btn-block\" (click)=\"submitSearch();\">Submit</button>\r\n    </div>\r\n    <div class=\"col-sm-5\">\r\n      <button class=\"btn btn-default btn-block\" (click)=\"clearSearch();\">Clear</button>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"channelName\" class=\"searchLabel\">Channel name</label>\r\n      <input class=\"form-control input-sm\" id=\"channelName\" type=\"text\" (keydown.enter)=\"submitSearch();\"\r\n        [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.channelName\">\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"siteId\" class=\"searchLabel\">Site ID</label>\r\n      <select class=\"form-control input-sm\" name=\"siteid\" id=\"siteid\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"easMediaData.stndSite.id\">\r\n        <option value=\"-1\" disabled>Select a site id...</option>\r\n        <option *ngFor=\"let siteId of siteIdList.results\" [value]=\"siteId.id\">{{siteId.nm}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <!-- <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"originatedIp\" class=\"searchLabel\">Originated IP</label>\r\n      <input class=\"form-control input-sm\" id=\"originatedIp\" type=\"text\" [cleave]=\"{delimiter: '.', blocks: [3,3,3,3]}\"\r\n        (keyup)=\"checkIpValue(easMediaData.mediaOriginatedIp, $event)\" (keydown.enter)=\"submitSearch();\"\r\n        [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.mediaOriginatedIp\">\r\n    </div>\r\n  </div> -->\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"col-sm-10 col-sm-offset-1\">\r\n      <label for=\"originatedIp\">Originated IP</label>\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"col-sm-offset-1\" style=\"margin-left: 44px;\">\r\n      <!-- <input class=\"form-control\" id=\"octetOne\" type=\"text\" maxlength=\"3\" (blur)=\"padIp(ipOctetOne, 'ipOctetOne')\" -->\r\n      <div>\r\n        <input class=\"form-control-custom\" id=\"octetOne\" type=\"text\" maxlength=\"3\" (blur)=\"validateIPValue(ipOctetOne)\"\r\n          (keyup)=\"checkIpValue(ipOctetOne, 'octetTwo', $event, 'ipOctetOne')\" [ngModelOptions]=\"{standalone: true}\"\r\n          [(ngModel)]=\"ipOctetOne\" style=\"width: 18%;\">\r\n        <input class=\"form-control-custom ipOctets\" id=\"octetTwo\" type=\"text\" maxlength=\"3\"\r\n          (blur)=\"validateIPValue(ipOctetTwo)\" (keyup)=\"checkIpValue(ipOctetTwo, 'octetThree', $event, 'ipOctetTwo')\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"ipOctetTwo\">\r\n        <input class=\"form-control-custom ipOctets\" id=\"octetThree\" type=\"text\" maxlength=\"3\"\r\n          (blur)=\"validateIPValue(ipOctetThree)\"\r\n          (keyup)=\"checkIpValue(ipOctetThree, 'octetFour', $event, 'ipOctetThree')\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"ipOctetThree\">\r\n        <input class=\"form-control-custom ipOctets\" id=\"octetFour\" type=\"text\" maxlength=\"3\"\r\n          (blur)=\"validateIPValue(ipOctetFour)\" (keyup)=\"checkIpValue(ipOctetFour, 'octetFour', $event, 'ipOctetFour')\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"ipOctetFour\">\r\n      </div>\r\n    </div>\r\n    <!-- <div>\r\n      <input class=\"form-control\" id=\"octetTwo\" type=\"text\" maxlength=\"3\" (blur)=\"validateIPValue(ipOctetTwo)\"\r\n        (keyup)=\"checkIpValue(ipOctetTwo, 'octetThree', $event, 'ipOctetTwo')\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"ipOctetTwo\" style=\"width: 50px;\">\r\n    </div> -->\r\n    <!-- <div class=\"col-sm-2\">\r\n      <input class=\"form-control\" id=\"octetThree\" type=\"text\" maxlength=\"3\" (blur)=\"validateIPValue(ipOctetThree)\"\r\n        (keyup)=\"checkIpValue(ipOctetThree, 'octetFour', $event, 'ipOctetThree')\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"ipOctetThree\">\r\n    </div>\r\n    <div class=\"col-sm-2 \">\r\n      <input class=\"form-control\" id=\"octetFour\" type=\"text\" maxlength=\"3\" (blur)=\"validateIPValue(ipOctetFour)\"\r\n        (keyup)=\"checkIpValue(ipOctetFour, 'octetFour', $event, 'ipOctetFour')\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"ipOctetFour\">\r\n    </div> -->\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"originatedPort\" class=\"searchLabel\">Originated port</label>\r\n      <input class=\"form-control input-sm\" id=\"originatedPort\" type=\"text\" [cleave]=\"{blocks: [5]}\"\r\n        (keydown.enter)=\"submitSearch();\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"easMediaData.mediaOriginatedPort\">\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"manageClassification\" class=\"searchLabel\">Classification</label>\r\n      <select class=\"form-control input-sm\" name=\"manageClassification\" id=\"manageClassification\"\r\n        [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.standardClassification.id\">\r\n        <option value=\"-1\" disabled>Select a classification...</option>\r\n        <option *ngFor=\"let classificationId of classificationList.results\" [value]=\"classificationId.id\">\r\n          {{classificationId.nm}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"roleId\" class=\"searchLabel\">Role ID</label>\r\n      <select class=\"form-control input-sm\" name=\"roleId\" id=\"roleId\" [ngModelOptions]=\"{standalone: true}\"\r\n        [(ngModel)]=\"easMediaData.stndRole.id\">\r\n        <option value=\"-1\" disabled>Select a role id...</option>\r\n        <option *ngFor=\"let roleId of roleIdList.results\" [value]=\"roleId.id\">{{roleId.nm}}</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n  <!-- <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"activeIndSearch\" class=\"searchLabel\">Active indicator</label>\r\n      <select class=\"form-control input-sm\" name=\"activeIndSearch\" id=\"activeIndSearch\"\r\n        [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.enableIn\">\r\n        <option value=\"default\" disabled>Select an active indicator...</option>\r\n        <option value=\"TRUE\">Active</option>\r\n        <option value=\"FALSE\">Inactive</option>\r\n      </select>\r\n    </div>\r\n  </div> -->\r\n  <div class=\"row\" style=\"margin-top: 10px;\">\r\n    <div class=\"input-field col-sm-3 col-sm-offset-1\">\r\n      <label for=\"\">Enabled?</label>\r\n    </div>\r\n    <div class=\"col-sm-6\">\r\n      <label for=\"enabledTrue\" class=\"radio-inline\"><input type=\"radio\" name=\"true\" [value]=\"TRUE\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.enableIn\">Yes</label>\r\n      <label for=\"enabledFalse\" class=\"radio-inline\"><input type=\"radio\" name=\"false\" [value]=\"FALSE\"\r\n          [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"easMediaData.enableIn\">No</label>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\" style=\"margin-top: 20px;\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"timeRange\">Time range</label>\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"startDate\" class=\"searchLabel\">Begin</label>\r\n      <br>\r\n      <p-calendar [(ngModel)]=\"startDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"startDate\" ngDefaultControl>\r\n      </p-calendar>\r\n      <!-- <span style=\"margin-left:35px\"></span> -->\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=\"input-field col-sm-10 col-sm-offset-1\">\r\n      <label for=\"endDate\" class=\"searchLabel\">End</label>\r\n      <br>\r\n      <p-calendar [(ngModel)]=\"endDate\" [showIcon]=\"true\" [showTime]=\"true\" name=\"endDate\" ngDefaultControl>\r\n      </p-calendar>\r\n\r\n    </div>\r\n  </div>\r\n  <div class=\"row searchHeightBtns\">\r\n    <div class=\"col-sm-5 col-sm-offset-1\">\r\n      <button class=\"btn btn-primary btn-block\" (click)=\"submitSearch();\">Submit</button>\r\n    </div>\r\n    <div class=\"col-sm-5\">\r\n      <button class=\"btn btn-default btn-block\" (click)=\"clearSearch();\">Clear</button>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1812,7 +1791,7 @@ module.exports = "<div>\r\n  <div class=\"row searchHeight\">\r\n    <div class=
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".searchHeight {\n  margin-top: 5px;\n}\n.searchHeightBtns {\n  margin-top: 15px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDUuMTkuMjAxOS90cnVuay9zcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQUE7Q0NDSDtBREVEO0VBQ0ksaUJBQUE7Q0NBSCIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zZWFyY2hIZWlnaHQge1xuICAgIG1hcmdpbi10b3A6IDVweDtcbn1cblxuLnNlYXJjaEhlaWdodEJ0bnMge1xuICAgIG1hcmdpbi10b3A6IDE1cHg7XG59XG5cbi8vIC5zZWFyY2hMYWJlbCB7XG4vLyAgICAgZm9udC1zaXplOiAxcmVtO1xuLy8gfSIsIi5zZWFyY2hIZWlnaHQge1xuICBtYXJnaW4tdG9wOiA1cHg7XG59XG4uc2VhcmNoSGVpZ2h0QnRucyB7XG4gIG1hcmdpbi10b3A6IDE1cHg7XG59XG4iXX0= */"
+module.exports = ".searchHeight {\n  margin-top: 5px;\n}\n.searchHeightBtns {\n  margin-top: 15px;\n}\n.form-control-custom {\n  width: 100%;\n  height: 30px;\n  padding: 6px 12px;\n  font-size: 14px;\n  line-height: 1.42857143;\n  color: #555555;\n  background-color: #fff;\n  background-image: none;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n}\n.form-control-custom:focus {\n  border-color: #66afe9;\n  outline: 0;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);\n}\n.form-control-custom::-moz-placeholder {\n  color: #999;\n  opacity: 1;\n}\n.form-control-custom:-ms-input-placeholder {\n  color: #999;\n}\n.form-control-custom::-webkit-input-placeholder {\n  color: #999;\n}\n.form-control-custom::-ms-expand {\n  border: 0;\n  background-color: transparent;\n}\n.form-control-custom[disabled],\n.form-control-custom[readonly],\nfieldset[disabled] .form-control {\n  background-color: #eeeeee;\n  opacity: 1;\n}\n.form-control-custom[disabled],\nfieldset[disabled] .form-control {\n  cursor: not-allowed;\n}\n.ipOctets {\n  width: 18%;\n  margin-left: 4%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvQzovZGV2ZWxvcG1lbnQvUmF5dGhlb24vYXVkaW8vdWkvMDUuMTkuMjAxOS90cnVuay9zcmMvYXBwL2NvbXBvbmVudHMvc2VhcmNoL3NlYXJjaC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQUE7Q0NDSDtBREVEO0VBQ0ksaUJBQUE7Q0NBSDtBREdEO0VBQ0ksWUFBQTtFQUNBLGFBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0Esd0JBQUE7RUFDQSxlQUFBO0VBQ0EsdUJBQUE7RUFDQSx1QkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFFQSxpREFBQTtFQUdBLHlFQUFBO0NDREg7QURJRDtFQUNJLHNCQUFBO0VBQ0EsV0FBQTtFQUVBLG1GQUFBO0NDRkg7QURLRDtFQUNJLFlBQUE7RUFDQSxXQUFBO0NDSEg7QURNRDtFQUNJLFlBQUE7Q0NKSDtBRE9EO0VBQ0ksWUFBQTtDQ0xIO0FEUUQ7RUFDSSxVQUFBO0VBQ0EsOEJBQUE7Q0NOSDtBRFNEOzs7RUFHSSwwQkFBQTtFQUNBLFdBQUE7Q0NQSDtBRFVEOztFQUVJLG9CQUFBO0NDUkg7QURXRDtFQUNJLFdBQUE7RUFDQSxnQkFBQTtDQ1RIIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9zZWFyY2gvc2VhcmNoLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLnNlYXJjaEhlaWdodCB7XG4gICAgbWFyZ2luLXRvcDogNXB4O1xufVxuXG4uc2VhcmNoSGVpZ2h0QnRucyB7XG4gICAgbWFyZ2luLXRvcDogMTVweDtcbn1cblxuLmZvcm0tY29udHJvbC1jdXN0b20ge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogMzBweDtcbiAgICBwYWRkaW5nOiA2cHggMTJweDtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgbGluZS1oZWlnaHQ6IDEuNDI4NTcxNDM7XG4gICAgY29sb3I6ICM1NTU1NTU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiBub25lO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIC13ZWJraXQtYm94LXNoYWRvdzogaW5zZXQgMCAxcHggMXB4IHJnYmEoMCwgMCwgMCwgMC4wNzUpO1xuICAgIGJveC1zaGFkb3c6IGluc2V0IDAgMXB4IDFweCByZ2JhKDAsIDAsIDAsIDAuMDc1KTtcbiAgICAtd2Via2l0LXRyYW5zaXRpb246IGJvcmRlci1jb2xvciBlYXNlLWluLW91dCAuMTVzLCBib3gtc2hhZG93IGVhc2UtaW4tb3V0IC4xNXM7XG4gICAgLW8tdHJhbnNpdGlvbjogYm9yZGVyLWNvbG9yIGVhc2UtaW4tb3V0IC4xNXMsIGJveC1zaGFkb3cgZWFzZS1pbi1vdXQgLjE1cztcbiAgICB0cmFuc2l0aW9uOiBib3JkZXItY29sb3IgZWFzZS1pbi1vdXQgLjE1cywgYm94LXNoYWRvdyBlYXNlLWluLW91dCAuMTVzO1xufVxuXG4uZm9ybS1jb250cm9sLWN1c3RvbTpmb2N1cyB7XG4gICAgYm9yZGVyLWNvbG9yOiAjNjZhZmU5O1xuICAgIG91dGxpbmU6IDA7XG4gICAgLXdlYmtpdC1ib3gtc2hhZG93OiBpbnNldCAwIDFweCAxcHggcmdiYSgwLCAwLCAwLCAuMDc1KSwgMCAwIDhweCByZ2JhKDEwMiwgMTc1LCAyMzMsIDAuNik7XG4gICAgYm94LXNoYWRvdzogaW5zZXQgMCAxcHggMXB4IHJnYmEoMCwgMCwgMCwgLjA3NSksIDAgMCA4cHggcmdiYSgxMDIsIDE3NSwgMjMzLCAwLjYpO1xufVxuXG4uZm9ybS1jb250cm9sLWN1c3RvbTo6LW1vei1wbGFjZWhvbGRlciB7XG4gICAgY29sb3I6ICM5OTk7XG4gICAgb3BhY2l0eTogMTtcbn1cblxuLmZvcm0tY29udHJvbC1jdXN0b206LW1zLWlucHV0LXBsYWNlaG9sZGVyIHtcbiAgICBjb2xvcjogIzk5OTtcbn1cblxuLmZvcm0tY29udHJvbC1jdXN0b206Oi13ZWJraXQtaW5wdXQtcGxhY2Vob2xkZXIge1xuICAgIGNvbG9yOiAjOTk5O1xufVxuXG4uZm9ybS1jb250cm9sLWN1c3RvbTo6LW1zLWV4cGFuZCB7XG4gICAgYm9yZGVyOiAwO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xufVxuXG4uZm9ybS1jb250cm9sLWN1c3RvbVtkaXNhYmxlZF0sXG4uZm9ybS1jb250cm9sLWN1c3RvbVtyZWFkb25seV0sXG5maWVsZHNldFtkaXNhYmxlZF0gLmZvcm0tY29udHJvbCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2VlZWVlZTtcbiAgICBvcGFjaXR5OiAxO1xufVxuXG4uZm9ybS1jb250cm9sLWN1c3RvbVtkaXNhYmxlZF0sXG5maWVsZHNldFtkaXNhYmxlZF0gLmZvcm0tY29udHJvbCB7XG4gICAgY3Vyc29yOiBub3QtYWxsb3dlZDtcbn1cblxuLmlwT2N0ZXRzIHtcbiAgICB3aWR0aDogMTglO1xuICAgIG1hcmdpbi1sZWZ0OiA0JTtcbn1cblxuLy8gLnNlYXJjaExhYmVsIHtcbi8vICAgICBmb250LXNpemU6IDFyZW07XG4vLyB9IiwiLnNlYXJjaEhlaWdodCB7XG4gIG1hcmdpbi10b3A6IDVweDtcbn1cbi5zZWFyY2hIZWlnaHRCdG5zIHtcbiAgbWFyZ2luLXRvcDogMTVweDtcbn1cbi5mb3JtLWNvbnRyb2wtY3VzdG9tIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMzBweDtcbiAgcGFkZGluZzogNnB4IDEycHg7XG4gIGZvbnQtc2l6ZTogMTRweDtcbiAgbGluZS1oZWlnaHQ6IDEuNDI4NTcxNDM7XG4gIGNvbG9yOiAjNTU1NTU1O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICBiYWNrZ3JvdW5kLWltYWdlOiBub25lO1xuICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIC13ZWJraXQtYm94LXNoYWRvdzogaW5zZXQgMCAxcHggMXB4IHJnYmEoMCwgMCwgMCwgMC4wNzUpO1xuICBib3gtc2hhZG93OiBpbnNldCAwIDFweCAxcHggcmdiYSgwLCAwLCAwLCAwLjA3NSk7XG4gIC13ZWJraXQtdHJhbnNpdGlvbjogYm9yZGVyLWNvbG9yIGVhc2UtaW4tb3V0IDAuMTVzLCBib3gtc2hhZG93IGVhc2UtaW4tb3V0IDAuMTVzO1xuICAtby10cmFuc2l0aW9uOiBib3JkZXItY29sb3IgZWFzZS1pbi1vdXQgMC4xNXMsIGJveC1zaGFkb3cgZWFzZS1pbi1vdXQgMC4xNXM7XG4gIHRyYW5zaXRpb246IGJvcmRlci1jb2xvciBlYXNlLWluLW91dCAwLjE1cywgYm94LXNoYWRvdyBlYXNlLWluLW91dCAwLjE1cztcbn1cbi5mb3JtLWNvbnRyb2wtY3VzdG9tOmZvY3VzIHtcbiAgYm9yZGVyLWNvbG9yOiAjNjZhZmU5O1xuICBvdXRsaW5lOiAwO1xuICAtd2Via2l0LWJveC1zaGFkb3c6IGluc2V0IDAgMXB4IDFweCByZ2JhKDAsIDAsIDAsIDAuMDc1KSwgMCAwIDhweCByZ2JhKDEwMiwgMTc1LCAyMzMsIDAuNik7XG4gIGJveC1zaGFkb3c6IGluc2V0IDAgMXB4IDFweCByZ2JhKDAsIDAsIDAsIDAuMDc1KSwgMCAwIDhweCByZ2JhKDEwMiwgMTc1LCAyMzMsIDAuNik7XG59XG4uZm9ybS1jb250cm9sLWN1c3RvbTo6LW1vei1wbGFjZWhvbGRlciB7XG4gIGNvbG9yOiAjOTk5O1xuICBvcGFjaXR5OiAxO1xufVxuLmZvcm0tY29udHJvbC1jdXN0b206LW1zLWlucHV0LXBsYWNlaG9sZGVyIHtcbiAgY29sb3I6ICM5OTk7XG59XG4uZm9ybS1jb250cm9sLWN1c3RvbTo6LXdlYmtpdC1pbnB1dC1wbGFjZWhvbGRlciB7XG4gIGNvbG9yOiAjOTk5O1xufVxuLmZvcm0tY29udHJvbC1jdXN0b206Oi1tcy1leHBhbmQge1xuICBib3JkZXI6IDA7XG4gIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50O1xufVxuLmZvcm0tY29udHJvbC1jdXN0b21bZGlzYWJsZWRdLFxuLmZvcm0tY29udHJvbC1jdXN0b21bcmVhZG9ubHldLFxuZmllbGRzZXRbZGlzYWJsZWRdIC5mb3JtLWNvbnRyb2wge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZWVlZWVlO1xuICBvcGFjaXR5OiAxO1xufVxuLmZvcm0tY29udHJvbC1jdXN0b21bZGlzYWJsZWRdLFxuZmllbGRzZXRbZGlzYWJsZWRdIC5mb3JtLWNvbnRyb2wge1xuICBjdXJzb3I6IG5vdC1hbGxvd2VkO1xufVxuLmlwT2N0ZXRzIHtcbiAgd2lkdGg6IDE4JTtcbiAgbWFyZ2luLWxlZnQ6IDQlO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -1894,11 +1873,16 @@ var SearchComponent = /** @class */ (function () {
             stndSite: this.stndSite,
             stndRole: this.stndRole
         };
+        this.toastrTimeOut = 10000;
+        this.keyCodeList = [8, 9, 13, 16, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105];
         this.TRUE = "TRUE";
         this.FALSE = "FALSE";
     }
     SearchComponent.prototype.submitSearch = function () {
         var _this = this;
+        if (this.ipOctetOne && this.ipOctetTwo && this.ipOctetThree && this.ipOctetFour) {
+            this.easMediaData.mediaOriginatedIp = this.ipOctetOne + '.' + this.ipOctetTwo + '.' + this.ipOctetThree + '.' + this.ipOctetFour;
+        }
         var queryParams = [];
         var queryString;
         var searchUrl;
@@ -1968,6 +1952,10 @@ var SearchComponent = /** @class */ (function () {
         this.easMediaData.channelName = null;
         this.easMediaData.stndSite.id = -1;
         this.easMediaData.mediaOriginatedIp = null;
+        this.ipOctetOne = null;
+        this.ipOctetTwo = null;
+        this.ipOctetThree = null;
+        this.ipOctetFour = null;
         this.easMediaData.mediaOriginatedPort = null;
         this.stndRole.id = -1;
         this.easMediaData.standardClassification.id = -1;
@@ -1980,10 +1968,34 @@ var SearchComponent = /** @class */ (function () {
         });
     };
     ;
-    SearchComponent.prototype.checkIpValue = function (ipAddress, e) {
-        if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
-            this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp.substring(0, this.easMediaData.mediaOriginatedIp.length - 1);
+    SearchComponent.prototype.checkIpValue = function (fromTextBox, toTextBox, e, modelName) {
+        // if (e.keyCode < 48 || e.keyCode > 57 && e.keyCode !== 9) {
+        if (!this.keyCodeList.includes(e.keyCode)) {
+            switch (modelName) {
+                case "ipOctetOne":
+                    this.ipOctetOne = this.ipOctetOne.substring(0, this.ipOctetOne.length - 1);
+                    ;
+                    break;
+                case "ipOctetTwo":
+                    this.ipOctetTwo = this.ipOctetTwo.substring(0, this.ipOctetTwo.length - 1);
+                    ;
+                    break;
+                case "ipOctetThree":
+                    this.ipOctetThree = this.ipOctetThree.substring(0, this.ipOctetThree.length - 1);
+                    ;
+                    break;
+                case "ipOctetFour":
+                    this.ipOctetFour = this.ipOctetFour.substring(0, this.ipOctetFour.length - 1);
+                    ;
+                    break;
+                default:
+                    break;
+            }
         }
+        // var length = fromTextBox.length;
+        // if (length === 3) {
+        //   document.getElementById(toTextBox).focus();
+        // }
     };
     SearchComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2752,15 +2764,19 @@ var SharedService = /** @class */ (function () {
         this.sharedSiteIdDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
         this.sharedRoleIdDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
         this.sharedClassDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
+        this.isDashboardSearch = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
         this.searchFlag = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
         this.changeDashboardDataSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
         this.sharedLoginResource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
+        this.sharedGuestUser = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](false);
         this.currentMessage = this.sharedDataSource.asObservable();
         this.currentLogin = this.sharedLoginResource.asObservable();
         this.currentSitId = this.sharedSiteIdDataSource.asObservable();
         this.currentRoleId = this.sharedRoleIdDataSource.asObservable();
         this.currentClassData = this.sharedClassDataSource.asObservable();
         this.currentFlag = this.searchFlag.asObservable();
+        this.currentGuestUser = this.sharedGuestUser.asObservable();
+        this.dashboardSearch = this.isDashboardSearch.asObservable();
     }
     SharedService.prototype.changeDataSource = function (data) {
         this.sharedDataSource.next(data);
@@ -2770,6 +2786,9 @@ var SharedService = /** @class */ (function () {
     };
     SharedService.prototype.changeSiteIdData = function (data) {
         this.sharedSiteIdDataSource.next(data);
+    };
+    SharedService.prototype.setDashboardSearch = function (data) {
+        this.isDashboardSearch.next(data);
     };
     SharedService.prototype.changeDashboardData = function (data) {
         this.changeDashboardDataSource.next(data);
@@ -2782,6 +2801,9 @@ var SharedService = /** @class */ (function () {
     };
     SharedService.prototype.setSearchFlag = function (data) {
         this.searchFlag.next(data);
+    };
+    SharedService.prototype.setGuestUser = function (data) {
+        this.sharedGuestUser.next(data);
     };
     SharedService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
