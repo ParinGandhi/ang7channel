@@ -67,57 +67,70 @@ export class DataService {
 
   dashboardArray = [];
   constructor(private http: HttpClient) { }
-
+getHeaders(){
+   let userid = window.sessionStorage.getItem("user-id");
+   let httpHeaderOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  if(userid){
+    httpHeaderOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':'application/json',
+      'user-id':window.sessionStorage.getItem("user-id")
+    })
+  }}
+  return httpHeaderOptions;
+}
   getChannelList(): Observable<EasMediaData[]> {
-    return this.http.get<EasMediaData[]>(this.getChannelListUrl);
+    return this.http.get<EasMediaData[]>(this.getChannelListUrl,this.getHeaders());
   };
 
   getSiteIdList(): Observable<StandardSite[]> {
-    return this.http.get<StandardSite[]>(this.getSiteIdListUrl);
+    return this.http.get<StandardSite[]>(this.getSiteIdListUrl,this.getHeaders());
   };
 
   getRoleIdList(): Observable<StandardRole[]> {
-    return this.http.get<StandardRole[]>(this.getRoleIdListUrl);
+    return this.http.get<StandardRole[]>(this.getRoleIdListUrl,this.getHeaders());
   };
 
   getDataByChannelName(channelName: string): Observable<ChannelData[]> {
-    return this.http.get<ChannelData[]>(this.getChannelData + channelName);
+    return this.http.get<ChannelData[]>(this.getChannelData + channelName,this.getHeaders());
   };
 
   getErrorAdvisoryData(): Observable<any[]> {
-    return this.http.get<any[]>(this.errorAdvisoryUrl);
+    return this.http.get<any[]>(this.errorAdvisoryUrl,this.getHeaders());
   };
 
   downloadAudio(audioFileName: string) {
     window.open(this.getDownloadAudio + audioFileName, "_blank");
   }
   getUrlByChannelName(AudioInputs): Observable<String> {
-    return this.http.post<string>(this.urlByChannelName, AudioInputs, httpOptions);
+    return this.http.post<string>(this.urlByChannelName, AudioInputs, this.getHeaders());
   };
 
   getClassificationList(): Observable<StandardClassification[]> {
-    return this.http.get<StandardClassification[]>(this.getClassificationUrl);
+    return this.http.get<StandardClassification[]>(this.getClassificationUrl,this.getHeaders());
   };
 
   addClassification(newClassification: StandardClassification): Observable<StandardClassification> {
-    return this.http.post<any>(this.addClassificationUrl, newClassification, httpOptions);
+    return this.http.post<any>(this.addClassificationUrl, newClassification, this.getHeaders());
   };
 
   addChannel(newChannel: EasMediaData): Observable<EasMediaData> {
-    return this.http.post<any>(this.addChannelUrl, newChannel, httpOptions);
+    return this.http.post<any>(this.addChannelUrl, newChannel, this.getHeaders());
   };
 
   addSite(newSite: StandardSite): Observable<EasMediaData> {
-    return this.http.post<any>(this.addSiteUrl, newSite, httpOptions);
+    return this.http.post<any>(this.addSiteUrl, newSite, this.getHeaders());
   };
 
   addRole(newRole: StandardRole): Observable<EasMediaData> {
-    return this.http.post<any>(this.addRoleUrl, newRole, httpOptions);
+    return this.http.post<any>(this.addRoleUrl, newRole, this.getHeaders());
   };
 
   getSearchData(queryString: string): Observable<EasMediaData[]> {
     var url = this.baseUrl + '/eas-media-data?' + queryString;
-    return this.http.get<EasMediaData[]>(url);
+    return this.http.get<EasMediaData[]>(url,this.getHeaders());
   };
 
   getHistoryData(id: any): Observable<any> {
@@ -125,31 +138,31 @@ export class DataService {
   };
 
   archiveChannels(channelList: any): Observable<any> {
-    return this.http.post<any>(this.archiveChannelsUrl, channelList, httpOptions);
+    return this.http.post<any>(this.archiveChannelsUrl, channelList, this.getHeaders());
   };
 
   updateSite(siteInfo: any): Observable<any> {
-    return this.http.put<any>(this.updateSiteUrl, siteInfo, httpOptions);
+    return this.http.put<any>(this.updateSiteUrl, siteInfo, this.getHeaders());
   };
 
   updateRole(roleInfo: any): Observable<any> {
-    return this.http.put<any>(this.updateRoleUrl, roleInfo, httpOptions);
+    return this.http.put<any>(this.updateRoleUrl, roleInfo, this.getHeaders());
   };
 
   updateClassification(classificationInfo: StandardClassification): Observable<any> {
-    return this.http.put<any>(this.updateClassificationUrl, classificationInfo, httpOptions);
+    return this.http.put<any>(this.updateClassificationUrl, classificationInfo, this.getHeaders());
   };
 
   updateChannel(channelInfo: any): Observable<any> {
-    return this.http.put<any>(this.updateChannelUrl, channelInfo, httpOptions);
+    return this.http.put<any>(this.updateChannelUrl, channelInfo, this.getHeaders());
   };
 
   getDashboardData(): Observable<any> {
-    return this.http.get<any>(this.dashboardInfoUrl);
+    return this.http.get<any>(this.dashboardInfoUrl,this.getHeaders());
   };
 
   login(credentials: any): Observable<any> {
-    return this.http.post<any>(this.authenticateUserUrl, credentials, httpOptions);
+    return this.http.post<any>(this.authenticateUserUrl, credentials);
   }
 
   postFile(fileToUpload: any): Observable<boolean> {

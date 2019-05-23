@@ -230,12 +230,14 @@ export class NavbarComponent implements OnInit {
       this.checkLogin(loginModal);
       this.guestUser = response.guestUser;
       this.sharedService.setGuestUser(this.guestUser);
+      window.sessionStorage.setItem("user-id",this.credentials.username);
     },
       error => {
         if (error.status === 401) {
           this.toastr.error('You are not authorized to access this site.', '', {
             timeOut: this.toastrTimeOut
           });
+          window.sessionStorage.removeItem("user-id");
         }
       });
   };
