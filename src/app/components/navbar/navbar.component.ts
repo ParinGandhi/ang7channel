@@ -117,6 +117,10 @@ export class NavbarComponent implements OnInit {
           this.toastr.success('Successfully added channel', '', {
             timeOut: this.toastrTimeOut
           });
+        }, error => {
+          this.toastr.error(error.error.message, '', {
+            timeOut: this.toastrTimeOut
+          });
         });
     } else {
       this.validationMessage += '</ul>';
@@ -138,6 +142,10 @@ export class NavbarComponent implements OnInit {
         });
         this.dataService.getSiteIdList().subscribe(siteIdList => {
           this.siteIdList = siteIdList;
+        });
+      }, error => {
+        this.toastr.error(error.error.message, '', {
+          timeOut: this.toastrTimeOut
         });
       });
     } else {
@@ -170,6 +178,10 @@ export class NavbarComponent implements OnInit {
         this.dataService.getRoleIdList().subscribe(roleIdList => {
           this.roleIdList = roleIdList;
         });
+      }, error => {
+        this.toastr.error(error.error.message, '', {
+          timeOut: this.toastrTimeOut
+        });
       });
     } else {
       this.toastr.error('Role name is mandatory', '', {
@@ -198,6 +210,10 @@ export class NavbarComponent implements OnInit {
           });
           this.dataService.getClassificationList().subscribe(classificationList => {
             this.classificationList = classificationList;
+          });
+        }, error => {
+          this.toastr.error(error.error.message, '', {
+            timeOut: this.toastrTimeOut
           });
         });
       }
@@ -355,7 +371,15 @@ export class NavbarComponent implements OnInit {
             .subscribe(siteIdList => {
               this.siteIdList = siteIdList;
 
+            }, error => {
+              this.toastr.error(error.error.message, '', {
+                timeOut: this.toastrTimeOut
+              });
             });
+        }, error => {
+          this.toastr.error(error.error.message, '', {
+            timeOut: this.toastrTimeOut
+          });
         });
     } else {
       this.toastr.error('Site name is mandatory', '', {
@@ -378,7 +402,15 @@ export class NavbarComponent implements OnInit {
             .subscribe(roleIdList => {
               this.roleIdList = roleIdList;
 
+            }, error => {
+              this.toastr.error(error.error.message, '', {
+                timeOut: this.toastrTimeOut
+              });
             });
+        }, error => {
+          this.toastr.error(error.error.message, '', {
+            timeOut: this.toastrTimeOut
+          });
         });
     } else {
       this.toastr.error('Role name is mandatory', '', {
@@ -411,7 +443,15 @@ export class NavbarComponent implements OnInit {
               .subscribe(classificationList => {
                 this.classificationList = classificationList;
 
+              }, error => {
+                this.toastr.error(error.error.message, '', {
+                  timeOut: this.toastrTimeOut
+                });
               });
+          }, error => {
+            this.toastr.error(error.error.message, '', {
+              timeOut: this.toastrTimeOut
+            });
           });
       }
     } else {
@@ -440,6 +480,10 @@ export class NavbarComponent implements OnInit {
                 this.getGridData();
                 this.invokeDropdowns();
                 this.toastr.success('Successfully updated channel', '', {
+                  timeOut: this.toastrTimeOut
+                });
+              }, error => {
+                this.toastr.error(error.error.message, '', {
                   timeOut: this.toastrTimeOut
                 });
               });
@@ -482,7 +526,7 @@ export class NavbarComponent implements OnInit {
     }
     if (!this.easMediaDataToCreate.enableIn) {
       this.validChannel = false;
-      this.validationMessage += '<li>Enabled</li>';
+      this.validationMessage += '<li>Enable recording</li>';
     }
 
     return this.validChannel;

@@ -65,6 +65,16 @@ export class GridComponent implements OnInit {
   }
 
 
+  enabledRenderer = function (params) {
+    var result;
+    if (params.value === "TRUE") {
+      result = "Yes"
+    } else if (params.value === "FALSE") {
+      result = "No"
+    }
+    return "<span>" + result + "</span>";
+  }
+
 
   columnDefs = [
     { headerCheckboxSelection: true, checkboxSelection: true, width: 40 },
@@ -85,7 +95,7 @@ export class GridComponent implements OnInit {
     { headerName: 'Role ID', field: 'stndRole.nm' },
     { headerName: "Originated IP", field: "mediaOriginatedIp", hide: true },
     { headerName: "Originated Port", field: "mediaOriginatedPort", hide: true },
-    { headerName: "EnableIn", field: "enableIn" },
+    { headerName: "Enabled", field: "enableIn", cellRenderer: this.enabledRenderer },
     {
       headerName: 'History', cellRendererFramework: HistoryComponent, cellRendererParams: {
         onClick: this.getHistory.bind(this),
@@ -94,6 +104,8 @@ export class GridComponent implements OnInit {
       },
     }
   ];
+
+
 
   getHistory(e) {
     this.dataService.getHistoryData(e.rowData.id)
@@ -140,8 +152,20 @@ export class GridComponent implements OnInit {
         } else {
           return params.column.getColDef().headerName;
         }
+
         // return params.column.getColDef().headerName.toUpperCase();
       },
+      processCellCallback: function (params) {
+        if (params.column.getColDef().field === "enableIn") {
+          if (params.value === "TRUE") {
+            return "Yes"
+          } else if (params.value === "FALSE") {
+            return "No"
+          }
+        } else {
+          return params.value;
+        }
+      }
     };
     this.gridOptions.api.exportDataAsCsv(params);
   };
