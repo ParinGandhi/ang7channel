@@ -91,47 +91,49 @@ export class SearchComponent implements OnInit {
     this.easMediaData.mediaOriginatedIp = null;
 
 
-    // First Octet
-    if (this.ipOctetOne) {
-      this.easMediaData.mediaOriginatedIp = this.ipOctetOne;
-    } else {
-      validIP = false;
-    }
-
-    // Second Octet
-    if (validIP) {
-      if (this.ipOctetTwo) {
-        this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetTwo;
+    if (this.ipOctetOne || this.ipOctetTwo || this.ipOctetThree || this.ipOctetFour) {
+      // First Octet
+      if (this.ipOctetOne) {
+        this.easMediaData.mediaOriginatedIp = this.ipOctetOne;
+      } else {
+        validIP = false;
       }
-    }
 
-    // Third Octet
-    if (validIP) {
-      if (this.ipOctetThree) {
+      // Second Octet
+      if (validIP) {
         if (this.ipOctetTwo) {
-          this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetThree;
-        } else {
-          validIP = false;
+          this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetTwo;
         }
       }
-    }
 
-    // Fourth Octet
-    if (validIP) {
-      if (this.ipOctetFour) {
+      // Third Octet
+      if (validIP) {
         if (this.ipOctetThree) {
-          this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetFour;
-        } else {
-          validIP = false;
+          if (this.ipOctetTwo) {
+            this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetThree;
+          } else {
+            validIP = false;
+          }
         }
       }
-    }
 
-    if (!validIP) {
+      // Fourth Octet
+      if (validIP) {
+        if (this.ipOctetFour) {
+          if (this.ipOctetThree) {
+            this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetFour;
+          } else {
+            validIP = false;
+          }
+        }
+      }
 
-      this.toastr.error('Please enter the IP address sequentially. There cannot be blanks between octets', '', {
-        timeOut: 10000
-      });
+      if (!validIP) {
+
+        this.toastr.error('Please enter the IP address sequentially. There cannot be blanks between octets', '', {
+          timeOut: 10000
+        });
+      }
     }
 
     if (this.easMediaData.channelName !== 'undefined' && this.easMediaData.channelName !== null && this.easMediaData.channelName !== '') {
