@@ -83,14 +83,56 @@ export class SearchComponent implements OnInit {
 
   submitSearch() {
 
-    if (this.ipOctetOne && this.ipOctetTwo && this.ipOctetThree && this.ipOctetFour) {
-      this.easMediaData.mediaOriginatedIp = this.ipOctetOne + '.' + this.ipOctetTwo + '.' + this.ipOctetThree + '.' + this.ipOctetFour;
-    }
-
     let queryParams: any = [];
     let queryString: string;
     let searchUrl: string;
     let validDate: boolean = true;
+    let validIP: boolean = true;
+    this.easMediaData.mediaOriginatedIp = null;
+
+
+    // First Octet
+    if (this.ipOctetOne) {
+      this.easMediaData.mediaOriginatedIp = this.ipOctetOne;
+    } else {
+      validIP = false;
+    }
+
+    // Second Octet
+    if (validIP) {
+      if (this.ipOctetTwo) {
+        this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetTwo;
+      }
+    }
+
+    // Third Octet
+    if (validIP) {
+      if (this.ipOctetThree) {
+        if (this.ipOctetTwo) {
+          this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetThree;
+        } else {
+          validIP = false;
+        }
+      }
+    }
+
+    // Fourth Octet
+    if (validIP) {
+      if (this.ipOctetFour) {
+        if (this.ipOctetThree) {
+          this.easMediaData.mediaOriginatedIp = this.easMediaData.mediaOriginatedIp + "." + this.ipOctetFour;
+        } else {
+          validIP = false;
+        }
+      }
+    }
+
+    if (!validIP) {
+
+      this.toastr.error('Please enter the IP address sequentially. There cannot be blanks between octets', '', {
+        timeOut: 10000
+      });
+    }
 
     if (this.easMediaData.channelName !== 'undefined' && this.easMediaData.channelName !== null && this.easMediaData.channelName !== '') {
       queryParams.push('channelName=' + this.easMediaData.channelName);
@@ -115,13 +157,13 @@ export class SearchComponent implements OnInit {
     }
     if (new Date(this.startDate).getTime() > new Date(this.endDate).getTime()) {
       validDate = false;
-      this.toastr.error('Start date cannot be greater than end date', '', {
+      this.toastr.error('Begin date cannot be greater than End date', '', {
         timeOut: 10000
       });
     }
     if ((new Date(this.startDate).getTime() && !new Date(this.endDate).getTime()) || (!new Date(this.startDate).getTime() && new Date(this.endDate).getTime())) {
       validDate = false;
-      this.toastr.error('Both start date and end date have to be populated', '', {
+      this.toastr.error('Both Begin date and End date have to be populated', '', {
         timeOut: 10000
       });
     }
@@ -140,7 +182,7 @@ export class SearchComponent implements OnInit {
     //searchUrl = 'http://localhost:8080/eas-media-data?' + queryString;
 
 
-    if (validDate) {
+    if (validDate && validIP) {
       this.dataService.getSearchData(queryString)
         .subscribe(rowData => {
           console.log('Table response: %o', rowData);
@@ -150,6 +192,7 @@ export class SearchComponent implements OnInit {
           this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
             timeOut: 10000
           });
+          this.clearSearch();
         });
     }
 

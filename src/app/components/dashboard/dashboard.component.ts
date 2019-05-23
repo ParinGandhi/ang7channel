@@ -294,9 +294,9 @@ export class DashboardComponent implements OnInit {
         for (var i = 0; i < this.eventsRowData.length; i++) {
           this.eventsRowData[i].eventTime = this.calculateJulianDay(this.eventsRowData[i].lastModifiedTs);
         }
-        setInterval(() => {
-          this.getEventsData();
-        }, 300000)
+        // setInterval(() => {
+        //   this.getEventsData();
+        // }, 300000)
       }
     )
   }
@@ -344,6 +344,7 @@ export class DashboardComponent implements OnInit {
     }
     this.dashboardInterval = setInterval(() => {
       this.getDashBoardData();
+      this.getEventsData();
     }, refreshInterval.value);
     if (refreshInterval.value !== 9999999) {
       this.toastr.success('Successfully set auto refresh to ' + refreshInterval.description, '', {
