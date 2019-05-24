@@ -194,7 +194,6 @@ export class SearchComponent implements OnInit {
           this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
             timeOut: 10000
           });
-          this.clearSearch();
         });
     }
 
