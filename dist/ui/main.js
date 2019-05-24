@@ -2069,7 +2069,6 @@ var SearchComponent = /** @class */ (function () {
                 _this.toastr.success('Successfully returned ' + rowData.length + ' rows', '', {
                     timeOut: 10000
                 });
-                _this.clearSearch();
             });
         }
     };
