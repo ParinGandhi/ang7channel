@@ -8,6 +8,7 @@ import { GridOptions, GridCellDef } from 'ag-grid-community';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../shared.service';
 import { SearchComponent } from '../search/search.component';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-grid',
@@ -33,6 +34,7 @@ export class GridComponent implements OnInit {
   gridRefreshInterval: number = 1;
   gridInterval: any;
   guestUser: boolean;
+  channelNameForExport: string;
   refreshIntervals: {}[] = [
     {
       description: "1 minute",
@@ -108,6 +110,7 @@ export class GridComponent implements OnInit {
 
 
   getHistory(e) {
+    this.channelNameForExport = e.rowData.channelName;
     this.dataService.getHistoryData(e.rowData.id)
       .subscribe(
         response => {
@@ -131,7 +134,7 @@ export class GridComponent implements OnInit {
     { headerName: 'Role ID', field: 'stndRoleDescriptionTx', width: 200 },
     { headerName: 'Last modified user', field: 'lastModifiedUserId', width: 200 },
     {
-      headerName: 'Last modified time', field: 'lastModifiedTs', cellRenderer: (data) => {
+      headerName: 'Last modified time', type: 'date', field: 'lastModifiedTs', cellRenderer: (data) => {
         return data.value ? (new Date(data.value)).toLocaleDateString() + ' ' + (new Date(data.value)).toLocaleTimeString() : '';
       }
     }
@@ -172,9 +175,20 @@ export class GridComponent implements OnInit {
 
   exportHistoryToCsv() {
     var params = {
-      columnKeys: ["channelName", "stndSite.descriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRole.descriptionTx"],
-      fileName: 'AudioHitoryExport.csv',
-      suppressQuotes: true
+      columnKeys: ["channelName", "stndSiteDescriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRoleDescriptionTx", "lastModifiedUserId", "lastModifiedTs"],
+      fileName: 'AudioHistoryExport-' + this.channelNameForExport + '.csv',
+      suppressQuotes: true,
+      processCellCallback: function (params) {
+        if (params.column.getColDef().field === "lastModifiedTs") {
+          var lastModTsExport = " " + formatDate(new Date(params.value), "M/d/yyyy h:mm:ss a", "en-US");
+          // var lastModTsExport = " " + formatDate(new Date(params.value).getTime(), "short", "en-US");
+          console.log(lastModTsExport);
+          console.log(lastModTsExport.toString());
+          return lastModTsExport.toString();
+        } else {
+          return params.value;
+        }
+      }
     };
     this.historyGridOptions.api.exportDataAsCsv(params);
   };
