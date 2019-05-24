@@ -14,9 +14,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const fileUploadOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -166,12 +164,22 @@ getHeaders(){
   }
 
   postFile(fileToUpload: any): Observable<boolean> {
+    let loginid = window.sessionStorage.getItem("user-id");
+    let fileUploadOptions;
+    fileUploadOptions = {
+      headers: new HttpHeaders({'user-id':"null" })
+    }
+    if(loginid){
+    fileUploadOptions = {
+      headers: new HttpHeaders({'user-id':window.sessionStorage.getItem("user-id") })
+    }
+  }
     //const endpoint = 'http://localhost:8080/mass-upload';
     const endpoint = this.getUrlBase() + '/mass-upload';
     // const formData: FormData = new FormData();
     // formData.append('fileKey', fileToUpload, fileToUpload.name);
     return this.http
-      .post(endpoint, fileToUpload)
+      .post(endpoint, fileToUpload,fileUploadOptions)
       // .map(() => { return true; });
       .pipe(map(() => { return true; }));
   }
