@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
 
   eventsColumnDefs = [
     // { headerCheckboxSelection: true, checkboxSelection: true, width: 30 },
-    { headerName: 'Category', field: 'category' },
+    { headerName: 'Status', field: 'category' },
     { headerName: 'Name', field: 'name' },
     { headerName: 'Type', field: 'eventType' },
     { headerName: 'Event', field: 'eventResponse' },
@@ -316,7 +316,7 @@ export class DashboardComponent implements OnInit {
     var eventDate = new Date(year, month - 1, day);
 
     var timeDiff = Math.abs(eventDate.getTime() - dayOne.getTime());
-    var dayDifference: any = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    var dayDifference: any = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
 
     if (dayDifference < 100) {
       if (dayDifference < 10) {

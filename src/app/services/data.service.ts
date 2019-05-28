@@ -62,41 +62,43 @@ export class DataService {
   urlByChannelName: string = this.baseUrl + '/fetch-audio';
   authenticateUserUrl: string = this.baseUrl + '/authenticate';
   errorAdvisoryUrl: string = this.baseUrl + '/eas-event';
+  uploadFileUrl: string = this.baseUrl + '/mass-upload';
 
   dashboardArray = [];
   constructor(private http: HttpClient) { }
-getHeaders(){
-   let userid = window.sessionStorage.getItem("user-id");
-   let httpHeaderOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-  if(userid){
-    httpHeaderOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json',
-      'user-id':window.sessionStorage.getItem("user-id")
-    })
-  }}
-  return httpHeaderOptions;
-}
+  getHeaders() {
+    let userid = window.sessionStorage.getItem("user-id");
+    let httpHeaderOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    if (userid) {
+      httpHeaderOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'user-id': window.sessionStorage.getItem("user-id")
+        })
+      }
+    }
+    return httpHeaderOptions;
+  }
   getChannelList(): Observable<EasMediaData[]> {
-    return this.http.get<EasMediaData[]>(this.getChannelListUrl,this.getHeaders());
+    return this.http.get<EasMediaData[]>(this.getChannelListUrl, this.getHeaders());
   };
 
   getSiteIdList(): Observable<StandardSite[]> {
-    return this.http.get<StandardSite[]>(this.getSiteIdListUrl,this.getHeaders());
+    return this.http.get<StandardSite[]>(this.getSiteIdListUrl, this.getHeaders());
   };
 
   getRoleIdList(): Observable<StandardRole[]> {
-    return this.http.get<StandardRole[]>(this.getRoleIdListUrl,this.getHeaders());
+    return this.http.get<StandardRole[]>(this.getRoleIdListUrl, this.getHeaders());
   };
 
   getDataByChannelName(channelName: string): Observable<ChannelData[]> {
-    return this.http.get<ChannelData[]>(this.getChannelData + channelName,this.getHeaders());
+    return this.http.get<ChannelData[]>(this.getChannelData + channelName, this.getHeaders());
   };
 
   getErrorAdvisoryData(): Observable<any[]> {
-    return this.http.get<any[]>(this.errorAdvisoryUrl,this.getHeaders());
+    return this.http.get<any[]>(this.errorAdvisoryUrl, this.getHeaders());
   };
 
   downloadAudio(audioFileName: string) {
@@ -107,7 +109,7 @@ getHeaders(){
   };
 
   getClassificationList(): Observable<StandardClassification[]> {
-    return this.http.get<StandardClassification[]>(this.getClassificationUrl,this.getHeaders());
+    return this.http.get<StandardClassification[]>(this.getClassificationUrl, this.getHeaders());
   };
 
   addClassification(newClassification: StandardClassification): Observable<StandardClassification> {
@@ -128,7 +130,7 @@ getHeaders(){
 
   getSearchData(queryString: string): Observable<EasMediaData[]> {
     var url = this.baseUrl + '/eas-media-data?' + queryString;
-    return this.http.get<EasMediaData[]>(url,this.getHeaders());
+    return this.http.get<EasMediaData[]>(url, this.getHeaders());
   };
 
   getHistoryData(id: any): Observable<any> {
@@ -156,32 +158,31 @@ getHeaders(){
   };
 
   getDashboardData(): Observable<any> {
-    return this.http.get<any>(this.dashboardInfoUrl,this.getHeaders());
+    return this.http.get<any>(this.dashboardInfoUrl, this.getHeaders());
   };
 
   login(credentials: any): Observable<any> {
     return this.http.post<any>(this.authenticateUserUrl, credentials);
   }
 
-  postFile(fileToUpload: any): Observable<boolean> {
+  postFile(fileToUpload: any): Observable<any> {
     let loginid = window.sessionStorage.getItem("user-id");
     let fileUploadOptions;
     fileUploadOptions = {
-      headers: new HttpHeaders({'user-id':"null" })
+      headers: new HttpHeaders({ 'user-id': "null" })
     }
-    if(loginid){
-    fileUploadOptions = {
-      headers: new HttpHeaders({'user-id':window.sessionStorage.getItem("user-id") })
+    if (loginid) {
+      fileUploadOptions = {
+        headers: new HttpHeaders({ 'user-id': window.sessionStorage.getItem("user-id") })
+      }
     }
-  }
     //const endpoint = 'http://localhost:8080/mass-upload';
-    const endpoint = this.getUrlBase() + '/mass-upload';
+    // const endpoint = this.getUrlBase() + '/mass-upload';
     // const formData: FormData = new FormData();
     // formData.append('fileKey', fileToUpload, fileToUpload.name);
-    return this.http
-      .post(endpoint, fileToUpload,fileUploadOptions)
-      // .map(() => { return true; });
-      .pipe(map(() => { return true; }));
+    return this.http.post(this.uploadFileUrl, fileToUpload, fileUploadOptions);
+    // .map(() => { return true; });
+    // .pipe(map(() => { return true; }));
   }
 
   getUrlBase() {
