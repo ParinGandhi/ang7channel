@@ -518,6 +518,7 @@ var DashboardComponent = /** @class */ (function () {
                     labelSunbeamLayout: false
                 }
             };
+            this.getEventsData();
         };
         this.getEventsData = function () {
             var _this = this;
@@ -1611,6 +1612,7 @@ var NavbarComponent = /** @class */ (function () {
             });
         }, function (error) {
             _this.spinner.hide();
+            _this.sharedService.changeDashboardData(true);
             console.log(error);
             _this.toastr.error('Failed to import file. Please try again later', '', {
                 timeOut: _this.toastrTimeOut
