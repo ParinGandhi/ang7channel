@@ -285,6 +285,8 @@ export class DashboardComponent implements OnInit {
       }
 
     };
+
+    this.getEventsData();
   }
 
   getEventsData = function () {

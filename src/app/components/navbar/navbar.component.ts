@@ -230,7 +230,7 @@ export class NavbarComponent implements OnInit {
       this.checkLogin(loginModal);
       this.guestUser = response.guestUser;
       this.sharedService.setGuestUser(this.guestUser);
-      window.sessionStorage.setItem("user-id",this.credentials.username);
+      window.sessionStorage.setItem("user-id", this.credentials.username);
     },
       error => {
         if (error.status === 401) {
@@ -556,6 +556,7 @@ export class NavbarComponent implements OnInit {
 
     }, error => {
       this.spinner.hide();
+      this.sharedService.changeDashboardData(true);
       console.log(error);
       this.toastr.error('Failed to import file. Please try again later', '', {
         timeOut: this.toastrTimeOut
