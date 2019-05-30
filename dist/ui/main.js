@@ -698,6 +698,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+// import sampleJson from './sampleJson.json';
 var GridComponent = /** @class */ (function () {
     function GridComponent(dataService, sharedService, cdref, ngxSmartModalService, zone, toastr) {
         // this.frameworkComponents = {
@@ -785,6 +786,19 @@ var GridComponent = /** @class */ (function () {
             { headerName: 'Role ID', field: 'stndRoleDescriptionTx', width: 200 },
             { headerName: 'Last modified user', field: 'lastModifiedUserId', width: 200 },
             {
+                headerName: 'Action', field: 'actionTaken', cellRenderer: function (data) {
+                    if (data.value === 'H') {
+                        return "History";
+                    }
+                    else if (data.value === 'A') {
+                        return "Archive";
+                    }
+                    else {
+                        return "";
+                    }
+                }
+            },
+            {
                 headerName: 'Last modified time', type: 'date', field: 'lastModifiedTs', cellRenderer: function (data) {
                     return data.value ? (new Date(data.value)).toLocaleDateString() + ' ' + (new Date(data.value)).toLocaleTimeString() : '';
                 }
@@ -798,6 +812,7 @@ var GridComponent = /** @class */ (function () {
             .subscribe(function (response) {
             // this.ngxSmartModalService.setModalData(response, 'historyModal');
             _this.historyRowData = response;
+            // this.historyRowData = sampleJson;
             _this.ngxSmartModalService.getModal('historyModal').open();
         }, function (error) {
             console.log(error);
@@ -841,7 +856,7 @@ var GridComponent = /** @class */ (function () {
     ;
     GridComponent.prototype.exportHistoryToCsv = function () {
         var params = {
-            columnKeys: ["channelName", "stndSiteDescriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRoleDescriptionTx", "lastModifiedUserId", "lastModifiedTs"],
+            columnKeys: ["channelName", "stndSiteDescriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRoleDescriptionTx", "actionTaken", "lastModifiedUserId", "lastModifiedTs"],
             fileName: 'AudioHistoryExport-' + this.channelNameForExport + '.csv',
             suppressQuotes: true,
             processCellCallback: function (params) {
@@ -851,6 +866,17 @@ var GridComponent = /** @class */ (function () {
                     console.log(lastModTsExport);
                     console.log(lastModTsExport.toString());
                     return lastModTsExport.toString();
+                }
+                else if (params.column.getColDef().field === "actionTaken") {
+                    if (params.value === "H") {
+                        return "History";
+                    }
+                    else if (params.value === "A") {
+                        return "Archive";
+                    }
+                    else {
+                        return "";
+                    }
                 }
                 else {
                     return params.value;
