@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../shared.service';
 import { SearchComponent } from '../search/search.component';
 import { formatDate } from '@angular/common';
+// import sampleJson from './sampleJson.json';
 
 @Component({
   selector: 'app-grid',
@@ -116,6 +117,7 @@ export class GridComponent implements OnInit {
         response => {
           // this.ngxSmartModalService.setModalData(response, 'historyModal');
           this.historyRowData = response;
+          // this.historyRowData = sampleJson;
           this.ngxSmartModalService.getModal('historyModal').open();
         },
         error => {
@@ -133,6 +135,17 @@ export class GridComponent implements OnInit {
     { headerName: 'Classification', field: 'classification', width: 200 },
     { headerName: 'Role ID', field: 'stndRoleDescriptionTx', width: 200 },
     { headerName: 'Last modified user', field: 'lastModifiedUserId', width: 200 },
+    {
+      headerName: 'Action', field: 'actionTaken', cellRenderer: (data) => {
+        if (data.value === 'H') {
+          return "History"
+        } else if (data.value === 'A') {
+          return "Archive"
+        } else {
+          return "";
+        }
+      }
+    },
     {
       headerName: 'Last modified time', type: 'date', field: 'lastModifiedTs', cellRenderer: (data) => {
         return data.value ? (new Date(data.value)).toLocaleDateString() + ' ' + (new Date(data.value)).toLocaleTimeString() : '';
@@ -175,7 +188,7 @@ export class GridComponent implements OnInit {
 
   exportHistoryToCsv() {
     var params = {
-      columnKeys: ["channelName", "stndSiteDescriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRoleDescriptionTx", "lastModifiedUserId", "lastModifiedTs"],
+      columnKeys: ["channelName", "stndSiteDescriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRoleDescriptionTx", "actionTaken", "lastModifiedUserId", "lastModifiedTs"],
       fileName: 'AudioHistoryExport-' + this.channelNameForExport + '.csv',
       suppressQuotes: true,
       processCellCallback: function (params) {
@@ -185,6 +198,14 @@ export class GridComponent implements OnInit {
           console.log(lastModTsExport);
           console.log(lastModTsExport.toString());
           return lastModTsExport.toString();
+        } else if (params.column.getColDef().field === "actionTaken") {
+          if (params.value === "H") {
+            return "History";
+          } else if (params.value === "A") {
+            return "Archive";
+          } else {
+            return "";
+          }
         } else {
           return params.value;
         }
