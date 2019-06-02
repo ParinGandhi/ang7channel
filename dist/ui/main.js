@@ -821,6 +821,7 @@ var GridComponent = /** @class */ (function () {
     };
     ;
     GridComponent.prototype.exportToCsv = function () {
+        var _this = this;
         var params = {
             columnKeys: ["channelName", "stndSite.nm", "mediaOriginatedIp", "mediaOriginatedPort", "standardClassification.nm", "stndRole.nm", "enableIn"],
             fileName: 'AudioExport.csv',
@@ -852,9 +853,25 @@ var GridComponent = /** @class */ (function () {
             }
         };
         this.gridOptions.api.exportDataAsCsv(params);
+        var event = {
+            category: "Success",
+            name: window.sessionStorage.getItem("user-id"),
+            descriptionText: "Export recordings",
+            eventResponse: 'Export of channel list',
+            eventType: "Export",
+            startTs: new Date(),
+            lastModifiedUserId: window.sessionStorage.getItem("user-id"),
+            lastModifiedTs: new Date()
+        };
+        this.dataService.createEvent(event)
+            .subscribe(function (successResponse) {
+            _this.sharedService.changeDashboardData(true);
+            console.log(successResponse);
+        });
     };
     ;
     GridComponent.prototype.exportHistoryToCsv = function () {
+        var _this = this;
         var params = {
             columnKeys: ["channelName", "stndSiteDescriptionTx", "mediaOriginatedIp", "mediaOriginatedPort", "classification", "stndRoleDescriptionTx", "actionTaken", "lastModifiedUserId", "lastModifiedTs"],
             fileName: 'AudioHistoryExport-' + this.channelNameForExport + '.csv',
@@ -884,6 +901,21 @@ var GridComponent = /** @class */ (function () {
             }
         };
         this.historyGridOptions.api.exportDataAsCsv(params);
+        var event = {
+            category: "Success",
+            name: window.sessionStorage.getItem("user-id"),
+            descriptionText: "Export channel",
+            eventResponse: 'Export for channel: ' + this.channelNameForExport,
+            eventType: "Export",
+            startTs: new Date(),
+            lastModifiedUserId: window.sessionStorage.getItem("user-id"),
+            lastModifiedTs: new Date()
+        };
+        this.dataService.createEvent(event)
+            .subscribe(function (successResponse) {
+            _this.sharedService.changeDashboardData(true);
+            console.log(successResponse);
+        });
     };
     ;
     GridComponent.prototype.archiveChannels = function () {
@@ -1567,10 +1599,10 @@ var NavbarComponent = /** @class */ (function () {
                     _this.toastr.success('Successfully updated channel', '', {
                         timeOut: _this.toastrTimeOut
                     });
-                }, function (error) {
-                    _this.toastr.error(error.error.message, '', {
-                        timeOut: _this.toastrTimeOut
-                    });
+                });
+            }, function (error) {
+                _this.toastr.error(error.error.message, '', {
+                    timeOut: _this.toastrTimeOut
                 });
             });
         }
@@ -2769,6 +2801,7 @@ var DataService = /** @class */ (function () {
         this.authenticateUserUrl = this.baseUrl + '/authenticate';
         this.errorAdvisoryUrl = this.baseUrl + '/eas-event';
         this.uploadFileUrl = this.baseUrl + '/mass-upload';
+        this.createEventUrl = this.baseUrl + '/eas-event';
         this.dashboardArray = [];
     }
     DataService.prototype.getHeaders = function () {
@@ -2888,6 +2921,10 @@ var DataService = /** @class */ (function () {
         // .map(() => { return true; });
         // .pipe(map(() => { return true; }));
     };
+    DataService.prototype.createEvent = function (newEvent) {
+        return this.http.post(this.createEventUrl, newEvent, this.getHeaders());
+    };
+    ;
     DataService.prototype.getUrlBase = function () {
         if (this.location.port === "4200") {
             return "http://localhost:8080";
