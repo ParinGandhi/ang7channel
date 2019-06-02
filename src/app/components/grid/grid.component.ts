@@ -184,6 +184,22 @@ export class GridComponent implements OnInit {
       }
     };
     this.gridOptions.api.exportDataAsCsv(params);
+    var event = {
+      category: "Success",
+      name: window.sessionStorage.getItem("user-id"),
+      descriptionText: "Export recordings",
+      eventResponse: 'Export of channel list',
+      eventType: "Export",
+      startTs: new Date(),
+      lastModifiedUserId: window.sessionStorage.getItem("user-id"),
+      lastModifiedTs: new Date()
+
+    }
+    this.dataService.createEvent(event)
+      .subscribe(successResponse => {
+        this.sharedService.changeDashboardData(true);
+        console.log(successResponse);
+      })
   };
 
   exportHistoryToCsv() {
@@ -212,6 +228,22 @@ export class GridComponent implements OnInit {
       }
     };
     this.historyGridOptions.api.exportDataAsCsv(params);
+    var event = {
+      category: "Success",
+      name: window.sessionStorage.getItem("user-id"),
+      descriptionText: "Export channel",
+      eventResponse: 'Export for channel: ' + this.channelNameForExport,
+      eventType: "Export",
+      startTs: new Date(),
+      lastModifiedUserId: window.sessionStorage.getItem("user-id"),
+      lastModifiedTs: new Date()
+
+    }
+    this.dataService.createEvent(event)
+      .subscribe(successResponse => {
+        this.sharedService.changeDashboardData(true);
+        console.log(successResponse);
+      })
   };
 
   archiveChannels() {

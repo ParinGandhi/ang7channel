@@ -484,12 +484,12 @@ export class NavbarComponent implements OnInit {
                 this.toastr.success('Successfully updated channel', '', {
                   timeOut: this.toastrTimeOut
                 });
-              }, error => {
-                this.toastr.error(error.error.message, '', {
-                  timeOut: this.toastrTimeOut
-                });
-              });
-          })
+              })
+          }, error => {
+            this.toastr.error(error.error.message, '', {
+              timeOut: this.toastrTimeOut
+            });
+          });
     } else {
       this.validationMessage += '</ul>';
       this.toastr.error(this.validationMessage, 'Missing mandatory fields', {

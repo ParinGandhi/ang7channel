@@ -63,6 +63,7 @@ export class DataService {
   authenticateUserUrl: string = this.baseUrl + '/authenticate';
   errorAdvisoryUrl: string = this.baseUrl + '/eas-event';
   uploadFileUrl: string = this.baseUrl + '/mass-upload';
+  createEventUrl: string = this.baseUrl + '/eas-event';
 
   dashboardArray = [];
   constructor(private http: HttpClient) { }
@@ -184,6 +185,10 @@ export class DataService {
     // .map(() => { return true; });
     // .pipe(map(() => { return true; }));
   }
+
+  createEvent(newEvent: any): Observable<any> {
+    return this.http.post<any>(this.createEventUrl, newEvent, this.getHeaders());
+  };
 
   getUrlBase() {
     if (this.location.port === "4200") {
