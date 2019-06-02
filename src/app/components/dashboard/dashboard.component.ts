@@ -94,9 +94,12 @@ export class DashboardComponent implements OnInit {
         this.dashboardRefreshInverval = this.refreshIntervals[1];
       }
     })
-    this.sharedService.sharedDataSource.subscribe(data => {
-      this.getDashBoardData();
-    });
+    // this.sharedService.sharedDataSource.subscribe(data => {
+    //   this.getDashBoardData();
+    // });
+    this.sharedService.refreshDashboardData.subscribe(data=>{
+     if(data) {this.getDashBoardData();}
+    })
     if (!this.isLoggedIn) {
       setTimeout(() => {
         document.getElementById('login').click();
@@ -113,9 +116,9 @@ export class DashboardComponent implements OnInit {
       "      "]
   }
 
-
   getDashBoardData = function () {
-    this.optionsForTool = {
+if(!this.optionsForTool)
+   { this.optionsForTool = {
       chart: {
         type: 'discreteBarChart',
         height: 750,
@@ -168,6 +171,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
+  }
 
     let activeCount;
     let maxCount;
@@ -262,7 +266,7 @@ export class DashboardComponent implements OnInit {
       return toolTipView;
     }
 
-
+if(!this.options){
     this.options = {
       chart: {
         type: 'pieChart',
@@ -288,6 +292,7 @@ export class DashboardComponent implements OnInit {
 
     this.getEventsData();
   }
+}
 
   getEventsData = function () {
     this.dataService.getErrorAdvisoryData().subscribe(

@@ -558,6 +558,7 @@ export class NavbarComponent implements OnInit {
       this.spinner.hide();
       this.sharedService.changeDashboardData(true);
       console.log(error);
+      this.getGridData();
       this.toastr.error('Failed to import file. Please try again later', '', {
         timeOut: this.toastrTimeOut
       });

@@ -10,6 +10,7 @@ export class SharedService {
   sharedRoleIdDataSource = new BehaviorSubject([]);
   sharedClassDataSource = new BehaviorSubject([]);
   isDashboardSearch = new BehaviorSubject(false);
+  refreshDashboardData= new BehaviorSubject(false);
   searchFlag = new BehaviorSubject(false);
   changeDashboardDataSource = new BehaviorSubject(false);
   sharedLoginResource = new BehaviorSubject(false);
@@ -35,6 +36,9 @@ export class SharedService {
   }
   setDashboardSearch(data: any) {
     this.isDashboardSearch.next(data);
+  }
+  refreshDashboard(data:any){
+    this.refreshDashboardData.next(data);
   }
   changeDashboardData(data: boolean) {
     this.changeDashboardDataSource.next(data);

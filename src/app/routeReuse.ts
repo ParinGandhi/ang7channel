@@ -2,7 +2,7 @@
 
 import {RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, DetachedRouteHandle} from "@angular/router";
 import { Injectable } from  '@angular/core'
-
+import{SharedService} from './shared.service';
 interface IRouteConfigData {
   reuse: boolean;
 }
@@ -15,7 +15,7 @@ interface ICachedRoute {
 @Injectable()
 export class routeReuseStrategy implements RouteReuseStrategy {
   private routeCache = new Map<string, ICachedRoute>();
-
+  constructor( private sharedService: SharedService) {}
   shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
     let ret = future.routeConfig === curr.routeConfig;
     if (ret) {
@@ -38,6 +38,9 @@ export class routeReuseStrategy implements RouteReuseStrategy {
 
   shouldAttach(route: ActivatedRouteSnapshot): boolean {
     const url = this.getFullRouteUrl(route);
+    if(url === 'dashboard' && this.routeCache.has(url)){
+   this.sharedService.refreshDashboard(true); 
+    }
     return this.routeCache.has(url);
   }
 
