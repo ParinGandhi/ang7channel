@@ -290,8 +290,9 @@ if(!this.options){
 
     };
 
-    this.getEventsData();
+    
   }
+  this.getEventsData();
 }
 
   getEventsData = function () {
