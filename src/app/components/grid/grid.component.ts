@@ -140,7 +140,7 @@ export class GridComponent implements OnInit {
         if (data.value === 'H') {
           return "History"
         } else if (data.value === 'A') {
-          return "Archive"
+          return "Archived"
         } else {
           return "";
         }
@@ -218,7 +218,7 @@ export class GridComponent implements OnInit {
           if (params.value === "H") {
             return "History";
           } else if (params.value === "A") {
-            return "Archive";
+            return "Archived";
           } else {
             return "";
           }
