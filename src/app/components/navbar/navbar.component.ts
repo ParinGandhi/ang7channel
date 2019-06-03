@@ -97,7 +97,7 @@ export class NavbarComponent implements OnInit {
     this.dataService.getChannelList().subscribe(rowData => {
       this.newGridData = rowData;
       this.sharedService.changeDataSource(rowData);
-      this.sharedService.refreshDashboard(true); 
+      this.sharedService.refreshDashboard(true);
     });
   }
   addChannel() {
@@ -558,9 +558,8 @@ export class NavbarComponent implements OnInit {
     }, error => {
       this.spinner.hide();
       this.sharedService.changeDashboardData(true);
-      console.log(error);
-      this.sharedService.refreshDashboard(true); 
-      this.toastr.error('Failed to import file. Please try again later', '', {
+      this.sharedService.refreshDashboard(true);
+      this.toastr.error(error.error.message, '', {
         timeOut: this.toastrTimeOut
       });
     });
