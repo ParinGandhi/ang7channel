@@ -1681,9 +1681,8 @@ var NavbarComponent = /** @class */ (function () {
         }, function (error) {
             _this.spinner.hide();
             _this.sharedService.changeDashboardData(true);
-            console.log(error);
             _this.sharedService.refreshDashboard(true);
-            _this.toastr.error('Failed to import file. Please try again later', '', {
+            _this.toastr.error(error.error.message, '', {
                 timeOut: _this.toastrTimeOut
             });
         });
