@@ -551,7 +551,7 @@ export class NavbarComponent implements OnInit {
       this.getGridData();
       this.invokeDropdowns();
       this.sharedService.changeDashboardData(true);
-      this.toastr.success('Successfully imported file', '', {
+      this.toastr.success(data.message, '', {
         timeOut: this.toastrTimeOut
       });
 
