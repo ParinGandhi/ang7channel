@@ -21,9 +21,10 @@ export class DashboardComponent implements OnInit {
   lengthOfsites: number;
   eventsGridOptions: GridOptions;
   eventsRowData: any;
-
+  tooltip: any;
+  toolTipView: any;
   rowSelection: string = "multiple";
-
+  activeCount: any;
   public appAttributes: applicationAttributes = {
     ApplicationVersion: null,
     OSVersion: null,
@@ -97,8 +98,8 @@ export class DashboardComponent implements OnInit {
     // this.sharedService.sharedDataSource.subscribe(data => {
     //   this.getDashBoardData();
     // });
-    this.sharedService.refreshDashboardData.subscribe(data=>{
-     if(data) {this.getDashBoardData();}
+    this.sharedService.refreshDashboardData.subscribe(data => {
+      if (data) { this.getDashBoardData(); }
     })
     if (!this.isLoggedIn) {
       setTimeout(() => {
@@ -117,63 +118,63 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashBoardData = function () {
-if(!this.optionsForTool)
-   { this.optionsForTool = {
-      chart: {
-        type: 'discreteBarChart',
-        height: 750,
-        margin: {
-          top: 20,
-          right: 20,
-          bottom: 50,
-          left: 55
-        },
-        x: function (d) { return d.label; },
-        y: function (d) { return d.value; },
-        tooltip: {
-          x: function (d) {
-            return d.siteNames + ' ' + '[' + d.siteCount + ']';
+    if (!this.optionsForTool) {
+      this.optionsForTool = {
+        chart: {
+          type: 'discreteBarChart',
+          height: 750,
+          margin: {
+            top: 20,
+            right: 20,
+            bottom: 50,
+            left: 55
           },
-          contentGenerator: function (key) {
-            return tooltip(key);
+          x: function (d) { return d.label; },
+          y: function (d) { return d.value; },
+          tooltip: {
+            x: function (d) {
+              return d.siteNames + ' ' + '[' + d.siteCount + ']';
+            },
+            contentGenerator: (key) => {
+              return this.tooltip(key);
+            },
+            hideDelay: 0
           },
-          hideDelay: 0
-        },
 
-        noData: 'No data available',
-        showValues: true,
+          noData: 'No data available',
+          showValues: true,
 
-        duration: 500,
-        xAxis: {
-          axisLabel: 'SITES'
-        },
-        discretebar: {
-          dispatch: {
-            elementClick: (e) => {
-              this.redirectToRecordings(e);
+          duration: 500,
+          xAxis: {
+            axisLabel: 'SITES'
+          },
+          discretebar: {
+            dispatch: {
+              elementClick: (e) => {
+                this.redirectToRecordings(e);
+              }
             }
+          },
+          groupSpacing: 0.3,
+          yAxis: {
+            axisLabel: 'CHANNELS',
+            axisLabelDistance: -6,
+            tickFormat: function (d) {
+              if ((d * 10) % 10 === 0) {
+                return d3.format('0f')(d);
+              }
+              else {
+                return '';
+              }
+            }
+            //tickValues:([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200]),
+
           }
-        },
-        groupSpacing: 0.3,
-        yAxis: {
-          axisLabel: 'CHANNELS',
-          axisLabelDistance: -6,
-          tickFormat: function (d) {
-            if ((d * 10) % 10 === 0) {
-              return d3.format('0f')(d);
-            }
-            else {
-              return '';
-            }
-          }
-          //tickValues:([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200]),
-
         }
-      }
-    };
-  }
+      };
+    }
 
-    let activeCount;
+
     let maxCount;
     this.dashboardData = {};
     this.chartData = [];
@@ -194,7 +195,7 @@ if(!this.optionsForTool)
             this.applicationAttributes.push(appProp);
           }
         }
-        activeCount = this.dashboardData.activeChannelsBySite;
+        this.activeCount = this.dashboardData.activeChannelsBySite;
         maxCount = Math.max(...this.dashboardData.siteCount);
         this.optionsForTool.chart['valueFormat'] = function (d) {
           return d3.format('0f')(d);
@@ -255,45 +256,45 @@ if(!this.optionsForTool)
 
 
 
-    var tooltip = function (hoveredData) {
-      var toolTipView = '<button type="button" id="hideon" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0  </button>'
-      for (let appViewState of activeCount) {
+    this.tooltip = (hoveredData) => {
+      this.toolTipView = '<button type="button" id="hideon" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : 0  </button>'
+      for (let appViewState of this.activeCount) {
         if (appViewState.siteName == hoveredData.data.label) {
-          toolTipView = '<button type="button" id="hideon" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : ' + appViewState.count + ' </button>';
+          this.toolTipView = '<button type="button" id="hideon" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" > Number of Active channels : ' + appViewState.count + ' </button>';
         }
 
       }
-      return toolTipView;
+      return this.toolTipView;
     }
 
-if(!this.options){
-    this.options = {
-      chart: {
-        type: 'pieChart',
-        height: 325,
-        x: function (d) {
-          return d.siteNames + ' ' + '[' + d.siteCount + ']';
-        },
-        y: function (d) {
-          return d.siteCount;
-        },
-        showLabels: true,
-        noData: 'No data available',
-        duration: 500,
-        tooltip: {
-          enabled: false
-        },
-        labelThreshold: 0.01,
-        labelSunbeamLayout: false
+    if (!this.options) {
+      this.options = {
+        chart: {
+          type: 'pieChart',
+          height: 325,
+          x: function (d) {
+            return d.siteNames + ' ' + '[' + d.siteCount + ']';
+          },
+          y: function (d) {
+            return d.siteCount;
+          },
+          showLabels: true,
+          noData: 'No data available',
+          duration: 500,
+          tooltip: {
+            enabled: false
+          },
+          labelThreshold: 0.01,
+          labelSunbeamLayout: false
 
-      }
+        }
 
-    };
+      };
 
-    
+
+    }
+    this.getEventsData();
   }
-  this.getEventsData();
-}
 
   getEventsData = function () {
     this.dataService.getErrorAdvisoryData().subscribe(
