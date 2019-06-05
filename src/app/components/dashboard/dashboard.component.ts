@@ -145,7 +145,7 @@ if(!this.optionsForTool)
 
         duration: 500,
         xAxis: {
-          axisLabel: 'CHANNELS'
+          axisLabel: 'SITES'
         },
         discretebar: {
           dispatch: {
@@ -156,7 +156,7 @@ if(!this.optionsForTool)
         },
         groupSpacing: 0.3,
         yAxis: {
-          axisLabel: 'SITES',
+          axisLabel: 'CHANNELS',
           axisLabelDistance: -6,
           tickFormat: function (d) {
             if ((d * 10) % 10 === 0) {
