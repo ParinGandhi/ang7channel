@@ -12,17 +12,17 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    data: {reuse: true}
+    data: { reuse: true }
   },
   {
     path: 'view',
     component: ViewComponent,
-    data: {reuse: true}
+
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

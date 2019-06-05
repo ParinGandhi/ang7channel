@@ -556,12 +556,20 @@ export class NavbarComponent implements OnInit {
       });
 
     }, error => {
+      if (error.status != 200) {
+        this.toastr.error(error.error.message, '', {
+          timeOut: this.toastrTimeOut
+        });
+      }
+      if (error.status === 200) {
+        this.toastr.success(error.error.text, '', {
+          timeOut: this.toastrTimeOut
+        });
+      }
       this.spinner.hide();
       this.sharedService.changeDashboardData(true);
       this.sharedService.refreshDashboard(true);
-      this.toastr.error(error.error.message, '', {
-        timeOut: this.toastrTimeOut
-      });
+
     });
   };
 
