@@ -560,16 +560,21 @@ export class NavbarComponent implements OnInit {
         this.toastr.error(error.error.message, '', {
           timeOut: this.toastrTimeOut
         });
+        this.sharedService.refreshDashboard(true);
+
       }
       if (error.status === 200) {
         this.toastr.success(error.error.text, '', {
           timeOut: this.toastrTimeOut
         });
+
+        modelInstance.close();
+        this.getGridData();
+        this.invokeDropdowns();
+
       }
       this.spinner.hide();
       this.sharedService.changeDashboardData(true);
-      this.sharedService.refreshDashboard(true);
-
     });
   };
 
