@@ -192,7 +192,8 @@ export class NavbarComponent implements OnInit {
   };
 
   addClassification() {
-    if (this.standardClassification.nm.trim() && this.standardClassification.descriptionTx) {
+    // if (this.standardClassification.nm.trim() && this.standardClassification.descriptionTx) {
+    if (this.standardClassification.nm.trim()) {
       let validClassificationName = true;
       let classificationMatch = /^[a-zA-Z0-9\\\/ ]*$/g;
       if (!this.standardClassification.nm.match(classificationMatch)) {
@@ -219,7 +220,7 @@ export class NavbarComponent implements OnInit {
         });
       }
     } else {
-      this.toastr.error('Classification name and description are mandatory', '', {
+      this.toastr.error('Classification name is mandatory', '', {
         timeOut: this.toastrTimeOut
       });
     }
