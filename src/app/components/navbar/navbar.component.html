@@ -1,6 +1,6 @@
 <div class="navbar-brand">vEAS</div>
 <button class="btn btn-link navbarLinks" customRouterLink="/dashboard">Dashboard</button>
-<button class="btn btn-link navbarLinks" customRouterLink="/view">Recordings</button>
+<button class="btn btn-link navbarLinks" (click)="navigate()">Recordings</button>
 <button class="btn btn-link navbarLinks" *ngIf="loggedIn && !guestUser"
   (click)="ngxSmartModalService.getModal('manageChannelModal').open()">Manage
   Channels</button>

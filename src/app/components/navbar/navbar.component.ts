@@ -7,6 +7,7 @@ import { EasMediaData } from 'src/app/models/eas-media-data';
 import { StandardClassification } from 'src/app/models/standard-classification';
 import { ToastrService, Toast } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 
 import { SharedService } from '../../shared.service';
@@ -92,7 +93,7 @@ export class NavbarComponent implements OnInit {
 
 
   /** Constructor */
-  constructor(public ngxSmartModalService: NgxSmartModalService, private spinner: NgxSpinnerService, private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService) { }
+  constructor(public ngxSmartModalService: NgxSmartModalService, private router: Router, private spinner: NgxSpinnerService, private dataService: DataService, private sharedService: SharedService, private toastr: ToastrService) { }
   getGridData() {
     this.dataService.getChannelList().subscribe(rowData => {
       this.newGridData = rowData;
@@ -195,9 +196,9 @@ export class NavbarComponent implements OnInit {
     // if (this.standardClassification.nm.trim() && this.standardClassification.descriptionTx) {
     if (this.standardClassification.nm.trim()) {
       let validClassificationName = true;
-      let classificationMatch = /^[a-zA-Z0-9\\\/ ]*$/g;
+      let classificationMatch = /^[-a-zA-Z0-9\\\/ ]*$/g;
       if (!this.standardClassification.nm.match(classificationMatch)) {
-        this.toastr.error('Classification name can only contain alphanumeric characters, spaces, and slashes.', '', {
+        this.toastr.error('Classification name can only contain alphanumeric characters, spaces, slashes, and dashes.', '', {
           timeOut: this.toastrTimeOut
         });
         validClassificationName = false;
@@ -539,7 +540,10 @@ export class NavbarComponent implements OnInit {
   setFile(files: FileList) {
     this.file = files.item(0);
   };
-
+  navigate() {
+    this.sharedService.setDashboardSearch(false);
+    this.router.navigateByUrl('/view');
+  }
   handleFileInput(modelInstance) {
     // this.file = files.item(0);
     this.spinner.show();

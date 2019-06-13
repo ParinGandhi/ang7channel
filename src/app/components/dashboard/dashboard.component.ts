@@ -19,7 +19,9 @@ export class DashboardComponent implements OnInit {
   dummySites: any;
   data: any;
   lengthOfsites: number;
-  eventsGridOptions: GridOptions;
+  eventsGridOptions: GridOptions = {
+    "overlayNoRowsTemplate": '<span>Testing</span>'
+  };
   eventsRowData: any;
   tooltip: any;
   toolTipView: any;
@@ -83,6 +85,8 @@ export class DashboardComponent implements OnInit {
     { headerName: 'Time', field: 'eventTime' }
   ];
 
+
+
   ngOnInit() {
     this.sharedService.sharedLoginResource.subscribe(data => {
       this.isLoggedIn = data
@@ -115,6 +119,8 @@ export class DashboardComponent implements OnInit {
       "   ",
       "    ",
       "      "]
+
+
   }
 
   getDashBoardData = function () {
@@ -306,9 +312,15 @@ export class DashboardComponent implements OnInit {
         // setInterval(() => {
         //   this.getEventsData();
         // }, 300000)
-      }
-    )
+      }, error => {
+        this.eventsGridOptions.api.hideOverlay();
+        this.eventsGridOptions.overlayNoRowsTemplate = '<span style="padding: 10px; border: 1px solid gray;">No Data Available</span>';
+        this.eventsGridOptions.api.showNoRowsOverlay();
+      })
   }
+
+
+
 
   calculateJulianDay = function (lastModTime) {
     var myDate = lastModTime;
