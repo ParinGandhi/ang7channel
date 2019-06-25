@@ -18,20 +18,70 @@
 .nsm-content {
   width: inherit;
 }
+.slidecontainer {
+  width: 80%;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 80% !important;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+}
+.slider:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #337ab7;
+  cursor: pointer;
+}
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #337ab7;
+  cursor: pointer;
+}
+@media screen and (max-width: 1200px) and (min-width: 990px) {
+  .flexDisplay {
+    display: inline-flex !important;
+  }
+}
+.myWid70 input.hasDatepicker {
+  width: 70%;
+}
+.pauseMenu {
+  margin-top: 1%;
+}
 .historyModal {
   width: 213%;
   margin-left: 20%;
 }
+.player {
+  margin: 50px 0;
+}
+.padleftzero {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.nvd3 rect[height="1"] {
+  display: none !important;
+}
+rect {
+  cursor: pointer;
+}
+rect[height="1"] .text {
+  display: none !important;
+}
 .widthUnset {
   width: unset !important;
-}
-.padleftzero{
-  padding-left:0px; padding-right:0px;
-}
-@media screen and (max-width: 1200px) {
-  .flexDisplay{
-    display: inline-flex !important;
-  }
 }
 .bluedot {
   height: 25px;
@@ -40,9 +90,6 @@
   border-radius: 50%;
   display: inline-block;
 }
-/* .nv-bar rect {
-  width: 20px !important;
-} */
 .greendot {
   height: 25px;
   width: 25px;
